@@ -4,10 +4,7 @@ output:
   html_document: default
 ---
 # Distribución muestral
-
 ## Recolección de datos poblacionales.
-
-
 ## Determinación del tamaño de la muestra.
 ## Selección de muestras.
 ## Tipos de muestreo aleatorio.
