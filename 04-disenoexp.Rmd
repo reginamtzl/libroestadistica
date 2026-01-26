@@ -1,0 +1,13 @@
+# Diseño de experimentos
+
+## El experimento y sus fines.
+## Diseño del experimento.
+## Número de ensayos.
+## Análisis de variaciones.
+## Análisis de resultados.
+## Modelos de análisis de varianza por uno y dos criterios de variación.
+## Criterios de comparaciones múltiples.
+## Modelos de bloques incompletos.
+## Modelos de cuadrados latinos y grecolatinos.
+## Análisis de covarianza.
+## Diseño factorial 2k.

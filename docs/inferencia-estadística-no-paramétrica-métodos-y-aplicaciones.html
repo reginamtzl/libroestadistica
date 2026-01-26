@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 5 Inferencia Estadística No Paramétrica: Métodos y Aplicaciones | Estadística Aplicada</title>
+  <meta name="description" content="Capítulo 5 Inferencia Estadística No Paramétrica: Métodos y Aplicaciones | Estadística Aplicada" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 5 Inferencia Estadística No Paramétrica: Métodos y Aplicaciones | Estadística Aplicada" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 5 Inferencia Estadística No Paramétrica: Métodos y Aplicaciones | Estadística Aplicada" />
+  
+  
+  
+
+<meta name="author" content="Varios Autores" />
+
+
+<meta name="date" content="2026-01-21" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="diseño-de-experimentos.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">estadistica</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introducción</a></li>
+<li class="chapter" data-level="2" data-path="distribución-muestral.html"><a href="distribución-muestral.html"><i class="fa fa-check"></i><b>2</b> Distribución muestral</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="distribución-muestral.html"><a href="distribución-muestral.html#recolecci%C3%B3n-de-datos-poblacionales."><i class="fa fa-check"></i><b>2.1</b> Recolección de datos poblacionales.</a></li>
+<li class="chapter" data-level="2.2" data-path="distribución-muestral.html"><a href="distribución-muestral.html#determinaci%C3%B3n-del-tama%C3%B1o-de-la-muestra."><i class="fa fa-check"></i><b>2.2</b> Determinación del tamaño de la muestra.</a></li>
+<li class="chapter" data-level="2.3" data-path="distribución-muestral.html"><a href="distribución-muestral.html#selecci%C3%B3n-de-muestras."><i class="fa fa-check"></i><b>2.3</b> Selección de muestras.</a></li>
+<li class="chapter" data-level="2.4" data-path="distribución-muestral.html"><a href="distribución-muestral.html#tipos-de-muestreo-aleatorio."><i class="fa fa-check"></i><b>2.4</b> Tipos de muestreo aleatorio.</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html"><a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html"><i class="fa fa-check"></i><b>3</b> Análisis de Regresión: De la Inferencia a la Predicción con R</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html"><a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#introducci%C3%B3n-al-an%C3%A1lisis-de-regresi%C3%B3n-definiciones-fundamentales-diferencia-correlaci%C3%B3n-vs.-regresi%C3%B3n-tipolog%C3%ADa-de-variables-rol-del-t%C3%A9rmino-de-error"><i class="fa fa-check"></i><b>3.1</b> Introducción al Análisis de Regresión Definiciones fundamentales, diferencia correlación vs. regresión, tipología de variables, rol del término de error</a></li>
+<li class="chapter" data-level="3.2" data-path="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html"><a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#modelo-de-regresi%C3%B3n-lineal-simple-formulaci%C3%B3n-matem%C3%A1tica-frp-vs.-frm-interpretaci%C3%B3n-de-par%C3%A1metros-beta_0-y-beta_1-ejemplos-aplicados"><i class="fa fa-check"></i><b>3.2</b> Modelo de Regresión Lineal Simple Formulación matemática, FRP vs. FRM, interpretación de parámetros <span class="math inline">\(\beta_0\)</span> y <span class="math inline">\(\beta_1\)</span>, ejemplos aplicados</a></li>
+<li class="chapter" data-level="3.3" data-path="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html"><a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#modelo-de-regresi%C3%B3n-lineal-m%C3%BAltiple-generalizaci%C3%B3n-matricial-coeficientes-parciales-ceteris-paribus-linealidad-en-par%C3%A1metros"><i class="fa fa-check"></i><b>3.3</b> Modelo de Regresión Lineal Múltiple Generalización matricial, coeficientes parciales (ceteris paribus), linealidad en parámetros</a></li>
+<li class="chapter" data-level="3.4" data-path="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html"><a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#supuestos-del-mcrl-seis-supuestos-fundamentales-consecuencias-de-violaciones-verificaci%C3%B3n-pr%C3%A1ctica-con-pruebas-y-gr%C3%A1ficos"><i class="fa fa-check"></i><b>3.4</b> Supuestos del MCRL Seis supuestos fundamentales, consecuencias de violaciones, verificación práctica con pruebas y gráficos</a></li>
+<li class="chapter" data-level="3.5" data-path="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html"><a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#estimaci%C3%B3n-por-mco-derivaci%C3%B3n-del-estimador-propiedades-blue-teorema-de-gauss-markov-estimaci%C3%B3n-de-sigma2"><i class="fa fa-check"></i><b>3.5</b> Estimación por MCO Derivación del estimador, propiedades BLUE, teorema de Gauss-Markov, estimación de <span class="math inline">\(\sigma^2\)</span></a></li>
+<li class="chapter" data-level="3.6" data-path="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html"><a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#inferencia-estad%C3%ADstica-pruebas-t-individuales-y-f-conjuntas-intervalos-de-confianza-y-predicci%C3%B3n-an%C3%A1lisis-anova"><i class="fa fa-check"></i><b>3.6</b> Inferencia Estadística Pruebas t individuales y F conjuntas, intervalos de confianza y predicción, análisis ANOVA</a></li>
+<li class="chapter" data-level="3.7" data-path="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html"><a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#medidas-de-bondad-de-ajuste-r%C2%B2-r%C2%B2-ajustado-criterios-aicbic-limitaciones-y-mal-uso-del-r%C2%B2"><i class="fa fa-check"></i><b>3.7</b> Medidas de Bondad de Ajuste R², R² ajustado, criterios AIC/BIC, limitaciones y mal uso del R²</a></li>
+<li class="chapter" data-level="3.8" data-path="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html"><a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#diagn%C3%B3stico-del-modelo-an%C3%A1lisis-de-residuos-ordinarios-estandarizados-3estudentizados-gr%C3%A1ficos-diagn%C3%B3sticos-esenciales-leverage-y-distancia-de-cook"><i class="fa fa-check"></i><b>3.8</b> Diagnóstico del Modelo Análisis de residuos (ordinarios, estandarizados, 3estudentizados), gráficos diagnósticos esenciales, leverage y distancia de Cook</a></li>
+<li class="chapter" data-level="3.9" data-path="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html"><a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#violaciones-y-remedios-heteroscedasticidad-errores-robustos-hc-autocorrelaci%C3%B3n-durbin-watson-multicolinealidad-vif-soluciones-pr%C3%A1cticas"><i class="fa fa-check"></i><b>3.9</b> Violaciones y Remedios Heteroscedasticidad (errores robustos HC), autocorrelación (Durbin-Watson), multicolinealidad (VIF), soluciones prácticas</a></li>
+<li class="chapter" data-level="3.10" data-path="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html"><a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#selecci%C3%B3n-de-variables-y-modelos-criterios-de-informaci%C3%B3n-selecci%C3%B3n-stepwise-validaci%C3%B3n-cruzada-para-selecci%C3%B3n"><i class="fa fa-check"></i><b>3.10</b> Selección de Variables y Modelos Criterios de información, selección stepwise, validación cruzada para selección</a></li>
+<li class="chapter" data-level="3.11" data-path="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html"><a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#extensiones-del-modelo-lineal-variables-categ%C3%B3ricas-y-contrastes-t%C3%A9rminos-de-interacci%C3%B3n-transformaciones-no-lineales-y-logar%C3%ADtmicas"><i class="fa fa-check"></i><b>3.11</b> Extensiones del Modelo Lineal Variables categóricas y contrastes, términos de interacción, transformaciones no lineales y logarítmicas</a></li>
+<li class="chapter" data-level="3.12" data-path="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html"><a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#evaluaci%C3%B3n-predictiva-divisi%C3%B3n-traintest-m%C3%A9tricas-rmsemaemape-validaci%C3%B3n-cruzada-k-fold"><i class="fa fa-check"></i><b>3.12</b> Evaluación Predictiva División train/test, métricas RMSE/MAE/MAPE, validación cruzada k-fold</a></li>
+<li class="chapter" data-level="3.13" data-path="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html"><a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#introducci%C3%B3n-a-glm-regresi%C3%B3n-log%C3%ADstica-binaria-funciones-de-enlace-familia-exponencial-curva-roc"><i class="fa fa-check"></i><b>3.13</b> Introducción a GLM Regresión logística binaria, funciones de enlace, familia exponencial, curva ROC</a></li>
+<li class="chapter" data-level="3.14" data-path="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html"><a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#t%C3%A9cnicas-de-regularizaci%C3%B3n-ridge-lasso-elastic-net-selecci%C3%B3n-de-lambda-%C3%B3ptimo-comparaci%C3%B3n-con-mco"><i class="fa fa-check"></i><b>3.14</b> Técnicas de Regularización Ridge, LASSO, Elastic Net, selección de <span class="math inline">\(\lambda\)</span> óptimo, comparación con MCO</a></li>
+<li class="chapter" data-level="3.15" data-path="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html"><a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#flujo-de-trabajo-completo-metodolog%C3%ADa-reproducible-eda-automatizado-diagn%C3%B3sticos-sistem%C3%A1ticos-reportes-ejecutivos"><i class="fa fa-check"></i><b>3.15</b> Flujo de Trabajo Completo Metodología reproducible, EDA automatizado, diagnósticos sistemáticos, reportes ejecutivos</a></li>
+<li class="chapter" data-level="3.16" data-path="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html"><a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#ejercicios-propuestos-casos-pr%C3%A1cticos-con-mtcars-diamonds-series-de-tiempo-proyectos-integradores"><i class="fa fa-check"></i><b>3.16</b> Ejercicios Propuestos Casos prácticos con mtcars, diamonds, series de tiempo, proyectos integradores</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="diseño-de-experimentos.html"><a href="diseño-de-experimentos.html"><i class="fa fa-check"></i><b>4</b> Diseño de experimentos</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="diseño-de-experimentos.html"><a href="diseño-de-experimentos.html#el-experimento-y-sus-fines."><i class="fa fa-check"></i><b>4.1</b> El experimento y sus fines.</a></li>
+<li class="chapter" data-level="4.2" data-path="diseño-de-experimentos.html"><a href="diseño-de-experimentos.html#dise%C3%B1o-del-experimento."><i class="fa fa-check"></i><b>4.2</b> Diseño del experimento.</a></li>
+<li class="chapter" data-level="4.3" data-path="diseño-de-experimentos.html"><a href="diseño-de-experimentos.html#n%C3%BAmero-de-ensayos."><i class="fa fa-check"></i><b>4.3</b> Número de ensayos.</a></li>
+<li class="chapter" data-level="4.4" data-path="diseño-de-experimentos.html"><a href="diseño-de-experimentos.html#an%C3%A1lisis-de-variaciones."><i class="fa fa-check"></i><b>4.4</b> Análisis de variaciones.</a></li>
+<li class="chapter" data-level="4.5" data-path="diseño-de-experimentos.html"><a href="diseño-de-experimentos.html#an%C3%A1lisis-de-resultados."><i class="fa fa-check"></i><b>4.5</b> Análisis de resultados.</a></li>
+<li class="chapter" data-level="4.6" data-path="diseño-de-experimentos.html"><a href="diseño-de-experimentos.html#modelos-de-an%C3%A1lisis-de-varianza-por-uno-y-dos-criterios-de-variaci%C3%B3n."><i class="fa fa-check"></i><b>4.6</b> Modelos de análisis de varianza por uno y dos criterios de variación.</a></li>
+<li class="chapter" data-level="4.7" data-path="diseño-de-experimentos.html"><a href="diseño-de-experimentos.html#criterios-de-comparaciones-m%C3%BAltiples."><i class="fa fa-check"></i><b>4.7</b> Criterios de comparaciones múltiples.</a></li>
+<li class="chapter" data-level="4.8" data-path="diseño-de-experimentos.html"><a href="diseño-de-experimentos.html#modelos-de-bloques-incompletos."><i class="fa fa-check"></i><b>4.8</b> Modelos de bloques incompletos.</a></li>
+<li class="chapter" data-level="4.9" data-path="diseño-de-experimentos.html"><a href="diseño-de-experimentos.html#modelos-de-cuadrados-latinos-y-grecolatinos."><i class="fa fa-check"></i><b>4.9</b> Modelos de cuadrados latinos y grecolatinos.</a></li>
+<li class="chapter" data-level="4.10" data-path="diseño-de-experimentos.html"><a href="diseño-de-experimentos.html#an%C3%A1lisis-de-covarianza."><i class="fa fa-check"></i><b>4.10</b> Análisis de covarianza.</a></li>
+<li class="chapter" data-level="4.11" data-path="diseño-de-experimentos.html"><a href="diseño-de-experimentos.html#dise%C3%B1o-factorial-2k."><i class="fa fa-check"></i><b>4.11</b> Diseño factorial 2k.</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html"><a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html"><i class="fa fa-check"></i><b>5</b> Inferencia Estadística No Paramétrica: Métodos y Aplicaciones</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html"><a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#introducci%C3%B3n-a-la-inferencia-no-param%C3%A9trica"><i class="fa fa-check"></i><b>5.1</b> Introducción a la inferencia no paramétrica</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html"><a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#diferencia-entre-m%C3%A9todos-param%C3%A9tricos-y-no-param%C3%A9tricos."><i class="fa fa-check"></i><b>5.1.1</b> Diferencia entre métodos paramétricos y no paramétricos.</a></li>
+<li class="chapter" data-level="5.1.2" data-path="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html"><a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#ventajas-y-limitaciones."><i class="fa fa-check"></i><b>5.1.2</b> Ventajas y limitaciones.</a></li>
+<li class="chapter" data-level="5.1.3" data-path="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html"><a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#situaciones-en-las-que-se-recomienda-su-uso."><i class="fa fa-check"></i><b>5.1.3</b> Situaciones en las que se recomienda su uso.</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html"><a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#pruebas-de-hip%C3%B3tesis-para-una-muestra"><i class="fa fa-check"></i><b>5.2</b> Pruebas de hipótesis para una muestra</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html"><a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#prueba-de-los-signos."><i class="fa fa-check"></i><b>5.2.1</b> Prueba de los signos.</a></li>
+<li class="chapter" data-level="5.2.2" data-path="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html"><a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#prueba-de-wilcoxon-para-una-muestra."><i class="fa fa-check"></i><b>5.2.2</b> Prueba de Wilcoxon para una muestra.</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html"><a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#pruebas-de-hip%C3%B3tesis-para-dos-muestras"><i class="fa fa-check"></i><b>5.3</b> Pruebas de hipótesis para dos muestras</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html"><a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#prueba-de-mann-whitney-u-wilcoxon-de-rangos-sumados."><i class="fa fa-check"></i><b>5.3.1</b> Prueba de Mann-Whitney U (Wilcoxon de rangos sumados).</a></li>
+<li class="chapter" data-level="5.3.2" data-path="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html"><a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#prueba-de-los-signos-para-pares-apareados."><i class="fa fa-check"></i><b>5.3.2</b> Prueba de los signos para pares apareados.</a></li>
+<li class="chapter" data-level="5.3.3" data-path="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html"><a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#prueba-de-wilcoxon-para-pares-apareados."><i class="fa fa-check"></i><b>5.3.3</b> Prueba de Wilcoxon para pares apareados.</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html"><a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#extensi%C3%B3n-a-m%C3%A1s-de-dos-muestras"><i class="fa fa-check"></i><b>5.4</b> Extensión a más de dos muestras</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html"><a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#prueba-de-kruskal-wallis."><i class="fa fa-check"></i><b>5.4.1</b> Prueba de Kruskal-Wallis.</a></li>
+<li class="chapter" data-level="5.4.2" data-path="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html"><a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#prueba-de-friedman-para-dise%C3%B1os-con-bloques."><i class="fa fa-check"></i><b>5.4.2</b> Prueba de Friedman para diseños con bloques.</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html"><a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#medidas-de-asociaci%C3%B3n-no-param%C3%A9tricas"><i class="fa fa-check"></i><b>5.5</b> Medidas de asociación no paramétricas</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html"><a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#coeficiente-de-correlaci%C3%B3n-de-rangos-de-spearman."><i class="fa fa-check"></i><b>5.5.1</b> Coeficiente de correlación de rangos de Spearman.</a></li>
+<li class="chapter" data-level="5.5.2" data-path="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html"><a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#tau-de-kendall."><i class="fa fa-check"></i><b>5.5.2</b> Tau de Kendall.</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html"><a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#aplicaciones-pr%C3%A1cticas-en-ingenier%C3%ADa"><i class="fa fa-check"></i><b>5.6</b> Aplicaciones prácticas en ingeniería</a>
+<ul>
+<li class="chapter" data-level="5.6.1" data-path="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html"><a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#control-de-calidad-y-confiabilidad."><i class="fa fa-check"></i><b>5.6.1</b> Control de calidad y confiabilidad.</a></li>
+<li class="chapter" data-level="5.6.2" data-path="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html"><a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#comparaci%C3%B3n-de-procesos-o-materiales."><i class="fa fa-check"></i><b>5.6.2</b> Comparación de procesos o materiales.</a></li>
+<li class="chapter" data-level="5.6.3" data-path="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html"><a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#ejemplos-con-datos-reales-tiempos-de-respuesta-resistencia-de-materiales-rendimiento-de-equipos."><i class="fa fa-check"></i><b>5.6.3</b> Ejemplos con datos reales (tiempos de respuesta, resistencia de materiales, rendimiento de equipos).</a></li>
+</ul></li>
+<li class="chapter" data-level="5.7" data-path="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html"><a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#implementaci%C3%B3n-computacional"><i class="fa fa-check"></i><b>5.7</b> Implementación computacional</a>
+<ul>
+<li class="chapter" data-level="5.7.1" data-path="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html"><a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#ejemplos-de-aplicaci%C3%B3n-en-software-estad%C3%ADstico-r-python-spss-yo-excel."><i class="fa fa-check"></i><b>5.7.1</b> Ejemplos de aplicación en software estadístico (R, Python, SPSS y/o Excel).</a></li>
+</ul></li>
+<li class="chapter" data-level="5.8" data-path="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html"><a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#conclusiones-y-recomendaciones"><i class="fa fa-check"></i><b>5.8</b> Conclusiones y recomendaciones</a>
+<ul>
+<li class="chapter" data-level="5.8.1" data-path="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html"><a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#relevancia-en-la-pr%C3%A1ctica-profesional."><i class="fa fa-check"></i><b>5.8.1</b> Relevancia en la práctica profesional.</a></li>
+<li class="chapter" data-level="5.8.2" data-path="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html"><a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#comparaci%C3%B3n-con-m%C3%A9todos-param%C3%A9tricos."><i class="fa fa-check"></i><b>5.8.2</b> Comparación con métodos paramétricos.</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Estadística Aplicada</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">Capítulo 5</span> Inferencia Estadística No Paramétrica: Métodos y Aplicaciones<a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#inferencia-estad%C3%ADstica-no-param%C3%A9trica-m%C3%A9todos-y-aplicaciones" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><strong>Objetivo:</strong>
+<em>El objetivo de este capítulo es familiarizar a los estudiantes de ingeniería con la inferencia no paramétrica. Este enfoque consta de una colección de procedimientos que les permitirá realizar análisis estadístico sin la necesidad de suponer distribuciones de probabilidad específicas para los datos. En particular, se busca que los alumnos aprendan a realizar pruebas no paramétricas en situaciones reales donde las técnicas paramétricas no sean factibles. Asimismo, se espera que adquieran la capacidad de interpretar los resultados de manera crítica y los relacionen con su campo profesional.</em></p>
+<p><strong>Contenido</strong></p>
+<div id="introducción-a-la-inferencia-no-paramétrica" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> Introducción a la inferencia no paramétrica<a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#introducci%C3%B3n-a-la-inferencia-no-param%C3%A9trica" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="diferencia-entre-métodos-paramétricos-y-no-paramétricos." class="section level3 hasAnchor" number="5.1.1">
+<h3><span class="header-section-number">5.1.1</span> Diferencia entre métodos paramétricos y no paramétricos.<a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#diferencia-entre-m%C3%A9todos-param%C3%A9tricos-y-no-param%C3%A9tricos." class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="ventajas-y-limitaciones." class="section level3 hasAnchor" number="5.1.2">
+<h3><span class="header-section-number">5.1.2</span> Ventajas y limitaciones.<a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#ventajas-y-limitaciones." class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="situaciones-en-las-que-se-recomienda-su-uso." class="section level3 hasAnchor" number="5.1.3">
+<h3><span class="header-section-number">5.1.3</span> Situaciones en las que se recomienda su uso.<a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#situaciones-en-las-que-se-recomienda-su-uso." class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+</div>
+<div id="pruebas-de-hipótesis-para-una-muestra" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> Pruebas de hipótesis para una muestra<a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#pruebas-de-hip%C3%B3tesis-para-una-muestra" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="prueba-de-los-signos." class="section level3 hasAnchor" number="5.2.1">
+<h3><span class="header-section-number">5.2.1</span> Prueba de los signos.<a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#prueba-de-los-signos." class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="prueba-de-wilcoxon-para-una-muestra." class="section level3 hasAnchor" number="5.2.2">
+<h3><span class="header-section-number">5.2.2</span> Prueba de Wilcoxon para una muestra.<a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#prueba-de-wilcoxon-para-una-muestra." class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+</div>
+<div id="pruebas-de-hipótesis-para-dos-muestras" class="section level2 hasAnchor" number="5.3">
+<h2><span class="header-section-number">5.3</span> Pruebas de hipótesis para dos muestras<a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#pruebas-de-hip%C3%B3tesis-para-dos-muestras" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="prueba-de-mann-whitney-u-wilcoxon-de-rangos-sumados." class="section level3 hasAnchor" number="5.3.1">
+<h3><span class="header-section-number">5.3.1</span> Prueba de Mann-Whitney U (Wilcoxon de rangos sumados).<a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#prueba-de-mann-whitney-u-wilcoxon-de-rangos-sumados." class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="prueba-de-los-signos-para-pares-apareados." class="section level3 hasAnchor" number="5.3.2">
+<h3><span class="header-section-number">5.3.2</span> Prueba de los signos para pares apareados.<a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#prueba-de-los-signos-para-pares-apareados." class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="prueba-de-wilcoxon-para-pares-apareados." class="section level3 hasAnchor" number="5.3.3">
+<h3><span class="header-section-number">5.3.3</span> Prueba de Wilcoxon para pares apareados.<a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#prueba-de-wilcoxon-para-pares-apareados." class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+</div>
+<div id="extensión-a-más-de-dos-muestras" class="section level2 hasAnchor" number="5.4">
+<h2><span class="header-section-number">5.4</span> Extensión a más de dos muestras<a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#extensi%C3%B3n-a-m%C3%A1s-de-dos-muestras" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="prueba-de-kruskal-wallis." class="section level3 hasAnchor" number="5.4.1">
+<h3><span class="header-section-number">5.4.1</span> Prueba de Kruskal-Wallis.<a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#prueba-de-kruskal-wallis." class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="prueba-de-friedman-para-diseños-con-bloques." class="section level3 hasAnchor" number="5.4.2">
+<h3><span class="header-section-number">5.4.2</span> Prueba de Friedman para diseños con bloques.<a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#prueba-de-friedman-para-dise%C3%B1os-con-bloques." class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+</div>
+<div id="medidas-de-asociación-no-paramétricas" class="section level2 hasAnchor" number="5.5">
+<h2><span class="header-section-number">5.5</span> Medidas de asociación no paramétricas<a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#medidas-de-asociaci%C3%B3n-no-param%C3%A9tricas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="coeficiente-de-correlación-de-rangos-de-spearman." class="section level3 hasAnchor" number="5.5.1">
+<h3><span class="header-section-number">5.5.1</span> Coeficiente de correlación de rangos de Spearman.<a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#coeficiente-de-correlaci%C3%B3n-de-rangos-de-spearman." class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="tau-de-kendall." class="section level3 hasAnchor" number="5.5.2">
+<h3><span class="header-section-number">5.5.2</span> Tau de Kendall.<a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#tau-de-kendall." class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+</div>
+<div id="aplicaciones-prácticas-en-ingeniería" class="section level2 hasAnchor" number="5.6">
+<h2><span class="header-section-number">5.6</span> Aplicaciones prácticas en ingeniería<a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#aplicaciones-pr%C3%A1cticas-en-ingenier%C3%ADa" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="control-de-calidad-y-confiabilidad." class="section level3 hasAnchor" number="5.6.1">
+<h3><span class="header-section-number">5.6.1</span> Control de calidad y confiabilidad.<a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#control-de-calidad-y-confiabilidad." class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="comparación-de-procesos-o-materiales." class="section level3 hasAnchor" number="5.6.2">
+<h3><span class="header-section-number">5.6.2</span> Comparación de procesos o materiales.<a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#comparaci%C3%B3n-de-procesos-o-materiales." class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="ejemplos-con-datos-reales-tiempos-de-respuesta-resistencia-de-materiales-rendimiento-de-equipos." class="section level3 hasAnchor" number="5.6.3">
+<h3><span class="header-section-number">5.6.3</span> Ejemplos con datos reales (tiempos de respuesta, resistencia de materiales, rendimiento de equipos).<a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#ejemplos-con-datos-reales-tiempos-de-respuesta-resistencia-de-materiales-rendimiento-de-equipos." class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+</div>
+<div id="implementación-computacional" class="section level2 hasAnchor" number="5.7">
+<h2><span class="header-section-number">5.7</span> Implementación computacional<a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#implementaci%C3%B3n-computacional" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="ejemplos-de-aplicación-en-software-estadístico-r-python-spss-yo-excel." class="section level3 hasAnchor" number="5.7.1">
+<h3><span class="header-section-number">5.7.1</span> Ejemplos de aplicación en software estadístico (R, Python, SPSS y/o Excel).<a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#ejemplos-de-aplicaci%C3%B3n-en-software-estad%C3%ADstico-r-python-spss-yo-excel." class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+</div>
+<div id="conclusiones-y-recomendaciones" class="section level2 hasAnchor" number="5.8">
+<h2><span class="header-section-number">5.8</span> Conclusiones y recomendaciones<a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#conclusiones-y-recomendaciones" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="relevancia-en-la-práctica-profesional." class="section level3 hasAnchor" number="5.8.1">
+<h3><span class="header-section-number">5.8.1</span> Relevancia en la práctica profesional.<a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#relevancia-en-la-pr%C3%A1ctica-profesional." class="anchor-section" aria-label="Anchor link to header"></a></h3>
+</div>
+<div id="comparación-con-métodos-paramétricos." class="section level3 hasAnchor" number="5.8.2">
+<h3><span class="header-section-number">5.8.2</span> Comparación con métodos paramétricos.<a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#comparaci%C3%B3n-con-m%C3%A9todos-param%C3%A9tricos." class="anchor-section" aria-label="Anchor link to header"></a></h3>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="diseño-de-experimentos.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/reginamtzl/Estad-stica-Aplicada/edit/main/05-infnopar.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": "https://github.com/reginamtzl/Estad-stica-Aplicada/blob/main/05-infnopar.Rmd",
+    "text": null
+  },
+  "download": ["bookdownproj.pdf"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+# Inferencia Estadística No Paramétrica: Métodos y Aplicaciones
+
+**Objetivo:**
+*El objetivo de este capítulo es familiarizar a los estudiantes de ingeniería con la inferencia no paramétrica. Este enfoque consta de una colección de procedimientos que les permitirá realizar análisis estadístico sin la necesidad de suponer distribuciones de probabilidad específicas para los datos. En particular, se busca que los alumnos aprendan a realizar pruebas no paramétricas en situaciones reales donde las técnicas paramétricas no sean factibles. Asimismo, se espera que adquieran la capacidad de interpretar los resultados de manera crítica y los relacionen con su campo profesional.*
+
+**Contenido**
+
+## Introducción a la inferencia no paramétrica
+### Diferencia entre métodos paramétricos y no paramétricos.
+### Ventajas y limitaciones.
+### Situaciones en las que se recomienda su uso.
+
+## Pruebas de hipótesis para una muestra
+### Prueba de los signos.
+### Prueba de Wilcoxon para una muestra.
+
+## Pruebas de hipótesis para dos muestras
+### Prueba de Mann-Whitney U (Wilcoxon de rangos sumados).
+### Prueba de los signos para pares apareados.
+### Prueba de Wilcoxon para pares apareados.
+
+## Extensión a más de dos muestras
+### Prueba de Kruskal-Wallis.
+### Prueba de Friedman para diseños con bloques.
+
+## Medidas de asociación no paramétricas
+### Coeficiente de correlación de rangos de Spearman.
+### Tau de Kendall.
+
+## Aplicaciones prácticas en ingeniería
+### Control de calidad y confiabilidad.
+### Comparación de procesos o materiales.
+### Ejemplos con datos reales (tiempos de respuesta, resistencia de materiales, rendimiento de equipos).
+
+## Implementación computacional
+### Ejemplos de aplicación en software estadístico (R, Python, SPSS y/o Excel).
+
+## Conclusiones y recomendaciones
+### Relevancia en la práctica profesional.
+### Comparación con métodos paramétricos.
+

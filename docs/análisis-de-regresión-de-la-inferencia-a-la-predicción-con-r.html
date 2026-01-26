@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 3 Análisis de Regresión: De la Inferencia a la Predicción con R | Estadística Aplicada</title>
+  <meta name="description" content="Capítulo 3 Análisis de Regresión: De la Inferencia a la Predicción con R | Estadística Aplicada" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 3 Análisis de Regresión: De la Inferencia a la Predicción con R | Estadística Aplicada" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 3 Análisis de Regresión: De la Inferencia a la Predicción con R | Estadística Aplicada" />
+  
+  
+  
+
+<meta name="author" content="Varios Autores" />
+
+
+<meta name="date" content="2026-01-21" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="distribución-muestral.html"/>
+<link rel="next" href="diseño-de-experimentos.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">estadistica</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introducción</a></li>
+<li class="chapter" data-level="2" data-path="distribución-muestral.html"><a href="distribución-muestral.html"><i class="fa fa-check"></i><b>2</b> Distribución muestral</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="distribución-muestral.html"><a href="distribución-muestral.html#recolecci%C3%B3n-de-datos-poblacionales."><i class="fa fa-check"></i><b>2.1</b> Recolección de datos poblacionales.</a></li>
+<li class="chapter" data-level="2.2" data-path="distribución-muestral.html"><a href="distribución-muestral.html#determinaci%C3%B3n-del-tama%C3%B1o-de-la-muestra."><i class="fa fa-check"></i><b>2.2</b> Determinación del tamaño de la muestra.</a></li>
+<li class="chapter" data-level="2.3" data-path="distribución-muestral.html"><a href="distribución-muestral.html#selecci%C3%B3n-de-muestras."><i class="fa fa-check"></i><b>2.3</b> Selección de muestras.</a></li>
+<li class="chapter" data-level="2.4" data-path="distribución-muestral.html"><a href="distribución-muestral.html#tipos-de-muestreo-aleatorio."><i class="fa fa-check"></i><b>2.4</b> Tipos de muestreo aleatorio.</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html"><a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html"><i class="fa fa-check"></i><b>3</b> Análisis de Regresión: De la Inferencia a la Predicción con R</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html"><a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#introducci%C3%B3n-al-an%C3%A1lisis-de-regresi%C3%B3n-definiciones-fundamentales-diferencia-correlaci%C3%B3n-vs.-regresi%C3%B3n-tipolog%C3%ADa-de-variables-rol-del-t%C3%A9rmino-de-error"><i class="fa fa-check"></i><b>3.1</b> Introducción al Análisis de Regresión Definiciones fundamentales, diferencia correlación vs. regresión, tipología de variables, rol del término de error</a></li>
+<li class="chapter" data-level="3.2" data-path="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html"><a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#modelo-de-regresi%C3%B3n-lineal-simple-formulaci%C3%B3n-matem%C3%A1tica-frp-vs.-frm-interpretaci%C3%B3n-de-par%C3%A1metros-beta_0-y-beta_1-ejemplos-aplicados"><i class="fa fa-check"></i><b>3.2</b> Modelo de Regresión Lineal Simple Formulación matemática, FRP vs. FRM, interpretación de parámetros <span class="math inline">\(\beta_0\)</span> y <span class="math inline">\(\beta_1\)</span>, ejemplos aplicados</a></li>
+<li class="chapter" data-level="3.3" data-path="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html"><a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#modelo-de-regresi%C3%B3n-lineal-m%C3%BAltiple-generalizaci%C3%B3n-matricial-coeficientes-parciales-ceteris-paribus-linealidad-en-par%C3%A1metros"><i class="fa fa-check"></i><b>3.3</b> Modelo de Regresión Lineal Múltiple Generalización matricial, coeficientes parciales (ceteris paribus), linealidad en parámetros</a></li>
+<li class="chapter" data-level="3.4" data-path="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html"><a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#supuestos-del-mcrl-seis-supuestos-fundamentales-consecuencias-de-violaciones-verificaci%C3%B3n-pr%C3%A1ctica-con-pruebas-y-gr%C3%A1ficos"><i class="fa fa-check"></i><b>3.4</b> Supuestos del MCRL Seis supuestos fundamentales, consecuencias de violaciones, verificación práctica con pruebas y gráficos</a></li>
+<li class="chapter" data-level="3.5" data-path="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html"><a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#estimaci%C3%B3n-por-mco-derivaci%C3%B3n-del-estimador-propiedades-blue-teorema-de-gauss-markov-estimaci%C3%B3n-de-sigma2"><i class="fa fa-check"></i><b>3.5</b> Estimación por MCO Derivación del estimador, propiedades BLUE, teorema de Gauss-Markov, estimación de <span class="math inline">\(\sigma^2\)</span></a></li>
+<li class="chapter" data-level="3.6" data-path="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html"><a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#inferencia-estad%C3%ADstica-pruebas-t-individuales-y-f-conjuntas-intervalos-de-confianza-y-predicci%C3%B3n-an%C3%A1lisis-anova"><i class="fa fa-check"></i><b>3.6</b> Inferencia Estadística Pruebas t individuales y F conjuntas, intervalos de confianza y predicción, análisis ANOVA</a></li>
+<li class="chapter" data-level="3.7" data-path="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html"><a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#medidas-de-bondad-de-ajuste-r%C2%B2-r%C2%B2-ajustado-criterios-aicbic-limitaciones-y-mal-uso-del-r%C2%B2"><i class="fa fa-check"></i><b>3.7</b> Medidas de Bondad de Ajuste R², R² ajustado, criterios AIC/BIC, limitaciones y mal uso del R²</a></li>
+<li class="chapter" data-level="3.8" data-path="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html"><a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#diagn%C3%B3stico-del-modelo-an%C3%A1lisis-de-residuos-ordinarios-estandarizados-3estudentizados-gr%C3%A1ficos-diagn%C3%B3sticos-esenciales-leverage-y-distancia-de-cook"><i class="fa fa-check"></i><b>3.8</b> Diagnóstico del Modelo Análisis de residuos (ordinarios, estandarizados, 3estudentizados), gráficos diagnósticos esenciales, leverage y distancia de Cook</a></li>
+<li class="chapter" data-level="3.9" data-path="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html"><a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#violaciones-y-remedios-heteroscedasticidad-errores-robustos-hc-autocorrelaci%C3%B3n-durbin-watson-multicolinealidad-vif-soluciones-pr%C3%A1cticas"><i class="fa fa-check"></i><b>3.9</b> Violaciones y Remedios Heteroscedasticidad (errores robustos HC), autocorrelación (Durbin-Watson), multicolinealidad (VIF), soluciones prácticas</a></li>
+<li class="chapter" data-level="3.10" data-path="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html"><a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#selecci%C3%B3n-de-variables-y-modelos-criterios-de-informaci%C3%B3n-selecci%C3%B3n-stepwise-validaci%C3%B3n-cruzada-para-selecci%C3%B3n"><i class="fa fa-check"></i><b>3.10</b> Selección de Variables y Modelos Criterios de información, selección stepwise, validación cruzada para selección</a></li>
+<li class="chapter" data-level="3.11" data-path="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html"><a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#extensiones-del-modelo-lineal-variables-categ%C3%B3ricas-y-contrastes-t%C3%A9rminos-de-interacci%C3%B3n-transformaciones-no-lineales-y-logar%C3%ADtmicas"><i class="fa fa-check"></i><b>3.11</b> Extensiones del Modelo Lineal Variables categóricas y contrastes, términos de interacción, transformaciones no lineales y logarítmicas</a></li>
+<li class="chapter" data-level="3.12" data-path="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html"><a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#evaluaci%C3%B3n-predictiva-divisi%C3%B3n-traintest-m%C3%A9tricas-rmsemaemape-validaci%C3%B3n-cruzada-k-fold"><i class="fa fa-check"></i><b>3.12</b> Evaluación Predictiva División train/test, métricas RMSE/MAE/MAPE, validación cruzada k-fold</a></li>
+<li class="chapter" data-level="3.13" data-path="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html"><a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#introducci%C3%B3n-a-glm-regresi%C3%B3n-log%C3%ADstica-binaria-funciones-de-enlace-familia-exponencial-curva-roc"><i class="fa fa-check"></i><b>3.13</b> Introducción a GLM Regresión logística binaria, funciones de enlace, familia exponencial, curva ROC</a></li>
+<li class="chapter" data-level="3.14" data-path="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html"><a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#t%C3%A9cnicas-de-regularizaci%C3%B3n-ridge-lasso-elastic-net-selecci%C3%B3n-de-lambda-%C3%B3ptimo-comparaci%C3%B3n-con-mco"><i class="fa fa-check"></i><b>3.14</b> Técnicas de Regularización Ridge, LASSO, Elastic Net, selección de <span class="math inline">\(\lambda\)</span> óptimo, comparación con MCO</a></li>
+<li class="chapter" data-level="3.15" data-path="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html"><a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#flujo-de-trabajo-completo-metodolog%C3%ADa-reproducible-eda-automatizado-diagn%C3%B3sticos-sistem%C3%A1ticos-reportes-ejecutivos"><i class="fa fa-check"></i><b>3.15</b> Flujo de Trabajo Completo Metodología reproducible, EDA automatizado, diagnósticos sistemáticos, reportes ejecutivos</a></li>
+<li class="chapter" data-level="3.16" data-path="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html"><a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#ejercicios-propuestos-casos-pr%C3%A1cticos-con-mtcars-diamonds-series-de-tiempo-proyectos-integradores"><i class="fa fa-check"></i><b>3.16</b> Ejercicios Propuestos Casos prácticos con mtcars, diamonds, series de tiempo, proyectos integradores</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="diseño-de-experimentos.html"><a href="diseño-de-experimentos.html"><i class="fa fa-check"></i><b>4</b> Diseño de experimentos</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="diseño-de-experimentos.html"><a href="diseño-de-experimentos.html#el-experimento-y-sus-fines."><i class="fa fa-check"></i><b>4.1</b> El experimento y sus fines.</a></li>
+<li class="chapter" data-level="4.2" data-path="diseño-de-experimentos.html"><a href="diseño-de-experimentos.html#dise%C3%B1o-del-experimento."><i class="fa fa-check"></i><b>4.2</b> Diseño del experimento.</a></li>
+<li class="chapter" data-level="4.3" data-path="diseño-de-experimentos.html"><a href="diseño-de-experimentos.html#n%C3%BAmero-de-ensayos."><i class="fa fa-check"></i><b>4.3</b> Número de ensayos.</a></li>
+<li class="chapter" data-level="4.4" data-path="diseño-de-experimentos.html"><a href="diseño-de-experimentos.html#an%C3%A1lisis-de-variaciones."><i class="fa fa-check"></i><b>4.4</b> Análisis de variaciones.</a></li>
+<li class="chapter" data-level="4.5" data-path="diseño-de-experimentos.html"><a href="diseño-de-experimentos.html#an%C3%A1lisis-de-resultados."><i class="fa fa-check"></i><b>4.5</b> Análisis de resultados.</a></li>
+<li class="chapter" data-level="4.6" data-path="diseño-de-experimentos.html"><a href="diseño-de-experimentos.html#modelos-de-an%C3%A1lisis-de-varianza-por-uno-y-dos-criterios-de-variaci%C3%B3n."><i class="fa fa-check"></i><b>4.6</b> Modelos de análisis de varianza por uno y dos criterios de variación.</a></li>
+<li class="chapter" data-level="4.7" data-path="diseño-de-experimentos.html"><a href="diseño-de-experimentos.html#criterios-de-comparaciones-m%C3%BAltiples."><i class="fa fa-check"></i><b>4.7</b> Criterios de comparaciones múltiples.</a></li>
+<li class="chapter" data-level="4.8" data-path="diseño-de-experimentos.html"><a href="diseño-de-experimentos.html#modelos-de-bloques-incompletos."><i class="fa fa-check"></i><b>4.8</b> Modelos de bloques incompletos.</a></li>
+<li class="chapter" data-level="4.9" data-path="diseño-de-experimentos.html"><a href="diseño-de-experimentos.html#modelos-de-cuadrados-latinos-y-grecolatinos."><i class="fa fa-check"></i><b>4.9</b> Modelos de cuadrados latinos y grecolatinos.</a></li>
+<li class="chapter" data-level="4.10" data-path="diseño-de-experimentos.html"><a href="diseño-de-experimentos.html#an%C3%A1lisis-de-covarianza."><i class="fa fa-check"></i><b>4.10</b> Análisis de covarianza.</a></li>
+<li class="chapter" data-level="4.11" data-path="diseño-de-experimentos.html"><a href="diseño-de-experimentos.html#dise%C3%B1o-factorial-2k."><i class="fa fa-check"></i><b>4.11</b> Diseño factorial 2k.</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html"><a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html"><i class="fa fa-check"></i><b>5</b> Inferencia Estadística No Paramétrica: Métodos y Aplicaciones</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html"><a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#introducci%C3%B3n-a-la-inferencia-no-param%C3%A9trica"><i class="fa fa-check"></i><b>5.1</b> Introducción a la inferencia no paramétrica</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html"><a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#diferencia-entre-m%C3%A9todos-param%C3%A9tricos-y-no-param%C3%A9tricos."><i class="fa fa-check"></i><b>5.1.1</b> Diferencia entre métodos paramétricos y no paramétricos.</a></li>
+<li class="chapter" data-level="5.1.2" data-path="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html"><a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#ventajas-y-limitaciones."><i class="fa fa-check"></i><b>5.1.2</b> Ventajas y limitaciones.</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html"><a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#pruebas-de-hip%C3%B3tesis-para-una-muestra"><i class="fa fa-check"></i><b>5.2</b> Pruebas de hipótesis para una muestra</a></li>
+<li class="chapter" data-level="5.3" data-path="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html"><a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#pruebas-de-hip%C3%B3tesis-para-dos-muestras"><i class="fa fa-check"></i><b>5.3</b> Pruebas de hipótesis para dos muestras</a></li>
+<li class="chapter" data-level="5.4" data-path="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html"><a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#extensi%C3%B3n-a-m%C3%A1s-de-dos-muestras"><i class="fa fa-check"></i><b>5.4</b> Extensión a más de dos muestras</a></li>
+<li class="chapter" data-level="5.5" data-path="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html"><a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#medidas-de-asociaci%C3%B3n-no-param%C3%A9tricas"><i class="fa fa-check"></i><b>5.5</b> Medidas de asociación no paramétricas</a></li>
+<li class="chapter" data-level="5.6" data-path="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html"><a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#aplicaciones-pr%C3%A1cticas-en-ingenier%C3%ADa"><i class="fa fa-check"></i><b>5.6</b> Aplicaciones prácticas en ingeniería</a></li>
+<li class="chapter" data-level="5.7" data-path="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html"><a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#implementaci%C3%B3n-computacional"><i class="fa fa-check"></i><b>5.7</b> Implementación computacional</a></li>
+<li class="chapter" data-level="5.8" data-path="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html"><a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#conclusiones-y-recomendaciones"><i class="fa fa-check"></i><b>5.8</b> Conclusiones y recomendaciones</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Estadística Aplicada</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Capítulo 3</span> Análisis de Regresión: De la Inferencia a la Predicción con R<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#an%C3%A1lisis-de-regresi%C3%B3n-de-la-inferencia-a-la-predicci%C3%B3n-con-r" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="introducción-al-análisis-de-regresión-definiciones-fundamentales-diferencia-correlación-vs.-regresión-tipología-de-variables-rol-del-término-de-error" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> Introducción al Análisis de Regresión Definiciones fundamentales, diferencia correlación vs. regresión, tipología de variables, rol del término de error<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#introducci%C3%B3n-al-an%C3%A1lisis-de-regresi%C3%B3n-definiciones-fundamentales-diferencia-correlaci%C3%B3n-vs.-regresi%C3%B3n-tipolog%C3%ADa-de-variables-rol-del-t%C3%A9rmino-de-error" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="modelo-de-regresión-lineal-simple-formulación-matemática-frp-vs.-frm-interpretación-de-parámetros-beta_0-y-beta_1-ejemplos-aplicados" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Modelo de Regresión Lineal Simple Formulación matemática, FRP vs. FRM, interpretación de parámetros <span class="math inline">\(\beta_0\)</span> y <span class="math inline">\(\beta_1\)</span>, ejemplos aplicados<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#modelo-de-regresi%C3%B3n-lineal-simple-formulaci%C3%B3n-matem%C3%A1tica-frp-vs.-frm-interpretaci%C3%B3n-de-par%C3%A1metros-beta_0-y-beta_1-ejemplos-aplicados" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="modelo-de-regresión-lineal-múltiple-generalización-matricial-coeficientes-parciales-ceteris-paribus-linealidad-en-parámetros" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> Modelo de Regresión Lineal Múltiple Generalización matricial, coeficientes parciales (ceteris paribus), linealidad en parámetros<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#modelo-de-regresi%C3%B3n-lineal-m%C3%BAltiple-generalizaci%C3%B3n-matricial-coeficientes-parciales-ceteris-paribus-linealidad-en-par%C3%A1metros" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="supuestos-del-mcrl-seis-supuestos-fundamentales-consecuencias-de-violaciones-verificación-práctica-con-pruebas-y-gráficos" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> Supuestos del MCRL Seis supuestos fundamentales, consecuencias de violaciones, verificación práctica con pruebas y gráficos<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#supuestos-del-mcrl-seis-supuestos-fundamentales-consecuencias-de-violaciones-verificaci%C3%B3n-pr%C3%A1ctica-con-pruebas-y-gr%C3%A1ficos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="estimación-por-mco-derivación-del-estimador-propiedades-blue-teorema-de-gauss-markov-estimación-de-sigma2" class="section level2 hasAnchor" number="3.5">
+<h2><span class="header-section-number">3.5</span> Estimación por MCO Derivación del estimador, propiedades BLUE, teorema de Gauss-Markov, estimación de <span class="math inline">\(\sigma^2\)</span><a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#estimaci%C3%B3n-por-mco-derivaci%C3%B3n-del-estimador-propiedades-blue-teorema-de-gauss-markov-estimaci%C3%B3n-de-sigma2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="inferencia-estadística-pruebas-t-individuales-y-f-conjuntas-intervalos-de-confianza-y-predicción-análisis-anova" class="section level2 hasAnchor" number="3.6">
+<h2><span class="header-section-number">3.6</span> Inferencia Estadística Pruebas t individuales y F conjuntas, intervalos de confianza y predicción, análisis ANOVA<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#inferencia-estad%C3%ADstica-pruebas-t-individuales-y-f-conjuntas-intervalos-de-confianza-y-predicci%C3%B3n-an%C3%A1lisis-anova" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="medidas-de-bondad-de-ajuste-r²-r²-ajustado-criterios-aicbic-limitaciones-y-mal-uso-del-r²" class="section level2 hasAnchor" number="3.7">
+<h2><span class="header-section-number">3.7</span> Medidas de Bondad de Ajuste R², R² ajustado, criterios AIC/BIC, limitaciones y mal uso del R²<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#medidas-de-bondad-de-ajuste-r%C2%B2-r%C2%B2-ajustado-criterios-aicbic-limitaciones-y-mal-uso-del-r%C2%B2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="diagnóstico-del-modelo-análisis-de-residuos-ordinarios-estandarizados-3estudentizados-gráficos-diagnósticos-esenciales-leverage-y-distancia-de-cook" class="section level2 hasAnchor" number="3.8">
+<h2><span class="header-section-number">3.8</span> Diagnóstico del Modelo Análisis de residuos (ordinarios, estandarizados, 3estudentizados), gráficos diagnósticos esenciales, leverage y distancia de Cook<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#diagn%C3%B3stico-del-modelo-an%C3%A1lisis-de-residuos-ordinarios-estandarizados-3estudentizados-gr%C3%A1ficos-diagn%C3%B3sticos-esenciales-leverage-y-distancia-de-cook" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="violaciones-y-remedios-heteroscedasticidad-errores-robustos-hc-autocorrelación-durbin-watson-multicolinealidad-vif-soluciones-prácticas" class="section level2 hasAnchor" number="3.9">
+<h2><span class="header-section-number">3.9</span> Violaciones y Remedios Heteroscedasticidad (errores robustos HC), autocorrelación (Durbin-Watson), multicolinealidad (VIF), soluciones prácticas<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#violaciones-y-remedios-heteroscedasticidad-errores-robustos-hc-autocorrelaci%C3%B3n-durbin-watson-multicolinealidad-vif-soluciones-pr%C3%A1cticas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="selección-de-variables-y-modelos-criterios-de-información-selección-stepwise-validación-cruzada-para-selección" class="section level2 hasAnchor" number="3.10">
+<h2><span class="header-section-number">3.10</span> Selección de Variables y Modelos Criterios de información, selección stepwise, validación cruzada para selección<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#selecci%C3%B3n-de-variables-y-modelos-criterios-de-informaci%C3%B3n-selecci%C3%B3n-stepwise-validaci%C3%B3n-cruzada-para-selecci%C3%B3n" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="extensiones-del-modelo-lineal-variables-categóricas-y-contrastes-términos-de-interacción-transformaciones-no-lineales-y-logarítmicas" class="section level2 hasAnchor" number="3.11">
+<h2><span class="header-section-number">3.11</span> Extensiones del Modelo Lineal Variables categóricas y contrastes, términos de interacción, transformaciones no lineales y logarítmicas<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#extensiones-del-modelo-lineal-variables-categ%C3%B3ricas-y-contrastes-t%C3%A9rminos-de-interacci%C3%B3n-transformaciones-no-lineales-y-logar%C3%ADtmicas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="evaluación-predictiva-división-traintest-métricas-rmsemaemape-validación-cruzada-k-fold" class="section level2 hasAnchor" number="3.12">
+<h2><span class="header-section-number">3.12</span> Evaluación Predictiva División train/test, métricas RMSE/MAE/MAPE, validación cruzada k-fold<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#evaluaci%C3%B3n-predictiva-divisi%C3%B3n-traintest-m%C3%A9tricas-rmsemaemape-validaci%C3%B3n-cruzada-k-fold" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="introducción-a-glm-regresión-logística-binaria-funciones-de-enlace-familia-exponencial-curva-roc" class="section level2 hasAnchor" number="3.13">
+<h2><span class="header-section-number">3.13</span> Introducción a GLM Regresión logística binaria, funciones de enlace, familia exponencial, curva ROC<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#introducci%C3%B3n-a-glm-regresi%C3%B3n-log%C3%ADstica-binaria-funciones-de-enlace-familia-exponencial-curva-roc" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="técnicas-de-regularización-ridge-lasso-elastic-net-selección-de-lambda-óptimo-comparación-con-mco" class="section level2 hasAnchor" number="3.14">
+<h2><span class="header-section-number">3.14</span> Técnicas de Regularización Ridge, LASSO, Elastic Net, selección de <span class="math inline">\(\lambda\)</span> óptimo, comparación con MCO<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#t%C3%A9cnicas-de-regularizaci%C3%B3n-ridge-lasso-elastic-net-selecci%C3%B3n-de-lambda-%C3%B3ptimo-comparaci%C3%B3n-con-mco" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="flujo-de-trabajo-completo-metodología-reproducible-eda-automatizado-diagnósticos-sistemáticos-reportes-ejecutivos" class="section level2 hasAnchor" number="3.15">
+<h2><span class="header-section-number">3.15</span> Flujo de Trabajo Completo Metodología reproducible, EDA automatizado, diagnósticos sistemáticos, reportes ejecutivos<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#flujo-de-trabajo-completo-metodolog%C3%ADa-reproducible-eda-automatizado-diagn%C3%B3sticos-sistem%C3%A1ticos-reportes-ejecutivos" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="ejercicios-propuestos-casos-prácticos-con-mtcars-diamonds-series-de-tiempo-proyectos-integradores" class="section level2 hasAnchor" number="3.16">
+<h2><span class="header-section-number">3.16</span> Ejercicios Propuestos Casos prácticos con mtcars, diamonds, series de tiempo, proyectos integradores<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#ejercicios-propuestos-casos-pr%C3%A1cticos-con-mtcars-diamonds-series-de-tiempo-proyectos-integradores" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="distribución-muestral.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="diseño-de-experimentos.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/reginamtzl/Estad-stica-Aplicada/edit/main/03-analisisreg.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": "https://github.com/reginamtzl/Estad-stica-Aplicada/blob/main/03-analisisreg.Rmd",
+    "text": null
+  },
+  "download": ["bookdownproj.pdf"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

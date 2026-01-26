@@ -1,0 +1,13 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+# Distribución muestral
+
+## Recolección de datos poblacionales.
+La expresión $n=3.1416$ es verdadera
+
+## Determinación del tamaño de la muestra.
+## Selección de muestras.
+## Tipos de muestreo aleatorio.

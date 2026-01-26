@@ -1,0 +1,18 @@
+# Análisis de Regresión: De la Inferencia a la Predicción con R
+
+## Introducción al Análisis de Regresión	Definiciones fundamentales, diferencia correlación vs. regresión, tipología de variables, rol del término de error  
+##	Modelo de Regresión Lineal Simple	Formulación matemática, FRP vs. FRM, interpretación de parámetros $\beta_0$ y $\beta_1$, ejemplos aplicados  
+##	Modelo de Regresión Lineal Múltiple	Generalización matricial, coeficientes parciales (ceteris paribus), linealidad en parámetros  
+##	Supuestos del MCRL	Seis supuestos fundamentales, consecuencias de violaciones, verificación práctica con pruebas y gráficos
+##	Estimación por MCO	Derivación del estimador, propiedades BLUE, teorema de Gauss-Markov, estimación de $\sigma^2$
+##	Inferencia Estadística	Pruebas t individuales y F conjuntas, intervalos de confianza y predicción, análisis ANOVA
+##	Medidas de Bondad de Ajuste	R², R² ajustado, criterios AIC/BIC, limitaciones y mal uso del R²
+##	Diagnóstico del Modelo	Análisis de residuos (ordinarios, estandarizados, 3estudentizados), gráficos diagnósticos esenciales, leverage y distancia de Cook
+##	Violaciones y Remedios	Heteroscedasticidad (errores robustos HC), autocorrelación (Durbin-Watson), multicolinealidad (VIF), soluciones prácticas
+##	Selección de Variables y Modelos	Criterios de información, selección stepwise, validación cruzada para selección
+##	Extensiones del Modelo Lineal	Variables categóricas y contrastes, términos de interacción, transformaciones no lineales y logarítmicas
+##	Evaluación Predictiva	División train/test, métricas RMSE/MAE/MAPE, validación cruzada k-fold
+##	Introducción a GLM	Regresión logística binaria, funciones de enlace, familia exponencial, curva ROC
+##	Técnicas de Regularización	Ridge, LASSO, Elastic Net, selección de $\lambda$ óptimo, comparación con MCO
+##	Flujo de Trabajo Completo	Metodología reproducible, EDA automatizado, diagnósticos sistemáticos, reportes ejecutivos
+##	Ejercicios Propuestos	Casos prácticos con mtcars, diamonds, series de tiempo, proyectos integradores

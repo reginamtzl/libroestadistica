@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 2 Distribución muestral | Estadística Aplicada</title>
+  <meta name="description" content="Capítulo 2 Distribución muestral | Estadística Aplicada" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 2 Distribución muestral | Estadística Aplicada" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 2 Distribución muestral | Estadística Aplicada" />
+  
+  
+  
+
+<meta name="author" content="Regina Martínez" />
+
+
+<meta name="date" content="2026-01-19" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="análisis-de-regresión-y-correlación.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">estadistica</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introducción</a></li>
+<li class="chapter" data-level="2" data-path="distribución-muestral.html"><a href="distribución-muestral.html"><i class="fa fa-check"></i><b>2</b> Distribución muestral</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="distribución-muestral.html"><a href="distribución-muestral.html#recolecci%C3%B3n-de-datos-poblacionales."><i class="fa fa-check"></i><b>2.1</b> Recolección de datos poblacionales.</a></li>
+<li class="chapter" data-level="2.2" data-path="distribución-muestral.html"><a href="distribución-muestral.html#determinaci%C3%B3n-del-tama%C3%B1o-de-la-muestra."><i class="fa fa-check"></i><b>2.2</b> Determinación del tamaño de la muestra.</a></li>
+<li class="chapter" data-level="2.3" data-path="distribución-muestral.html"><a href="distribución-muestral.html#selecci%C3%B3n-de-muestras."><i class="fa fa-check"></i><b>2.3</b> Selección de muestras.</a></li>
+<li class="chapter" data-level="2.4" data-path="distribución-muestral.html"><a href="distribución-muestral.html#tipos-de-muestreo-aleatorio."><i class="fa fa-check"></i><b>2.4</b> Tipos de muestreo aleatorio.</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="análisis-de-regresión-y-correlación.html"><a href="análisis-de-regresión-y-correlación.html"><i class="fa fa-check"></i><b>3</b> Análisis de regresión y correlación</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="análisis-de-regresión-y-correlación.html"><a href="análisis-de-regresión-y-correlación.html#concepto-de-regresi%C3%B3n-y-aplicaciones."><i class="fa fa-check"></i><b>3.1</b> Concepto de regresión y aplicaciones.</a></li>
+<li class="chapter" data-level="3.2" data-path="análisis-de-regresión-y-correlación.html"><a href="análisis-de-regresión-y-correlación.html#modelo-de-regresi%C3%B3n-lineal-simple-m%C3%BAltiple-y-sus-aplicaciones."><i class="fa fa-check"></i><b>3.2</b> Modelo de regresión lineal simple, múltiple y sus aplicaciones.</a></li>
+<li class="chapter" data-level="3.3" data-path="análisis-de-regresión-y-correlación.html"><a href="análisis-de-regresión-y-correlación.html#pruebas-de-significancia-e-intervalos-de-confianza."><i class="fa fa-check"></i><b>3.3</b> Pruebas de significancia e intervalos de confianza.</a></li>
+<li class="chapter" data-level="3.4" data-path="análisis-de-regresión-y-correlación.html"><a href="análisis-de-regresión-y-correlación.html#modelo-no-lineal-simple."><i class="fa fa-check"></i><b>3.4</b> Modelo no lineal simple.</a></li>
+<li class="chapter" data-level="3.5" data-path="análisis-de-regresión-y-correlación.html"><a href="análisis-de-regresión-y-correlación.html#regresi%C3%B3n-por-pasos-y-prueba-de-bondad-de-ajuste."><i class="fa fa-check"></i><b>3.5</b> Regresión por pasos y prueba de bondad de ajuste.</a></li>
+<li class="chapter" data-level="3.6" data-path="análisis-de-regresión-y-correlación.html"><a href="análisis-de-regresión-y-correlación.html#an%C3%A1lisis-residuales."><i class="fa fa-check"></i><b>3.6</b> Análisis residuales.</a></li>
+<li class="chapter" data-level="3.7" data-path="análisis-de-regresión-y-correlación.html"><a href="análisis-de-regresión-y-correlación.html#criterios-de-validaci%C3%B3n-del-modelo-de-regresi%C3%B3n."><i class="fa fa-check"></i><b>3.7</b> Criterios de validación del modelo de regresión.</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="diseño-de-experimentos.html"><a href="diseño-de-experimentos.html"><i class="fa fa-check"></i><b>4</b> Diseño de experimentos</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="diseño-de-experimentos.html"><a href="diseño-de-experimentos.html#el-experimento-y-sus-fines."><i class="fa fa-check"></i><b>4.1</b> El experimento y sus fines.</a></li>
+<li class="chapter" data-level="4.2" data-path="diseño-de-experimentos.html"><a href="diseño-de-experimentos.html#dise%C3%B1o-del-experimento."><i class="fa fa-check"></i><b>4.2</b> Diseño del experimento.</a></li>
+<li class="chapter" data-level="4.3" data-path="diseño-de-experimentos.html"><a href="diseño-de-experimentos.html#n%C3%BAmero-de-ensayos."><i class="fa fa-check"></i><b>4.3</b> Número de ensayos.</a></li>
+<li class="chapter" data-level="4.4" data-path="diseño-de-experimentos.html"><a href="diseño-de-experimentos.html#an%C3%A1lisis-de-variaciones."><i class="fa fa-check"></i><b>4.4</b> Análisis de variaciones.</a></li>
+<li class="chapter" data-level="4.5" data-path="diseño-de-experimentos.html"><a href="diseño-de-experimentos.html#an%C3%A1lisis-de-resultados."><i class="fa fa-check"></i><b>4.5</b> Análisis de resultados.</a></li>
+<li class="chapter" data-level="4.6" data-path="diseño-de-experimentos.html"><a href="diseño-de-experimentos.html#modelos-de-an%C3%A1lisis-de-varianza-por-uno-y-dos-criterios-de-variaci%C3%B3n."><i class="fa fa-check"></i><b>4.6</b> Modelos de análisis de varianza por uno y dos criterios de variación.</a></li>
+<li class="chapter" data-level="4.7" data-path="diseño-de-experimentos.html"><a href="diseño-de-experimentos.html#criterios-de-comparaciones-m%C3%BAltiples."><i class="fa fa-check"></i><b>4.7</b> Criterios de comparaciones múltiples.</a></li>
+<li class="chapter" data-level="4.8" data-path="diseño-de-experimentos.html"><a href="diseño-de-experimentos.html#modelos-de-bloques-incompletos."><i class="fa fa-check"></i><b>4.8</b> Modelos de bloques incompletos.</a></li>
+<li class="chapter" data-level="4.9" data-path="diseño-de-experimentos.html"><a href="diseño-de-experimentos.html#modelos-de-cuadrados-latinos-y-grecolatinos."><i class="fa fa-check"></i><b>4.9</b> Modelos de cuadrados latinos y grecolatinos.</a></li>
+<li class="chapter" data-level="4.10" data-path="diseño-de-experimentos.html"><a href="diseño-de-experimentos.html#an%C3%A1lisis-de-covarianza."><i class="fa fa-check"></i><b>4.10</b> Análisis de covarianza.</a></li>
+<li class="chapter" data-level="4.11" data-path="diseño-de-experimentos.html"><a href="diseño-de-experimentos.html#dise%C3%B1o-factorial-2k."><i class="fa fa-check"></i><b>4.11</b> Diseño factorial 2k.</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="inferencia-no-paramétrica.html"><a href="inferencia-no-paramétrica.html"><i class="fa fa-check"></i><b>5</b> Inferencia no paramétrica</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="inferencia-no-paramétrica.html"><a href="inferencia-no-paramétrica.html#prueba-de-los-signos."><i class="fa fa-check"></i><b>5.1</b> Prueba de los signos.</a></li>
+<li class="chapter" data-level="5.2" data-path="inferencia-no-paramétrica.html"><a href="inferencia-no-paramétrica.html#prueba-de-rangos-con-signos-de-wilcoxon."><i class="fa fa-check"></i><b>5.2</b> Prueba de rangos con signos de Wilcoxon.</a></li>
+<li class="chapter" data-level="5.3" data-path="inferencia-no-paramétrica.html"><a href="inferencia-no-paramétrica.html#prueba-de-mann-withney."><i class="fa fa-check"></i><b>5.3</b> Prueba de Mann-Withney.</a></li>
+<li class="chapter" data-level="5.4" data-path="inferencia-no-paramétrica.html"><a href="inferencia-no-paramétrica.html#prueba-de-kruskal-wallis."><i class="fa fa-check"></i><b>5.4</b> Prueba de Kruskal-Wallis.</a></li>
+<li class="chapter" data-level="5.5" data-path="inferencia-no-paramétrica.html"><a href="inferencia-no-paramétrica.html#prueba-de-rachas."><i class="fa fa-check"></i><b>5.5</b> Prueba de rachas.</a></li>
+<li class="chapter" data-level="5.6" data-path="inferencia-no-paramétrica.html"><a href="inferencia-no-paramétrica.html#prueba-de-kolmogorov-smirnov."><i class="fa fa-check"></i><b>5.6</b> Prueba de Kolmogorov-Smirnov.</a></li>
+<li class="chapter" data-level="5.7" data-path="inferencia-no-paramétrica.html"><a href="inferencia-no-paramétrica.html#prueba-de-correlaci%C3%B3n-de-rangos."><i class="fa fa-check"></i><b>5.7</b> Prueba de correlación de rangos.</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Estadística Aplicada</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="distribución-muestral" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">Capítulo 2</span> Distribución muestral<a href="distribución-muestral.html#distribuci%C3%B3n-muestral" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="recolección-de-datos-poblacionales." class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> Recolección de datos poblacionales.<a href="distribución-muestral.html#recolecci%C3%B3n-de-datos-poblacionales." class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>La expresión <span class="math inline">\(n=3.1416\)</span> es verdadera</p>
+</div>
+<div id="determinación-del-tamaño-de-la-muestra." class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> Determinación del tamaño de la muestra.<a href="distribución-muestral.html#determinaci%C3%B3n-del-tama%C3%B1o-de-la-muestra." class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="selección-de-muestras." class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> Selección de muestras.<a href="distribución-muestral.html#selecci%C3%B3n-de-muestras." class="anchor-section" aria-label="Anchor link to header"></a></h2>
+</div>
+<div id="tipos-de-muestreo-aleatorio." class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> Tipos de muestreo aleatorio.<a href="distribución-muestral.html#tipos-de-muestreo-aleatorio." class="anchor-section" aria-label="Anchor link to header"></a></h2>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="análisis-de-regresión-y-correlación.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/reginamtzl/Estad-stica-Aplicada/edit/main/02-muestreo.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": "https://github.com/reginamtzl/Estad-stica-Aplicada/blob/main/02-muestreo.Rmd",
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
