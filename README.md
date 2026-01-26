@@ -1,2 +1,3 @@
 # libroestadistica
-Libro de estadística, repositorio compartido donde se verán los avances del proyecto
+Libro de estadística aplicada, trabajo colaborativo. 
+Avances y previsualización del proyecto
