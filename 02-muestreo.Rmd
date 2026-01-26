@@ -6,7 +6,7 @@ output:
 # Distribución muestral
 
 ## Recolección de datos poblacionales.
-La expresión $n=3.1416$ es verdadera
+
 
 ## Determinación del tamaño de la muestra.
 ## Selección de muestras.
