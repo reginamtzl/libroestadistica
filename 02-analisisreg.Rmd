@@ -1078,9 +1078,123 @@ kable(r2_comparison,
 
 ### División entrenamiento-prueba
 
+```{r train-test-split}
+set.seed(1001)
+
+# División estratificada por educación
+library(caret)
+train_index <- createDataPartition(datos_ejemplo$educacion, p = 0.7, list = FALSE)
+datos_train <- datos_ejemplo[train_index, ]
+datos_test <- datos_ejemplo[-train_index, ]
+
+# Verificar distribución balanceada
+prop.table(table(datos_train$educacion))
+prop.table(table(datos_test$educacion))
+```
+
 ### Métricas de evaluación predictiva
 
+```{r metricas-predictivas}
+# Entrenar modelos en conjunto de entrenamiento
+modelos_eval <- list(
+  "Lineal simple" = lm(salario ~ experiencia, data = datos_train),
+  "Múltiple" = lm(salario ~ edad + experiencia + educacion, data = datos_train),
+  "Polinomial" = lm(salario ~ poly(edad, 2) + poly(experiencia, 2) + educacion, data = datos_train),
+  "Con interacciones" = lm(salario ~ edad * educacion + experiencia, data = datos_train)
+)
+
+# Función para calcular métricas predictivas
+calc_metrics <- function(modelo, datos_test) {
+  pred <- predict(modelo, newdata = datos_test)
+  actual <- datos_test$salario
+
+  tibble(
+    RMSE = sqrt(mean((actual - pred)^2)),
+    MAE = mean(abs(actual - pred)),
+    MAPE = mean(abs((actual - pred) / actual)) * 100,
+    R2_test = cor(actual, pred)^2
+  )
+}
+
+# Evaluar todos los modelos
+metricas_test <- map_dfr(modelos_eval, calc_metrics, datos_test = datos_test, .id = "Modelo")
+
+kable(metricas_test,
+      caption = "Métricas predictivas en conjunto de prueba",
+      digits = 3) %>%
+  kable_styling(bootstrap_options = c("striped", "hover"))
+
+# Gráfico de predicciones vs. valores reales para el mejor modelo
+mejor_modelo <- modelos_eval[[which.min(metricas_test$RMSE)]]
+pred_mejor <- predict(mejor_modelo, newdata = datos_test)
+
+ggplot(data.frame(Real = datos_test$salario, Predicho = pred_mejor),
+       aes(x = Real, y = Predicho)) +
+  geom_point(alpha = 0.7, color = "steelblue") +
+  geom_abline(slope = 1, intercept = 0, color = "red", linetype = "dashed") +
+  geom_smooth(method = "lm", se = FALSE, color = "green", alpha = 0.7) +
+  labs(title = "Valores Reales vs. Predichos (Conjunto de Prueba)",
+       subtitle = paste("Modelo:", names(modelos_eval)[which.min(metricas_test$RMSE)]),
+       x = "Salario Real", y = "Salario Predicho") +
+  theme_minimal()
+```
+
+
 ### Validación cruzada k-fold
+
+```{r k-fold-cv}
+# Implementación de validación cruzada k-fold
+k_fold_cv <- function(formula, data, k = 10, seed = 1234) {
+  set.seed(seed)
+
+  # Crear folds
+  folds <- createFolds(1:nrow(data), k = k, list = TRUE)
+
+  # Función para un fold
+  eval_fold <- function(test_indices) {
+    train_data <- data[-test_indices, ]
+    test_data <- data[test_indices, ]
+
+    modelo <- lm(formula, data = train_data)
+    pred <- predict(modelo, newdata = test_data)
+    actual <- test_data[[all.vars(formula)[1]]]
+
+    tibble(
+      RMSE = sqrt(mean((actual - pred)^2)),
+      MAE = mean(abs(actual - pred)),
+      fold = length(test_indices)
+    )
+  }
+
+  # Evaluar cada fold
+  resultados_folds <- map_dfr(folds, eval_fold, .id = "fold")
+
+  # Promediar resultados
+  resultados_folds %>%
+    summarise(
+      RMSE_mean = mean(RMSE),
+      RMSE_sd = sd(RMSE),
+      MAE_mean = mean(MAE),
+      MAE_sd = sd(MAE)
+    )
+}
+
+# Aplicar CV a diferentes modelos
+formulas_eval <- list(
+  "Simple" = salario ~ experiencia,
+  "Multiple" = salario ~ edad + experiencia + educacion,
+  "Polinomial" = salario ~ poly(edad, 2) + poly(experiencia, 2) + educacion,
+  "Interacciones" = salario ~ edad * educacion + experiencia
+)
+
+cv_results <- map_dfr(formulas_eval, k_fold_cv, data = datos_ejemplo, .id = "Modelo")
+
+kable(cv_results,
+      caption = "Resultados de validación cruzada 10-fold",
+      digits = 3) %>%
+  kable_styling(bootstrap_options = c("striped", "hover"))
+```
+
 
 ## Modelos GLM y Técnicas de Regularización
 ### Introducción a Modelos Lineales Generalizados (GLM)
