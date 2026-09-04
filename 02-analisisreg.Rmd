@@ -427,9 +427,67 @@ kable(resultados_pred,
 
 
 ##	Medidas de Bondad de Ajuste
+
 ### Coeficiente de determinación R²
+$$R^2 = \frac{\text{SCE}}{\text{SCT}} = 1 - \frac{\text{SCR}}{\text{SCT}}$$
+
+donde:
+- SCE = Suma de cuadrados explicada
+- SCR = Suma de cuadrados de residuos
+- SCT = Suma de cuadrados total
+
 ### R² ajustado
+
+Penaliza por el número de variables:
+$$\bar{R}^2 = 1 - \frac{\text{SCR}/(n-k-1)}{\text{SCT}/(n-1)}$$
 ### Limitaciones del R²
+Como advierte @harrell2015:
+- No indica causalidad
+- Puede ser alto con modelo mal especificado
+- No es apropiado para comparar modelos no anidados
+- En predicción, preferir validación cruzada
+
+```{r bondad-ajuste}
+# Métricas de ajuste
+metricas_ajuste <- data.frame(
+  Métrica = c("R²", "R² ajustado", "Error estándar residual", "AIC", "BIC"),
+  Valor = c(
+    glance_multiple$r.squared,
+    glance_multiple$adj.r.squared,
+    sqrt(glance_multiple$deviance / glance_multiple$df.residual),
+    glance_multiple$AIC,
+    glance_multiple$BIC
+  )
+) %>%
+  mutate(Valor = round(Valor, 4))
+
+kable(metricas_ajuste,
+      caption = "Métricas de bondad de ajuste",
+      align = c("l", "r")) %>%
+  kable_styling(bootstrap_options = c("striped", "hover"))
+
+# Descomposición de la varianza
+sct <- sum((datos_ejemplo$salario - mean(datos_ejemplo$salario))^2)
+sce <- sum((fitted(modelo_multiple) - mean(datos_ejemplo$salario))^2)
+scr <- sum(residuals(modelo_multiple)^2)
+
+descomposicion <- data.frame(
+  Componente = c("Suma Total de Cuadrados (SCT)",
+                 "Suma Explicada (SCE)",
+                 "Suma de Residuos (SCR)",
+                 "Verificación: SCE + SCR"),
+  Valor = c(sct, sce, scr, sce + scr),
+  Porcentaje = c(100, (sce/sct)*100, (scr/sct)*100, NA)
+) %>%
+  mutate(Valor = round(Valor, 0),
+         Porcentaje = round(Porcentaje, 2))
+
+kable(descomposicion,
+      caption = "Descomposición de la varianza",
+      digits = 2) %>%
+  kable_styling(bootstrap_options = c("striped", "hover"))
+```
+
 
 ##	Diagnóstico del Modelo:	Análisis de R
 ### Tipos de Residuos
