@@ -315,9 +315,116 @@ donde SCR es la suma de cuadrados de los residuos y $n-k-1$ son los grados de li
 
 
 ## Inferencia Estadística en Regresión
+
 ### Distribución de los estimadores
+Bajo normalidad de los errores:
+$$\hat{\beta}_j \sim N\left(\beta_j, \sigma^2[(\mathbf{X}'\mathbf{X})^{-1}]_{jj}\right)$$
+
+El estadístico t estandarizado:
+$$t = \frac{\hat{\beta}_j - \beta_j}{\text{se}(\hat{\beta}_j)} \sim t_{n-k-1}$$
+
 ### Pruebas de hipótesis 
+
+#### Prueba t para coeficientes individuales
+
+$$H_0: \beta_j = 0 \quad \text{vs.} \quad H_1: \beta_j \neq 0$$
+
+```{r prueba-t}
+# Extracción de estadísticos t
+t_stats <- tidy_multiple %>%
+  select(term, estimate, std.error, statistic, p.value) %>%
+  mutate(
+    significancia = case_when(
+      p.value < 0.001 ~ "***",
+      p.value < 0.01 ~ "**",
+      p.value < 0.05 ~ "*",
+      p.value < 0.1 ~ ".",
+      TRUE ~ ""
+    )
+  )
+
+kable(t_stats,
+      caption = "Pruebas t individuales para coeficientes",
+      digits = 4) %>%
+  kable_styling(bootstrap_options = c("striped", "hover")) %>%
+  footnote(general = "Códigos de significancia: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1")
+```
+
+#### Prueba F para significancia conjunta
+
+$$H_0: \beta_1 = \beta_2 = \cdots = \beta_k = 0$$
+
+$$F = \frac{(\text{SCT} - \text{SCR})/k}{\text{SCR}/(n-k-1)} \sim F_{k,n-k-1}$$
+
+```{r prueba-f}
+# Análisis de varianza
+anova_results <- anova(modelo_multiple)
+kable(anova_results,
+      caption = "Análisis de Varianza (ANOVA)",
+      digits = 4) %>%
+  kable_styling(bootstrap_options = c("striped", "hover"))
+
+# Prueba F global
+f_statistic <- glance_multiple$statistic
+f_pvalue <- glance_multiple$p.value
+
+cat(sprintf("Estadístico F: %.3f\n", f_statistic))
+cat(sprintf("p-valor: %.2e\n", f_pvalue))
+cat(sprintf("Conclusión: %s\n",
+    ifelse(f_pvalue < 0.05,
+           "Rechazamos H0: al menos un coeficiente es significativo",
+           "No rechazamos H0: los coeficientes podrían ser cero")))
+```
+
+
 ### Intervalos de confianza y predicción
+
+#### Intervalos de confianza para coeficientes
+
+$$\hat{\beta}_j \pm t_{\alpha/2, n-k-1} \times \text{se}(\hat{\beta}_j)$$
+
+#### Intervalos de predicción
+
+Para una nueva observación $X_0$:
+
+- **Intervalo de confianza para $E(Y|X_0)$:**
+$$\hat{Y}_0 \pm t_{\alpha/2, n-k-1} \times \text{se}(\hat{Y}_0)$$
+
+- **Intervalo de predicción para una nueva $Y_0$:**
+$$\hat{Y}_0 \pm t_{\alpha/2, n-k-1} \times \sqrt{\text{se}^2(\hat{Y}_0) + \hat{\sigma}^2}$$
+
+```{r intervalos}
+# Intervalos de confianza para coeficientes
+conf_intervals <- confint(modelo_multiple, level = 0.95)
+kable(conf_intervals,
+      caption = "Intervalos de confianza al 95% para coeficientes",
+      digits = 2) %>%
+  kable_styling(bootstrap_options = c("striped", "hover"))
+
+# Predicción para nuevos individuos
+nuevos_casos <- data.frame(
+  edad = c(30, 40, 50),
+  experiencia = c(5, 15, 25),
+  educacion = factor(c("Universidad", "Universidad", "Secundaria"),
+                    levels = levels(datos_ejemplo$educacion))
+)
+
+# Predicciones con intervalos
+predicciones <- predict(modelo_multiple,
+                       newdata = nuevos_casos,
+                       interval = "prediction",
+                       level = 0.95)
+
+resultados_pred <- bind_cols(nuevos_casos,
+                            as.data.frame(predicciones)) %>%
+  mutate(amplitud_intervalo = upr - lwr)
+
+kable(resultados_pred,
+      caption = "Predicciones con intervalos de predicción al 95%",
+      digits = 0) %>%
+  kable_styling(bootstrap_options = c("striped", "hover"))
+```
+
 
 ##	Medidas de Bondad de Ajuste
 ### Coeficiente de determinación R²
