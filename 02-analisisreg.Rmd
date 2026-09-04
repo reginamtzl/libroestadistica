@@ -1197,8 +1197,129 @@ kable(cv_results,
 
 
 ## Modelos GLM y Técnicas de Regularización
+
 ### Introducción a Modelos Lineales Generalizados (GLM)
+#### Extensión más allá de la normalidad
+
+Los GLM extienden la regresión lineal a variables respuesta no normales mediante:
+
+1. **Función de enlace** $g(\mu)$: conecta la media $\mu = E(Y|X)$ con el predictor lineal
+2. **Familia exponencial**: especifica la distribución de $Y$
+
+#### Regresión logística binaria
+
+Para variable respuesta binaria $Y \in \{0,1\}$:
+
+$\log\left(\frac{p}{1-p}\right) = \beta_0 + \beta_1 X_1 + \cdots + \beta_k X_k$
+
+donde $p = P(Y=1|X)$.
+
+```{r regresion-logistica}
+# Crear variable binaria para demonstración
+set.seed(2002)
+prob_alta_paga <- plogis(-3 + 0.1*datos_ejemplo$edad + 0.05*datos_ejemplo$experiencia +
+                        ifelse(datos_ejemplo$educacion == "Universidad", 1, 0))
+alta_paga <- rbinom(nrow(datos_ejemplo), 1, prob_alta_paga)
+
+# Agregar al dataset
+datos_ejemplo$alta_paga <- factor(alta_paga, labels = c("No", "Si"))
+
+# Modelo logístico
+modelo_logit <- glm(alta_paga ~ edad + experiencia + educacion,
+                   data = datos_ejemplo, family = binomial(link = "logit"))
+
+# Resultados
+tidy_logit <- tidy(modelo_logit, exponentiate = TRUE, conf.int = TRUE)
+kable(tidy_logit,
+      caption = "Regresión logística: Odds ratios y intervalos de confianza",
+      digits = 3) %>%
+  kable_styling(bootstrap_options = c("striped", "hover"))
+
+# Interpretación de odds ratios
+cat("Interpretación de Odds Ratios:\n")
+cat(sprintf("- Edad: Por cada año adicional, las odds de alta paga se multiplican por %.3f\n",
+            tidy_logit$estimate[2]))
+cat(sprintf("- Universidad vs Primaria: Las odds se multiplican por %.3f\n",
+            tidy_logit$estimate[5]))
+
+# Evaluación del modelo logístico
+library(pROC)
+pred_prob <- predict(modelo_logit, type = "response")
+roc_curve <- roc(datos_ejemplo$alta_paga, pred_prob)
+
+cat(sprintf("\nÁrea bajo la curva ROC: %.3f\n", auc(roc_curve)))
+
+# Gráfico ROC
+plot(roc_curve, main = "Curva ROC - Modelo Logístico",
+     col = "steelblue", lwd = 2)
+abline(a = 0, b = 1, lty = 2, col = "red")
+```
+
 ### Técnicas de Regularización: Ridge y LASSO
+#### Introducción a la regularización
+
+Cuando $p \approx n$ o $p > n$, o cuando hay multicolinealidad severa, MCO puede ser inestable. Las técnicas de regularización añaden penalizaciones:
+
+- **Ridge:** $\min_{\beta} \|Y - X\beta\|_2^2 + \lambda \|\beta\|_2^2$
+- **LASSO:** $\min_{\beta} \|Y - X\beta\|_2^2 + \lambda \|\beta\|_1$
+- **Elastic Net:** Combinación de ambas
+
+```{r regularizacion}
+library(glmnet)
+
+# Preparar matrices para glmnet
+X_matrix <- model.matrix(salario ~ edad + experiencia + educacion - 1, data = datos_ejemplo)
+Y_vector <- datos_ejemplo$salario
+
+# Ridge Regression
+set.seed(3003)
+ridge_model <- cv.glmnet(X_matrix, Y_vector, alpha = 0, nfolds = 10)
+
+# LASSO Regression
+lasso_model <- cv.glmnet(X_matrix, Y_vector, alpha = 1, nfolds = 10)
+
+# Elastic Net (α = 0.5)
+elastic_model <- cv.glmnet(X_matrix, Y_vector, alpha = 0.5, nfolds = 10)
+
+# Extraer coeficientes de MCO, Ridge, LASSO y Elastic Net y alinearlos
+mco_model <- lm(salario ~ edad + experiencia + educacion, data = datos_ejemplo)
+
+coef_mco     <- coef(mco_model)
+coef_ridge   <- as.vector(coef(ridge_model, s = "lambda.min"))
+coef_lasso   <- as.vector(coef(lasso_model, s = "lambda.min"))
+coef_elastic <- as.vector(coef(elastic_model, s = "lambda.min"))
+
+# Alinear nombres (todos los coeficientes tienen mismos nombres de variables que X_matrix)
+coef_names <- rownames(coef(ridge_model, s = "lambda.min"))
+
+coef_comparison <- tibble(
+  Variable   = coef_names,
+  MCO        = coef_mco[coef_names],     # tomar solo las que coincidan
+  Ridge      = coef_ridge,
+  LASSO      = coef_lasso,
+  ElasticNet = coef_elastic
+) %>%
+  filter(Variable != "(Intercept)")
+
+kable(coef_comparison,
+      caption = "Comparación de coeficientes: MCO vs. Métodos regularizados",
+      digits = 4) %>%
+  kable_styling(bootstrap_options = c("striped", "hover"))
+
+# Gráfico de trayectoria de coeficientes (LASSO)
+plot(lasso_model$glmnet.fit, xvar = "lambda", label = TRUE,
+     main = "Trayectoria de Coeficientes - LASSO")
+abline(v = log(lasso_model$lambda.min), col = "red", lty = 2)
+abline(v = log(lasso_model$lambda.1se), col = "blue", lty = 2)
+legend("topright", c("lambda.min", "lambda.1se"),
+       col = c("red", "blue"), lty = 2, cex = 0.8)
+
+# Error de validación cruzada
+par(mfrow = c(1, 2))
+plot(ridge_model, main = "Ridge - CV Error")
+plot(lasso_model, main = "LASSO - CV Error")
+par(mfrow = c(1, 1))
+```
 
 ## Práctica y Material Complementario
 ### Análisis de Regresión en la Práctica: Flujo de Trabajo Completo
