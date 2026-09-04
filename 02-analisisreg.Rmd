@@ -586,9 +586,222 @@ ggplot(influence_metrics, aes(x = obs_number, y = cooks_d)) +
 ```
 
 ## Violaciones de los Supuestos y Remedios
+
 ### Heteroscedasticidad
+La heteroscedasticidad ocurre cuando $\text{Var}(\varepsilon_i|X_i) \neq \sigma^2$.
+
+#### Detección
+
+```{r heteroscedasticidad}
+# Pruebas formales de heteroscedasticidad
+library(lmtest)
+
+# Prueba de Breusch-Pagan
+bp_test <- bptest(modelo_multiple)
+print(bp_test)
+
+# Prueba de White (más general)
+white_test <- bptest(modelo_multiple, ~ fitted(modelo_multiple) + I(fitted(modelo_multiple)^2))
+print(white_test)
+
+# Prueba de Goldfeld-Quandt (si se sospecha patrón específico)
+if(require(car)) {
+  ncv_test <- ncvTest(modelo_multiple)
+  print(ncv_test)
+}
+```
+
+#### Remedios
+
+1. **Errores estándar robustos (HC):**
+
+```{r errores-robustos}
+library(sandwich)
+
+# Diferentes tipos de errores robustos
+robust_se <- list(
+  "Clásicos" = vcov(modelo_multiple),
+  "HC0 (White)" = vcovHC(modelo_multiple, type = "HC0"),
+  "HC1" = vcovHC(modelo_multiple, type = "HC1"),
+  "HC2" = vcovHC(modelo_multiple, type = "HC2"),
+  "HC3" = vcovHC(modelo_multiple, type = "HC3")
+)
+
+# Comparación de errores estándar
+se_comparison <- map_dfr(robust_se, ~sqrt(diag(.)), .id = "Tipo") %>%
+  pivot_longer(-Tipo, names_to = "Coeficiente", values_to = "Error_Estandar") %>%
+  pivot_wider(names_from = Tipo, values_from = Error_Estandar)
+
+kable(se_comparison,
+      caption = "Comparación de errores estándar: Clásicos vs. Robustos",
+      digits = 4) %>%
+  kable_styling(bootstrap_options = c("striped", "hover"))
+
+# Resultados con errores robustos HC1
+coeftest_robust <- lmtest::coeftest(modelo_multiple, vcov = vcovHC(modelo_multiple, type = "HC1"))
+print(coeftest_robust)
+```
+
+2. **Transformaciones de variables:**
+
+```{r transformaciones}
+# Transformación logarítmica para reducir heteroscedasticidad
+modelo_log <- lm(log(salario) ~ log(edad) + experiencia + educacion,
+                data = datos_ejemplo %>% filter(salario > 0))
+
+# Comparar heteroscedasticidad antes y después
+bp_original <- bptest(modelo_multiple)
+bp_log <- bptest(modelo_log)
+
+hetero_comparison <- data.frame(
+  Modelo = c("Original", "Log-log"),
+  `BP_estadistico` = c(bp_original$statistic, bp_log$statistic),
+  `p_valor` = c(bp_original$p.value, bp_log$p.value),
+  `Conclusion` = c(
+    ifelse(bp_original$p.value < 0.05, "Heteroscedasticidad presente", "Homoscedasticidad"),
+    ifelse(bp_log$p.value < 0.05, "Heteroscedasticidad presente", "Homoscedasticidad")
+  )
+)
+
+kable(hetero_comparison,
+      caption = "Comparación de tests de heteroscedasticidad",
+      digits = 4) %>%
+  kable_styling(bootstrap_options = c("striped", "hover"))
+```
+
 ### Multicolinealidad
-### Autocorrelación (Series de Tiempo) . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+Problema cuando las variables explicativas están altamente correlacionadas.
+
+#### Detección mediante VIF
+
+```{r multicolinealidad}
+
+library(car)
+
+# Calcular VIF
+vif_values <- vif(modelo_multiple)
+
+# Convertir a data.frame según el tipo de salida
+if (is.vector(vif_values)) {
+  vif_table <- data.frame(
+    Variable = names(vif_values),
+    VIF = as.numeric(vif_values)
+  )
+} else if (is.matrix(vif_values)) {
+  vif_table <- data.frame(
+    Variable = rownames(vif_values),
+    VIF = vif_values[, 1]  # primera columna
+  )
+}
+
+# Agregar tolerancia e interpretación
+vif_table <- vif_table %>%
+  mutate(
+    Tolerancia = 1/VIF,
+    Interpretacion = case_when(
+      VIF < 2 ~ "Sin problema",
+      VIF < 5 ~ "Multicolinealidad moderada",
+      VIF < 10 ~ "Multicolinealidad alta",
+      TRUE ~ "Multicolinealidad severa"
+    )
+  )
+
+# Tabla bonita
+kable(vif_table,
+      caption = "Diagnóstico de Multicolinealidad (VIF)",
+      digits = 3) %>%
+  kable_styling(bootstrap_options = c("striped", "hover"))
+
+
+```
+
+#### Remedios para multicolinealidad
+
+```{r remedios-multicolinealidad}
+#1. Centrar las variables (especialmente útil con términos de interacción)
+
+datos_centrados <- datos_ejemplo %>%
+  mutate(
+    edad_c = edad - mean(edad),
+    experiencia_c = experiencia - mean(experiencia)
+  )
+
+modelo_centrado <- lm(salario ~ edad_c + experiencia_c + educacion, data = datos_centrados)
+vif_centrado <- car::vif(modelo_centrado)
+
+# 2. Análisis de Componentes Principales (para casos severos)
+if(require(princomp)) {
+  # PCA de variables continuas
+  pca_vars <- datos_ejemplo %>% select(edad, experiencia) %>% scale()
+  pca_result <- princomp(pca_vars)
+
+  # Agregar componentes principales
+  datos_pca <- datos_ejemplo %>%
+    bind_cols(as.data.frame(pca_result$scores[, 1:2]))
+
+  modelo_pca <- lm(salario ~ Comp.1 + Comp.2 + educacion, data = datos_pca)
+
+  print("Varianza explicada por componentes:")
+  print(summary(pca_result))
+}
+
+# Comparación de VIF
+vif_comparison <- data.frame(
+  Modelo = c("Original", "Centrado"),
+  VIF_edad = c(vif_values["edad"], vif_centrado["edad_c"]),
+  VIF_experiencia = c(vif_values["experiencia"], vif_centrado["experiencia_c"])
+)
+
+kable(vif_comparison,
+      caption = "Efecto del centrado en VIF",
+      digits = 3) %>%
+  kable_styling(bootstrap_options = c("striped", "hover"))
+```
+
+
+### Autocorrelación (Series de Tiempo)
+Relevante cuando las observaciones tienen orden temporal.
+
+```{r autocorrelacion}
+# Simulación de datos con autocorrelación para demostrar
+set.seed(456)
+n_time <- 100
+time_trend <- 1:n_time
+
+# Serie con autocorrelación AR(1)
+rho <- 0.7
+errors_ar <- numeric(n_time)
+errors_ar[1] <- rnorm(1)
+for(t in 2:n_time) {
+  errors_ar[t] <- rho * errors_ar[t-1] + rnorm(1, 0, 0.5)
+}
+
+# Variable respuesta con autocorrelación
+y_time <- 50 + 0.5*time_trend + errors_ar
+x_time <- time_trend + rnorm(n_time, 0, 2)
+
+datos_tiempo <- data.frame(
+  periodo = time_trend,
+  y = y_time,
+  x = x_time
+)
+
+# Modelo con datos autocorrelacionados
+modelo_tiempo <- lm(y ~ x, data = datos_tiempo)
+
+# Test de Durbin-Watson
+dw_test <- lmtest::dwtest(modelo_tiempo)
+print(dw_test)
+
+# Test de Breusch-Godfrey (más general)
+bg_test <- lmtest::bgtest(modelo_tiempo, order = 2)
+print(bg_test)
+
+# Visualización de autocorrelación en residuos
+residuos_tiempo <- residuals(modelo_tiempo)
+acf(residuos_tiempo, main = "Autocorrelación de Residuos")
+```
+
 
 ## Selección de Variables y Extensiones del Modelo
 ### Selección de Variables y Modelos
