@@ -491,8 +491,99 @@ kable(descomposicion,
 
 ##	Diagnóstico del Modelo:	Análisis de R
 ### Tipos de Residuos
+1. **Residuos ordinarios:** $\hat{\varepsilon}_i = Y_i - \hat{Y}_i$
+2. **Residuos estandarizados:** $\frac{\hat{\varepsilon}_i}{\hat{\sigma}}$
+3. **Residuos estudentizados:** $\frac{\hat{\varepsilon}_i}{\hat{\sigma}_i\sqrt{1-h_{ii}}}$
+
+donde $h_{ii}$ es el leverage de la observación $i$.
+
 ### Gráficos de diagnósticos esenciales
+
+```{r diagnosticos-avanzados, fig.height=10}
+# Usando el paquete performance para diagnósticos modernos
+library(performance)
+library(see)
+
+# Chequeo completo del modelo
+check_model(modelo_multiple)
+```
+
+```{r residuos-detallado}
+# Análisis detallado de residuos
+augmented_data <- broom::augment(modelo_multiple)
+
+# 1. Residuos vs. ajustados (homoscedasticidad)
+p1 <- ggplot(augmented_data, aes(x = .fitted, y = .resid)) +
+  geom_point(alpha = 0.6, color = "steelblue") +
+  geom_smooth(method = "loess", se = FALSE, color = "red") +
+  geom_hline(yintercept = 0, linetype = "dashed", alpha = 0.7) +
+  labs(title = "Residuos vs. Valores Ajustados",
+       x = "Valores Ajustados", y = "Residuos") +
+  theme_minimal()
+
+# 2. Q-Q plot (normalidad)
+p2 <- ggplot(augmented_data, aes(sample = .std.resid)) +
+  stat_qq(alpha = 0.6, color = "steelblue") +
+  stat_qq_line(color = "red", size = 1) +
+  labs(title = "Q-Q Plot: Normalidad de Residuos",
+       x = "Cuantiles teóricos", y = "Cuantiles muestrales") +
+  theme_minimal()
+
+# 3. Scale-Location (homocedasticidad)
+p3 <- ggplot(augmented_data, aes(x = .fitted, y = sqrt(abs(.std.resid)))) +
+  geom_point(alpha = 0.6, color = "steelblue") +
+  geom_smooth(method = "loess", se = FALSE, color = "red") +
+  labs(title = "Scale-Location Plot",
+       x = "Valores Ajustados", y = "√|Residuos Estandarizados|") +
+  theme_minimal()
+
+# 4. Residuos vs. Leverage
+p4 <- ggplot(augmented_data, aes(x = .hat, y = .std.resid)) +
+  geom_point(alpha = 0.6, color = "steelblue") +
+  geom_smooth(method = "loess", se = FALSE, color = "red") +
+  geom_hline(yintercept = 0, linetype = "dashed", alpha = 0.7) +
+  labs(title = "Residuos vs. Leverage",
+       x = "Leverage", y = "Residuos Estandarizados") +
+  theme_minimal()
+
+gridExtra::grid.arrange(p1, p2, p3, p4, ncol = 2)
+```
+
 ### Detección de observaciones influyentes
+
+```{r observaciones-influyentes}
+# Métricas de influencia
+influence_metrics <- augmented_data %>%
+  mutate(
+    leverage = .hat,
+    cooks_d = .cooksd,
+    obs_number = row_number()
+  ) %>%
+  arrange(desc(cooks_d))
+
+# Identificar observaciones problemáticas
+threshold_cook <- 4 / nrow(datos_ejemplo)
+threshold_leverage <- 2 * (length(coef(modelo_multiple)) / nrow(datos_ejemplo))
+
+problematic_obs <- influence_metrics %>%
+  filter(cooks_d > threshold_cook | leverage > threshold_leverage) %>%
+  select(obs_number, leverage, cooks_d, .std.resid)
+
+kable(head(problematic_obs, 10),
+      caption = "Observaciones potencialmente influyentes",
+      digits = 4) %>%
+  kable_styling(bootstrap_options = c("striped", "hover"))
+
+# Gráfico de Cook's distance
+ggplot(influence_metrics, aes(x = obs_number, y = cooks_d)) +
+  geom_col(fill = "steelblue", alpha = 0.7) +
+  geom_hline(yintercept = threshold_cook, color = "red", linetype = "dashed") +
+  labs(title = "Distancia de Cook por Observación",
+       x = "Número de Observación",
+       y = "Distancia de Cook",
+       caption = paste("Línea roja: umbral =", round(threshold_cook, 4))) +
+  theme_minimal()
+```
 
 ## Violaciones de los Supuestos y Remedios
 ### Heteroscedasticidad
