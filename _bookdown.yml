@@ -1,8 +1,13 @@
 book_filename: "bookdownproj"
-output_dir: docs
-delete_merged_file: true
-edit: https://github.com/reginamtzl/Estad-stica-Aplicada/edit/main/%s
-view: https://github.com/reginamtzl/Estad-stica-Aplicada/blob/main/%s
-language: 
+
+output_dir: "docs"
+
+edit: "https://github.com/reginamtzl/Estad-stica-Aplicada/edit/main/%s"
+
+view: "https://github.com/reginamtzl/Estad-stica-Aplicada/blob/main/%s"
+
+language:
   ui:
     chapter_name: "Capítulo "
+
+delete_merged_file: true

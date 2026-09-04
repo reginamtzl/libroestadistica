@@ -1,0 +1,715 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\documentclass[
+]{book}
+\usepackage{xcolor}
+\usepackage{amsmath,amssymb}
+\setcounter{secnumdepth}{5}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{longtable,booktabs,array}
+\newcounter{none} % for unnumbered tables
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\newsavebox\pandoc@box
+\newcommand*\pandocbounded[1]{% scales image to fit in text height/width
+  \sbox\pandoc@box{#1}%
+  \Gscale@div\@tempa{\textheight}{\dimexpr\ht\pandoc@box+\dp\pandoc@box\relax}%
+  \Gscale@div\@tempb{\linewidth}{\wd\pandoc@box}%
+  \ifdim\@tempb\p@<\@tempa\p@\let\@tempa\@tempb\fi% select the smaller of both
+  \ifdim\@tempa\p@<\p@\scalebox{\@tempa}{\usebox\pandoc@box}%
+  \else\usebox{\pandoc@box}%
+  \fi%
+}
+% Set default figure placement to htbp
+\def\fps@figure{htbp}
+\makeatother
+% definitions for citeproc citations
+\NewDocumentCommand\citeproctext{}{}
+\NewDocumentCommand\citeproc{mm}{%
+  \begingroup\def\citeproctext{#2}\cite{#1}\endgroup}
+\makeatletter
+ % allow citations to break across lines
+ \let\@cite@ofmt\@firstofone
+ % avoid brackets around text for \cite:
+ \def\@biblabel#1{}
+ \def\@cite#1#2{{#1\if@tempswa , #2\fi}}
+\makeatother
+\newlength{\cslhangindent}
+\setlength{\cslhangindent}{1.5em}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{3em}
+\newenvironment{CSLReferences}[2] % #1 hanging-indent, #2 entry-spacing
+ {\begin{list}{}{%
+  \setlength{\itemindent}{0pt}
+  \setlength{\leftmargin}{0pt}
+  \setlength{\parsep}{0pt}
+  % turn on hanging indent if param 1 is 1
+  \ifodd #1
+   \setlength{\leftmargin}{\cslhangindent}
+   \setlength{\itemindent}{-1\cslhangindent}
+  \fi
+  % set entry spacing
+  \setlength{\itemsep}{#2\baselineskip}}}
+ {\end{list}}
+\usepackage{calc}
+\newcommand{\CSLBlock}[1]{\hfill\break\parbox[t]{\linewidth}{\strut\ignorespaces#1\strut}}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{\strut#1\strut}}
+\newcommand{\CSLRightInline}[1]{\parbox[t]{\linewidth - \csllabelwidth}{\strut#1\strut}}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\usepackage[spanish,es-tabla]{babel}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Estadística Aplicada},
+  pdfauthor={Equipo Editorial, Wulfrano Gómez Gallardo},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Estadística Aplicada}
+\author{Equipo Editorial, Wulfrano Gómez Gallardo}
+\date{2026-09-04}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+\chapter{ANTECEDENTES}\label{antecedentes}
+
+\textbf{Objetivos}
+**
+
+\section{Muestra y población}\label{muestra-y-poblaciuxf3n}
+
+\section{Distribuciones muestrales}\label{distribuciones-muestrales}
+
+\section{Intervalos de confianza}\label{intervalos-de-confianza}
+
+\section{Pruebas de hipótesis}\label{pruebas-de-hipuxf3tesis}
+
+\chapter{Muestreo}\label{muestreo}
+
+\textbf{Objetivo}
+* *
+
+\section{Muestreo aleatorio y restricto}\label{muestreo-aleatorio-y-restricto}
+
+\section{Muestreo estractificado}\label{muestreo-estractificado}
+
+\section{Muestreo por conglomerados}\label{muestreo-por-conglomerados}
+
+\section{Muestreo secuencial}\label{muestreo-secuencial}
+
+\chapter{Análisis de Regresión: De la Inferencia a la Predicción con R}\label{anuxe1lisis-de-regresiuxf3n-de-la-inferencia-a-la-predicciuxf3n-con-r}
+
+\begin{quote}
+\textbf{Objetivo del capítulo:} Proporcionar una guía integral y práctica para comprender, estimar, diagnosticar e interpretar modelos de regresión lineal, diferenciando entre objetivos de \textbf{inferencia estadística} y \textbf{predicción}, con implementaciones reproducibles en R que siguen las mejores prácticas de ciencia de datos moderna.
+\end{quote}
+
+\textbf{Al completar este capítulo podrás:}
+
+\begin{itemize}
+\tightlist
+\item
+  Diferenciar entre correlación y regresión, y explicar el rol fundamental del término de error
+\item
+  Estimar e interpretar modelos de regresión lineal simple y múltiple usando \texttt{lm()} y el ecosistema \texttt{tidyverse}
+\item
+  Evaluar críticamente los supuestos del Modelo Clásico de Regresión Lineal (MCRL)
+\item
+  Realizar inferencia estadística robusta (pruebas \emph{t}, \emph{F}, intervalos de confianza y predicción)
+\item
+  Diagnosticar problemas comunes (heteroscedasticidad, autocorrelación, multicolinealidad, observaciones atípicas)
+\item
+  Aplicar transformaciones, manejar variables categóricas y seleccionar modelos apropiados
+\item
+  Implementar estrategias de validación y evaluación predictiva fuera de muestra
+\end{itemize}
+
+\begin{quote}
+\textbf{Prerrequisitos:} Álgebra lineal básica, cálculo diferencial, probabilidad y estadística inferencial, manejo intermedio de R y RStudio.
+\end{quote}
+
+\section{Fundamentos del Análisis de Regresión}\label{fundamentos-del-anuxe1lisis-de-regresiuxf3n}
+
+\subsection{Introducción al Análisis de Regresión}\label{introducciuxf3n-al-anuxe1lisis-de-regresiuxf3n}
+
+\subsubsection{¿Qué es el análisis de regresión?}\label{quuxe9-es-el-anuxe1lisis-de-regresiuxf3n}
+
+El análisis de regresión es una técnica estadística que estudia la \textbf{dependencia} de una variable respuesta \(Y\) (también llamada variable dependiente o endógena) respecto de una o más variables explicativas \(X_i\) (variables independientes, predictoras o exógenas). Su objetivo principal es modelar y cuantificar la relación para:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Estimar} el valor promedio condicional \(E(Y|X)\)
+\item
+  \textbf{Predecir} valores futuros de \(Y\) dado \(X\)
+\item
+  \textbf{Inferir} sobre la naturaleza y magnitud de las relaciones
+\item
+  \textbf{Controlar} por el efecto de variables confusoras
+\end{enumerate}
+
+Como señalan Harrell Jr (\citeproc{ref-harrell2015}{2015}) y Gelman et al. (\citeproc{ref-gelman2020}{2020}), la distinción entre estos objetivos es crucial para la especificación del modelo y la interpretación de resultados.
+
+\subsubsection{Regresión versus correlación}\label{regresiuxf3n-versus-correlaciuxf3n}
+
+Es fundamental distinguir estos conceptos:
+
+\begin{itemize}
+\item
+  \textbf{Correlación:} Mide la fuerza y dirección de una asociación \textbf{lineal simétrica} entre dos variables. El coeficiente de correlación de Pearson \(r_{XY}\) trata ambas variables por igual.
+\item
+  \textbf{Regresión:} Modela una dependencia \textbf{asimétrica} de \(Y\) respecto de \(X\), donde \(Y\) es la variable ``respuesta'' y \(X\) la variable ``explicativa''. Busca estimar \(E(Y|X) = f(X)\).
+\end{itemize}
+
+\subsubsection{Tipología de variables}\label{tipologuxeda-de-variables}
+
+Siguiendo la taxonomía de Bruce et al. (\citeproc{ref-bruce2020}{2020}), clasificamos las variables según su naturaleza:
+
+\textbf{Variables respuesta (\(Y\)):}
+- \textbf{Continuas:} Pueden tomar cualquier valor en un intervalo (ej: peso, ingreso)
+- \textbf{Discretas:} Valores enteros contables (ej: número de hijos)
+- \textbf{Categóricas:} Nominales u ordinales (tratadas en modelos lineales generalizados)
+
+\textbf{Variables explicativas (\(X_i\)):}
+- \textbf{Cuantitativas:} Continuas o discretas con significado numérico
+- \textbf{Cualitativas:} Categóricas que requieren codificación (variables dummy)
+
+\pandocbounded{\includegraphics[keepaspectratio]{bookdownproj_files/figure-latex/variables-ejemplo-1.pdf}}
+
+\subsubsection{\texorpdfstring{El término de perturbación \(\varepsilon\)}{El término de perturbación \textbackslash varepsilon}}\label{el-tuxe9rmino-de-perturbaciuxf3n-varepsilon}
+
+El término de error \(\varepsilon\) es central en el análisis de regresión y captura:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Variables omitidas:} Factores relevantes no incluidos en el modelo
+\item
+  \textbf{Error de medición:} Imprecisiones en la medición de variables
+\item
+  \textbf{Forma funcional incorrecta:} Relaciones no lineales aproximadas linealmente
+\item
+  \textbf{Variabilidad inherente:} Componente aleatorio genuino del fenómeno
+\end{enumerate}
+
+La especificación correcta de \(\varepsilon\) es crucial para la validez de la inferencia estadística (\citeproc{ref-gujarati2009}{Gujarati and Porter 2009}).
+
+\subsection{El Modelo de Regresión Lineal Simple}\label{el-modelo-de-regresiuxf3n-lineal-simple}
+
+\subsubsection{Formulación del modelo}\label{formulaciuxf3n-del-modelo}
+
+El modelo de regresión lineal simple se expresa como:
+
+\[Y_i = \beta_0 + \beta_1 X_i + \varepsilon_i, \quad i = 1, 2, \ldots, n\]
+
+donde:
+- \(Y_i\): valor observado de la variable respuesta para la observación \(i\)
+- \(X_i\): valor de la variable explicativa para la observación \(i\)
+- \(\beta_0\): intercepto (ordenada al origen)
+- \(\beta_1\): pendiente (efecto marginal de \(X\) sobre \(Y\))
+- \(\varepsilon_i\): término de error para la observación \(i\)
+
+\subsubsection{Función de regresión poblacional (FRP) vs.~muestral (FRM)}\label{funciuxf3n-de-regresiuxf3n-poblacional-frp-vs.-muestral-frm}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{FRP:} \(E(Y|X) = \beta_0 + \beta_1 X\) (parámetros poblacionales desconocidos)
+\item
+  \textbf{FRM:} \(\hat{Y} = \hat{\beta}_0 + \hat{\beta}_1 X\) (estimadores muestrales)
+\end{itemize}
+
+\subsubsection{Interpretación de parámetros}\label{interpretaciuxf3n-de-paruxe1metros}
+
+\begin{itemize}
+\tightlist
+\item
+  \(\beta_0\): Valor esperado de \(Y\) cuando \(X = 0\) (si tiene sentido sustantivo)
+\item
+  \(\beta_1\): Cambio esperado en \(Y\) por cada unidad adicional de \(X\)
+\end{itemize}
+
+\begin{table}
+\centering
+\caption{\label{tab:regresion-simple}Resultados del modelo de regresión simple}
+\centering
+\begin{tabular}[t]{l|r|r|r|r|r|r}
+\hline
+term & estimate & std.error & statistic & p.value & conf.low & conf.high\\
+\hline
+(Intercept) & 49055.079 & 1002.826 & 48.917 & 0 & 47077.488 & 51032.669\\
+\hline
+experiencia & 1323.586 & 62.713 & 21.105 & 0 & 1199.914 & 1447.258\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{verbatim}
+## `geom_smooth()` using formula = 'y ~ x'
+\end{verbatim}
+
+\pandocbounded{\includegraphics[keepaspectratio]{bookdownproj_files/figure-latex/regresion-simple-1.pdf}}
+
+\textbf{Interpretación práctica:} Por cada año adicional de experiencia, el salario esperado aumenta en aproximadamente 1324 dólares, manteniendo todo lo demás constante.
+
+\subsection{El Modelo de Regresión Lineal Múltiple}\label{el-modelo-de-regresiuxf3n-lineal-muxfaltiple}
+
+\subsubsection{Generalización matemática}\label{generalizaciuxf3n-matemuxe1tica}
+
+El modelo de regresión múltiple extiende el caso simple a \(k\) variables explicativas:
+
+\[Y_i = \beta_0 + \beta_1 X_{1i} + \beta_2 X_{2i} + \cdots + \beta_k X_{ki} + \varepsilon_i\]
+
+En notación matricial:
+\[\mathbf{Y} = \mathbf{X}\boldsymbol{\beta} + \boldsymbol{\varepsilon}\]
+
+donde:
+- \(\mathbf{Y}\) es un vector \(n \times 1\) de observaciones
+- \(\mathbf{X}\) es una matriz \(n \times (k+1)\) de diseño
+- \(\boldsymbol{\beta}\) es un vector \((k+1) \times 1\) de parámetros
+- \(\boldsymbol{\varepsilon}\) es un vector \(n \times 1\) de errores
+
+\subsubsection{Interpretación de coeficientes parciales (ceteris paribus)}\label{interpretaciuxf3n-de-coeficientes-parciales-ceteris-paribus}
+
+En regresión múltiple, \(\beta_j\) representa el \textbf{efecto marginal} de \(X_j\) sobre \(Y\), manteniendo \textbf{constantes} todas las demás variables explicativas. Esto es crucial para el control de variables confusoras (\citeproc{ref-wooldridge2015}{Wooldridge 2015}).
+
+\subsubsection{Linealidad en parámetros}\label{linealidad-en-paruxe1metros}
+
+El modelo es lineal en los \textbf{parámetros} \(\beta_j\), no necesariamente en las \textbf{variables}. Podemos incluir:
+- Transformaciones: \(\log(X)\), \(\sqrt{X}\), \(X^2\)
+- Interacciones: \(X_1 \times X_2\)
+- Variables dummy para categorías
+
+\begin{table}
+\centering
+\caption{\label{tab:regresion-multiple}Modelo de regresión múltiple: Determinantes del salario}
+\centering
+\begin{tabular}[t]{l|r|r|r|r|r|r}
+\hline
+term & estimate & std.error & statistic & p.value & conf.low & conf.high\\
+\hline
+(Intercept) & 20692.466 & 3405.062 & 6.077 & 0.000 & 13976.989 & 27407.943\\
+\hline
+edad & 997.822 & 156.220 & 6.387 & 0.000 & 689.725 & 1305.920\\
+\hline
+experiencia & 297.930 & 164.206 & 1.814 & 0.071 & -25.917 & 621.778\\
+\hline
+educacionSecundaria & 7319.872 & 833.352 & 8.784 & 0.000 & 5676.331 & 8963.412\\
+\hline
+educacionUniversidad & 14576.768 & 918.700 & 15.867 & 0.000 & 12764.903 & 16388.632\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}
+\centering
+\caption{\label{tab:regresion-multiple}Comparación de modelos: Simple vs. Múltiple}
+\centering
+\begin{tabular}[t]{l|r|r|r|r|r}
+\hline
+model & r.squared & adj.r.squared & AIC & BIC & p.value\\
+\hline
+simple & 0.6923 & 0.6907 & 4163.086 & 4172.980 & 0\\
+\hline
+multiple & 0.8825 & 0.8801 & 3976.526 & 3996.316 & 0\\
+\hline
+\end{tabular}
+\end{table}
+
+\textbf{Interpretación de educación:} Controlando por edad y experiencia, tener educación universitaria se asocia con un incremento promedio de 7320 dólares en el salario comparado con educación primaria.
+
+\section{Supuestos del MCRL y Estimación MCO}\label{supuestos-del-mcrl-y-estimaciuxf3n-mco}
+
+\subsection{Supuestos del Modelo Clásico de Regresión Lineal (MCRL)}\label{supuestos-del-modelo-cluxe1sico-de-regresiuxf3n-lineal-mcrl}
+
+\subsubsection{Supuestos fundamentales}\label{supuestos-fundamentales}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Linealidad en parámetros:} El modelo está correctamente especificado
+\item
+  \textbf{Exogeneidad estricta:} \(E(\varepsilon_i|X_i) = 0\) para todo \(i\)
+\item
+  \textbf{Homoscedasticidad:} \(\text{Var}(\varepsilon_i|X_i) = \sigma^2\) (varianza constante)
+\item
+  \textbf{No autocorrelación:} \(\text{Cov}(\varepsilon_i, \varepsilon_j|X) = 0\) para \(i \neq j\)
+\item
+  \textbf{No multicolinealidad perfecta:} \(\text{rank}(\mathbf{X}) = k+1\)
+\item
+  \textbf{Normalidad} (para muestras pequeñas): \(\varepsilon_i \sim N(0, \sigma^2)\)
+\end{enumerate}
+
+\subsubsection{Implicaciones de violaciones}\label{implicaciones-de-violaciones}
+
+{\def\LTcaptype{none} % do not increment counter
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+Supuesto violado & Efecto en MCO & Inferencia afectada \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Exogeneidad & Sesgo e inconsistencia & Sí \\
+Homoscedasticidad & Ineficiencia & Errores estándar \\
+No autocorrelación & Ineficiencia & Errores estándar \\
+Multicolinealidad & Alta varianza & Significancia \\
+Normalidad & - & Pruebas t/F (muestras pequeñas) \\
+\end{longtable}
+}
+
+\subsubsection{Verificación práctica de supuestos}\label{verificaciuxf3n-pruxe1ctica-de-supuestos}
+
+\pandocbounded{\includegraphics[keepaspectratio]{bookdownproj_files/figure-latex/verificacion-supuestos-1.pdf}}
+
+\begin{verbatim}
+## `geom_smooth()` using method = 'loess' and formula = 'y ~ x'
+\end{verbatim}
+
+\pandocbounded{\includegraphics[keepaspectratio]{bookdownproj_files/figure-latex/verificacion-supuestos-2.pdf}}
+
+\begin{verbatim}
+## Prueba de Breusch-Pagan (Homoscedasticidad):
+\end{verbatim}
+
+\begin{verbatim}
+## 
+##  studentized Breusch-Pagan test
+## 
+## data:  modelo_multiple
+## BP = 8.8749, df = 4, p-value = 0.0643
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Prueba de Shapiro-Wilk (Normalidad):
+\end{verbatim}
+
+\begin{verbatim}
+## 
+##  Shapiro-Wilk normality test
+## 
+## data:  residuals(modelo_multiple)
+## W = 0.99557, p-value = 0.8302
+\end{verbatim}
+
+\subsection{Estimación por Mínimos Cuadrados Ordinarios (MCO)}\label{estimaciuxf3n-por-muxednimos-cuadrados-ordinarios-mco}
+
+\subsubsection{Derivación del estimador}\label{derivaciuxf3n-del-estimador}
+
+El estimador MCO minimiza la suma de cuadrados de residuos:
+\[\min_{\boldsymbol{\beta}} \sum_{i=1}^n (Y_i - \mathbf{x}_i'\boldsymbol{\beta})^2\]
+
+La solución analítica es:
+\[\hat{\boldsymbol{\beta}} = (\mathbf{X}'\mathbf{X})^{-1}\mathbf{X}'\mathbf{Y}\]
+
+\subsubsection{Propiedades estadísticas}\label{propiedades-estaduxedsticas}
+
+Bajo los supuestos del MCRL:
+- \textbf{Insesgadez:} \(E[\hat{\boldsymbol{\beta}}|\mathbf{X}] = \boldsymbol{\beta}\)
+- \textbf{Eficiencia:} BLUE (Best Linear Unbiased Estimator) por el teorema de Gauss-Markov
+- \textbf{Consistencia:} \(\text{plim}_{n \to \infty} \hat{\boldsymbol{\beta}} = \boldsymbol{\beta}\)
+- \textbf{Normalidad asintótica:} \(\hat{\boldsymbol{\beta}} \xrightarrow{d} N(\boldsymbol{\beta}, \sigma^2(\mathbf{X}'\mathbf{X})^{-1})\)
+
+\begin{table}
+\centering
+\caption{\label{tab:mco-manual}Verificación: MCO manual vs. función lm()}
+\centering
+\begin{tabular}[t]{l|l|r|r|r}
+\hline
+  & Coeficiente & MCO\_manual & lm\_function & Diferencia\\
+\hline
+(Intercept) & (Intercept) & 20692.4663 & 20692.4663 & 0\\
+\hline
+edad & edad & 997.8225 & 997.8225 & 0\\
+\hline
+experiencia & experiencia & 297.9304 & 297.9304 & 0\\
+\hline
+educacionSecundaria & educacionSecundaria & 7319.8716 & 7319.8716 & 0\\
+\hline
+educacionUniversidad & educacionUniversidad & 14576.7678 & 14576.7678 & 0\\
+\hline
+\end{tabular}
+\end{table}
+
+\subsubsection{\texorpdfstring{Estimación de \(\sigma^2\)}{Estimación de \textbackslash sigma\^{}2}}\label{estimaciuxf3n-de-sigma2}
+
+El estimador insesgado de la varianza del error es:
+\[\hat{\sigma}^2 = \frac{\sum_{i=1}^n \hat{\varepsilon}_i^2}{n-k-1} = \frac{\text{SCR}}{n-k-1}\]
+
+donde SCR es la suma de cuadrados de los residuos y \(n-k-1\) son los grados de libertad.
+
+\section{Inferencia Estadística en Regresión}\label{inferencia-estaduxedstica-en-regresiuxf3n}
+
+\subsection{Distribución de los estimadores}\label{distribuciuxf3n-de-los-estimadores}
+
+\subsection{Pruebas de hipótesis}\label{pruebas-de-hipuxf3tesis-1}
+
+\subsection{Intervalos de confianza y predicción}\label{intervalos-de-confianza-y-predicciuxf3n}
+
+\section{Medidas de Bondad de Ajuste}\label{medidas-de-bondad-de-ajuste}
+
+\subsection{Coeficiente de determinación R²}\label{coeficiente-de-determinaciuxf3n-ruxb2}
+
+\subsection{R² ajustado}\label{ruxb2-ajustado}
+
+\subsection{Limitaciones del R²}\label{limitaciones-del-ruxb2}
+
+\section{Diagnóstico del Modelo: Análisis de R}\label{diagnuxf3stico-del-modelo-anuxe1lisis-de-r}
+
+\subsection{Tipos de Residuos}\label{tipos-de-residuos}
+
+\subsection{Gráficos de diagnósticos esenciales}\label{gruxe1ficos-de-diagnuxf3sticos-esenciales}
+
+\subsection{Detección de observaciones influyentes}\label{detecciuxf3n-de-observaciones-influyentes}
+
+\section{Violaciones de los Supuestos y Remedios}\label{violaciones-de-los-supuestos-y-remedios}
+
+\subsection{Heteroscedasticidad}\label{heteroscedasticidad}
+
+\subsection{Multicolinealidad}\label{multicolinealidad}
+
+\subsection{Autocorrelación (Series de Tiempo) . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .}\label{autocorrelaciuxf3n-series-de-tiempo-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.}
+
+\section{Selección de Variables y Extensiones del Modelo}\label{selecciuxf3n-de-variables-y-extensiones-del-modelo}
+
+\subsection{Selección de Variables y Modelos}\label{selecciuxf3n-de-variables-y-modelos}
+
+\subsection{Extensiones del Modelo Lineal}\label{extensiones-del-modelo-lineal}
+
+\section{Evaluación Predictiva y Validación}\label{evaluaciuxf3n-predictiva-y-validaciuxf3n}
+
+\subsection{División entrenamiento-prueba}\label{divisiuxf3n-entrenamiento-prueba}
+
+\subsection{Métricas de evaluación predictiva}\label{muxe9tricas-de-evaluaciuxf3n-predictiva}
+
+\subsection{Validación cruzada k-fold}\label{validaciuxf3n-cruzada-k-fold}
+
+\section{Modelos GLM y Técnicas de Regularización}\label{modelos-glm-y-tuxe9cnicas-de-regularizaciuxf3n}
+
+\subsection{Introducción a Modelos Lineales Generalizados (GLM)}\label{introducciuxf3n-a-modelos-lineales-generalizados-glm}
+
+\subsection{Técnicas de Regularización: Ridge y LASSO}\label{tuxe9cnicas-de-regularizaciuxf3n-ridge-y-lasso}
+
+\section{Práctica y Material Complementario}\label{pruxe1ctica-y-material-complementario}
+
+\subsection{Análisis de Regresión en la Práctica: Flujo de Trabajo Completo}\label{anuxe1lisis-de-regresiuxf3n-en-la-pruxe1ctica-flujo-de-trabajo-completo}
+
+\subsection{Buenas Prácticas y Lista de Verificación}\label{buenas-pruxe1cticas-y-lista-de-verificaciuxf3n}
+
+\subsection{Ejercicios Propuestos y Actividades Prácticas}\label{ejercicios-propuestos-y-actividades-pruxe1cticas}
+
+\subsection{Recursos Adicionales y Referencias}\label{recursos-adicionales-y-referencias}
+
+\subsection{Resumen y Conclusiones}\label{resumen-y-conclusiones}
+
+\chapter{Diseño y Análisis de Experimentos: Fundamentos, Modelación e Interpretación}\label{diseuxf1o-y-anuxe1lisis-de-experimentos-fundamentos-modelaciuxf3n-e-interpretaciuxf3n}
+
+\textbf{Objetivo:}
+\emph{Que el alumnado sea capaz de comprender, diseñar y analizar experimentos, interpretando la variabilidad de los datos y el efecto de uno o múltiples factores mediante modelos de análisis de varianza y diseños experimentales, apoyándose en herramientas visuales y de simulación para la toma de decisiones.}
+
+\textbf{Contenido}
+
+\section{Fundamentos del experimento y análisis de variación}\label{fundamentos-del-experimento-y-anuxe1lisis-de-variaciuxf3n}
+
+\subsection{El experimento y sus fines}\label{el-experimento-y-sus-fines}
+
+\subsection{Elementos del experimento:factores, niveles, tratamientos, variable respuesta}\label{elementos-del-experimentofactores-niveles-tratamientos-variable-respuesta}
+
+\subsection{Diseño del experimento}\label{diseuxf1o-del-experimento}
+
+\subsection{Número de ensayos}\label{nuxfamero-de-ensayos}
+
+\subsection{Análisis de variaciones}\label{anuxe1lisis-de-variaciones}
+
+\subsection{Análisis de resultados}\label{anuxe1lisis-de-resultados}
+
+\section{Análisis de varianza e interpretación de resultados}\label{anuxe1lisis-de-varianza-e-interpretaciuxf3n-de-resultados}
+
+\subsection{ANOVA de un factor}\label{anova-de-un-factor}
+
+\subsubsection{Idea de comparación de tratamientos}\label{idea-de-comparaciuxf3n-de-tratamientos}
+
+\subsubsection{Descomposición de la variación}\label{descomposiciuxf3n-de-la-variaciuxf3n}
+
+\subsubsection{Interpretación del estadístico F}\label{interpretaciuxf3n-del-estaduxedstico-f}
+
+\subsection{ANOVA de dos factores}\label{anova-de-dos-factores}
+
+\subsubsection{Dos criterios de variación}\label{dos-criterios-de-variaciuxf3n}
+
+\subsubsection{Interpretación básica}\label{interpretaciuxf3n-buxe1sica}
+
+\subsection{Comparaciones múltiples}\label{comparaciones-muxfaltiples}
+
+\subsubsection{¿Qué tratamientos son diferentes?}\label{quuxe9-tratamientos-son-diferentes}
+
+\subsubsection{Interpretación}\label{interpretaciuxf3n}
+
+\section{Diseño experimental multifactorial y control de variabilidad}\label{diseuxf1o-experimental-multifactorial-y-control-de-variabilidad}
+
+\subsection{Bloques experimentales}\label{bloques-experimentales}
+
+\subsubsection{Control de fuentes de variación}\label{control-de-fuentes-de-variaciuxf3n}
+
+\subsubsection{Concepto de bloques completos e incompletos}\label{concepto-de-bloques-completos-e-incompletos}
+
+\subsection{Cuadrados latinos}\label{cuadrados-latinos}
+
+\subsubsection{Control de dos fuentes de variación}\label{control-de-dos-fuentes-de-variaciuxf3n}
+
+\subsubsection{Interpretación}\label{interpretaciuxf3n-1}
+
+\subsection{Cuadrados grecolatinos}\label{cuadrados-grecolatinos}
+
+\subsubsection{Extensión para múltiples fuentes}\label{extensiuxf3n-para-muxfaltiples-fuentes}
+
+\subsubsection{Idea de eficiencia experimental}\label{idea-de-eficiencia-experimental}
+
+\subsection{\texorpdfstring{Diseño factorial \(2^k\)}{Diseño factorial 2\^{}k}}\label{diseuxf1o-factorial-2k}
+
+\subsubsection{Factores múltiples}\label{factores-muxfaltiples}
+
+\subsubsection{Efectos principales}\label{efectos-principales}
+
+\subsubsection{Interacciones}\label{interacciones}
+
+\subsection{Interpretación de interacción}\label{interpretaciuxf3n-de-interacciuxf3n}
+
+\subsubsection{Gráfica de interacción}\label{gruxe1fica-de-interacciuxf3n}
+
+\subsubsection{implicaciones en ingeniería}\label{implicaciones-en-ingenieruxeda}
+
+\textbf{Notas adicionales:}
+\emph{Esta propuesta prioriza: comprensión conceptual, interpretación de resultados y aplicación en ingeniería.}
+\emph{Se omite el análisis de covarianza ya que consideramos que requiere base fuerte en regresión, aumenta carga matemática y no es esencial para el objetivo del curso.}
+
+\chapter{Inferencia Estadística No Paramétrica: Métodos y Aplicaciones}\label{inferencia-estaduxedstica-no-paramuxe9trica-muxe9todos-y-aplicaciones}
+
+\textbf{Objetivo:}
+\emph{El objetivo de este capítulo es familiarizar a los estudiantes de ingeniería con la inferencia no paramétrica. Este enfoque consta de una colección de procedimientos que les permitirá realizar análisis estadístico sin la necesidad de suponer distribuciones de probabilidad específicas para los datos. En particular, se busca que los alumnos aprendan a realizar pruebas no paramétricas en situaciones reales donde las técnicas paramétricas no sean factibles. Asimismo, se espera que adquieran la capacidad de interpretar los resultados de manera crítica y los relacionen con su campo profesional.}
+
+\textbf{Contenido}
+
+\section{Introducción a la inferencia no paramétrica}\label{introducciuxf3n-a-la-inferencia-no-paramuxe9trica}
+
+\subsection{Diferencia entre métodos paramétricos y no paramétricos.}\label{diferencia-entre-muxe9todos-paramuxe9tricos-y-no-paramuxe9tricos.}
+
+\subsection{Ventajas y limitaciones.}\label{ventajas-y-limitaciones.}
+
+\subsection{Situaciones en las que se recomienda su uso.}\label{situaciones-en-las-que-se-recomienda-su-uso.}
+
+\section{Pruebas de hipótesis para una muestra}\label{pruebas-de-hipuxf3tesis-para-una-muestra}
+
+\subsection{Prueba de los signos.}\label{prueba-de-los-signos.}
+
+\subsection{Prueba de Wilcoxon para una muestra.}\label{prueba-de-wilcoxon-para-una-muestra.}
+
+\section{Pruebas de hipótesis para dos muestras}\label{pruebas-de-hipuxf3tesis-para-dos-muestras}
+
+\subsection{Prueba de Mann-Whitney U (Wilcoxon de rangos sumados).}\label{prueba-de-mann-whitney-u-wilcoxon-de-rangos-sumados.}
+
+\subsection{Prueba de los signos para pares apareados.}\label{prueba-de-los-signos-para-pares-apareados.}
+
+\subsection{Prueba de Wilcoxon para pares apareados.}\label{prueba-de-wilcoxon-para-pares-apareados.}
+
+\section{Extensión a más de dos muestras}\label{extensiuxf3n-a-muxe1s-de-dos-muestras}
+
+\subsection{Prueba de Kruskal-Wallis.}\label{prueba-de-kruskal-wallis.}
+
+\subsection{Prueba de Friedman para diseños con bloques.}\label{prueba-de-friedman-para-diseuxf1os-con-bloques.}
+
+\section{Medidas de asociación no paramétricas}\label{medidas-de-asociaciuxf3n-no-paramuxe9tricas}
+
+\subsection{Coeficiente de correlación de rangos de Spearman.}\label{coeficiente-de-correlaciuxf3n-de-rangos-de-spearman.}
+
+\subsection{Tau de Kendall.}\label{tau-de-kendall.}
+
+\section{Aplicaciones prácticas en ingeniería}\label{aplicaciones-pruxe1cticas-en-ingenieruxeda}
+
+\subsection{Control de calidad y confiabilidad.}\label{control-de-calidad-y-confiabilidad.}
+
+\subsection{Comparación de procesos o materiales.}\label{comparaciuxf3n-de-procesos-o-materiales.}
+
+\subsection{Ejemplos con datos reales (tiempos de respuesta, resistencia de materiales, rendimiento de equipos).}\label{ejemplos-con-datos-reales-tiempos-de-respuesta-resistencia-de-materiales-rendimiento-de-equipos.}
+
+\section{Implementación computacional}\label{implementaciuxf3n-computacional}
+
+\subsection{Ejemplos de aplicación en software estadístico (R, Python, SPSS y/o Excel).}\label{ejemplos-de-aplicaciuxf3n-en-software-estaduxedstico-r-python-spss-yo-excel.}
+
+\section{Conclusiones y recomendaciones}\label{conclusiones-y-recomendaciones}
+
+\subsection{Relevancia en la práctica profesional.}\label{relevancia-en-la-pruxe1ctica-profesional.}
+
+\subsection{Comparación con métodos paramétricos.}\label{comparaciuxf3n-con-muxe9todos-paramuxe9tricos.}
+
+\protect\phantomsection\label{refs}
+\begin{CSLReferences}{1}{1}
+\bibitem[\citeproctext]{ref-bruce2020}
+Bruce, Peter, Andrew Bruce, and Peter Gedeck. 2020. \emph{Practical Statistics for Data Scientists: 50+ Essential Concepts Using r and Python}. 2nd ed. O'Reilly Media.
+
+\bibitem[\citeproctext]{ref-gelman2020}
+Gelman, Andrew, Jennifer Hill, and Aki Vehtari. 2020. \emph{Regression and Other Stories}. Cambridge University Press.
+
+\bibitem[\citeproctext]{ref-gujarati2009}
+Gujarati, Damodar N, and Dawn C Porter. 2009. \emph{Basic Econometrics}. 5th ed. McGraw-Hill/Irwin.
+
+\bibitem[\citeproctext]{ref-harrell2015}
+Harrell Jr, Frank E. 2015. \emph{Regression Modeling Strategies: With Applications to Linear Models, Logistic and Ordinal Regression, and Survival Analysis}. 2nd ed. Springer.
+
+\bibitem[\citeproctext]{ref-wooldridge2015}
+Wooldridge, Jeffrey M. 2015. \emph{Introductory Econometrics: A Modern Approach}. 6th ed. Cengage Learning.
+
+\end{CSLReferences}
+
+\end{document}

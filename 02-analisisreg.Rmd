@@ -1,0 +1,355 @@
+---
+output:
+  pdf_document: default
+  html_document: default
+---
+# Análisis de Regresión: De la Inferencia a la Predicción con R
+> **Objetivo del capítulo:** Proporcionar una guía integral y práctica para comprender, estimar, diagnosticar e interpretar modelos de regresión lineal, diferenciando entre objetivos de **inferencia estadística** y **predicción**, con implementaciones reproducibles en R que siguen las mejores prácticas de ciencia de datos moderna.
+
+**Al completar este capítulo podrás:**
+
+- Diferenciar entre correlación y regresión, y explicar el rol fundamental del término de error
+- Estimar e interpretar modelos de regresión lineal simple y múltiple usando `lm()` y el ecosistema `tidyverse`
+- Evaluar críticamente los supuestos del Modelo Clásico de Regresión Lineal (MCRL)
+- Realizar inferencia estadística robusta (pruebas *t*, *F*, intervalos de confianza y predicción)
+- Diagnosticar problemas comunes (heteroscedasticidad, autocorrelación, multicolinealidad, observaciones atípicas)
+- Aplicar transformaciones, manejar variables categóricas y seleccionar modelos apropiados
+- Implementar estrategias de validación y evaluación predictiva fuera de muestra
+
+> **Prerrequisitos:** Álgebra lineal básica, cálculo diferencial, probabilidad y estadística inferencial, manejo intermedio de R y RStudio.
+
+## Fundamentos del Análisis de Regresión
+### Introducción al Análisis de Regresión
+#### ¿Qué es el análisis de regresión?
+
+El análisis de regresión es una técnica estadística que estudia la **dependencia** de una variable respuesta $Y$ (también llamada variable dependiente o endógena) respecto de una o más variables explicativas $X_i$ (variables independientes, predictoras o exógenas). Su objetivo principal es modelar y cuantificar la relación para:
+
+1. **Estimar** el valor promedio condicional $E(Y|X)$
+2. **Predecir** valores futuros de $Y$ dado $X$
+3. **Inferir** sobre la naturaleza y magnitud de las relaciones
+4. **Controlar** por el efecto de variables confusoras
+
+Como señalan @harrell2015 y @gelman2020, la distinción entre estos objetivos es crucial para la especificación del modelo y la interpretación de resultados.
+
+#### Regresión versus correlación
+
+Es fundamental distinguir estos conceptos:
+
+- **Correlación:** Mide la fuerza y dirección de una asociación **lineal simétrica** entre dos variables. El coeficiente de correlación de Pearson $r_{XY}$ trata ambas variables por igual.
+
+- **Regresión:** Modela una dependencia **asimétrica** de $Y$ respecto de $X$, donde $Y$ es la variable "respuesta" y $X$ la variable "explicativa". Busca estimar $E(Y|X) = f(X)$.
+
+#### Tipología de variables
+
+Siguiendo la taxonomía de @bruce2020, clasificamos las variables según su naturaleza:
+
+**Variables respuesta ($Y$):**
+- **Continuas:** Pueden tomar cualquier valor en un intervalo (ej: peso, ingreso)
+- **Discretas:** Valores enteros contables (ej: número de hijos)
+- **Categóricas:** Nominales u ordinales (tratadas en modelos lineales generalizados)
+
+**Variables explicativas ($X_i$):**
+- **Cuantitativas:** Continuas o discretas con significado numérico
+- **Cualitativas:** Categóricas que requieren codificación (variables dummy)
+
+```{r variables-ejemplo}
+# Ejemplo de diferentes tipos de variables
+set.seed(123)
+n <- 200
+
+# Variables explicativas
+edad <- rnorm(n, mean = 35, sd = 10)
+educacion <- sample(c("Primaria", "Secundaria", "Universidad"), n, replace = TRUE, prob = c(0.3, 0.4, 0.3))
+experiencia <- pmax(0, edad - 22 + rnorm(n, 0, 2))
+
+# Variable respuesta
+salario <- 25000 + 800*edad + 500*experiencia +
+           ifelse(educacion == "Universidad", 15000,
+                  ifelse(educacion == "Secundaria", 8000, 0)) +
+           rnorm(n, 0, 5000)
+
+datos_ejemplo <- data.frame(
+  salario = salario,
+  edad = edad,
+  educacion = factor(educacion, levels = c("Primaria", "Secundaria", "Universidad")),
+  experiencia = experiencia
+)
+
+# Exploración inicial
+
+datos_ejemplo %>%
+  select(salario, edad, experiencia) %>%
+  GGally::ggpairs() +
+  theme_minimal()
+```
+
+#### El término de perturbación $\varepsilon$
+
+El término de error $\varepsilon$ es central en el análisis de regresión y captura:
+
+1. **Variables omitidas:** Factores relevantes no incluidos en el modelo
+2. **Error de medición:** Imprecisiones en la medición de variables
+3. **Forma funcional incorrecta:** Relaciones no lineales aproximadas linealmente
+4. **Variabilidad inherente:** Componente aleatorio genuino del fenómeno
+
+La especificación correcta de $\varepsilon$ es crucial para la validez de la inferencia estadística [@gujarati2009].
+
+
+### El Modelo de Regresión Lineal Simple
+
+#### Formulación del modelo
+
+El modelo de regresión lineal simple se expresa como:
+
+$$Y_i = \beta_0 + \beta_1 X_i + \varepsilon_i, \quad i = 1, 2, \ldots, n$$
+
+donde:
+- $Y_i$: valor observado de la variable respuesta para la observación $i$
+- $X_i$: valor de la variable explicativa para la observación $i$
+- $\beta_0$: intercepto (ordenada al origen)
+- $\beta_1$: pendiente (efecto marginal de $X$ sobre $Y$)
+- $\varepsilon_i$: término de error para la observación $i$
+
+#### Función de regresión poblacional (FRP) vs. muestral (FRM)
+
+- **FRP:** $E(Y|X) = \beta_0 + \beta_1 X$ (parámetros poblacionales desconocidos)
+- **FRM:** $\hat{Y} = \hat{\beta}_0 + \hat{\beta}_1 X$ (estimadores muestrales)
+
+#### Interpretación de parámetros
+
+- $\beta_0$: Valor esperado de $Y$ cuando $X = 0$ (si tiene sentido sustantivo)
+- $\beta_1$: Cambio esperado en $Y$ por cada unidad adicional de $X$
+
+```{r regresion-simple}
+# Ejemplo: Relación entre experiencia y salario
+modelo_simple <- lm(salario ~ experiencia, data = datos_ejemplo)
+
+# Resumen del modelo
+tidy_results <- broom::tidy(modelo_simple, conf.int = TRUE)
+glance_results <- broom::glance(modelo_simple)
+
+kable(tidy_results,
+      caption = "Resultados del modelo de regresión simple",
+      digits = 3) %>%
+  kable_styling(bootstrap_options = c("striped", "hover"))
+
+# Visualización
+ggplot(datos_ejemplo, aes(x = experiencia, y = salario)) +
+  geom_point(alpha = 0.6, color = "steelblue") +
+  geom_smooth(method = "lm", se = TRUE, color = "red") +
+  labs(
+    title = "Relación entre Experiencia y Salario",
+    x = "Años de Experiencia",
+    y = "Salario Anual ($)",
+    caption = paste("R² =", round(glance_results$r.squared, 3))
+  ) +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5))
+```
+
+**Interpretación práctica:** Por cada año adicional de experiencia, el salario esperado aumenta en aproximadamente `r round(tidy_results$estimate[2], 0)` dólares, manteniendo todo lo demás constante.
+
+### El Modelo de Regresión Lineal Múltiple
+
+#### Generalización matemática
+
+El modelo de regresión múltiple extiende el caso simple a $k$ variables explicativas:
+
+$$Y_i = \beta_0 + \beta_1 X_{1i} + \beta_2 X_{2i} + \cdots + \beta_k X_{ki} + \varepsilon_i$$
+
+En notación matricial:
+$$\mathbf{Y} = \mathbf{X}\boldsymbol{\beta} + \boldsymbol{\varepsilon}$$
+
+donde:
+- $\mathbf{Y}$ es un vector $n \times 1$ de observaciones
+- $\mathbf{X}$ es una matriz $n \times (k+1)$ de diseño
+- $\boldsymbol{\beta}$ es un vector $(k+1) \times 1$ de parámetros
+- $\boldsymbol{\varepsilon}$ es un vector $n \times 1$ de errores
+
+#### Interpretación de coeficientes parciales (ceteris paribus)
+
+En regresión múltiple, $\beta_j$ representa el **efecto marginal** de $X_j$ sobre $Y$, manteniendo **constantes** todas las demás variables explicativas. Esto es crucial para el control de variables confusoras [@wooldridge2015].
+
+#### Linealidad en parámetros
+
+El modelo es lineal en los **parámetros** $\beta_j$, no necesariamente en las **variables**. Podemos incluir:
+- Transformaciones: $\log(X)$, $\sqrt{X}$, $X^2$
+- Interacciones: $X_1 \times X_2$
+- Variables dummy para categorías
+
+```{r regresion-multiple}
+# Modelo múltiple con variable categórica
+modelo_multiple <- lm(salario ~ edad + experiencia + educacion, data = datos_ejemplo)
+
+# Resultados en formato tabla
+tidy_multiple <- broom::tidy(modelo_multiple, conf.int = TRUE)
+glance_multiple <- broom::glance(modelo_multiple)
+
+kable(tidy_multiple,
+      caption = "Modelo de regresión múltiple: Determinantes del salario",
+      digits = 3) %>%
+  kable_styling(bootstrap_options = c("striped", "hover"))
+
+# Comparación de modelos
+comparison <- bind_rows(
+  simple = glance_results,
+  multiple = glance_multiple,
+  .id = "model"
+) %>%
+  select(model, r.squared, adj.r.squared, AIC, BIC, p.value)
+
+kable(comparison,
+      caption = "Comparación de modelos: Simple vs. Múltiple",
+      digits = 4) %>%
+  kable_styling(bootstrap_options = c("striped", "hover"))
+```
+
+**Interpretación de educación:** Controlando por edad y experiencia, tener educación universitaria se asocia con un incremento promedio de `r round(tidy_multiple$estimate[4], 0)` dólares en el salario comparado con educación primaria.
+
+
+
+##	Supuestos del MCRL y Estimación MCO
+
+### Supuestos del Modelo Clásico de Regresión Lineal (MCRL)
+#### Supuestos fundamentales
+
+1. **Linealidad en parámetros:** El modelo está correctamente especificado
+2. **Exogeneidad estricta:** $E(\varepsilon_i|X_i) = 0$ para todo $i$
+3. **Homoscedasticidad:** $\text{Var}(\varepsilon_i|X_i) = \sigma^2$ (varianza constante)
+4. **No autocorrelación:** $\text{Cov}(\varepsilon_i, \varepsilon_j|X) = 0$ para $i \neq j$
+5. **No multicolinealidad perfecta:** $\text{rank}(\mathbf{X}) = k+1$
+6. **Normalidad** (para muestras pequeñas): $\varepsilon_i \sim N(0, \sigma^2)$
+
+#### Implicaciones de violaciones
+
+| Supuesto violado | Efecto en MCO | Inferencia afectada |
+|------------------|---------------|---------------------|
+| Exogeneidad | Sesgo e inconsistencia | Sí |
+| Homoscedasticidad | Ineficiencia | Errores estándar |
+| No autocorrelación | Ineficiencia | Errores estándar |
+| Multicolinealidad | Alta varianza | Significancia |
+| Normalidad | - | Pruebas t/F (muestras pequeñas) |
+
+#### Verificación práctica de supuestos
+
+```{r verificacion-supuestos}
+# 1. Linealidad: gráficos de dispersión parcial
+car::avPlots(modelo_multiple,
+            main = "Gráficos de Variables Añadidas (Parciales)")
+
+# 2. Homoscedasticidad: residuos vs. valores ajustados
+augment_data <- broom::augment(modelo_multiple)
+
+p1 <- ggplot(augment_data, aes(x = .fitted, y = .resid)) +
+  geom_point(alpha = 0.6) +
+  geom_smooth(se = FALSE, color = "red") +
+  geom_hline(yintercept = 0, linetype = "dashed") +
+  labs(title = "Residuos vs. Valores Ajustados",
+       x = "Valores Ajustados", y = "Residuos") +
+  theme_minimal()
+
+# 3. Normalidad: Q-Q plot
+p2 <- ggplot(augment_data, aes(sample = .std.resid)) +
+  stat_qq() +
+  stat_qq_line(color = "red") +
+  labs(title = "Q-Q Plot de Residuos Estandarizados") +
+  theme_minimal()
+
+gridExtra::grid.arrange(p1, p2, ncol = 2)
+
+# Pruebas formales
+cat("Prueba de Breusch-Pagan (Homoscedasticidad):\n")
+bp_test <- lmtest::bptest(modelo_multiple)
+print(bp_test)
+
+cat("\nPrueba de Shapiro-Wilk (Normalidad):\n")
+shapiro_test <- shapiro.test(residuals(modelo_multiple))
+print(shapiro_test)
+```
+###	Estimación por Mínimos Cuadrados Ordinarios (MCO)
+#### Derivación del estimador
+
+El estimador MCO minimiza la suma de cuadrados de residuos:
+$$\min_{\boldsymbol{\beta}} \sum_{i=1}^n (Y_i - \mathbf{x}_i'\boldsymbol{\beta})^2$$
+
+La solución analítica es:
+$$\hat{\boldsymbol{\beta}} = (\mathbf{X}'\mathbf{X})^{-1}\mathbf{X}'\mathbf{Y}$$
+
+#### Propiedades estadísticas
+
+Bajo los supuestos del MCRL:
+- **Insesgadez:** $E[\hat{\boldsymbol{\beta}}|\mathbf{X}] = \boldsymbol{\beta}$
+- **Eficiencia:** BLUE (Best Linear Unbiased Estimator) por el teorema de Gauss-Markov
+- **Consistencia:** $\text{plim}_{n \to \infty} \hat{\boldsymbol{\beta}} = \boldsymbol{\beta}$
+- **Normalidad asintótica:** $\hat{\boldsymbol{\beta}} \xrightarrow{d} N(\boldsymbol{\beta}, \sigma^2(\mathbf{X}'\mathbf{X})^{-1})$
+
+```{r mco-manual}
+# Implementación manual de MCO para verificar
+X_matrix <- model.matrix(modelo_multiple)
+Y_vector <- datos_ejemplo$salario
+
+# Estimador MCO
+beta_hat <- solve(t(X_matrix) %*% X_matrix) %*% t(X_matrix) %*% Y_vector
+
+# Comparar con lm()
+comparison_manual <- data.frame(
+  Coeficiente = rownames(beta_hat),
+  MCO_manual = as.vector(beta_hat),
+  lm_function = coef(modelo_multiple),
+  Diferencia = abs(as.vector(beta_hat) - coef(modelo_multiple))
+)
+
+kable(comparison_manual,
+      caption = "Verificación: MCO manual vs. función lm()",
+      digits = 6) %>%
+  kable_styling(bootstrap_options = c("striped", "hover"))
+```
+
+#### Estimación de $\sigma^2$
+
+El estimador insesgado de la varianza del error es:
+$$\hat{\sigma}^2 = \frac{\sum_{i=1}^n \hat{\varepsilon}_i^2}{n-k-1} = \frac{\text{SCR}}{n-k-1}$$
+
+donde SCR es la suma de cuadrados de los residuos y $n-k-1$ son los grados de libertad.
+
+
+
+## Inferencia Estadística en Regresión
+### Distribución de los estimadores
+### Pruebas de hipótesis 
+### Intervalos de confianza y predicción
+
+##	Medidas de Bondad de Ajuste
+### Coeficiente de determinación R²
+### R² ajustado
+### Limitaciones del R²
+
+##	Diagnóstico del Modelo:	Análisis de R
+### Tipos de Residuos
+### Gráficos de diagnósticos esenciales
+### Detección de observaciones influyentes
+
+## Violaciones de los Supuestos y Remedios
+### Heteroscedasticidad
+### Multicolinealidad
+### Autocorrelación (Series de Tiempo) . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 
+
+## Selección de Variables y Extensiones del Modelo
+### Selección de Variables y Modelos
+### Extensiones del Modelo Lineal
+
+## Evaluación Predictiva y Validación
+### División entrenamiento-prueba
+### Métricas de evaluación predictiva
+### Validación cruzada k-fold
+
+## Modelos GLM y Técnicas de Regularización
+### Introducción a Modelos Lineales Generalizados (GLM)
+### Técnicas de Regularización: Ridge y LASSO
+
+## Práctica y Material Complementario
+### Análisis de Regresión en la Práctica: Flujo de Trabajo Completo
+### Buenas Prácticas y Lista de Verificación
+### Ejercicios Propuestos y Actividades Prácticas
+### Recursos Adicionales y Referencias
+### Resumen y Conclusiones
