@@ -804,12 +804,282 @@ acf(residuos_tiempo, main = "Autocorrelación de Residuos")
 
 
 ## Selección de Variables y Extensiones del Modelo
+
 ### Selección de Variables y Modelos
+#### Criterios de información
+
+Los criterios AIC y BIC penalizan la complejidad del modelo:
+
+- **AIC:** $AIC = n \ln(\hat{\sigma}^2) + 2k$
+- **BIC:** $BIC = n \ln(\hat{\sigma}^2) + k \ln(n)$
+
+Menor valor indica mejor ajuste penalizado.
+
+```{r criterios-informacion}
+# Comparar modelos con diferentes conjuntos de variables
+modelos_candidatos <- list(
+  "Solo edad" = lm(salario ~ edad, data = datos_ejemplo),
+  "Solo experiencia" = lm(salario ~ experiencia, data = datos_ejemplo),
+  "Solo educacion" = lm(salario ~ educacion, data = datos_ejemplo),
+  "Edad + Experiencia" = lm(salario ~ edad + experiencia, data = datos_ejemplo),
+  "Completo" = modelo_multiple,
+  "Con interacción" = lm(salario ~ edad * experiencia + educacion, data = datos_ejemplo)
+)
+
+# Calcular métricas para cada modelo
+model_comparison <- map_dfr(modelos_candidatos, ~{
+  glance(.x) %>% select(r.squared, adj.r.squared, AIC, BIC, df, logLik)
+}, .id = "Modelo")
+
+model_comparison <- model_comparison %>%
+  arrange(AIC) %>%
+  mutate(
+    delta_AIC = AIC - min(AIC),
+    delta_BIC = BIC - min(BIC)
+  )
+
+kable(model_comparison,
+      caption = "Comparación de modelos candidatos",
+      digits = 3) %>%
+  kable_styling(bootstrap_options = c("striped", "hover"))
+```
+
+#### Selección automática de variables
+
+```{r seleccion-automatica}
+# Selección por pasos (stepwise)
+modelo_completo <- lm(salario ~ edad + I(edad^2) + experiencia + I(experiencia^2) +
+                     educacion + edad:experiencia, data = datos_ejemplo)
+
+# Forward selection
+modelo_forward <- step(lm(salario ~ 1, data = datos_ejemplo),
+                      scope = formula(modelo_completo),
+                      direction = "forward", trace = 0)
+
+# Backward elimination
+modelo_backward <- step(modelo_completo, direction = "backward", trace = 0)
+
+# Both directions
+modelo_both <- step(modelo_completo, direction = "both", trace = 0)
+
+# Comparar resultados
+stepwise_comparison <- tibble(
+  Método = c("Forward", "Backward", "Both"),
+  Fórmula = c(
+    paste(deparse(formula(modelo_forward)), collapse = " "),
+    paste(deparse(formula(modelo_backward)), collapse = " "),
+    paste(deparse(formula(modelo_both)), collapse = " ")
+  ),
+  AIC = c(AIC(modelo_forward), AIC(modelo_backward), AIC(modelo_both)),
+  R_squared = c(summary(modelo_forward)$r.squared,
+                summary(modelo_backward)$r.squared,
+                summary(modelo_both)$r.squared)
+)
+
+
+kable(stepwise_comparison,
+      caption = "Comparación de métodos de selección automática",
+      digits = 4) %>%
+  kable_styling(bootstrap_options = c("striped", "hover"))
+```
+
+#### Validación cruzada para selección
+
+```{r validacion-cruzada}
+library(caret)
+
+# Configurar validación cruzada
+set.seed(789)
+train_control <- trainControl(method = "cv", number = 10)
+
+# Función para calcular RMSE en validación cruzada
+cv_rmse <- function(formula, data) {
+  train(formula, data = data, method = "lm", trControl = train_control)$results$RMSE
+}
+
+# Aplicar a modelos candidatos
+cv_results <- map_dfr(modelos_candidatos, ~{
+  tibble(RMSE_CV = cv_rmse(formula(.x), datos_ejemplo))
+}, .id = "Modelo")
+
+# Combinar con métricas previas
+final_comparison <- model_comparison %>%
+  select(Modelo, r.squared, AIC, BIC) %>%
+  left_join(cv_results, by = "Modelo") %>%
+  arrange(RMSE_CV)
+
+kable(final_comparison,
+      caption = "Comparación final: Criterios de información vs. Validación cruzada",
+      digits = 4) %>%
+  kable_styling(bootstrap_options = c("striped", "hover"))
+```
+
 ### Extensiones del Modelo Lineal
+#### Variables categóricas y contrastes
+
+```{r variables-categoricas}
+# Explorar diferentes sistemas de contrastes
+levels(datos_ejemplo$educacion)
+
+# Contrastes por defecto (treatment)
+contrasts(datos_ejemplo$educacion)
+
+# Modelo con contrastes treatment (por defecto)
+modelo_treatment <- lm(salario ~ edad + experiencia + educacion, data = datos_ejemplo)
+
+# Cambiar a contrastes suma (effect coding)
+contrasts(datos_ejemplo$educacion) <- contr.sum(3)
+modelo_sum <- lm(salario ~ edad + experiencia + educacion, data = datos_ejemplo)
+
+# Comparar interpretaciones
+treatment_results <- tidy(modelo_treatment) %>% mutate(Contraste = "Treatment")
+sum_results <- tidy(modelo_sum) %>% mutate(Contraste = "Sum")
+
+contrast_comparison <- bind_rows(treatment_results, sum_results) %>%
+  filter(str_detect(term, "educacion")) %>%
+  select(Contraste, term, estimate, std.error, p.value)
+
+kable(contrast_comparison,
+      caption = "Comparación de sistemas de contrastes",
+      digits = 4) %>%
+  kable_styling(bootstrap_options = c("striped", "hover"))
+
+# Restaurar contrastes por defecto
+contrasts(datos_ejemplo$educacion) <- contr.treatment(3)
+```
+
+#### Términos de interacción
+
+```{r interacciones}
+# Modelo con interacción entre variables continuas y categóricas
+modelo_interaccion <- lm(salario ~ edad * educacion + experiencia, data = datos_ejemplo)
+
+# Resultados
+tidy_interaccion <- tidy(modelo_interaccion)
+kable(tidy_interaccion,
+      caption = "Modelo con término de interacción: edad × educación",
+      digits = 3) %>%
+  kable_styling(bootstrap_options = c("striped", "hover"))
+
+# Visualizar la interacción
+ggplot(datos_ejemplo, aes(x = edad, y = salario, color = educacion)) +
+  geom_point(alpha = 0.6) +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(title = "Interacción entre Edad y Nivel Educativo",
+       x = "Edad", y = "Salario", color = "Educación") +
+  theme_minimal() +
+  theme(legend.position = "bottom")
+
+# Test de significancia de la interacción
+anova(modelo_multiple, modelo_interaccion)
+```
+
+#### Transformaciones no lineales
+
+```{r transformaciones-no-lineales}
+# Modelo con términos polinomiales
+modelo_polinomial <- lm(salario ~ poly(edad, 2) + poly(experiencia, 2) + educacion,
+                       data = datos_ejemplo)
+
+# Comparar ajustes
+poly_comparison <- tibble(
+  Modelo = c("Lineal", "Polinomial orden 2"),
+  R_squared = c(summary(modelo_multiple)$r.squared,
+               summary(modelo_polinomial)$r.squared),
+  AIC = c(AIC(modelo_multiple), AIC(modelo_polinomial)),
+  BIC = c(BIC(modelo_multiple), BIC(modelo_polinomial))
+)
+
+kable(poly_comparison,
+      caption = "Comparación: Modelo lineal vs. polinomial",
+      digits = 4) %>%
+  kable_styling(bootstrap_options = c("striped", "hover"))
+
+# Visualizar ajuste no lineal
+datos_pred <- datos_ejemplo %>%
+  mutate(
+    pred_lineal = predict(modelo_multiple),
+    pred_polinomial = predict(modelo_polinomial)
+  )
+
+ggplot(datos_pred, aes(x = edad)) +
+  geom_point(aes(y = salario), alpha = 0.5, color = "gray50") +
+  geom_line(aes(y = pred_lineal, color = "Lineal"), size = 1) +
+  geom_line(aes(y = pred_polinomial, color = "Polinomial"), size = 1) +
+  labs(title = "Comparación de ajustes: Lineal vs. Polinomial",
+       x = "Edad", y = "Salario", color = "Modelo") +
+  theme_minimal() +
+  theme(legend.position = "bottom")
+```
+
+#### Transformaciones logarítmicas
+
+```{r transformaciones-log}
+
+# Revisar datos problemáticos
+summary(datos_ejemplo[, c("salario", "edad", "experiencia")])
+
+# Filtrar casos inválidos para log
+datos_ejemplo <- datos_ejemplo %>%
+  filter(salario > 0,
+         edad > 0,
+         experiencia > 0) %>%
+  drop_na(salario, edad, experiencia)
+
+# Diferentes especificaciones logarítmicas
+modelos_log <- list(
+  "Lineal" = lm(salario ~ edad + experiencia, data = datos_ejemplo),
+  "Log-lin" = lm(log(salario) ~ edad + experiencia, data = datos_ejemplo),
+  "Lin-log" = lm(salario ~ log(edad) + log(experiencia), data = datos_ejemplo),
+  "Log-log" = lm(log(salario) ~ log(edad) + log(experiencia), data = datos_ejemplo)
+)
+
+# Interpretación de coeficientes
+log_interpretations <- tibble(
+  Modelo = names(modelos_log),
+  Especificación = c("Y = β₀ + β₁X", "ln(Y) = β₀ + β₁X",
+                    "Y = β₀ + β₁ln(X)", "ln(Y) = β₀ + β₁ln(X)"),
+  Interpretación_β = c("Cambio absoluto en Y por unidad de X",
+                       "Cambio porcentual en Y por unidad de X (≈ 100×β₁%)",
+                       "Cambio absoluto en Y por 1% de cambio en X (≈ β₁/100)",
+                       "Elasticidad: cambio porcentual en Y por 1% de cambio en X")
+)
+
+kable(log_interpretations,
+      caption = "Interpretación de coeficientes en modelos logarítmicos",
+      align = c("l", "l", "l")) %>%
+  kable_styling(bootstrap_options = c("striped", "hover")) %>%
+  column_spec(3, width = "12em")
+
+# Comparar ajustes (necesitamos métricas comparables)
+# Para modelos log-lin, calculamos R² en escala original
+r2_comparison <- map_dfr(modelos_log, ~{
+  if(str_detect(deparse(formula(.x)), "log\\(salario\\)")) {
+    # Modelo log-lin: predecir en escala original
+    pred_log <- predict(.x)
+    pred_original <- exp(pred_log)
+    sst <- sum((datos_ejemplo$salario - mean(datos_ejemplo$salario))^2)
+    ssr <- sum((datos_ejemplo$salario - pred_original)^2)
+    r_squared <- 1 - ssr/sst
+  } else {
+    r_squared <- summary(.x)$r.squared
+  }
+  tibble(R_squared_original_scale = r_squared)
+}, .id = "Modelo")
+
+kable(r2_comparison,
+      caption = "R² en escala original para modelos logarítmicos",
+      digits = 4) %>%
+  kable_styling(bootstrap_options = c("striped", "hover"))
+```
+
 
 ## Evaluación Predictiva y Validación
+
 ### División entrenamiento-prueba
+
 ### Métricas de evaluación predictiva
+
 ### Validación cruzada k-fold
 
 ## Modelos GLM y Técnicas de Regularización
