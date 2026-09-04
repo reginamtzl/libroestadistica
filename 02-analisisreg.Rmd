@@ -1322,8 +1322,493 @@ par(mfrow = c(1, 1))
 ```
 
 ## Práctica y Material Complementario
+
 ### Análisis de Regresión en la Práctica: Flujo de Trabajo Completo
+#### Metodología reproducible paso a paso
+
+```{r flujo-completo}
+# PASO 1: Exploración inicial de datos
+exploratory_summary <- function(data, target_var) {
+  cat("=== RESUMEN EXPLORATORIO ===\n")
+  cat("Dimensiones:", dim(data), "\n")
+  cat("Variable objetivo:", target_var, "\n\n")
+
+  # Variables numéricas
+  numeric_vars <- select_if(data, is.numeric)
+  cat("Variables numéricas:\n")
+  print(summary(numeric_vars))
+
+  # Variables categóricas
+  cat_vars <- select_if(data, function(x) is.factor(x) || is.character(x))
+  if(ncol(cat_vars) > 0) {
+    cat("\nVariables categóricas:\n")
+    for(var in names(cat_vars)) {
+      cat(var, ":", table(data[[var]]), "\n")
+    }
+  }
+
+  # Valores faltantes
+  missing_data <- data %>% summarise_all(~sum(is.na(.)))
+  if(sum(missing_data) > 0) {
+    cat("\nValores faltantes:\n")
+    print(missing_data[missing_data > 0])
+  } else {
+    cat("\nNo hay valores faltantes.\n")
+  }
+}
+
+exploratory_summary(datos_ejemplo, "salario")
+
+# PASO 2: Análisis de correlaciones y multicolinealidad
+correlation_analysis <- function(data) {
+  numeric_data <- select_if(data, is.numeric)
+  cor_matrix <- cor(numeric_data, use = "complete.obs")
+
+  # Identificar correlaciones altas
+  high_cor <- which(abs(cor_matrix) > 0.8 & abs(cor_matrix) < 1, arr.ind = TRUE)
+
+  if(nrow(high_cor) > 0) {
+    cat("Correlaciones altas (|r| > 0.8):\n")
+    for(i in 1:nrow(high_cor)) {
+      var1 <- rownames(cor_matrix)[high_cor[i, 1]]
+      var2 <- colnames(cor_matrix)[high_cor[i, 2]]
+      cor_val <- cor_matrix[high_cor[i, 1], high_cor[i, 2]]
+      cat(sprintf("%s - %s: %.3f\n", var1, var2, cor_val))
+    }
+  } else {
+    cat("No se detectaron correlaciones problemáticas.\n")
+  }
+
+  return(cor_matrix)
+}
+
+cor_result <- correlation_analysis(datos_ejemplo)
+
+# PASO 3: Ajuste de modelo y diagnósticos automáticos
+diagnostic_report <- function(modelo, data) {
+  cat("\n=== DIAGNÓSTICOS DEL MODELO ===\n")
+
+  # R² y métricas básicas
+  model_summary <- glance(modelo)
+  cat(sprintf("R² = %.4f, R² ajustado = %.4f\n",
+              model_summary$r.squared, model_summary$adj.r.squared))
+  cat(sprintf("AIC = %.2f, BIC = %.2f\n", model_summary$AIC, model_summary$BIC))
+
+  # Pruebas de supuestos
+  cat("\nPruebas de supuestos:\n")
+
+  # Normalidad (Shapiro-Wilk si n < 5000)
+  if(nrow(data) <= 5000) {
+    shapiro_result <- shapiro.test(residuals(modelo))
+    cat(sprintf("Normalidad (Shapiro-Wilk): p = %.4f %s\n",
+                shapiro_result$p.value,
+                ifelse(shapiro_result$p.value < 0.05, "(Rechazar normalidad)", "(Aceptar normalidad)")))
+  }
+
+  # Homoscedasticidad (Breusch-Pagan)
+  bp_result <- bptest(modelo)
+  cat(sprintf("Homoscedasticidad (BP): p = %.4f %s\n",
+              bp_result$p.value,
+              ifelse(bp_result$p.value < 0.05, "(Rechazar homoscedasticidad)", "(Aceptar homoscedasticidad)")))
+
+  # Multicolinealidad (VIF)
+  if(length(coef(modelo)) > 2) {
+    vif_values <- car::vif(modelo)
+    max_vif <- max(vif_values)
+    cat(sprintf("Multicolinealidad (VIF máximo): %.2f %s\n",
+                max_vif,
+                ifelse(max_vif > 5, "(Problemática)", "(Aceptable)")))
+  }
+
+  # Observaciones influyentes
+  cook_distances <- cooks.distance(modelo)
+  influential_obs <- sum(cook_distances > 4/nrow(data))
+  cat(sprintf("Observaciones influyentes (Cook > 4/n): %d de %d\n",
+              influential_obs, nrow(data)))
+}
+
+diagnostic_report(modelo_multiple, datos_ejemplo)
+
+# PASO 4: Validación y selección final
+final_model_selection <- function(modelos_candidatos, datos) {
+  # División train/test
+  set.seed(4004)
+  train_idx <- sample(nrow(datos), 0.7 * nrow(datos))
+  train_data <- datos[train_idx, ]
+  test_data <- datos[-train_idx, ]
+
+  resultados <- map_dfr(modelos_candidatos, function(formula_modelo) {
+    # Ajustar en entrenamiento
+    modelo_train <- lm(formula_modelo, data = train_data)
+
+    # Predecir en prueba
+    pred_test <- predict(modelo_train, newdata = test_data)
+    actual_test <- test_data[[all.vars(formula_modelo)[1]]]
+
+    # Calcular métricas
+    tibble(
+      RMSE_test = sqrt(mean((actual_test - pred_test)^2)),
+      MAE_test = mean(abs(actual_test - pred_test)),
+      R2_train = summary(modelo_train)$r.squared,
+      AIC_train = AIC(modelo_train),
+      n_params = length(coef(modelo_train))
+    )
+  }, .id = "Modelo")
+
+  return(resultados %>% arrange(RMSE_test))
+}
+
+# Definir modelos candidatos para selección final
+modelos_finales <- list(
+  "Básico" = salario ~ edad + experiencia + educacion,
+  "Con cuadrático" = salario ~ edad + I(edad^2) + experiencia + educacion,
+  "Con interacción" = salario ~ edad * educacion + experiencia,
+  "Completo" = salario ~ edad + I(edad^2) + experiencia + I(experiencia^2) + educacion + edad:educacion
+)
+
+seleccion_final <- final_model_selection(modelos_finales, datos_ejemplo)
+
+kable(seleccion_final,
+      caption = "Selección final de modelo basada en desempeño predictivo",
+      digits = 4) %>%
+  kable_styling(bootstrap_options = c("striped", "hover"))
+```
+
+#### Reporte automatizado de resultados
+
+```{r reporte-final}
+# Función para generar reporte ejecutivo
+generate_executive_report <- function(modelo_final, datos) {
+  cat("=== REPORTE EJECUTIVO DEL MODELO ===\n\n")
+
+  # Información básica
+  formula_str <- deparse(formula(modelo_final))
+  cat("MODELO SELECCIONADO:\n", formula_str, "\n\n")
+
+  # Métricas clave
+  model_metrics <- glance(modelo_final)
+  cat("MÉTRICAS DE AJUSTE:\n")
+  cat(sprintf("• R² = %.1f%% (%.1f%% de la varianza explicada)\n",
+              model_metrics$r.squared * 100, model_metrics$r.squared * 100))
+  cat(sprintf("• Error estándar residual = $%.0f\n",
+              sqrt(model_metrics$deviance / model_metrics$df.residual)))
+  cat(sprintf("• Significancia global: p < %.3f\n", model_metrics$p.value))
+
+  # Coeficientes significativos
+  coef_results <- tidy(modelo_final, conf.int = TRUE) %>%
+    filter(p.value < 0.05) %>%
+    arrange(p.value)
+
+  cat("\nVARIABLES SIGNIFICATIVAS:\n")
+  for(i in 1:nrow(coef_results)) {
+    term <- coef_results$term[i]
+    estimate <- coef_results$estimate[i]
+    conf_low <- coef_results$conf.low[i]
+    conf_high <- coef_results$conf.high[i]
+
+    if(term != "(Intercept)") {
+      cat(sprintf("• %s: $%.0f [IC 95%%: $%.0f, $%.0f]\n",
+                  term, estimate, conf_low, conf_high))
+    }
+  }
+
+  # Advertencias sobre supuestos
+  cat("\nEVALUACIÓN DE SUPUESTOS:\n")
+
+  # Homoscedasticidad
+  bp_test <- bptest(modelo_final)
+  if(bp_test$p.value < 0.05) {
+    cat("⚠️  Posible heteroscedasticidad detectada\n")
+    cat("   Recomendación: Usar errores estándar robustos\n")
+  } else {
+    cat("✅ Homoscedasticidad aceptable\n")
+  }
+
+  # Multicolinealidad
+  if(length(coef(modelo_final)) > 2) {
+    vif_vals <- car::vif(modelo_final)
+    max_vif <- max(vif_vals)
+    if(max_vif > 5) {
+      cat("⚠️  Multicolinealidad detectada (VIF máximo =", round(max_vif, 2), ")\n")
+      cat("   Recomendación: Considerar eliminar variables redundantes\n")
+    } else {
+      cat("✅ Multicolinealidad aceptable\n")
+    }
+  }
+
+  # Observaciones influyentes
+  cook_d <- cooks.distance(modelo_final)
+  n_influential <- sum(cook_d > 4/nrow(datos))
+  if(n_influential > 0) {
+    cat("⚠️ ", n_influential, "observaciones potencialmente influyentes detectadas\n")
+    cat("   Recomendación: Revisar observaciones con Cook's D >", round(4/nrow(datos), 4), "\n")
+  } else {
+    cat("✅ No se detectaron observaciones problemáticas\n")
+  }
+
+  cat("\nRECOMENDACI ONES PARA USO:\n")
+  cat("• Este modelo es apropiado para inferencia y predicción dentro del rango observado\n")
+  cat("• Para predicciones fuera de muestra, validar supuestos en nuevos datos\n")
+  cat("• Considerar intervalos de predicción para cuantificar incertidumbre\n")
+}
+
+# Aplicar al mejor modelo
+mejor_modelo_final <- lm(modelos_finales[[1]], data = datos_ejemplo)
+generate_executive_report(mejor_modelo_final, datos_ejemplo)
+```
+
+
 ### Buenas Prácticas y Lista de Verificación
+#### Checklist para análisis de regresión
+
+**Antes del modelado:**
+- [ ] Exploración exhaustiva de datos (EDA)
+- [ ] Identificación de valores atípicos y faltantes
+- [ ] Análisis de correlaciones entre predictores
+- [ ] Definición clara del objetivo (inferencia vs. predicción)
+
+**Durante el modelado:**
+- [ ] Especificación teórica justificada
+- [ ] Verificación de supuestos del MCRL
+- [ ] Evaluación de multicolinealidad (VIF < 5)
+- [ ] Detección de observaciones influyentes
+- [ ] Comparación de modelos alternativos
+
+**Después del modelado:**
+- [ ] Validación en datos independientes
+- [ ] Interpretación sustantiva de coeficientes
+- [ ] Cuantificación de incertidumbre (intervalos)
+- [ ] Documentación del proceso analítico
+- [ ] Código reproducible disponible
+
+#### Errores comunes a evitar
+
+```{r errores-comunes, eval=FALSE}
+# ❌ ERROR 1: Sobreinterpretar R²
+# R² alto no implica causalidad ni buen modelo para predicción
+
+# ❌ ERROR 2: Ignorar supuestos
+lm(Y ~ X)  # Sin verificar linealidad, homoscedasticidad, etc.
+
+# ❌ ERROR 3: Multicolinealidad extrema
+# VIF > 10 indica problemas serios
+
+# ❌ ERROR 4: Data mining sin teoría
+step(lm(Y ~ .), direction = "both")  # Selección automática sin justificación
+
+# ❌ ERROR 5: No validar fuera de muestra
+# Evaluar solo R² en los datos de ajuste
+
+# ✅ MEJORES PRÁCTICAS:
+# 1. Siempre verificar supuestos
+plot(modelo)
+car::vif(modelo)
+lmtest::bptest(modelo)
+
+# 2. Usar validación cruzada
+caret::train(formula, data, method = "lm", trControl = trainControl(method = "cv"))
+
+# 3. Reportar intervalos de confianza
+confint(modelo)
+
+# 4. Documentar decisiones
+# "Se eligió el modelo X basado en AIC y validación cruzada"
+```
+
+
 ### Ejercicios Propuestos y Actividades Prácticas
+#### Ejercicio 1: Análisis completo con mtcars
+
+```{r ejercicio-1, eval=FALSE}
+# Usar el dataset mtcars para predecir mpg (millas por galón)
+data(mtcars)
+
+# a) Realizar EDA completo
+# b) Ajustar modelo múltiple con al menos 3 predictores
+# c) Verificar supuestos y diagnosticar problemas
+# d) Comparar con modelo polinomial
+# e) Validar con división train/test
+# f) Interpretar coeficientes en contexto automotriz
+
+# Plantilla de solución:
+# modelo_mtcars <- lm(mpg ~ wt + hp + am + cyl, data = mtcars)
+# plot(modelo_mtcars)
+# car::vif(modelo_mtcars)
+# ... completar análisis
+```
+
+#### Ejercicio 2: Variables categóricas con diamonds
+
+```{r ejercicio-2, eval=FALSE}
+# Usar dataset diamonds de ggplot2
+library(ggplot2)
+data(diamonds)
+
+# Tomar muestra para ejercicio (dataset muy grande)
+set.seed(5005)
+diamonds_sample <- diamonds %>% sample_n(2000)
+
+# a) Modelar price usando cut, color, clarity y carat
+# b) Interpretar coeficientes de variables categóricas
+# c) Probar interacciones entre carat y cut
+# d) Evaluar si transformación logarítmica mejora ajuste
+# e) Comparar diferentes sistemas de contrastes
+
+# Considerar:
+# - Variables categóricas ordinales vs. nominales
+# - Transformación log(price) por distribución sesgada
+# - Interpretación de coeficientes en escala logarítmica
+```
+
+#### Ejercicio 3: Series de tiempo y autocorrelación
+
+```{r ejercicio-3, eval=FALSE}
+# Simular serie temporal con tendencia y autocorrelación
+set.seed(6006)
+n_periods <- 200
+time_trend <- 1:n_periods
+
+# Crear serie con autocorrelación AR(1)
+# a) Generar datos con ρ = 0.6
+# b) Ajustar modelo ignorando autocorrelación
+# c) Detectar autocorrelación con test Durbin-Watson
+# d) Comparar errores estándar clásicos vs. robustos
+# e) Proponer soluciones (primeras diferencias, etc.)
+
+# Plantilla:
+# y_t <- α + β*t + ε_t, donde ε_t = ρ*ε_{t-1} + u_t
+```
+
+#### Ejercicio 4: Proyecto integrador predictivo
+
+```{r ejercicio-4, eval=FALSE}
+# Proyecto completo de modelado predictivo
+# Dataset: Boston Housing (MASS package) o similar
+
+# Objetivos:
+# 1. EDA exhaustivo con visualizaciones
+# 2. Ingeniería de características (transformaciones, interacciones)
+# 3. Comparación de múltiples modelos candidatos
+# 4. Implementación de validación cruzada k-fold
+# 5. Selección final basada en métricas predictivas
+# 6. Evaluación en conjunto de prueba independiente
+# 7. Reporte ejecutivo con recomendaciones
+
+# Entregables:
+# - RMarkdown reproducible
+# - Gráficos de diagnóstico interpretativos
+# - Tabla comparativa de modelos
+# - Conclusiones y limitaciones del análisis
+```
+
 ### Recursos Adicionales y Referencias
+
+#### Lecturas recomendadas por nivel
+
+**Nivel Introductorio:**
+- @james2013: Excelente balance teoría-práctica, muchos ejemplos en R
+- @bruce2020: Enfoque moderno para científicos de datos
+- @gelman2020: Pedagogía ejemplar, integra inferencia y predicción
+
+**Nivel Intermedio:**
+- @harrell2015: Estrategias avanzadas de modelado, énfasis en validación
+- @kuhn2019: Ingeniería de características y selección de predictores
+- @fox2015: Análisis aplicado con extensiones a GLM
+
+**Nivel Avanzado:**
+- @hastie2009: Fundamentos matemáticos del aprendizaje estadístico
+- @gujarati2009: Econometría con énfasis en interpretación causal
+- @wooldridge2015: Métodos econométricos modernos
+
+#### Recursos en línea especializados
+
+1. **@hernanb2023** - "Modelos de Regresión con R": Tutorial interactivo en español con casos reales colombianos. Disponible en: https://fhernanb.github.io/libro_regresion/
+
+2. **@fortou2023** - "Laboratorio de Análisis de Datos": Implementaciones prácticas con tidyverse y énfasis en reproducibilidad. Disponible en: https://bookdown.org/josefortou/lab-book/
+
+3. **@cdr2023** - "Computational Data Analysis for the Life Sciences": Métodos estadísticos modernos con R y Python. Disponible en: https://cdr-book.github.io/index.html
+
+#### Paquetes de R recomendados
+
+```{r paquetes-recomendados, eval=FALSE}
+# Instalación de paquetes esenciales
+essential_packages <- c(
+  # Modelado básico
+  "broom", "car", "lmtest", "sandwich",
+
+  # Diagnósticos modernos
+  "performance", "see", "insight",
+
+  # Visualización
+  "ggplot2", "GGally", "corrplot", "plotly",
+
+  # Manipulación de datos
+  "tidyverse", "janitor", "skimr",
+
+  # Validación y selección
+  "caret", "rsample", "tidymodels",
+
+  # Regularización
+  "glmnet", "ranger", "xgboost",
+
+  # Reportes
+  "knitr", "kableExtra", "stargazer", "gt"
+)
+
+install.packages(essential_packages, dependencies = TRUE)
+```
+
+#### Conjuntos de datos para práctica
+
+```{r datasets-practica, eval=FALSE}
+# Datasets recomendados por tipo de análisis
+datasets_list <- list(
+  "Regresión básica" = c("mtcars", "cars", "trees"),
+  "Variables categóricas" = c("diamonds", "titanic", "iris"),
+  "Series de tiempo" = c("AirPassengers", "economics", "lynx"),
+  "Multicolinealidad" = c("longley", "swiss"),
+  "Datos reales complejos" = c("Boston housing", "California housing", "Ames housing")
+)
+
+# Cargar datasets de diferentes fuentes
+library(MASS)     # Boston housing
+library(ggplot2)  # diamonds, economics
+library(datasets) # mtcars, iris, etc.
+```
+
+
 ### Resumen y Conclusiones
+
+#### Puntos clave del capítulo
+
+1. **Fundamentos conceptuales**: La regresión modela dependencia asimétrica, diferente de correlación. El término de error es crucial para validez estadística.
+
+2. **Metodología MCO**: Mejor estimador lineal insesgado (BLUE) bajo supuestos del MCRL. Propiedades óptimas requieren verificación cuidadosa de supuestos.
+
+3. **Inferencia estadística**: Pruebas t individuales, pruebas F conjuntas, intervalos de confianza y predicción. Distinguir significancia estadística de relevancia práctica.
+
+4. **Diagnósticos esenciales**: Análisis de residuos, detección de observaciones influyentes, evaluación de multicolinealidad. Los gráficos son tan importantes como las pruebas formales.
+
+5. **Violaciones y remedios**: Heteroscedasticidad (errores robustos), autocorrelación (MCG), multicolinealidad (selección/regularización). Cada problema requiere enfoque específico.
+
+6. **Extensiones prácticas**: Variables categóricas, transformaciones, interacciones, introducción a GLM. El modelo lineal es punto de partida, no límite.
+
+7. **Validación predictiva**: División train/test, validación cruzada, métricas fuera de muestra. Esencial para uso predictivo del modelo.
+
+8. **Reproducibilidad**: Código documentado, decisiones justificadas, flujo de trabajo sistemático. La ciencia de datos es colaborativa y acumulativa.
+
+#### Perspectivas futuras
+
+El análisis de regresión tradicional se extiende naturalmente hacia:
+
+- **Machine Learning**: Random forests, gradient boosting, redes neuronales
+- **Inferencia causal**: Variables instrumentales, discontinuidades, experimentos naturales
+- **Big Data**: Métodos escalables, computación distribuida, streaming
+- **Bayesiano**: Incorporación de información previa, cuantificación de incertidumbre
+
+Sin embargo, los principios fundamentales del modelado estadístico—especificación cuidadosa, verificación de supuestos, validación rigurosa—permanecen constantes sin importar la complejidad del método.
+
+> "Far better an approximate answer to the right question than an exact answer to the wrong question." — John Tukey
+
+La regresión lineal, por su interpretabilidad y solidez teórica, seguirá siendo herramienta fundamental en el arsenal del analista de datos moderno.
+
