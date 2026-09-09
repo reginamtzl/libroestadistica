@@ -110,7 +110,7 @@
 
 \title{Estadística Aplicada}
 \author{Equipo Editorial, Wulfrano Gómez Gallardo}
-\date{2026-09-04}
+\date{2026-09-09}
 
 \begin{document}
 \maketitle
@@ -249,7 +249,9 @@ La especificación correcta de \(\varepsilon\) es crucial para la validez de la 
 
 El modelo de regresión lineal simple se expresa como:
 
-\[Y_i = \beta_0 + \beta_1 X_i + \varepsilon_i, \quad i = 1, 2, \ldots, n\]
+\begin{equation}
+Y_i = \beta_0 + \beta_1 X_i + \varepsilon_i, \quad i = 1, 2, \ldots, n
+\end{equation}
 
 donde:
 - \(Y_i\): valor observado de la variable respuesta para la observación \(i\)
@@ -307,10 +309,14 @@ experiencia & 1323.586 & 62.713 & 21.105 & 0 & 1199.914 & 1447.258\\
 
 El modelo de regresión múltiple extiende el caso simple a \(k\) variables explicativas:
 
-\[Y_i = \beta_0 + \beta_1 X_{1i} + \beta_2 X_{2i} + \cdots + \beta_k X_{ki} + \varepsilon_i\]
+\begin{equation}
+Y_i = \beta_0 + \beta_1 X_{1i} + \beta_2 X_{2i} + \cdots + \beta_k X_{ki} + \varepsilon_i
+\end{equation}
 
 En notación matricial:
-\[\mathbf{Y} = \mathbf{X}\boldsymbol{\beta} + \boldsymbol{\varepsilon}\]
+\begin{equation}
+\mathbf{Y} = \mathbf{X}\boldsymbol{\beta} + \boldsymbol{\varepsilon}
+\end{equation}
 
 donde:
 - \(\mathbf{Y}\) es un vector \(n \times 1\) de observaciones
@@ -493,65 +499,1111 @@ donde SCR es la suma de cuadrados de los residuos y \(n-k-1\) son los grados de 
 
 \subsection{Distribución de los estimadores}\label{distribuciuxf3n-de-los-estimadores}
 
+Bajo normalidad de los errores:
+\[\hat{\beta}_j \sim N\left(\beta_j, \sigma^2[(\mathbf{X}'\mathbf{X})^{-1}]_{jj}\right)\]
+
+El estadístico t estandarizado:
+\[t = \frac{\hat{\beta}_j - \beta_j}{\text{se}(\hat{\beta}_j)} \sim t_{n-k-1}\]
+
 \subsection{Pruebas de hipótesis}\label{pruebas-de-hipuxf3tesis-1}
 
+\subsubsection{Prueba t para coeficientes individuales}\label{prueba-t-para-coeficientes-individuales}
+
+\[H_0: \beta_j = 0 \quad \text{vs.} \quad H_1: \beta_j \neq 0\]
+
+\begin{table}
+\centering
+\caption{\label{tab:prueba-t}Pruebas t individuales para coeficientes}
+\centering
+\begin{tabular}[t]{l|r|r|r|r|l}
+\hline
+term & estimate & std.error & statistic & p.value & significancia\\
+\hline
+(Intercept) & 20692.4663 & 3405.0619 & 6.0770 & 0.0000 & ***\\
+\hline
+edad & 997.8225 & 156.2199 & 6.3873 & 0.0000 & ***\\
+\hline
+experiencia & 297.9304 & 164.2059 & 1.8144 & 0.0712 & .\\
+\hline
+educacionSecundaria & 7319.8716 & 833.3520 & 8.7836 & 0.0000 & ***\\
+\hline
+educacionUniversidad & 14576.7678 & 918.7004 & 15.8667 & 0.0000 & ***\\
+\hline
+\multicolumn{6}{l}{\rule{0pt}{1em}\textit{Note: }}\\
+\multicolumn{6}{l}{\rule{0pt}{1em}Códigos de significancia: 0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1}\\
+\end{tabular}
+\end{table}
+
+\subsubsection{Prueba F para significancia conjunta}\label{prueba-f-para-significancia-conjunta}
+
+\[H_0: \beta_1 = \beta_2 = \cdots = \beta_k = 0\]
+
+\[F = \frac{(\text{SCT} - \text{SCR})/k}{\text{SCR}/(n-k-1)} \sim F_{k,n-k-1}\]
+
+\begin{table}
+\centering
+\caption{\label{tab:prueba-f}Análisis de Varianza (ANOVA)}
+\centering
+\begin{tabular}[t]{l|r|r|r|r|r}
+\hline
+  & Df & Sum Sq & Mean Sq & F value & Pr(>F)\\
+\hline
+edad & 1 & 29583539075 & 29583539075 & 1212.4683 & 0.0000\\
+\hline
+experiencia & 1 & 2991060 & 2991060 & 0.1226 & 0.7266\\
+\hline
+educacion & 2 & 6149552056 & 3074776028 & 126.0183 & 0.0000\\
+\hline
+Residuals & 195 & 4757889304 & 24399432 & NA & NA\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{verbatim}
+## Estadístico F: 366.157
+\end{verbatim}
+
+\begin{verbatim}
+## p-valor: 1.85e-89
+\end{verbatim}
+
+\begin{verbatim}
+## Conclusión: Rechazamos H0: al menos un coeficiente es significativo
+\end{verbatim}
+
 \subsection{Intervalos de confianza y predicción}\label{intervalos-de-confianza-y-predicciuxf3n}
+
+\subsubsection{Intervalos de confianza para coeficientes}\label{intervalos-de-confianza-para-coeficientes}
+
+\[\hat{\beta}_j \pm t_{\alpha/2, n-k-1} \times \text{se}(\hat{\beta}_j)\]
+
+\subsubsection{Intervalos de predicción}\label{intervalos-de-predicciuxf3n}
+
+Para una nueva observación \(X_0\):
+
+\begin{itemize}
+\item
+  \textbf{Intervalo de confianza para \(E(Y|X_0)\):}
+  \[\hat{Y}_0 \pm t_{\alpha/2, n-k-1} \times \text{se}(\hat{Y}_0)\]
+\item
+  \textbf{Intervalo de predicción para una nueva \(Y_0\):}
+  \[\hat{Y}_0 \pm t_{\alpha/2, n-k-1} \times \sqrt{\text{se}^2(\hat{Y}_0) + \hat{\sigma}^2}\]
+\end{itemize}
+
+\textbackslash begin\{table\}
+\centering
+\textbackslash caption\{\label{tab:intervalos}Intervalos de confianza al 95\% para coeficientes\}
+\centering
+
+\begin{tabular}[t]{l|r|r}
+\hline
+  & 2.5 \% & 97.5 \%\\
+\hline
+(Intercept) & 13976.99 & 27407.94\\
+\hline
+edad & 689.72 & 1305.92\\
+\hline
+experiencia & -25.92 & 621.78\\
+\hline
+educacionSecundaria & 5676.33 & 8963.41\\
+\hline
+educacionUniversidad & 12764.90 & 16388.63\\
+\hline
+\end{tabular}
+
+\textbackslash end\{table\}
+
+\textbackslash begin\{table\}
+\centering
+\textbackslash caption\{\label{tab:intervalos}Predicciones con intervalos de predicción al 95\%\}
+\centering
+
+\begin{tabular}[t]{r|r|l|r|r|r|r}
+\hline
+edad & experiencia & educacion & fit & lwr & upr & amplitud\_intervalo\\
+\hline
+30 & 5 & Universidad & 66694 & 56796 & 76592 & 19796\\
+\hline
+40 & 15 & Universidad & 79651 & 69780 & 89522 & 19742\\
+\hline
+50 & 25 & Secundaria & 85352 & 75460 & 95243 & 19783\\
+\hline
+\end{tabular}
+
+\textbackslash end\{table\}
 
 \section{Medidas de Bondad de Ajuste}\label{medidas-de-bondad-de-ajuste}
 
 \subsection{Coeficiente de determinación R²}\label{coeficiente-de-determinaciuxf3n-ruxb2}
 
+\[R^2 = \frac{\text{SCE}}{\text{SCT}} = 1 - \frac{\text{SCR}}{\text{SCT}}\]
+
+donde:
+- SCE = Suma de cuadrados explicada
+- SCR = Suma de cuadrados de residuos
+- SCT = Suma de cuadrados total
+
 \subsection{R² ajustado}\label{ruxb2-ajustado}
 
-\subsection{Limitaciones del R²}\label{limitaciones-del-ruxb2}
+Penaliza por el número de variables:
+\[\bar{R}^2 = 1 - \frac{\text{SCR}/(n-k-1)}{\text{SCT}/(n-1)}\]
+\#\#\# Limitaciones del R²
+Como advierte Harrell Jr (\citeproc{ref-harrell2015}{2015}):
+- No indica causalidad
+- Puede ser alto con modelo mal especificado
+- No es apropiado para comparar modelos no anidados
+- En predicción, preferir validación cruzada
+
+\begin{table}
+\centering
+\caption{\label{tab:bondad-ajuste}Métricas de bondad de ajuste}
+\centering
+\begin{tabular}[t]{l|r}
+\hline
+Métrica & Valor\\
+\hline
+R² & 0.8825\\
+\hline
+R² ajustado & 0.8801\\
+\hline
+Error estándar residual & 4939.5782\\
+\hline
+AIC & 3976.5259\\
+\hline
+BIC & 3996.3158\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}
+\centering
+\caption{\label{tab:bondad-ajuste}Descomposición de la varianza}
+\centering
+\begin{tabular}[t]{l|r|r}
+\hline
+Componente & Valor & Porcentaje\\
+\hline
+Suma Total de Cuadrados (SCT) & 40493971495 & 100.00\\
+\hline
+Suma Explicada (SCE) & 35736082191 & 88.25\\
+\hline
+Suma de Residuos (SCR) & 4757889304 & 11.75\\
+\hline
+Verificación: SCE + SCR & 40493971495 & NA\\
+\hline
+\end{tabular}
+\end{table}
 
 \section{Diagnóstico del Modelo: Análisis de R}\label{diagnuxf3stico-del-modelo-anuxe1lisis-de-r}
 
 \subsection{Tipos de Residuos}\label{tipos-de-residuos}
 
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Residuos ordinarios:} \(\hat{\varepsilon}_i = Y_i - \hat{Y}_i\)
+\item
+  \textbf{Residuos estandarizados:} \(\frac{\hat{\varepsilon}_i}{\hat{\sigma}}\)
+\item
+  \textbf{Residuos estudentizados:} \(\frac{\hat{\varepsilon}_i}{\hat{\sigma}_i\sqrt{1-h_{ii}}}\)
+\end{enumerate}
+
+donde \(h_{ii}\) es el leverage de la observación \(i\).
+
 \subsection{Gráficos de diagnósticos esenciales}\label{gruxe1ficos-de-diagnuxf3sticos-esenciales}
 
+\pandocbounded{\includegraphics[keepaspectratio]{bookdownproj_files/figure-latex/diagnosticos-avanzados-1.pdf}}
+
+\begin{verbatim}
+## `geom_smooth()` using formula = 'y ~ x'
+## `geom_smooth()` using formula = 'y ~ x'
+## `geom_smooth()` using formula = 'y ~ x'
+\end{verbatim}
+
+\pandocbounded{\includegraphics[keepaspectratio]{bookdownproj_files/figure-latex/residuos-detallado-1.pdf}}
+
 \subsection{Detección de observaciones influyentes}\label{detecciuxf3n-de-observaciones-influyentes}
+
+\begin{table}
+\centering
+\caption{\label{tab:observaciones-influyentes}Observaciones potencialmente influyentes}
+\centering
+\begin{tabular}[t]{r|r|r|r}
+\hline
+obs\_number & leverage & cooks\_d & .std.resid\\
+\hline
+116 & 0.0456 & 0.0734 & -2.7712\\
+\hline
+196 & 0.0430 & 0.0540 & 2.4496\\
+\hline
+91 & 0.0236 & 0.0413 & -2.9211\\
+\hline
+72 & 0.1130 & 0.0334 & -1.1458\\
+\hline
+165 & 0.0261 & 0.0287 & -2.3121\\
+\hline
+49 & 0.0192 & 0.0255 & 2.5514\\
+\hline
+136 & 0.0278 & 0.0245 & -2.0720\\
+\hline
+113 & 0.0328 & 0.0234 & 1.8572\\
+\hline
+130 & 0.0243 & 0.0233 & 2.1602\\
+\hline
+163 & 0.0251 & 0.0217 & 2.0500\\
+\hline
+\end{tabular}
+\end{table}
+
+\pandocbounded{\includegraphics[keepaspectratio]{bookdownproj_files/figure-latex/observaciones-influyentes-1.pdf}}
 
 \section{Violaciones de los Supuestos y Remedios}\label{violaciones-de-los-supuestos-y-remedios}
 
 \subsection{Heteroscedasticidad}\label{heteroscedasticidad}
 
+La heteroscedasticidad ocurre cuando \(\text{Var}(\varepsilon_i|X_i) \neq \sigma^2\).
+
+\subsubsection{Detección}\label{detecciuxf3n}
+
+\begin{verbatim}
+## 
+##  studentized Breusch-Pagan test
+## 
+## data:  modelo_multiple
+## BP = 8.8749, df = 4, p-value = 0.0643
+\end{verbatim}
+
+\begin{verbatim}
+## 
+##  studentized Breusch-Pagan test
+## 
+## data:  modelo_multiple
+## BP = 0.37302, df = 2, p-value = 0.8299
+\end{verbatim}
+
+\begin{verbatim}
+## Non-constant Variance Score Test 
+## Variance formula: ~ fitted.values 
+## Chisquare = 0.3056539, Df = 1, p = 0.58036
+\end{verbatim}
+
+\subsubsection{Remedios}\label{remedios}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Errores estándar robustos (HC):}
+\end{enumerate}
+
+\begin{table}
+\centering
+\caption{\label{tab:errores-robustos}Comparación de errores estándar: Clásicos vs. Robustos}
+\centering
+\begin{tabular}[t]{l|r|r|r|r|r}
+\hline
+Coeficiente & Clásicos & HC0 (White) & HC1 & HC2 & HC3\\
+\hline
+(Intercept) & 3405.0619 & 3535.9458 & 3580.9915 & 3618.3737 & 3704.4184\\
+\hline
+edad & 156.2199 & 164.5280 & 166.6239 & 168.1914 & 172.0031\\
+\hline
+experiencia & 164.2059 & 170.0246 & 172.1906 & 173.5876 & 177.2852\\
+\hline
+educacionSecundaria & 833.3520 & 869.4293 & 880.5053 & 881.1232 & 893.0479\\
+\hline
+educacionUniversidad & 918.7004 & 889.1385 & 900.4656 & 901.4941 & 914.0654\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{verbatim}
+## 
+## t test of coefficients:
+## 
+##                      Estimate Std. Error t value  Pr(>|t|)    
+## (Intercept)          20692.47    3580.99  5.7784 2.946e-08 ***
+## edad                   997.82     166.62  5.9885 1.002e-08 ***
+## experiencia            297.93     172.19  1.7302   0.08517 .  
+## educacionSecundaria   7319.87     880.51  8.3133 1.570e-14 ***
+## educacionUniversidad 14576.77     900.47 16.1880 < 2.2e-16 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  \textbf{Transformaciones de variables:}
+\end{enumerate}
+
+\begin{table}
+\centering
+\caption{\label{tab:transformaciones}Comparación de tests de heteroscedasticidad}
+\centering
+\begin{tabular}[t]{l|r|r|l}
+\hline
+Modelo & BP\_estadistico & p\_valor & Conclusion\\
+\hline
+Original & 8.8749 & 0.0643 & Homoscedasticidad\\
+\hline
+Log-log & 20.2938 & 0.0004 & Heteroscedasticidad presente\\
+\hline
+\end{tabular}
+\end{table}
+
 \subsection{Multicolinealidad}\label{multicolinealidad}
 
-\subsection{Autocorrelación (Series de Tiempo) . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .}\label{autocorrelaciuxf3n-series-de-tiempo-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.-.}
+Problema cuando las variables explicativas están altamente correlacionadas.
+
+\subsubsection{Detección mediante VIF}\label{detecciuxf3n-mediante-vif}
+
+\begin{table}
+\centering
+\caption{\label{tab:multicolinealidad}Diagnóstico de Multicolinealidad (VIF)}
+\centering
+\begin{tabular}[t]{l|l|r|r|l}
+\hline
+  & Variable & VIF & Tolerancia & Interpretacion\\
+\hline
+edad & edad & 17.706 & 0.056 & Multicolinealidad severa\\
+\hline
+experiencia & experiencia & 17.683 & 0.057 & Multicolinealidad severa\\
+\hline
+educacion & educacion & 1.011 & 0.989 & Sin problema\\
+\hline
+\end{tabular}
+\end{table}
+
+\subsubsection{Remedios para multicolinealidad}\label{remedios-para-multicolinealidad}
+
+\begin{verbatim}
+## Cargando paquete requerido: princomp
+\end{verbatim}
+
+\begin{verbatim}
+## Warning in library(package, lib.loc = lib.loc, character.only = TRUE, logical.return = TRUE, : no hay
+## paquete llamado 'princomp'
+\end{verbatim}
+
+\begin{table}
+\centering
+\caption{\label{tab:remedios-multicolinealidad}Efecto del centrado en VIF}
+\centering
+\begin{tabular}[t]{l|r|r}
+\hline
+Modelo & VIF\_edad & VIF\_experiencia\\
+\hline
+Original & NA & NA\\
+\hline
+Centrado & NA & NA\\
+\hline
+\end{tabular}
+\end{table}
+
+\subsection{Autocorrelación (Series de Tiempo)}\label{autocorrelaciuxf3n-series-de-tiempo}
+
+Relevante cuando las observaciones tienen orden temporal.
+
+\begin{verbatim}
+## 
+##  Durbin-Watson test
+## 
+## data:  modelo_tiempo
+## DW = 1.7104, p-value = 0.05872
+## alternative hypothesis: true autocorrelation is greater than 0
+\end{verbatim}
+
+\begin{verbatim}
+## 
+##  Breusch-Godfrey test for serial correlation of order up to 2
+## 
+## data:  modelo_tiempo
+## LM test = 2.6754, df = 2, p-value = 0.2624
+\end{verbatim}
+
+\pandocbounded{\includegraphics[keepaspectratio]{bookdownproj_files/figure-latex/autocorrelacion-1.pdf}}
 
 \section{Selección de Variables y Extensiones del Modelo}\label{selecciuxf3n-de-variables-y-extensiones-del-modelo}
 
 \subsection{Selección de Variables y Modelos}\label{selecciuxf3n-de-variables-y-modelos}
 
+\subsubsection{Criterios de información}\label{criterios-de-informaciuxf3n}
+
+Los criterios AIC y BIC penalizan la complejidad del modelo:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{AIC:} \(AIC = n \ln(\hat{\sigma}^2) + 2k\)
+\item
+  \textbf{BIC:} \(BIC = n \ln(\hat{\sigma}^2) + k \ln(n)\)
+\end{itemize}
+
+Menor valor indica mejor ajuste penalizado.
+
+\begin{table}
+\centering
+\caption{\label{tab:criterios-informacion}Comparación de modelos candidatos}
+\centering
+\begin{tabular}[t]{l|r|r|r|r|r|r|r|r}
+\hline
+Modelo & r.squared & adj.r.squared & AIC & BIC & df & logLik & delta\_AIC & delta\_BIC\\
+\hline
+Completo & 0.883 & 0.880 & 3976.526 & 3996.316 & 4 & -1982.263 & 0.000 & 0.000\\
+\hline
+Con interacción & 0.883 & 0.879 & 3978.519 & 4001.607 & 5 & -1982.259 & 1.993 & 5.291\\
+\hline
+Solo edad & 0.731 & 0.729 & 4136.509 & 4146.404 & 1 & -2065.254 & 159.983 & 150.088\\
+\hline
+Edad + Experiencia & 0.731 & 0.728 & 4138.454 & 4151.647 & 2 & -2065.227 & 161.928 & 155.332\\
+\hline
+Solo experiencia & 0.692 & 0.691 & 4163.086 & 4172.981 & 1 & -2078.543 & 186.560 & 176.665\\
+\hline
+Solo educacion & 0.173 & 0.165 & 4362.788 & 4375.981 & 2 & -2177.394 & 386.262 & 379.665\\
+\hline
+\end{tabular}
+\end{table}
+
+\subsubsection{Selección automática de variables}\label{selecciuxf3n-automuxe1tica-de-variables}
+
+\begin{table}
+\centering
+\caption{\label{tab:seleccion-automatica}Comparación de métodos de selección automática}
+\centering
+\begin{tabular}[t]{l|l|r|r}
+\hline
+Método & Fórmula & AIC & R\_squared\\
+\hline
+Forward & salario \textasciitilde{} edad + educacion + experiencia & 3976.526 & 0.8825\\
+\hline
+Backward & salario \textasciitilde{} edad + I(edad\textasciicircum{}2) + experiencia + I(experiencia\textasciicircum{}2) +      educacion + edad:experiencia & 3979.861 & 0.8841\\
+\hline
+Both & salario \textasciitilde{} edad + I(edad\textasciicircum{}2) + experiencia + I(experiencia\textasciicircum{}2) +      educacion + edad:experiencia & 3979.861 & 0.8841\\
+\hline
+\end{tabular}
+\end{table}
+
+\subsubsection{Validación cruzada para selección}\label{validaciuxf3n-cruzada-para-selecciuxf3n}
+
+\begin{table}
+\centering
+\caption{\label{tab:validacion-cruzada}Comparación final: Criterios de información vs. Validación cruzada}
+\centering
+\begin{tabular}[t]{l|r|r|r|r}
+\hline
+Modelo & r.squared & AIC & BIC & RMSE\_CV\\
+\hline
+Con interacción & 0.8825 & 3978.519 & 4001.607 & 4974.539\\
+\hline
+Completo & 0.8825 & 3976.526 & 3996.316 & 4987.617\\
+\hline
+Solo edad & 0.7306 & 4136.509 & 4146.404 & 7350.871\\
+\hline
+Edad + Experiencia & 0.7306 & 4138.454 & 4151.647 & 7496.063\\
+\hline
+Solo experiencia & 0.6923 & 4163.086 & 4172.980 & 7906.562\\
+\hline
+Solo educacion & 0.1731 & 4362.788 & 4375.981 & 12967.654\\
+\hline
+\end{tabular}
+\end{table}
+
 \subsection{Extensiones del Modelo Lineal}\label{extensiones-del-modelo-lineal}
+
+\subsubsection{Variables categóricas y contrastes}\label{variables-categuxf3ricas-y-contrastes}
+
+\begin{verbatim}
+## [1] "Primaria"    "Secundaria"  "Universidad"
+\end{verbatim}
+
+\begin{verbatim}
+##             Secundaria Universidad
+## Primaria             0           0
+## Secundaria           1           0
+## Universidad          0           1
+\end{verbatim}
+
+\begin{table}
+\centering
+\caption{\label{tab:variables-categoricas}Comparación de sistemas de contrastes}
+\centering
+\begin{tabular}[t]{l|l|r|r|r}
+\hline
+Contraste & term & estimate & std.error & p.value\\
+\hline
+Treatment & educacionSecundaria & 7319.8716 & 833.3520 & 0.0000\\
+\hline
+Treatment & educacionUniversidad & 14576.7678 & 918.7004 & 0.0000\\
+\hline
+Sum & educacion1 & -7298.8798 & 510.1630 & 0.0000\\
+\hline
+Sum & educacion2 & 20.9918 & 473.0623 & 0.9647\\
+\hline
+\end{tabular}
+\end{table}
+
+\subsubsection{Términos de interacción}\label{tuxe9rminos-de-interacciuxf3n}
+
+\begin{table}
+\centering
+\caption{\label{tab:interacciones}Modelo con término de interacción: edad × educación}
+\centering
+\begin{tabular}[t]{l|r|r|r|r}
+\hline
+term & estimate & std.error & statistic & p.value\\
+\hline
+(Intercept) & 21708.081 & 3729.121 & 5.821 & 0.000\\
+\hline
+edad & 971.042 & 161.416 & 6.016 & 0.000\\
+\hline
+educacion2 & 6179.504 & 3013.293 & 2.051 & 0.042\\
+\hline
+educacion3 & 11194.238 & 3842.483 & 2.913 & 0.004\\
+\hline
+experiencia & 291.350 & 165.127 & 1.764 & 0.079\\
+\hline
+edad:educacion2 & 32.864 & 83.434 & 0.394 & 0.694\\
+\hline
+edad:educacion3 & 95.930 & 105.793 & 0.907 & 0.366\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{verbatim}
+## `geom_smooth()` using formula = 'y ~ x'
+\end{verbatim}
+
+\pandocbounded{\includegraphics[keepaspectratio]{bookdownproj_files/figure-latex/interacciones-1.pdf}}
+
+\begin{verbatim}
+## Analysis of Variance Table
+## 
+## Model 1: salario ~ edad + experiencia + educacion
+## Model 2: salario ~ edad * educacion + experiencia
+##   Res.Df        RSS Df Sum of Sq      F Pr(>F)
+## 1    195 4757889304                           
+## 2    193 4737705612  2  20183692 0.4111 0.6635
+\end{verbatim}
+
+\subsubsection{Transformaciones no lineales}\label{transformaciones-no-lineales}
+
+\begin{table}
+\centering
+\caption{\label{tab:transformaciones-no-lineales}Comparación: Modelo lineal vs. polinomial}
+\centering
+\begin{tabular}[t]{l|r|r|r}
+\hline
+Modelo & R\_squared & AIC & BIC\\
+\hline
+Lineal & 0.8825 & 3976.526 & 3996.316\\
+\hline
+Polinomial orden 2 & 0.8826 & 3980.393 & 4006.780\\
+\hline
+\end{tabular}
+\end{table}
+
+\pandocbounded{\includegraphics[keepaspectratio]{bookdownproj_files/figure-latex/transformaciones-no-lineales-1.pdf}}
+
+\subsubsection{Transformaciones logarítmicas}\label{transformaciones-logaruxedtmicas}
+
+\begin{verbatim}
+##     salario            edad        experiencia    
+##  Min.   : 27244   Min.   :11.91   Min.   : 0.000  
+##  1st Qu.: 56271   1st Qu.:28.74   1st Qu.: 6.965  
+##  Median : 65958   Median :34.41   Median :12.380  
+##  Mean   : 66599   Mean   :34.91   Mean   :13.255  
+##  3rd Qu.: 76128   3rd Qu.:40.68   3rd Qu.:18.973  
+##  Max.   :109101   Max.   :67.41   Max.   :44.629
+\end{verbatim}
+
+\begin{table}
+\centering
+\caption{\label{tab:transformaciones-log}Interpretación de coeficientes en modelos logarítmicos}
+\centering
+\begin{tabular}[t]{l|l|>{\raggedright\arraybackslash}p{12em}}
+\hline
+Modelo & Especificación & Interpretación\_β\\
+\hline
+Lineal & Y = β₀ + β₁X & Cambio absoluto en Y por unidad de X\\
+\hline
+Log-lin & ln(Y) = β₀ + β₁X & Cambio porcentual en Y por unidad de X (≈ 100×β₁\%)\\
+\hline
+Lin-log & Y = β₀ + β₁ln(X) & Cambio absoluto en Y por 1\% de cambio en X (≈ β₁/100)\\
+\hline
+Log-log & ln(Y) = β₀ + β₁ln(X) & Elasticidad: cambio porcentual en Y por 1\% de cambio en X\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}
+\centering
+\caption{\label{tab:transformaciones-log}R² en escala original para modelos logarítmicos}
+\centering
+\begin{tabular}[t]{l|r}
+\hline
+Modelo & R\_squared\_original\_scale\\
+\hline
+Lineal & 0.6791\\
+\hline
+Log-lin & 0.6585\\
+\hline
+Lin-log & 0.6793\\
+\hline
+Log-log & 0.6809\\
+\hline
+\end{tabular}
+\end{table}
 
 \section{Evaluación Predictiva y Validación}\label{evaluaciuxf3n-predictiva-y-validaciuxf3n}
 
 \subsection{División entrenamiento-prueba}\label{divisiuxf3n-entrenamiento-prueba}
 
+\begin{verbatim}
+## 
+##    Primaria  Secundaria Universidad 
+##   0.2977099   0.4122137   0.2900763
+\end{verbatim}
+
+\begin{verbatim}
+## 
+##    Primaria  Secundaria Universidad 
+##   0.2962963   0.4074074   0.2962963
+\end{verbatim}
+
 \subsection{Métricas de evaluación predictiva}\label{muxe9tricas-de-evaluaciuxf3n-predictiva}
 
+\begin{verbatim}
+## Warning: contrasts dropped from factor educacion
+## Warning: contrasts dropped from factor educacion
+## Warning: contrasts dropped from factor educacion
+\end{verbatim}
+
+\begin{table}
+\centering
+\caption{\label{tab:metricas-predictivas}Métricas predictivas en conjunto de prueba}
+\centering
+\begin{tabular}[t]{l|r|r|r|r}
+\hline
+Modelo & RMSE & MAE & MAPE & R2\_test\\
+\hline
+Lineal simple & 8050.289 & 6298.384 & 10.007 & 0.600\\
+\hline
+Múltiple & 4903.629 & 3639.305 & 5.906 & 0.854\\
+\hline
+Polinomial & 4842.077 & 3572.242 & 5.820 & 0.857\\
+\hline
+Con interacciones & 4888.792 & 3636.790 & 5.897 & 0.855\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{verbatim}
+## Warning: contrasts dropped from factor educacion
+\end{verbatim}
+
+\begin{verbatim}
+## `geom_smooth()` using formula = 'y ~ x'
+\end{verbatim}
+
+\pandocbounded{\includegraphics[keepaspectratio]{bookdownproj_files/figure-latex/metricas-predictivas-1.pdf}}
+
 \subsection{Validación cruzada k-fold}\label{validaciuxf3n-cruzada-k-fold}
+
+\begin{verbatim}
+## Warning: contrasts dropped from factor educacion
+## Warning: contrasts dropped from factor educacion
+## Warning: contrasts dropped from factor educacion
+## Warning: contrasts dropped from factor educacion
+## Warning: contrasts dropped from factor educacion
+## Warning: contrasts dropped from factor educacion
+## Warning: contrasts dropped from factor educacion
+## Warning: contrasts dropped from factor educacion
+## Warning: contrasts dropped from factor educacion
+## Warning: contrasts dropped from factor educacion
+## Warning: contrasts dropped from factor educacion
+## Warning: contrasts dropped from factor educacion
+## Warning: contrasts dropped from factor educacion
+## Warning: contrasts dropped from factor educacion
+## Warning: contrasts dropped from factor educacion
+## Warning: contrasts dropped from factor educacion
+## Warning: contrasts dropped from factor educacion
+## Warning: contrasts dropped from factor educacion
+## Warning: contrasts dropped from factor educacion
+## Warning: contrasts dropped from factor educacion
+## Warning: contrasts dropped from factor educacion
+## Warning: contrasts dropped from factor educacion
+## Warning: contrasts dropped from factor educacion
+## Warning: contrasts dropped from factor educacion
+## Warning: contrasts dropped from factor educacion
+## Warning: contrasts dropped from factor educacion
+## Warning: contrasts dropped from factor educacion
+## Warning: contrasts dropped from factor educacion
+## Warning: contrasts dropped from factor educacion
+## Warning: contrasts dropped from factor educacion
+\end{verbatim}
+
+\begin{table}
+\centering
+\caption{\label{tab:k-fold-cv}Resultados de validación cruzada 10-fold}
+\centering
+\begin{tabular}[t]{l|r|r|r|r}
+\hline
+Modelo & RMSE\_mean & RMSE\_sd & MAE\_mean & MAE\_sd\\
+\hline
+Simple & 7931.286 & 802.867 & 6521.248 & 589.677\\
+\hline
+Multiple & 4966.527 & 989.093 & 4040.838 & 851.957\\
+\hline
+Polinomial & 4988.095 & 947.505 & 4026.032 & 823.031\\
+\hline
+Interacciones & 5011.097 & 1021.473 & 4079.546 & 874.988\\
+\hline
+\end{tabular}
+\end{table}
 
 \section{Modelos GLM y Técnicas de Regularización}\label{modelos-glm-y-tuxe9cnicas-de-regularizaciuxf3n}
 
 \subsection{Introducción a Modelos Lineales Generalizados (GLM)}\label{introducciuxf3n-a-modelos-lineales-generalizados-glm}
 
+\subsubsection{Extensión más allá de la normalidad}\label{extensiuxf3n-muxe1s-alluxe1-de-la-normalidad}
+
+Los GLM extienden la regresión lineal a variables respuesta no normales mediante:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Función de enlace} \(g(\mu)\): conecta la media \(\mu = E(Y|X)\) con el predictor lineal
+\item
+  \textbf{Familia exponencial}: especifica la distribución de \(Y\)
+\end{enumerate}
+
+\subsubsection{Regresión logística binaria}\label{regresiuxf3n-loguxedstica-binaria}
+
+Para variable respuesta binaria \(Y \in \{0,1\}\):
+
+\(\log\left(\frac{p}{1-p}\right) = \beta_0 + \beta_1 X_1 + \cdots + \beta_k X_k\)
+
+donde \(p = P(Y=1|X)\).
+
+\begin{table}
+\centering
+\caption{\label{tab:regresion-logistica}Regresión logística: Odds ratios y intervalos de confianza}
+\centering
+\begin{tabular}[t]{l|r|r|r|r|r|r}
+\hline
+term & estimate & std.error & statistic & p.value & conf.low & conf.high\\
+\hline
+(Intercept) & 0.022 & 2.317 & -1.649 & 0.099 & 0.000 & 1.867\\
+\hline
+edad & 1.149 & 0.103 & 1.353 & 0.176 & 0.943 & 1.414\\
+\hline
+experiencia & 1.022 & 0.102 & 0.210 & 0.834 & 0.835 & 1.248\\
+\hline
+educacion2 & 0.858 & 0.456 & -0.336 & 0.737 & 0.345 & 2.086\\
+\hline
+educacion3 & 2.651 & 0.575 & 1.695 & 0.090 & 0.886 & 8.692\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{verbatim}
+## Interpretación de Odds Ratios:
+\end{verbatim}
+
+\begin{verbatim}
+## - Edad: Por cada año adicional, las odds de alta paga se multiplican por 1.149
+\end{verbatim}
+
+\begin{verbatim}
+## - Universidad vs Primaria: Las odds se multiplican por 2.651
+\end{verbatim}
+
+\begin{verbatim}
+## Setting levels: control = No, case = Si
+\end{verbatim}
+
+\begin{verbatim}
+## Setting direction: controls < cases
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Área bajo la curva ROC: 0.806
+\end{verbatim}
+
+\pandocbounded{\includegraphics[keepaspectratio]{bookdownproj_files/figure-latex/regresion-logistica-1.pdf}}
+
 \subsection{Técnicas de Regularización: Ridge y LASSO}\label{tuxe9cnicas-de-regularizaciuxf3n-ridge-y-lasso}
+
+\subsubsection{Introducción a la regularización}\label{introducciuxf3n-a-la-regularizaciuxf3n}
+
+Cuando \(p \approx n\) o \(p > n\), o cuando hay multicolinealidad severa, MCO puede ser inestable. Las técnicas de regularización añaden penalizaciones:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Ridge:} \(\min_{\beta} \|Y - X\beta\|_2^2 + \lambda \|\beta\|_2^2\)
+\item
+  \textbf{LASSO:} \(\min_{\beta} \|Y - X\beta\|_2^2 + \lambda \|\beta\|_1\)
+\item
+  \textbf{Elastic Net:} Combinación de ambas
+\end{itemize}
+
+\begin{table}
+\centering
+\caption{\label{tab:regularizacion}Comparación de coeficientes: MCO vs. Métodos regularizados}
+\centering
+\begin{tabular}[t]{l|r|r|r|r}
+\hline
+Variable & MCO & Ridge & LASSO & ElasticNet\\
+\hline
+edad & 932.8464 & 696.4409 & 937.1110 & 861.1700\\
+\hline
+experiencia & 366.6502 & 551.9123 & 355.8014 & 420.7625\\
+\hline
+educacionPrimaria & NA & -7041.3959 & -7395.3385 & -7277.9026\\
+\hline
+educacionSecundaria & NA & 28.7848 & 0.0000 & 0.0000\\
+\hline
+educacionUniversidad & NA & 6996.8680 & 7215.5683 & 7124.1962\\
+\hline
+\end{tabular}
+\end{table}
+
+\pandocbounded{\includegraphics[keepaspectratio]{bookdownproj_files/figure-latex/regularizacion-1.pdf}} \pandocbounded{\includegraphics[keepaspectratio]{bookdownproj_files/figure-latex/regularizacion-2.pdf}}
 
 \section{Práctica y Material Complementario}\label{pruxe1ctica-y-material-complementario}
 
 \subsection{Análisis de Regresión en la Práctica: Flujo de Trabajo Completo}\label{anuxe1lisis-de-regresiuxf3n-en-la-pruxe1ctica-flujo-de-trabajo-completo}
 
+\subsubsection{Metodología reproducible paso a paso}\label{metodologuxeda-reproducible-paso-a-paso}
+
+\begin{verbatim}
+## === RESUMEN EXPLORATORIO ===
+## Dimensiones: 185 5 
+## Variable objetivo: salario 
+## 
+## Variables numéricas:
+##     salario            edad        experiencia      
+##  Min.   : 35595   Min.   :20.56   Min.   : 0.06241  
+##  1st Qu.: 57727   1st Qu.:30.16   1st Qu.: 8.03052  
+##  Median : 68198   Median :35.41   Median :12.98361  
+##  Mean   : 68336   Mean   :36.21   Mean   :14.32956  
+##  3rd Qu.: 76370   3rd Qu.:41.37   3rd Qu.:19.61531  
+##  Max.   :109101   Max.   :67.41   Max.   :44.62903  
+## 
+## Variables categóricas:
+## educacion : 55 76 54 
+## alta_paga : 41 144 
+## 
+## No hay valores faltantes.
+\end{verbatim}
+
+\begin{verbatim}
+## Correlaciones altas (|r| > 0.8):
+## edad - salario: 0.824
+## experiencia - salario: 0.805
+## salario - edad: 0.824
+## experiencia - edad: 0.971
+## salario - experiencia: 0.805
+## edad - experiencia: 0.971
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## === DIAGNÓSTICOS DEL MODELO ===
+## R² = 0.8825, R² ajustado = 0.8801
+## AIC = 3976.53, BIC = 3996.32
+## 
+## Pruebas de supuestos:
+## Normalidad (Shapiro-Wilk): p = 0.8302 (Aceptar normalidad)
+## Homoscedasticidad (BP): p = 0.0643 (Aceptar homoscedasticidad)
+## Multicolinealidad (VIF máximo): 17.71 (Problemática)
+## Observaciones influyentes (Cook > 4/n): 10 de 185
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: contrasts dropped from factor educacion
+## Warning: contrasts dropped from factor educacion
+## Warning: contrasts dropped from factor educacion
+## Warning: contrasts dropped from factor educacion
+\end{verbatim}
+
+\begin{table}
+\centering
+\caption{\label{tab:flujo-completo}Selección final de modelo basada en desempeño predictivo}
+\centering
+\begin{tabular}[t]{l|r|r|r|r|r}
+\hline
+Modelo & RMSE\_test & MAE\_test & R2\_train & AIC\_train & n\_params\\
+\hline
+Básico & 5050.008 & 3807.203 & 0.8658 & 2568.525 & 5\\
+\hline
+Completo & 5074.355 & 3822.790 & 0.8672 & 2575.205 & 9\\
+\hline
+Con interacción & 5083.885 & 3829.504 & 0.8662 & 2572.153 & 7\\
+\hline
+Con cuadrático & 5125.627 & 3912.181 & 0.8664 & 2569.990 & 6\\
+\hline
+\end{tabular}
+\end{table}
+
+\subsubsection{Reporte automatizado de resultados}\label{reporte-automatizado-de-resultados}
+
+\begin{verbatim}
+## === REPORTE EJECUTIVO DEL MODELO ===
+## 
+## MODELO SELECCIONADO:
+##  salario ~ edad + experiencia + educacion 
+## 
+## MÉTRICAS DE AJUSTE:
+## • R² = 86.3% (86.3% de la varianza explicada)
+## • Error estándar residual = $4961
+## • Significancia global: p < 0.000
+## 
+## VARIABLES SIGNIFICATIVAS:
+## • educacion3: $14785 [IC 95%: $12902, $16667]
+## • educacion2: $7481 [IC 95%: $5748, $9215]
+## • edad: $933 [IC 95%: $575, $1290]
+## • experiencia: $367 [IC 95%: $6, $727]
+## 
+## EVALUACIÓN DE SUPUESTOS:
+## ⚠️  Posible heteroscedasticidad detectada
+##    Recomendación: Usar errores estándar robustos
+## ⚠️  Multicolinealidad detectada (VIF máximo = 17.87 )
+##    Recomendación: Considerar eliminar variables redundantes
+## ⚠️  12 observaciones potencialmente influyentes detectadas
+##    Recomendación: Revisar observaciones con Cook's D > 0.0216 
+## 
+## RECOMENDACI ONES PARA USO:
+## • Este modelo es apropiado para inferencia y predicción dentro del rango observado
+## • Para predicciones fuera de muestra, validar supuestos en nuevos datos
+## • Considerar intervalos de predicción para cuantificar incertidumbre
+\end{verbatim}
+
 \subsection{Buenas Prácticas y Lista de Verificación}\label{buenas-pruxe1cticas-y-lista-de-verificaciuxf3n}
+
+\subsubsection{Checklist para análisis de regresión}\label{checklist-para-anuxe1lisis-de-regresiuxf3n}
+
+\textbf{Antes del modelado:}
+- {[} {]} Exploración exhaustiva de datos (EDA)
+- {[} {]} Identificación de valores atípicos y faltantes
+- {[} {]} Análisis de correlaciones entre predictores
+- {[} {]} Definición clara del objetivo (inferencia vs.~predicción)
+
+\textbf{Durante el modelado:}
+- {[} {]} Especificación teórica justificada
+- {[} {]} Verificación de supuestos del MCRL
+- {[} {]} Evaluación de multicolinealidad (VIF \textless{} 5)
+- {[} {]} Detección de observaciones influyentes
+- {[} {]} Comparación de modelos alternativos
+
+\textbf{Después del modelado:}
+- {[} {]} Validación en datos independientes
+- {[} {]} Interpretación sustantiva de coeficientes
+- {[} {]} Cuantificación de incertidumbre (intervalos)
+- {[} {]} Documentación del proceso analítico
+- {[} {]} Código reproducible disponible
+
+\subsubsection{Errores comunes a evitar}\label{errores-comunes-a-evitar}
 
 \subsection{Ejercicios Propuestos y Actividades Prácticas}\label{ejercicios-propuestos-y-actividades-pruxe1cticas}
 
+\subsubsection{Ejercicio 1: Análisis completo con mtcars}\label{ejercicio-1-anuxe1lisis-completo-con-mtcars}
+
+\subsubsection{Ejercicio 2: Variables categóricas con diamonds}\label{ejercicio-2-variables-categuxf3ricas-con-diamonds}
+
+\subsubsection{Ejercicio 3: Series de tiempo y autocorrelación}\label{ejercicio-3-series-de-tiempo-y-autocorrelaciuxf3n}
+
+\subsubsection{Ejercicio 4: Proyecto integrador predictivo}\label{ejercicio-4-proyecto-integrador-predictivo}
+
 \subsection{Recursos Adicionales y Referencias}\label{recursos-adicionales-y-referencias}
 
+\subsubsection{Lecturas recomendadas por nivel}\label{lecturas-recomendadas-por-nivel}
+
+\textbf{Nivel Introductorio:}
+- James et al. (\citeproc{ref-james2013}{2013}): Excelente balance teoría-práctica, muchos ejemplos en R
+- Bruce et al. (\citeproc{ref-bruce2020}{2020}): Enfoque moderno para científicos de datos
+- Gelman et al. (\citeproc{ref-gelman2020}{2020}): Pedagogía ejemplar, integra inferencia y predicción
+
+\textbf{Nivel Intermedio:}
+- Harrell Jr (\citeproc{ref-harrell2015}{2015}): Estrategias avanzadas de modelado, énfasis en validación
+- Kuhn and Johnson (\citeproc{ref-kuhn2019}{2019}): Ingeniería de características y selección de predictores
+- Fox (\citeproc{ref-fox2015}{2015}): Análisis aplicado con extensiones a GLM
+
+\textbf{Nivel Avanzado:}
+- Hastie et al. (\citeproc{ref-hastie2009}{2009}): Fundamentos matemáticos del aprendizaje estadístico
+- Gujarati and Porter (\citeproc{ref-gujarati2009}{2009}): Econometría con énfasis en interpretación causal
+- Wooldridge (\citeproc{ref-wooldridge2015}{2015}): Métodos econométricos modernos
+
+\subsubsection{Recursos en línea especializados}\label{recursos-en-luxednea-especializados}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Hernández (\citeproc{ref-hernanb2023}{2023})} - ``Modelos de Regresión con R'': Tutorial interactivo en español con casos reales colombianos. Disponible en: \url{https://fhernanb.github.io/libro_regresion/}
+\item
+  \textbf{Fortou (\citeproc{ref-fortou2023}{2023})} - ``Laboratorio de Análisis de Datos'': Implementaciones prácticas con tidyverse y énfasis en reproducibilidad. Disponible en: \url{https://bookdown.org/josefortou/lab-book/}
+\item
+  \textbf{Team (\citeproc{ref-cdr2023}{2023})} - ``Computational Data Analysis for the Life Sciences'': Métodos estadísticos modernos con R y Python. Disponible en: \url{https://cdr-book.github.io/index.html}
+\end{enumerate}
+
+\subsubsection{Paquetes de R recomendados}\label{paquetes-de-r-recomendados}
+
+\subsubsection{Conjuntos de datos para práctica}\label{conjuntos-de-datos-para-pruxe1ctica}
+
 \subsection{Resumen y Conclusiones}\label{resumen-y-conclusiones}
+
+\subsubsection{Puntos clave del capítulo}\label{puntos-clave-del-capuxedtulo}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Fundamentos conceptuales}: La regresión modela dependencia asimétrica, diferente de correlación. El término de error es crucial para validez estadística.
+\item
+  \textbf{Metodología MCO}: Mejor estimador lineal insesgado (BLUE) bajo supuestos del MCRL. Propiedades óptimas requieren verificación cuidadosa de supuestos.
+\item
+  \textbf{Inferencia estadística}: Pruebas t individuales, pruebas F conjuntas, intervalos de confianza y predicción. Distinguir significancia estadística de relevancia práctica.
+\item
+  \textbf{Diagnósticos esenciales}: Análisis de residuos, detección de observaciones influyentes, evaluación de multicolinealidad. Los gráficos son tan importantes como las pruebas formales.
+\item
+  \textbf{Violaciones y remedios}: Heteroscedasticidad (errores robustos), autocorrelación (MCG), multicolinealidad (selección/regularización). Cada problema requiere enfoque específico.
+\item
+  \textbf{Extensiones prácticas}: Variables categóricas, transformaciones, interacciones, introducción a GLM. El modelo lineal es punto de partida, no límite.
+\item
+  \textbf{Validación predictiva}: División train/test, validación cruzada, métricas fuera de muestra. Esencial para uso predictivo del modelo.
+\item
+  \textbf{Reproducibilidad}: Código documentado, decisiones justificadas, flujo de trabajo sistemático. La ciencia de datos es colaborativa y acumulativa.
+\end{enumerate}
+
+\subsubsection{Perspectivas futuras}\label{perspectivas-futuras}
+
+El análisis de regresión tradicional se extiende naturalmente hacia:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Machine Learning}: Random forests, gradient boosting, redes neuronales
+\item
+  \textbf{Inferencia causal}: Variables instrumentales, discontinuidades, experimentos naturales
+\item
+  \textbf{Big Data}: Métodos escalables, computación distribuida, streaming
+\item
+  \textbf{Bayesiano}: Incorporación de información previa, cuantificación de incertidumbre
+\end{itemize}
+
+Sin embargo, los principios fundamentales del modelado estadístico---especificación cuidadosa, verificación de supuestos, validación rigurosa---permanecen constantes sin importar la complejidad del método.
+
+\begin{quote}
+``Far better an approximate answer to the right question than an exact answer to the wrong question.'' --- John Tukey
+\end{quote}
+
+La regresión lineal, por su interpretabilidad y solidez teórica, seguirá siendo herramienta fundamental en el arsenal del analista de datos moderno.
 
 \chapter{Diseño y Análisis de Experimentos: Fundamentos, Modelación e Interpretación}\label{diseuxf1o-y-anuxe1lisis-de-experimentos-fundamentos-modelaciuxf3n-e-interpretaciuxf3n}
 
@@ -698,6 +1750,12 @@ donde SCR es la suma de cuadrados de los residuos y \(n-k-1\) son los grados de 
 \bibitem[\citeproctext]{ref-bruce2020}
 Bruce, Peter, Andrew Bruce, and Peter Gedeck. 2020. \emph{Practical Statistics for Data Scientists: 50+ Essential Concepts Using r and Python}. 2nd ed. O'Reilly Media.
 
+\bibitem[\citeproctext]{ref-fortou2023}
+Fortou, José. 2023. {``Laboratorio de Análisis de Datos.''} \url{https://bookdown.org/josefortou/lab-book/}.
+
+\bibitem[\citeproctext]{ref-fox2015}
+Fox, John. 2015. \emph{Applied Regression Analysis and Generalized Linear Models}. 3rd ed. SAGE Publications.
+
 \bibitem[\citeproctext]{ref-gelman2020}
 Gelman, Andrew, Jennifer Hill, and Aki Vehtari. 2020. \emph{Regression and Other Stories}. Cambridge University Press.
 
@@ -706,6 +1764,21 @@ Gujarati, Damodar N, and Dawn C Porter. 2009. \emph{Basic Econometrics}. 5th ed.
 
 \bibitem[\citeproctext]{ref-harrell2015}
 Harrell Jr, Frank E. 2015. \emph{Regression Modeling Strategies: With Applications to Linear Models, Logistic and Ordinal Regression, and Survival Analysis}. 2nd ed. Springer.
+
+\bibitem[\citeproctext]{ref-hastie2009}
+Hastie, Trevor, Robert Tibshirani, and Jerome Friedman. 2009. \emph{The Elements of Statistical Learning: Data Mining, Inference, and Prediction}. 2nd ed. Springer.
+
+\bibitem[\citeproctext]{ref-hernanb2023}
+Hernández, Freddy. 2023. {``Modelos de Regresión Con r.''} \url{https://fhernanb.github.io/libro_regresion/}.
+
+\bibitem[\citeproctext]{ref-james2013}
+James, Gareth, Daniela Witten, Trevor Hastie, and Robert Tibshirani. 2013. \emph{An Introduction to Statistical Learning: With Applications in r}. Springer.
+
+\bibitem[\citeproctext]{ref-kuhn2019}
+Kuhn, Max, and Kjell Johnson. 2019. \emph{Feature Engineering and Selection: A Practical Approach for Predictive Models}. CRC Press.
+
+\bibitem[\citeproctext]{ref-cdr2023}
+Team, CDR Book. 2023. {``Computational Data Analysis for the Life Sciences.''} \url{https://cdr-book.github.io/index.html}.
 
 \bibitem[\citeproctext]{ref-wooldridge2015}
 Wooldridge, Jeffrey M. 2015. \emph{Introductory Econometrics: A Modern Approach}. 6th ed. Cengage Learning.

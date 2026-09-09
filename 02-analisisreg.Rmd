@@ -1,7 +1,7 @@
 ---
 output:
-  pdf_document: default
   html_document: default
+  pdf_document: default
 ---
 # Análisis de Regresión: De la Inferencia a la Predicción con R
 > **Objetivo del capítulo:** Proporcionar una guía integral y práctica para comprender, estimar, diagnosticar e interpretar modelos de regresión lineal, diferenciando entre objetivos de **inferencia estadística** y **predicción**, con implementaciones reproducibles en R que siguen las mejores prácticas de ciencia de datos moderna.
@@ -101,7 +101,10 @@ La especificación correcta de $\varepsilon$ es crucial para la validez de la in
 
 El modelo de regresión lineal simple se expresa como:
 
-$$Y_i = \beta_0 + \beta_1 X_i + \varepsilon_i, \quad i = 1, 2, \ldots, n$$
+
+\begin{equation}
+Y_i = \beta_0 + \beta_1 X_i + \varepsilon_i, \quad i = 1, 2, \ldots, n
+\end{equation}
 
 donde:
 - $Y_i$: valor observado de la variable respuesta para la observación $i$
@@ -155,10 +158,14 @@ ggplot(datos_ejemplo, aes(x = experiencia, y = salario)) +
 
 El modelo de regresión múltiple extiende el caso simple a $k$ variables explicativas:
 
-$$Y_i = \beta_0 + \beta_1 X_{1i} + \beta_2 X_{2i} + \cdots + \beta_k X_{ki} + \varepsilon_i$$
+\begin{equation}
+Y_i = \beta_0 + \beta_1 X_{1i} + \beta_2 X_{2i} + \cdots + \beta_k X_{ki} + \varepsilon_i
+\end{equation}
 
 En notación matricial:
-$$\mathbf{Y} = \mathbf{X}\boldsymbol{\beta} + \boldsymbol{\varepsilon}$$
+\begin{equation}
+\mathbf{Y} = \mathbf{X}\boldsymbol{\beta} + \boldsymbol{\varepsilon}
+\end{equation}
 
 donde:
 - $\mathbf{Y}$ es un vector $n \times 1$ de observaciones
@@ -318,16 +325,22 @@ donde SCR es la suma de cuadrados de los residuos y $n-k-1$ son los grados de li
 
 ### Distribución de los estimadores
 Bajo normalidad de los errores:
-$$\hat{\beta}_j \sim N\left(\beta_j, \sigma^2[(\mathbf{X}'\mathbf{X})^{-1}]_{jj}\right)$$
+\begin{equation}
+\hat{\beta}_j \sim N\left(\beta_j, \sigma^2[(\mathbf{X}'\mathbf{X})^{-1}]_{jj}\right)
+\end{equation}
 
 El estadístico t estandarizado:
-$$t = \frac{\hat{\beta}_j - \beta_j}{\text{se}(\hat{\beta}_j)} \sim t_{n-k-1}$$
+\begin{equation}
+t = \frac{\hat{\beta}_j - \beta_j}{\text{se}(\hat{\beta}_j)} \sim t_{n-k-1}
+\end{equation}
 
 ### Pruebas de hipótesis 
 
 #### Prueba t para coeficientes individuales
 
-$$H_0: \beta_j = 0 \quad \text{vs.} \quad H_1: \beta_j \neq 0$$
+\begin{equation}
+H_0: \beta_j = 0 \quad \text{vs.} \quad H_1: \beta_j \neq 0
+\end{equation}
 
 ```{r prueba-t}
 # Extracción de estadísticos t

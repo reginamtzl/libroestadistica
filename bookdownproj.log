@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2026.9.4)  4 SEP 2026 08:50
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2026.9.4)  9 SEP 2026 10:56
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -544,6 +544,15 @@ Package babel Info: 'spanish' activates 'spanish' shorthands.
 
 LaTeX Warning: Label `tab:regresion-multiple' multiply defined.
 
+
+LaTeX Warning: Label `tab:intervalos' multiply defined.
+
+
+LaTeX Warning: Label `tab:bondad-ajuste' multiply defined.
+
+
+LaTeX Warning: Label `tab:transformaciones-log' multiply defined.
+
 )
 \openout1 = `bookdownproj.aux'.
 
@@ -848,13 +857,13 @@ LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
 (Font)              scaled to size 4.99947pt on input line 3.
 [3]
-LaTeX Info: Redefining \. on input line 70.
-LaTeX Info: Redefining \% on input line 70.
+LaTeX Info: Redefining \. on input line 102.
+LaTeX Info: Redefining \% on input line 102.
 Package babel Info: 'spanish' activates 'spanish' shorthands.
-(babel)             Reported on input line 70.
+(babel)             Reported on input line 102.
 [4]
-LaTeX Info: Redefining \. on input line 117.
-LaTeX Info: Redefining \% on input line 117.
+LaTeX Info: Redefining \. on input line 148.
+LaTeX Info: Redefining \% on input line 148.
 [5])
 \tf@toc=\write3
 \openout3 = `bookdownproj.toc'.
@@ -890,10 +899,10 @@ Overfull \hbox (89.80673pt too wide) has occurred while \output is active
  []
 
 [12]
-LaTeX Info: Redefining \. on input line 260.
-LaTeX Info: Redefining \% on input line 260.
+LaTeX Info: Redefining \. on input line 262.
+LaTeX Info: Redefining \% on input line 262.
 [13]
-Overfull \hbox (21.83006pt too wide) in paragraph at lines 285--294
+Overfull \hbox (21.83006pt too wide) in paragraph at lines 287--296
  [][] 
  []
 
@@ -902,8 +911,8 @@ File: bookdownproj_files/figure-latex/regresion-simple-1.pdf Graphic file (type 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-LaTeX Info: Redefining \. on input line 302.
-LaTeX Info: Redefining \% on input line 302.
+LaTeX Info: Redefining \. on input line 304.
+LaTeX Info: Redefining \% on input line 304.
 
 Overfull \hbox (89.80673pt too wide) has occurred while \output is active
 \TU/lmr/m/n/10 14 \TU/lmr/m/sl/10 CAPÍTULO 3.  ANÁLISIS DE REGRESIÓN: DE LA INFERENCIA A LA PREDICCIÓN CON R
@@ -911,47 +920,47 @@ Overfull \hbox (89.80673pt too wide) has occurred while \output is active
 
 [14]
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/b/n' will be
-(Font)              scaled to size 10.0pt on input line 313.
+(Font)              scaled to size 10.0pt on input line 318.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/b/n' will be
-(Font)              scaled to size 7.0pt on input line 313.
+(Font)              scaled to size 7.0pt on input line 318.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/b/n' will be
-(Font)              scaled to size 5.0pt on input line 313.
+(Font)              scaled to size 5.0pt on input line 318.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/b/n' will be
-(Font)              scaled to size 10.00092pt on input line 313.
+(Font)              scaled to size 10.00092pt on input line 318.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/b/n' will be
-(Font)              scaled to size 7.00064pt on input line 313.
+(Font)              scaled to size 7.00064pt on input line 318.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/b/n' will be
-(Font)              scaled to size 5.00046pt on input line 313.
+(Font)              scaled to size 5.00046pt on input line 318.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/b/n' will be
-(Font)              scaled to size 9.99893pt on input line 313.
+(Font)              scaled to size 9.99893pt on input line 318.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/b/n' will be
-(Font)              scaled to size 6.99925pt on input line 313.
+(Font)              scaled to size 6.99925pt on input line 318.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/b/n' will be
-(Font)              scaled to size 4.99947pt on input line 313.
-LaTeX Info: Redefining \. on input line 331.
-LaTeX Info: Redefining \% on input line 331.
+(Font)              scaled to size 4.99947pt on input line 318.
+LaTeX Info: Redefining \. on input line 337.
+LaTeX Info: Redefining \% on input line 337.
 [15]
-Overfull \hbox (67.73007pt too wide) in paragraph at lines 336--351
+Overfull \hbox (67.73007pt too wide) in paragraph at lines 342--357
  [][] 
  []
 
 
-Overfull \hbox (4.53006pt too wide) in alignment at lines 396--400
+Overfull \hbox (4.53006pt too wide) in alignment at lines 402--406
  [] [] [] 
  []
 
 
-Overfull \hbox (4.53006pt too wide) in alignment at lines 400--402
+Overfull \hbox (4.53006pt too wide) in alignment at lines 406--408
  [] [] [] 
  []
 
 
-Overfull \hbox (4.53006pt too wide) in alignment at lines 402--408
+Overfull \hbox (4.53006pt too wide) in alignment at lines 408--414
  [] [] [] 
  []
 
-LaTeX Info: Redefining \. on input line 408.
-LaTeX Info: Redefining \% on input line 408.
+LaTeX Info: Redefining \. on input line 414.
+LaTeX Info: Redefining \% on input line 414.
 
 Overfull \hbox (89.80673pt too wide) has occurred while \output is active
 \TU/lmr/m/n/10 16 \TU/lmr/m/sl/10 CAPÍTULO 3.  ANÁLISIS DE REGRESIÓN: DE LA INFERENCIA A LA PREDICCIÓN CON R
@@ -965,124 +974,380 @@ File: bookdownproj_files/figure-latex/verificacion-supuestos-2.pdf Graphic file 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-LaTeX Info: Redefining \. on input line 421.
-LaTeX Info: Redefining \% on input line 421.
+LaTeX Info: Redefining \. on input line 427.
+LaTeX Info: Redefining \% on input line 427.
 [17]
-Underfull \hbox (badness 1418) in paragraph at lines 446--446
+Underfull \hbox (badness 1418) in paragraph at lines 452--452
 []\TU/lmr/bx/n/12 Estimación por Mínimos Cuadrados Ordinarios
  []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-LaTeX Info: Redefining \. on input line 451.
-LaTeX Info: Redefining \% on input line 451.
+LaTeX Info: Redefining \. on input line 457.
+LaTeX Info: Redefining \% on input line 457.
 
 Overfull \hbox (89.80673pt too wide) has occurred while \output is active
 \TU/lmr/m/n/10 18 \TU/lmr/m/sl/10 CAPÍTULO 3.  ANÁLISIS DE REGRESIÓN: DE LA INFERENCIA A LA PREDICCIÓN CON R
  []
 
 [18]
-Overfull \hbox (68.38007pt too wide) in paragraph at lines 468--483
+Overfull \hbox (68.38007pt too wide) in paragraph at lines 474--489
+ [][] 
+ []
+
+LaTeX Info: Redefining \. on input line 503.
+LaTeX Info: Redefining \% on input line 503.
+[19]
+Overfull \hbox (32.61006pt too wide) in paragraph at lines 518--535
  [][] 
  []
 
 
-Underfull \hbox (badness 1642) in paragraph at lines 540--540
-[]\TU/lmr/bx/n/12 Introducción a Modelos Lineales Generalizados
+Overfull \hbox (22.5pt too wide) in paragraph at lines 572--572
+[]\TU/lmtt/m/n/10 ## Conclusión: Rechazamos H0: al menos un coeficiente es significativo[] 
  []
 
-LaTeX Info: Redefining \. on input line 556.
-LaTeX Info: Redefining \% on input line 556.
-[19]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-LaTeX Info: Redefining \. on input line 556.
-LaTeX Info: Redefining \% on input line 556.
+LaTeX Info: Redefining \. on input line 572.
+LaTeX Info: Redefining \% on input line 572.
 
 Overfull \hbox (89.80673pt too wide) has occurred while \output is active
 \TU/lmr/m/n/10 20 \TU/lmr/m/sl/10 CAPÍTULO 3.  ANÁLISIS DE REGRESIÓN: DE LA INFERENCIA A LA PREDICCIÓN CON R
  []
 
 [20]
-Overfull \vbox (374.00145pt too high) has occurred while \output is active []
+Overfull \hbox (22.69008pt too wide) in paragraph at lines 621--632
+ [][] 
+ []
 
-LaTeX Info: Redefining \. on input line 556.
-LaTeX Info: Redefining \% on input line 556.
+LaTeX Info: Redefining \. on input line 633.
+LaTeX Info: Redefining \% on input line 633.
 [21]
-LaTeX Info: Redefining \. on input line 556.
-LaTeX Info: Redefining \% on input line 556.
+LaTeX Info: Redefining \. on input line 707.
+LaTeX Info: Redefining \% on input line 707.
 
 Overfull \hbox (89.80673pt too wide) has occurred while \output is active
 \TU/lmr/m/n/10 22 \TU/lmr/m/sl/10 CAPÍTULO 3.  ANÁLISIS DE REGRESIÓN: DE LA INFERENCIA A LA PREDICCIÓN CON R
  []
 
-[22
+[22]
+File: bookdownproj_files/figure-latex/diagnosticos-avanzados-1.pdf Graphic file (type pdf)
+<use bookdownproj_files/figure-latex/diagnosticos-avanzados-1.pdf>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+LaTeX Info: Redefining \. on input line 718.
+LaTeX Info: Redefining \% on input line 718.
+[23]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+LaTeX Info: Redefining \. on input line 718.
+LaTeX Info: Redefining \% on input line 718.
+
+Overfull \hbox (89.80673pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 24 \TU/lmr/m/sl/10 CAPÍTULO 3.  ANÁLISIS DE REGRESIÓN: DE LA INFERENCIA A LA PREDICCIÓN CON R
+ []
+
+[24]
+Overfull \vbox (5.64159pt too high) has occurred while \output is active []
+
+LaTeX Info: Redefining \. on input line 718.
+LaTeX Info: Redefining \% on input line 718.
+[25]
+File: bookdownproj_files/figure-latex/residuos-detallado-1.pdf Graphic file (type pdf)
+<use bookdownproj_files/figure-latex/residuos-detallado-1.pdf>
+File: bookdownproj_files/figure-latex/observaciones-influyentes-1.pdf Graphic file (type pdf)
+<use bookdownproj_files/figure-latex/observaciones-influyentes-1.pdf>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+LaTeX Info: Redefining \. on input line 761.
+LaTeX Info: Redefining \% on input line 761.
+
+Overfull \hbox (89.80673pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 26 \TU/lmr/m/sl/10 CAPÍTULO 3.  ANÁLISIS DE REGRESIÓN: DE LA INFERENCIA A LA PREDICCIÓN CON R
+ []
+
+[26]
+LaTeX Info: Redefining \. on input line 789.
+LaTeX Info: Redefining \% on input line 789.
+[27]
+Overfull \hbox (52.72006pt too wide) in paragraph at lines 804--819
+ [][] 
+ []
+
+LaTeX Info: Redefining \. on input line 879.
+LaTeX Info: Redefining \% on input line 879.
+
+Overfull \hbox (89.80673pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 28 \TU/lmr/m/sl/10 CAPÍTULO 3.  ANÁLISIS DE REGRESIÓN: DE LA INFERENCIA A LA PREDICCIÓN CON R
+ []
+
+[28]
+Overfull \hbox (201.0pt too wide) in paragraph at lines 890--890
+[]\TU/lmtt/m/n/10 ## Warning in library(package, lib.loc = lib.loc, character.only = TRUE, logical.return = TRUE, : no hay[] 
+ []
+
+File: bookdownproj_files/figure-latex/autocorrelacion-1.pdf Graphic file (type pdf)
+<use bookdownproj_files/figure-latex/autocorrelacion-1.pdf>
+LaTeX Info: Redefining \. on input line 930.
+LaTeX Info: Redefining \% on input line 930.
+[29]
+Overfull \hbox (171.93011pt too wide) in paragraph at lines 952--969
+ [][] 
+ []
+
+
+Overfull \hbox (244.22006pt too wide) in paragraph at lines 977--988
+ [][] 
+ []
+
+
+Underfull \vbox (badness 7981) has occurred while \output is active []
+
+LaTeX Info: Redefining \. on input line 1021.
+LaTeX Info: Redefining \% on input line 1021.
+
+Overfull \hbox (89.80673pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 30 \TU/lmr/m/sl/10 CAPÍTULO 3.  ANÁLISIS DE REGRESIÓN: DE LA INFERENCIA A LA PREDICCIÓN CON R
+ []
+
+[30]
+LaTeX Info: Redefining \. on input line 1021.
+LaTeX Info: Redefining \% on input line 1021.
+[31]
+File: bookdownproj_files/figure-latex/interacciones-1.pdf Graphic file (type pdf)
+<use bookdownproj_files/figure-latex/interacciones-1.pdf>
+LaTeX Info: Redefining \. on input line 1082.
+LaTeX Info: Redefining \% on input line 1082.
+
+Overfull \hbox (89.80673pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 32 \TU/lmr/m/sl/10 CAPÍTULO 3.  ANÁLISIS DE REGRESIÓN: DE LA INFERENCIA A LA PREDICCIÓN CON R
+ []
+
+[32]
+File: bookdownproj_files/figure-latex/transformaciones-no-lineales-1.pdf Graphic file (type pdf)
+<use bookdownproj_files/figure-latex/transformaciones-no-lineales-1.pdf>
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+LaTeX Info: Redefining \. on input line 1111.
+LaTeX Info: Redefining \% on input line 1111.
+[33]
+Missing character: There is no β (U+03B2) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no β (U+03B2) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ₀ (U+2080) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no β (U+03B2) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ₁ (U+2081) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no β (U+03B2) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ₀ (U+2080) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no β (U+03B2) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ₁ (U+2081) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no β (U+03B2) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ₁ (U+2081) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no β (U+03B2) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ₀ (U+2080) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no β (U+03B2) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ₁ (U+2081) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no β (U+03B2) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ₁ (U+2081) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no β (U+03B2) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ₀ (U+2080) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no β (U+03B2) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ₁ (U+2081) in font [lmroman10-regular]:mapping=tex-text;!
+LaTeX Info: Redefining \. on input line 1175.
+LaTeX Info: Redefining \% on input line 1175.
+
+Overfull \hbox (89.80673pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 34 \TU/lmr/m/sl/10 CAPÍTULO 3.  ANÁLISIS DE REGRESIÓN: DE LA INFERENCIA A LA PREDICCIÓN CON R
+ []
+
+[34]
+LaTeX Info: Redefining \. on input line 1210.
+LaTeX Info: Redefining \% on input line 1210.
+[35]
+File: bookdownproj_files/figure-latex/metricas-predictivas-1.pdf Graphic file (type pdf)
+<use bookdownproj_files/figure-latex/metricas-predictivas-1.pdf>
+LaTeX Info: Redefining \. on input line 1247.
+LaTeX Info: Redefining \% on input line 1247.
+
+Overfull \hbox (89.80673pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 36 \TU/lmr/m/sl/10 CAPÍTULO 3.  ANÁLISIS DE REGRESIÓN: DE LA INFERENCIA A LA PREDICCIÓN CON R
+ []
+
+[36]
+Overfull \hbox (5.09007pt too wide) in paragraph at lines 1297--1312
+ [][] 
+ []
+
+
+Overfull \hbox (80.25pt too wide) in paragraph at lines 1320--1320
+[]\TU/lmtt/m/n/10 ## - Edad: Por cada año adicional, las odds de alta paga se multiplican por 1.149[] 
+ []
+
+LaTeX Info: Redefining \. on input line 1320.
+LaTeX Info: Redefining \% on input line 1320.
+[37]
+File: bookdownproj_files/figure-latex/regresion-logistica-1.pdf Graphic file (type pdf)
+<use bookdownproj_files/figure-latex/regresion-logistica-1.pdf>
+LaTeX Info: Redefining \. on input line 1350.
+LaTeX Info: Redefining \% on input line 1350.
+
+Overfull \hbox (89.80673pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 38 \TU/lmr/m/sl/10 CAPÍTULO 3.  ANÁLISIS DE REGRESIÓN: DE LA INFERENCIA A LA PREDICCIÓN CON R
+ []
+
+[38]
+File: bookdownproj_files/figure-latex/regularizacion-1.pdf Graphic file (type pdf)
+<use bookdownproj_files/figure-latex/regularizacion-1.pdf>
+File: bookdownproj_files/figure-latex/regularizacion-2.pdf Graphic file (type pdf)
+<use bookdownproj_files/figure-latex/regularizacion-2.pdf>
+
+Underfull \vbox (badness 1796) has occurred while \output is active []
+
+LaTeX Info: Redefining \. on input line 1380.
+LaTeX Info: Redefining \% on input line 1380.
+[39]
+LaTeX Info: Redefining \. on input line 1405.
+LaTeX Info: Redefining \% on input line 1405.
+
+Overfull \hbox (89.80673pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 40 \TU/lmr/m/sl/10 CAPÍTULO 3.  ANÁLISIS DE REGRESIÓN: DE LA INFERENCIA A LA PREDICCIÓN CON R
+ []
+
+[40]
+Overfull \hbox (30.14005pt too wide) in paragraph at lines 1441--1454
+ [][] 
+ []
+
+LaTeX Info: Redefining \. on input line 1487.
+LaTeX Info: Redefining \% on input line 1487.
+[41]
+Missing character: There is no ⚠ (U+26A0) in font [lmmono10-regular]:!
+Missing character: There is no ️ (U+FE0F) in font [lmmono10-regular]:!
+Missing character: There is no ⚠ (U+26A0) in font [lmmono10-regular]:!
+Missing character: There is no ️ (U+FE0F) in font [lmmono10-regular]:!
+Missing character: There is no ⚠ (U+26A0) in font [lmmono10-regular]:!
+Missing character: There is no ️ (U+FE0F) in font [lmmono10-regular]:!
+
+Overfull \hbox (101.25pt too wide) in paragraph at lines 1487--1487
+[]\TU/lmtt/m/n/10 ## • Este modelo es apropiado para inferencia y predicción dentro del rango observado[] 
+ []
+
+
+Overfull \hbox (43.5pt too wide) in paragraph at lines 1487--1487
+[]\TU/lmtt/m/n/10 ## • Para predicciones fuera de muestra, validar supuestos en nuevos datos[] 
+ []
+
+
+Overfull \hbox (27.75pt too wide) in paragraph at lines 1487--1487
+[]\TU/lmtt/m/n/10 ## • Considerar intervalos de predicción para cuantificar incertidumbre[] 
+ []
+
+
+Underfull \vbox (badness 5519) has occurred while \output is active []
+
+LaTeX Info: Redefining \. on input line 1533.
+LaTeX Info: Redefining \% on input line 1533.
+
+Overfull \hbox (89.80673pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 42 \TU/lmr/m/sl/10 CAPÍTULO 3.  ANÁLISIS DE REGRESIÓN: DE LA INFERENCIA A LA PREDICCIÓN CON R
+ []
+
+[42]
+LaTeX Info: Redefining \. on input line 1569.
+LaTeX Info: Redefining \% on input line 1569.
+[43]
+Overfull \hbox (0.20114pt too wide) in paragraph at lines 1575--1577
+[]\TU/lmr/bx/n/10 Violaciones y remedios\TU/lmr/m/n/10 : Heteroscedasticidad (errores robustos), autoco-
+ []
+
+LaTeX Info: Redefining \. on input line 1601.
+LaTeX Info: Redefining \% on input line 1601.
+
+Overfull \hbox (89.80673pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 44 \TU/lmr/m/sl/10 CAPÍTULO 3.  ANÁLISIS DE REGRESIÓN: DE LA INFERENCIA A LA PREDICCIÓN CON R
+ []
+
+[44]
+LaTeX Info: Redefining \. on input line 1608.
+LaTeX Info: Redefining \% on input line 1608.
+[45]
+LaTeX Info: Redefining \. on input line 1608.
+LaTeX Info: Redefining \% on input line 1608.
+
+Overfull \hbox (89.80673pt too wide) has occurred while \output is active
+\TU/lmr/m/n/10 46 \TU/lmr/m/sl/10 CAPÍTULO 3.  ANÁLISIS DE REGRESIÓN: DE LA INFERENCIA A LA PREDICCIÓN CON R
+ []
+
+[46
 
 ]
 Capítulo 4.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[23]
+[47]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-LaTeX Info: Redefining \. on input line 636.
-LaTeX Info: Redefining \% on input line 636.
+LaTeX Info: Redefining \. on input line 1688.
+LaTeX Info: Redefining \% on input line 1688.
 
 Overfull \hbox (198.95006pt too wide) has occurred while \output is active
-\TU/lmr/m/n/10 24 \TU/lmr/m/sl/10 CAPÍTULO 4.  DISEÑO Y ANÁLISIS DE EXPERIMENTOS: FUNDAMENTOS, MODELACIÓN E INTERPRETACIÓN
+\TU/lmr/m/n/10 48 \TU/lmr/m/sl/10 CAPÍTULO 4.  DISEÑO Y ANÁLISIS DE EXPERIMENTOS: FUNDAMENTOS, MODELACIÓN E INTERPRETACIÓN
  []
 
-[24]
+[48]
 Overfull \vbox (411.75647pt too high) has occurred while \output is active []
 
-LaTeX Info: Redefining \. on input line 636.
-LaTeX Info: Redefining \% on input line 636.
+LaTeX Info: Redefining \. on input line 1688.
+LaTeX Info: Redefining \% on input line 1688.
 
 Overfull \hbox (4.06004pt too wide) has occurred while \output is active
-\TU/lmr/m/sl/10 4.1.  FUNDAMENTOS DEL EXPERIMENTO Y ANÁLISIS DE VARIACIÓN \TU/lmr/m/n/10 25
+\TU/lmr/m/sl/10 4.1.  FUNDAMENTOS DEL EXPERIMENTO Y ANÁLISIS DE VARIACIÓN \TU/lmr/m/n/10 49
  []
 
-[25]
-LaTeX Info: Redefining \. on input line 637.
-LaTeX Info: Redefining \% on input line 637.
+[49]
+LaTeX Info: Redefining \. on input line 1689.
+LaTeX Info: Redefining \% on input line 1689.
 
 Overfull \hbox (198.95006pt too wide) has occurred while \output is active
-\TU/lmr/m/n/10 26 \TU/lmr/m/sl/10 CAPÍTULO 4.  DISEÑO Y ANÁLISIS DE EXPERIMENTOS: FUNDAMENTOS, MODELACIÓN E INTERPRETACIÓN
+\TU/lmr/m/n/10 50 \TU/lmr/m/sl/10 CAPÍTULO 4.  DISEÑO Y ANÁLISIS DE EXPERIMENTOS: FUNDAMENTOS, MODELACIÓN E INTERPRETACIÓN
  []
 
-[26]
+[50]
 Capítulo 5.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-[27
+[51
 
 ]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
-LaTeX Info: Redefining \. on input line 700.
-LaTeX Info: Redefining \% on input line 700.
+LaTeX Info: Redefining \. on input line 1752.
+LaTeX Info: Redefining \% on input line 1752.
 
 Overfull \hbox (111.56116pt too wide) has occurred while \output is active
-\TU/lmr/m/n/10 28 \TU/lmr/m/sl/10 CAPÍTULO 5.  INFERENCIA ESTADÍSTICA NO PARAMÉTRICA: MÉTODOS Y APLICACIONES
+\TU/lmr/m/n/10 52 \TU/lmr/m/sl/10 CAPÍTULO 5.  INFERENCIA ESTADÍSTICA NO PARAMÉTRICA: MÉTODOS Y APLICACIONES
  []
 
-[28]
+[52]
 Overfull \vbox (243.8115pt too high) has occurred while \output is active []
 
-LaTeX Info: Redefining \. on input line 700.
-LaTeX Info: Redefining \% on input line 700.
-[29]
-LaTeX Info: Redefining \. on input line 715.
-LaTeX Info: Redefining \% on input line 715.
+LaTeX Info: Redefining \. on input line 1752.
+LaTeX Info: Redefining \% on input line 1752.
+[53]
+LaTeX Info: Redefining \. on input line 1788.
+LaTeX Info: Redefining \% on input line 1788.
 
 Overfull \hbox (111.56116pt too wide) has occurred while \output is active
-\TU/lmr/m/n/10 30 \TU/lmr/m/sl/10 CAPÍTULO 5.  INFERENCIA ESTADÍSTICA NO PARAMÉTRICA: MÉTODOS Y APLICACIONES
+\TU/lmr/m/n/10 54 \TU/lmr/m/sl/10 CAPÍTULO 5.  INFERENCIA ESTADÍSTICA NO PARAMÉTRICA: MÉTODOS Y APLICACIONES
  []
 
-[30] (./bookdownproj.aux
+[54] (./bookdownproj.aux
 LaTeX Info: Redefining \. on input line 11.
 LaTeX Info: Redefining \% on input line 11.
 )
@@ -1095,12 +1360,12 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 18354 strings out of 470176
- 340140 string characters out of 5476491
- 908526 words of memory out of 5000000
- 46702 multiletter control sequences out of 15000+600000
+ 18511 strings out of 470176
+ 347350 string characters out of 5476491
+ 911500 words of memory out of 5000000
+ 46849 multiletter control sequences out of 15000+600000
  635697 words of font info for 111 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  90i,12n,114p,639b,748s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on bookdownproj.pdf (30 pages).
+Output written on bookdownproj.pdf (54 pages).
