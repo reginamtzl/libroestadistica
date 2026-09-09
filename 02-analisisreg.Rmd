@@ -1,7 +1,7 @@
 ---
 output:
-  html_document: default
   pdf_document: default
+  html_document: default
 ---
 # Análisis de Regresión: De la Inferencia a la Predicción con R
 > **Objetivo del capítulo:** Proporcionar una guía integral y práctica para comprender, estimar, diagnosticar e interpretar modelos de regresión lineal, diferenciando entre objetivos de **inferencia estadística** y **predicción**, con implementaciones reproducibles en R que siguen las mejores prácticas de ciencia de datos moderna.
@@ -213,8 +213,6 @@ kable(comparison,
 
 **Interpretación de educación:** Controlando por edad y experiencia, tener educación universitaria se asocia con un incremento promedio de `r round(tidy_multiple$estimate[4], 0)` dólares en el salario comparado con educación primaria.
 
-
-
 ##	Supuestos del MCRL y Estimación MCO
 
 ### Supuestos del Modelo Clásico de Regresión Lineal (MCRL)
@@ -277,18 +275,31 @@ print(shapiro_test)
 #### Derivación del estimador
 
 El estimador MCO minimiza la suma de cuadrados de residuos:
-$$\min_{\boldsymbol{\beta}} \sum_{i=1}^n (Y_i - \mathbf{x}_i'\boldsymbol{\beta})^2$$
+\begin{equation}
+\min_{\boldsymbol{\beta}} \sum_{i=1}^n (Y_i - \mathbf{x}_i^{T}\boldsymbol{\beta})^2
+\end{equation}
 
 La solución analítica es:
-$$\hat{\boldsymbol{\beta}} = (\mathbf{X}'\mathbf{X})^{-1}\mathbf{X}'\mathbf{Y}$$
+\begin{equation}
+\hat{\boldsymbol{\beta}} = (\mathbf{X}^{T}\mathbf{X})^{-1}\mathbf{X}^{T}\mathbf{Y}
+\end{equation}
 
 #### Propiedades estadísticas
 
 Bajo los supuestos del MCRL:
-- **Insesgadez:** $E[\hat{\boldsymbol{\beta}}|\mathbf{X}] = \boldsymbol{\beta}$
+- **Insesgadez:** 
+\begin{equation}
+E[\hat{\boldsymbol{\beta}}|\mathbf{X}] = \boldsymbol{\beta}
+\end{equation}
 - **Eficiencia:** BLUE (Best Linear Unbiased Estimator) por el teorema de Gauss-Markov
-- **Consistencia:** $\text{plim}_{n \to \infty} \hat{\boldsymbol{\beta}} = \boldsymbol{\beta}$
-- **Normalidad asintótica:** $\hat{\boldsymbol{\beta}} \xrightarrow{d} N(\boldsymbol{\beta}, \sigma^2(\mathbf{X}'\mathbf{X})^{-1})$
+- **Consistencia:** 
+\begin{equation}
+\text{plim}_{n \to \infty} \hat{\boldsymbol{\beta}} = \boldsymbol{\beta}
+\end{equation}
+- **Normalidad asintótica:** 
+\begin{equation}
+\hat{\boldsymbol{\beta}} \xrightarrow{d} N(\boldsymbol{\beta}, \sigma^2(\mathbf{X}^{T}\mathbf{X})^{-1})
+\end{equation}
 
 ```{r mco-manual}
 # Implementación manual de MCO para verificar
@@ -315,18 +326,18 @@ kable(comparison_manual,
 #### Estimación de $\sigma^2$
 
 El estimador insesgado de la varianza del error es:
-$$\hat{\sigma}^2 = \frac{\sum_{i=1}^n \hat{\varepsilon}_i^2}{n-k-1} = \frac{\text{SCR}}{n-k-1}$$
+\begin{equation}
+\hat{\sigma}^2 = \frac{\sum_{i=1}^n \hat{\varepsilon}_i^2}{n-k-1} = \frac{\text{SCR}}{n-k-1}
+\end{equation}
 
 donde SCR es la suma de cuadrados de los residuos y $n-k-1$ son los grados de libertad.
-
-
 
 ## Inferencia Estadística en Regresión
 
 ### Distribución de los estimadores
 Bajo normalidad de los errores:
 \begin{equation}
-\hat{\beta}_j \sim N\left(\beta_j, \sigma^2[(\mathbf{X}'\mathbf{X})^{-1}]_{jj}\right)
+\hat{\beta}_j \sim N\left(\beta_j, \sigma^2[(\mathbf{X}^{T}\mathbf{X})^{-1}]_{jj}\right)
 \end{equation}
 
 El estadístico t estandarizado:
@@ -365,9 +376,13 @@ kable(t_stats,
 
 #### Prueba F para significancia conjunta
 
-$$H_0: \beta_1 = \beta_2 = \cdots = \beta_k = 0$$
+\begin{equation}
+H_0: \beta_1 = \beta_2 = \cdots = \beta_k = 0
+\end{equation}
 
-$$F = \frac{(\text{SCT} - \text{SCR})/k}{\text{SCR}/(n-k-1)} \sim F_{k,n-k-1}$$
+\begin{equation}
+F = \frac{(\text{SCT} - \text{SCR})/k}{\text{SCR}/(n-k-1)} \sim F_{k,n-k-1}
+\end{equation}
 
 ```{r prueba-f}
 # Análisis de varianza
@@ -393,18 +408,23 @@ cat(sprintf("Conclusión: %s\n",
 ### Intervalos de confianza y predicción
 
 #### Intervalos de confianza para coeficientes
-
-$$\hat{\beta}_j \pm t_{\alpha/2, n-k-1} \times \text{se}(\hat{\beta}_j)$$
+\begin{equation}
+\hat{\beta}_j \pm t_{\alpha/2, n-k-1} \times \text{se}(\hat{\beta}_j)
+\end{equation}
 
 #### Intervalos de predicción
 
 Para una nueva observación $X_0$:
 
 - **Intervalo de confianza para $E(Y|X_0)$:**
-$$\hat{Y}_0 \pm t_{\alpha/2, n-k-1} \times \text{se}(\hat{Y}_0)$$
+\begin{equation}
+\hat{Y}_0 \pm t_{\alpha/2, n-k-1} \times \text{se}(\hat{Y}_0)
+\end{equation}
 
 - **Intervalo de predicción para una nueva $Y_0$:**
-$$\hat{Y}_0 \pm t_{\alpha/2, n-k-1} \times \sqrt{\text{se}^2(\hat{Y}_0) + \hat{\sigma}^2}$$
+\begin{equation}
+\hat{Y}_0 \pm t_{\alpha/2, n-k-1} \times \sqrt{\text{se}^2(\hat{Y}_0) + \hat{\sigma}^2}
+\end{equation}
 
 ```{r intervalos}
 # Intervalos de confianza para coeficientes
@@ -438,11 +458,12 @@ kable(resultados_pred,
   kable_styling(bootstrap_options = c("striped", "hover"))
 ```
 
-
 ##	Medidas de Bondad de Ajuste
 
 ### Coeficiente de determinación R²
-$$R^2 = \frac{\text{SCE}}{\text{SCT}} = 1 - \frac{\text{SCR}}{\text{SCT}}$$
+\begin{equation}
+R^2 = \frac{\text{SCE}}{\text{SCT}} = 1 - \frac{\text{SCR}}{\text{SCT}}
+\end{equation}
 
 donde:
 - SCE = Suma de cuadrados explicada
@@ -452,7 +473,10 @@ donde:
 ### R² ajustado
 
 Penaliza por el número de variables:
-$$\bar{R}^2 = 1 - \frac{\text{SCR}/(n-k-1)}{\text{SCT}/(n-1)}$$
+\begin{equation}
+\bar{R}^2 = 1 - \frac{\text{SCR}/(n-k-1)}{\text{SCT}/(n-1)}
+\end{equation}
+
 ### Limitaciones del R²
 Como advierte @harrell2015:
 - No indica causalidad
@@ -504,10 +528,18 @@ kable(descomposicion,
 
 ##	Diagnóstico del Modelo:	Análisis de R
 ### Tipos de Residuos
-1. **Residuos ordinarios:** $\hat{\varepsilon}_i = Y_i - \hat{Y}_i$
-2. **Residuos estandarizados:** $\frac{\hat{\varepsilon}_i}{\hat{\sigma}}$
-3. **Residuos estudentizados:** $\frac{\hat{\varepsilon}_i}{\hat{\sigma}_i\sqrt{1-h_{ii}}}$
-
+1. **Residuos ordinarios:** 
+\begin{equation}
+\hat{\varepsilon}_i = Y_i - \hat{Y}_i
+\end{equation}
+2. **Residuos estandarizados:** 
+\begin{equation}
+\frac{\hat{\varepsilon}_i}{\hat{\sigma}}
+\end{equation}
+3. **Residuos estudentizados:** 
+\begin{equation}
+\frac{\hat{\varepsilon}_i}{\hat{\sigma}_i\sqrt{1-h_{ii}}}
+\end{equation}
 donde $h_{ii}$ es el leverage de la observación $i$.
 
 ### Gráficos de diagnósticos esenciales
@@ -815,7 +847,6 @@ residuos_tiempo <- residuals(modelo_tiempo)
 acf(residuos_tiempo, main = "Autocorrelación de Residuos")
 ```
 
-
 ## Selección de Variables y Extensiones del Modelo
 
 ### Selección de Variables y Modelos
@@ -823,8 +854,14 @@ acf(residuos_tiempo, main = "Autocorrelación de Residuos")
 
 Los criterios AIC y BIC penalizan la complejidad del modelo:
 
-- **AIC:** $AIC = n \ln(\hat{\sigma}^2) + 2k$
-- **BIC:** $BIC = n \ln(\hat{\sigma}^2) + k \ln(n)$
+- **AIC:** 
+\begin{equation}
+AIC = n \ln(\hat{\sigma}^2) + 2k 
+\end{equation}
+- **BIC:** 
+\begin{equation} 
+BIC = n \ln(\hat{\sigma}^2) + k \ln(n) 
+\end{equation}
 
 Menor valor indica mejor ajuste penalizado.
 
@@ -1223,7 +1260,9 @@ Los GLM extienden la regresión lineal a variables respuesta no normales mediant
 
 Para variable respuesta binaria $Y \in \{0,1\}$:
 
-$\log\left(\frac{p}{1-p}\right) = \beta_0 + \beta_1 X_1 + \cdots + \beta_k X_k$
+\begin{equation}
+\log\left(\frac{p}{1-p}\right) = \beta_0 + \beta_1 X_1 + \cdots + \beta_k X_k
+\end{equation}
 
 donde $p = P(Y=1|X)$.
 
@@ -1273,8 +1312,14 @@ abline(a = 0, b = 1, lty = 2, col = "red")
 
 Cuando $p \approx n$ o $p > n$, o cuando hay multicolinealidad severa, MCO puede ser inestable. Las técnicas de regularización añaden penalizaciones:
 
-- **Ridge:** $\min_{\beta} \|Y - X\beta\|_2^2 + \lambda \|\beta\|_2^2$
-- **LASSO:** $\min_{\beta} \|Y - X\beta\|_2^2 + \lambda \|\beta\|_1$
+- **Ridge:** 
+\begin{equation}
+\min_{\beta} \|Y - X\beta\|_2^2 + \lambda \|\beta\|_2^2
+\end{equation}
+- **LASSO:** 
+\begin{equation}
+\min_{\beta} \|Y - X\beta\|_2^2 + \lambda \|\beta\|_1
+\end{equation}
 - **Elastic Net:** Combinación de ambas
 
 ```{r regularizacion}
