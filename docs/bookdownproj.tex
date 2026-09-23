@@ -110,7 +110,7 @@
 
 \title{Estadística Aplicada}
 \author{Equipo Editorial, Wulfrano Gómez Gallardo}
-\date{2026-09-09}
+\date{2026-09-23}
 
 \begin{document}
 \maketitle
@@ -119,20 +119,358 @@
 \setcounter{tocdepth}{2}
 \tableofcontents
 }
-\chapter{ANTECEDENTES}\label{antecedentes}
+\chapter{MUESTRA Y PROBLACIÓN}\label{muestra-y-problaciuxf3n}
 
-\textbf{Objetivos}
-**
+\section{POBLACIÓN}\label{poblaciuxf3n}
 
-\section{Muestra y población}\label{muestra-y-poblaciuxf3n}
+Una población, en estadística, es un conjunto de elementos que comparten una característica en común de interés para un investigador.
 
-\section{Distribuciones muestrales}\label{distribuciones-muestrales}
+Como ejemplos podemos mencionar el interés de un investigador sobre el uso de celulares entre estudiantes de secundaria en México. En este caso la población está integrada por todos los mexicanos que se encuentren actualmente inscritos en una institución educativa, pública o privada a nivel secundaria. También podría ser del interés de un investigador ciertas especies y su capacidad de reproducción. Por ejemplo, las plagas que afectan las grandes ciudades como son las ratas. En este caso se podría establecer la cantidad de roedores que se concentran en una ciudad, para establecer como se reproducen o migran a estas grandes ciudades como Nueva York.
 
-\section{Intervalos de confianza}\label{intervalos-de-confianza}
+Las poblaciones pueden ser finitas o infinitas, de ellas se pueden medir características cuantitativas o cualitativas. Como ejemplo de poblaciones infinitas podemos mencionar el lanzamiento de una moneda un número infinito de veces, los números que se encuentran entre cero y uno, que poden ser seleccionados al azar, entre otros. Mientras que las poblaciones finitas pueden estar representadas por ciudadanos en un país, número de especies en una región, entre otros. Las características cuantitativas que se pueden medir de estas poblaciones pueden ser edad, estaturas, pesos, entre otros. Mientras que las características cuantitativas como color de ojos, color de la piel, entre otros.
 
-\section{Pruebas de hipótesis}\label{pruebas-de-hipuxf3tesis}
+Las características cualitativas siempre deben ser cuantificadas de forma cuantitativa para fines estadísticos, a estas variables se les conoce como factores. Por ejemplo el nivel de satisfacción de por u servicio recibido, los cuales son representados por figuras para hacer que el usuario pueda responde de la forma más objetiva y de manera sencilla, como se muestra en la figura 1\footnote{\emph{Fuente: Extraido de \url{https://www.magnific.com/es/vector-gratis/medidor-satisfaccion-emoji-pequeno_44156211.htm\#fromView=keyword&page=1&position=0&uuid=484b5e55-bf2d-4120-b59f-55c1c2d67403&track=ais_hybrid&query=Caritas+satisfaccion}}}
 
-\chapter{Muestreo}\label{muestreo}
+\begin{figure}
+\centering
+\includegraphics[width=0.4\linewidth,height=\textheight,keepaspectratio,alt={Encuesta de satisfacción}]{images/emoji_satisfaction_meter.jpg}
+\caption{Encuesta de satisfacción}\label{fig:satisfaccion}
+\end{figure}
+
+Debido a que las poblaciones pueden ser demasiado grandes para censarlas o el tiempo es limitado para realizar el censo, o no se cuentan con los recursos económicos necesarios, es que se deben realizar muestreos.
+
+\section{Muestreo}\label{muestreo}
+
+Una muestra es un subconjunto de la población que se selecciona de forma aleatoria, representativa e insesgada.
+
+¿Qué significa esto?
+
+\begin{itemize}
+\tightlist
+\item
+  Aleatorio: Los elementos se seleccionan sin un orden específico. Esto es, no se sabe qué elemento será seleccionado. Generalmente se generan números aleatorios o se seleccionan los elementos de una tómbola.
+\item
+  Representativo: En este caso se espera que los elementos de la población queden representados en la muestra. suponga que una población de 1,000 personas, con un 20\% de mujeres y un 80\% de hombres, la muestra debería tener al menos un número suficientes de representates de hombres y mujeres. Por ejemplo, si una muestra de 100 elementos de esta población que se toma de manera aleatoria, podría conducir a que todos los elementos seleccionados fueran hombres y ninguna mujer, esta muestra no sería representativa.
+\item
+  Insesgado: Se espera que la muestra sea aleatoria, lo que evitaría algún criterio de selección e los elementos de la muestra por parte del investigador. Por ejemplo: Suponga que una acreditadora desea seleccionar a diez estudiantes de manera aleatoria de un grupo de matemáticas, para aplicarles una prueba y evaluar el desempeño del profesor. Suponga también que el profesor será recompensado si los estudiantes seleccionados aleatoriamente obtiene buenos resultados, en caso contrario, su contrato será rescindido. El profesor podría verse tentado a seleccionar solo a los alumnos con mejor promedio para este fin, lo que provocaría un sesgo al seleccionar dicha muestra.
+\end{itemize}
+
+\section{ESTIMADORES}\label{estimadores}
+
+Debido a que las poblaciones son demasiado grandes para censarlas o el tiempo para realizar el censo es limitado, así como los recursos financieros y humanos, es que nos vemos en la necesidad de realizar muestreo. Es necesario realizar estimaciones de los parámetros poblacionales que deseamos conocer. Esto es, si el objetivo fuera calcular la estatura promedio de los estudiantes de la facultad de ingeniería y sólo tuviéramos un par de días para hacerlo, a través de una muestra se estiman los parámetros poblacionales, en este caso la media. Entonces se dice que la media muestral \(\bar{x}\) estima al parámetro poblacional \(\mu\).
+
+La diferencia en el cálculo de la media de una muestra y de una poblacional es la siguiente
+
+\textbf{Media muestral}
+
+\begin{equation}
+\bar{x}=\frac{1}{n}\sum_{i=1}^{n}x_i
+\end{equation}
+
+en donde
+
+\(\boldsymbol{\bar{x}}\) : Es la media muestral.
+
+\(\boldsymbol{n}\): es el tamaño de la muestra y representa la probabilidad de seleccionar un elemento. En este caso todos los elementos de la muestra son equiprobables. Esto es, tiene la misma probabilidad de ser seleccionados.
+
+\(\boldsymbol{x_i}\): es el elemento i-ésimo, seleccionado de la población de forma aleatoria.
+
+\textbf{Media poblacional}
+
+En el caso de una variable aleatoria\footnote{Una variable aleatoria para este fin se considera un evento asociado a una probabilidad} discreta
+
+\begin{equation}
+\mu=\sum_{i=1}^Nx_ip(x_i)
+\end{equation}
+
+en donde:
+
+\(\boldsymbol{\mu}\): es la media poblacional.
+
+\(\boldsymbol{N}\): es el tamaño de la población.
+
+\(\boldsymbol{p(x_i)}\): es la medida de la probabilidad del evento \(\boldsymbol{x_i}\).
+
+\(\boldsymbol{x_i}\): es el i-esimo elemento de la población.
+
+En este caso se dice que el estadístico \(\bar{x}\) estima al parámetro \(\mu\). Esto es
+
+\(\bar{X}\) estima a \(\mu\)
+
+{\emph{\textbf{La siguiente aplicación ejemplifica esto}}}
+
+Es claro que el valor del estadístico no corresponderá exactamente al valor del parámetro, debido a que el primero se calcula con un subconjunto de de los elementos de la población.
+
+¿Por qué entonces podemos confiar en un estadístico de una muestra para estimar un parámetro poblacional?
+
+\chapter{DISTRIBUCIONES MUESTRALES}\label{distribuciones-muestrales}
+
+Una distribución de muestras, es el resultado de tomar la combinación de un tamaño \textbf{\emph{n}} de elementos de una población de tamaño \textbf{\emph{N}} generando \textbf{\emph{K}} combinaciones y calculando \(\boldsymbol{\bar{x}_k}\) medias muestrales, las cuales resultan ser variables aleatorias (v.a.). Esto es, si se seleccionan diferentes muestras, del mismo tamaño n de forma aleatoria, de una población, cada una de ellas tendría un valor diferente y la probabilidad de que alguna de ellas acierte al valor del parámetro poblacional \(\boldsymbol{\mu}\) es casi seguramente cero.
+
+En forma matemática se tiene
+
+\begin{equation}
+C(N,n)=\binom{N}{n}=\frac{N!}{n!(N-n)!}=K
+\label{eq:combinaciones}
+\end{equation}
+
+en donde
+
+\(K\): es el número de combinaciones de tamaño \(n\) tomadas de \(N\).
+
+En este caso la varianza de las medias de las muestras se calcula como
+
+\begin{equation}
+\sigma^2_{\bar{x}}=\frac{\sum_{i=1}^K(\bar{X}_i-\bar{\bar{X}})^2}{k}
+\label{eq:varianza_muestral}
+\end{equation}
+
+donde
+
+\begin{equation}
+\bar{\bar{X}}=\frac{\sum_{i=1}^k\bar{X}_i}{K}
+\label{eq:media_medias}
+\end{equation}
+
+\(\bar{\bar{X}}\): media de las medias.
+
+y la i-ésima media de las muestras, con un tamaño demuestra \textbf{n} es
+
+\begin{equation}
+\bar{X}_i=\frac{\sum_{j=1}^nX_j}{n}
+\label{eq:media_mues}
+\end{equation}
+
+En este caso el error estándar se obtiene al sacar la raíz cuadrada de la ecuación \eqref{eq:varianza_muestral}
+
+\begin{equation}
+\sigma_{\bar{x}}=\sqrt{\sigma^2_{\bar{x}}}
+\label{eq:err_est}
+\end{equation}
+
+Como se puede observar, el cálculo del error estándar por este procedimiento no es recomendable ya que existen más combinaciones \textbf{\emph{K}} que el número de elementos de la población \textbf{\emph{N}}. lo que lo hace poco práctico o inservible si se desea calcular. Esto es, es más fácil censar a la población, que tomar todas las combinaciones de las muestras de tamaño \textbf{\emph{n}} para calcular el error estándar.
+
+En este caso, considere las variables aleatorias
+
+\begin{equation}
+X_1,X_2,...,X_n
+\label{eq:va}
+\end{equation}
+
+En donde
+
+\begin{equation}
+E[X_i]=\mu
+\label{eq:esp}
+\end{equation}
+
+y su varianza es
+
+\begin{equation}
+Var[X_i]=\sigma^2
+\label{eq:var}
+\end{equation}
+
+De la ecuación \eqref{eq:media_mues}, la media muestral es
+
+\begin{equation}
+\bar{X}=\frac{X_1+X_2+\dots+X_n}{n}
+\label{eq:media_va}
+\end{equation}
+
+y su varianza
+
+\begin{equation}
+Var[\bar{X}]=Var\left[\frac{X_1+X_2+\dots+X_n}{n}\right]
+\label{eq:var_mues}
+\end{equation}
+
+en donde
+
+\begin{equation}
+Var[\bar{X}]=\frac{Var[X_1]+Var[X_2]+\dots+Var[X_n]}{n^2}
+\label{eq:var_mues2}
+\end{equation}
+
+de la ecuación \eqref{eq:var_mues} se tiene
+
+\begin{equation}
+Var[\bar{X}]=\frac{n\sigma^2}{n^2}
+\end{equation}
+
+donde
+
+\begin{equation}
+Var[\bar{X}]=\frac{\sigma^2}{n}
+\end{equation}
+
+y finalmente el error estándar es
+
+\begin{equation}
+\sigma_{\bar{x}}=\sqrt{\frac{\sigma^2}{n}}=\frac{\sigma}{\sqrt{n}}
+\end{equation}
+
+\section{Teorema del Límite Central}\label{teorema-del-luxedmite-central}
+
+Sean \(X_1,X_2,...,X_n\) una muestra de tamaño \textbf{n} de una población de tamaño \textbf{N} con media \(\mu\) y varianza finita \(\sigma^2\), de esta población se obtienen \textbf{k} combinaciones de tamaño \textbf{n}, que generan \(\bar{X}_k\) medias muestrales, estas últimas tienden a distribuirse de forma asintótica a la normal con media \(\bar{\bar{X}}=\mu\) y error estándar \(\sigma_{\bar{x}}\), el cual disminuye conforme el tamaño de la muestra aumenta, no importando la distribución de probabilidad de la que provengan las variables aleatorias de las muestras tomadas.
+
+La figura 2 ejemplifica esto.
+
+\begin{figure}
+\centering
+\pandocbounded{\includegraphics[keepaspectratio,alt={\label{fig:TLC}Teorema del Límite Central}]{bookdownproj_files/figure-latex/TLC-1.pdf}}
+\caption{\label{fig:TLC}Teorema del Límite Central}
+\end{figure}
+
+\section{ESTIMACIÓN PUNTUAL}\label{estimaciuxf3n-puntual}
+
+Como se puede observar los valores de \(\bar{X}_i\) se distribuyen de forma gaussiana alrededor de \(\bar{\bar{X}}=\mu\) y a medida que el tamaño de la muestra aumenta, el error estándar disminuye y los valores se encuentran más cerca del parámetro poblacional \(\mu\). Sin embargo, la probabilidad de que alguna \(\bar{X}_i\) sea igual al parámetro desconocido \(\mu\) es casi seguramente de cero, aún si el valor fuera igual o casi igual al parámetro no lo sabría, por eso la estimación puntual del parámetro no es recomendable, por lo que es necesario utilizar un intervalo donde se pueda establecer, con un error específico y una probailidad, que se encontrará el parámetro real pero desconocido.
+
+\chapter{INTERVALOS DE CONFIANZA}\label{intervalos-de-confianza}
+
+Un intervalo de confianza se establece como la probabilidad de que el parámetro desconocido \(\mu\) se encuentre en un rango de valores, a dicha probabilidad asociada se le conoce como \textbf{coeficiente de confianza} \(cc=1-\alpha\) y se calcula al restar a uno el nivel de significancia \(\alpha\). Tanto el coeficiente de confianza como el nivel de significancia tienen un rango de valores aceptados. Por ejemplo, el \emph{cc} se acepta se encuentre \(90\%\leq cc<100\%\), mientras que \(0\%<\alpha\leq10\%\).
+
+En este caso, si a la media poblacional se le colocan un par de brazos, uno a la izquierda y el otro a la derecha, con tamaño \(2\sigma_{\bar{x}}\) se tendrían el 95.5\% de las \(\bar{x}_i\) y solo el 4.5\% no los contendría. Sin embargo, como no se conoce el valor de \(\mu\) se deben colocar estos brazos en lo que sí se conoce \(\bar{X}_i\) y suponer que existe un 95.5\% de probabilidad de que este contenga a la media poblacional.
+
+La razón por la que se usa la variable aleatoria \(z_i\), que corresponde a una variable aleatoria con distribución gaussina, específicamente la normal estándar con media \(\mu_z=0\) y desviación estándar \(\sigma_z=1\), es por que las distribuciones muestrales, como se ha establecido en el Teorema del Límite Central, se distribuyen de forma normal.
+
+El tamaño del brazo que se le coloca a la media muestral se le conoce como error y se calcula con
+
+\begin{equation}
+E=z_{\frac{\alpha}{2}}\frac{\sigma}{\sqrt{n}}
+\end{equation}
+
+En donde
+
+\(E\): Error de muestreo
+
+\(z_{\frac{\alpha}{2}}\): Es el valor de la distribución \textbf{\emph{z}} que nos indica el número de desviaciones estándar a la izquierda y a la derecha en el que se concentran el 95.5\% de los elementos en una distribución normal estándar.
+
+\(\sigma\): Es la desviación estándar poblacional.
+
+\(n\): Es el tamaño de la muestra.
+
+En este caso se suma y se resta este error \textbf{\emph{E}} a la \(\bar{X}_i\) para obtener los límites de confianza inferior y superiro.
+
+\begin{equation}
+IC=\bar{X}_i\pm E.
+\end{equation}
+
+En done
+
+\(IC\): Intervalo de confianza
+
+\(E\): Error de mustreo
+
+Esto es
+
+\begin{equation}
+LI=\bar{X}_i-z_{\frac{\alpha}{2}}\frac{\sigma}{\sqrt{n}}
+\end{equation}
+
+y
+
+\begin{equation}
+LS=\bar{X}_i+z_{\frac{\alpha}{2}}\frac{\sigma}{\sqrt{n}}
+\end{equation}
+
+En donde
+
+\(LS\): Límite superiro.
+
+\(LI\): Límite inferior.
+
+La siguiente aplicación ejemplifica el uso de dichos intervalos
+
+\textbf{\emph{COLOCAR LIGA DE APP}}
+
+Un ejemplo del uso de los intervalos de confianza se presenta a continuación.
+
+\textbf{Ejemplo 1:}
+
+Suponga que se desea estimar la estatura promedio de los estudiantes de la Facultad de Ingeniería, se sabe que la desviación estándar poblacional es de 9 cm. Una muestra de 31 alumnos reporta la siguiente media muestral \(\bar{x}\) = 167 cm. Suponga que se desea estimar a la media poblacional con una probabilidad del 95.5\%.
+
+\textbf{Solución}
+
+En este caso, el error de muestreo es de \(E\)= \(\pm\) 3.24 cm. El límite inferior \(LI\)= 63.76 y el límite superior \(LS\)= 70.24. Lo que significa que existe un 95.5\% de probabilidad de que la media poblacional de la estatura se encuentre entre estos valores. Es obvio que si se aumenta el tamaño de la muestra se incrementa el Error disminuye. Esto se verá en el ejemplo 2.
+
+\textbf{Ejemplo 2:}
+
+Suponga que en el ejemplo 1, el tamaño de la muestra es de 60 elementos. ¿Cuál sería el error de muestreo \textbf{\emph{E}}?
+
+\textbf{Solución}
+
+El nuevo error de muestreo con una muestra de 62 es de \(E\)= \(\pm\) 2.29 cm, el cual es menor al error \(E\)= \(\pm\) 3.24 cm con una muestra de 31 estudiantes. Como puede observarse, a pesar de que el tamaño de la muestra se duplicó, el error de muestreo no se redujo a la mitad.
+
+Este tema será profundizado con mayor detalle en el siguiente capítulo, en donde se abordarán temas relacionados con el muestreo aleatorio irrestricto. También se analizará la situación cuando \(\sigma\) no sea conocida y qué pasa cuando la población que se analiza, el interés del investigador se centre en las proporciones.
+
+En otras ocasiones el interés del investigador es el de encontrar el valor del parámetro que describe a una población, o la probabilidad de que este sea mayor o menor que un valor predeterminado, para esto se emplea una prueba de hipótesis.
+
+\chapter{PRUEBAS DE HIPÓTESIS}\label{pruebas-de-hipuxf3tesis}
+
+Una hipótesis, desde el punto de vista de la estadística, es una aseveración que se hace sobre un parámetro poblacional. Por ejemplo:
+
+\begin{itemize}
+\item
+  Establecer que la estatura promedio los estudiantes de la facultad de ingeniería es de 170 cm.
+\item
+  El gasto promedio de las familias que pertenecen a la clase media en México es de \$10,000 MXN.
+\item
+  La cantidad de tiepo que un adolecente invierte en redes sociales al día es de 8 h.
+\end{itemize}
+
+Así como estos, existen una enorme cantidad de aseveraciones que puede hacer un investigador acerca de una población. Adicionalmente, como cualquier hipótesis en una investigación, esta tiene que ser comprobada. En este caso, la forma en que un investigador puede comprobar su aseveración es a través de una muestra y la extracción de un estadístico de prueba, que deber ser probada para demostrar que la diferencia no es estadísticamente significativa y que su aseveración es correcta.
+
+Por ejemplo, regresando a nuestra población (estudiantes de la Facultdad de Ingeniería), si se desea verificar que el gasto promedio semanal de los estudiantes es de \$500.00 MXN. En este caso \(\mu_0=\) \$500.00 MXN, donde \(\mu_0\) es la aseveración que se hace sobre el parámetro \(\mu\) la media poblacional, real pero desconocida, y la forma de establecer si la diferencia es estadísticamente significativa es a través de una muestra de tamaña \textbf{\emph{n}} lo suficientemente grande para calcular un \(\bar{X}_i\) y a través de la siguiente expresión (con \(\sigma\) conocida)
+
+\begin{equation}
+z_i=\frac{\mu_0-\bar{X}_i}{\sigma/\sqrt{n}}
+\end{equation}
+
+El valor de \textbf{\emph{z}} se compara con una \(z_{\alpha/2}\), debido a que es una prueba de dos colas, ya que cualquier valor que se aleje de \$500.00 MXN por debajo o de \$500.00 por arriba, lo suficiente, rechazará nuestra aseveración. Esto significa que si \(-z_{\alpha/2} \leq z_i\leq z_{\alpha/2}\) no habrá evidencia para rechazar la hipótesis de que la media de los gastos promedios de los estudiantes en una semana sea diferente de \$500.00 MXN.
+
+Normalmente, cuando se establecen pruebas de hipótesis estadísticas se pueden establecer las siguientes hipótesis nulas e hipótesis alternativas:
+
+\[
+\begin{matrix}
+H_0:~\mu=\mu_0 & H_0:~\mu\leq\mu_0 & H_0:~\mu\geq\mu_0 \\
+H_0:~\mu\neq\mu_0 & H_0:~\mu>\mu_0 & H_0:~\mu<\mu_0
+\end{matrix}
+\]
+
+\pandocbounded{\includegraphics[keepaspectratio]{bookdownproj_files/figure-latex/unnamed-chunk-4-1.pdf}}
+
+Como se puede observar en las figuras, al área sombreada en los extremos, a esta probabilidad se le conoce como \(\alpha\) o \emph{nivel de significancia} y el resto del área se le conoce como \emph{coeficiente de confianza} \(cc=1-\alpha\). Estas áreas presentan las zonas de aceptación \textbf{\emph{cc}} y rechazo \(\boldsymbol{\alpha}\).
+
+Ejemplo 3:
+
+Suponga que se toma una muestra de 30 estudiantes de la Facultad de Ingeniería y se desea probar que la estatura promedio es de 172 cm, la muestra arrojó un valor promedio de 168 cm. Con un nivel de significancia \(\alpha\) del 5\% y una varianza conocida y finita \(\sigma~=~5\) cm ¿Existe suficiente evidencia para rechazar la hipótesis nula?
+
+\(H_0:~\mu=172~cm\)
+
+\(H_A:~\mu\neq 172~cm\)
+
+El estadístico de prueba es
+
+\begin{equation}
+z_i=\frac{\mu_0-\bar{x}}{\sigma/\sqrt{n}}
+\end{equation}
+
+Al comparar la \(z_{\alpha/2}=\pm\) 1.959964 con el valor de \(z_i=\) 4.3817805 del estadístico de prueba, se observa que se encuentra en la zona de rechazo, por lo que existe suficiente evidencia para rechazar \(H_0\) y se pude decir que no existe evidencia para afirmar que los estudiantes midan 172 cm.
+
+Una forma alternativa de resolver el problema es con el valor \textbf{\emph{p}}, o el \textbf{\emph{``p-value''}}. En este caso se calcula la probabilidad del valor de \(z_i\) con la distribución normal estándar y se compara con el valor \(\alpha/2\), sí el valor de \(\alpha/2=.05/2=.025\geq p-value\) existe suficiente evidencia para rechazar \(H_0\), en caso contrario, cuando \(\alpha/2=.05/2=.025<p-value\), no existe suficiente evidencia para rechazar \(H_0\). Esto se puede comprobar con el siguiente análisis.
+
+Como el valor de \(\alpha/2=2.5\%\geq\) 0.0005885670 \% existe suficiente evidencia para decir que los estudiantes no miden 172 cm.
+
+Para concluir con este breve repaso se resolverán los siguientes ejemplos:
+
+Ejemplo 3.
+
+Su ponga que se desea estimar si la población mide más de 172 cm con la misma muestra.
+
+\(H_0:\)
+
+\chapter{Muestreo}\label{muestreo-1}
 
 \textbf{Objetivo}
 * *
@@ -454,18 +792,31 @@ Normalidad & - & Pruebas t/F (muestras pequeñas) \\
 \subsubsection{Derivación del estimador}\label{derivaciuxf3n-del-estimador}
 
 El estimador MCO minimiza la suma de cuadrados de residuos:
-\[\min_{\boldsymbol{\beta}} \sum_{i=1}^n (Y_i - \mathbf{x}_i'\boldsymbol{\beta})^2\]
+\begin{equation}
+\min_{\boldsymbol{\beta}} \sum_{i=1}^n (Y_i - \mathbf{x}_i^{T}\boldsymbol{\beta})^2
+\end{equation}
 
 La solución analítica es:
-\[\hat{\boldsymbol{\beta}} = (\mathbf{X}'\mathbf{X})^{-1}\mathbf{X}'\mathbf{Y}\]
+\begin{equation}
+\hat{\boldsymbol{\beta}} = (\mathbf{X}^{T}\mathbf{X})^{-1}\mathbf{X}^{T}\mathbf{Y}
+\end{equation}
 
 \subsubsection{Propiedades estadísticas}\label{propiedades-estaduxedsticas}
 
 Bajo los supuestos del MCRL:
-- \textbf{Insesgadez:} \(E[\hat{\boldsymbol{\beta}}|\mathbf{X}] = \boldsymbol{\beta}\)
+- \textbf{Insesgadez:}
+\begin{equation}
+E[\hat{\boldsymbol{\beta}}|\mathbf{X}] = \boldsymbol{\beta}
+\end{equation}
 - \textbf{Eficiencia:} BLUE (Best Linear Unbiased Estimator) por el teorema de Gauss-Markov
-- \textbf{Consistencia:} \(\text{plim}_{n \to \infty} \hat{\boldsymbol{\beta}} = \boldsymbol{\beta}\)
-- \textbf{Normalidad asintótica:} \(\hat{\boldsymbol{\beta}} \xrightarrow{d} N(\boldsymbol{\beta}, \sigma^2(\mathbf{X}'\mathbf{X})^{-1})\)
+- \textbf{Consistencia:}
+\begin{equation}
+\text{plim}_{n \to \infty} \hat{\boldsymbol{\beta}} = \boldsymbol{\beta}
+\end{equation}
+- \textbf{Normalidad asintótica:}
+\begin{equation}
+\hat{\boldsymbol{\beta}} \xrightarrow{d} N(\boldsymbol{\beta}, \sigma^2(\mathbf{X}^{T}\mathbf{X})^{-1})
+\end{equation}
 
 \begin{table}
 \centering
@@ -491,7 +842,9 @@ educacionUniversidad & educacionUniversidad & 14576.7678 & 14576.7678 & 0\\
 \subsubsection{\texorpdfstring{Estimación de \(\sigma^2\)}{Estimación de \textbackslash sigma\^{}2}}\label{estimaciuxf3n-de-sigma2}
 
 El estimador insesgado de la varianza del error es:
-\[\hat{\sigma}^2 = \frac{\sum_{i=1}^n \hat{\varepsilon}_i^2}{n-k-1} = \frac{\text{SCR}}{n-k-1}\]
+\begin{equation}
+\hat{\sigma}^2 = \frac{\sum_{i=1}^n \hat{\varepsilon}_i^2}{n-k-1} = \frac{\text{SCR}}{n-k-1}
+\end{equation}
 
 donde SCR es la suma de cuadrados de los residuos y \(n-k-1\) son los grados de libertad.
 
@@ -500,16 +853,22 @@ donde SCR es la suma de cuadrados de los residuos y \(n-k-1\) son los grados de 
 \subsection{Distribución de los estimadores}\label{distribuciuxf3n-de-los-estimadores}
 
 Bajo normalidad de los errores:
-\[\hat{\beta}_j \sim N\left(\beta_j, \sigma^2[(\mathbf{X}'\mathbf{X})^{-1}]_{jj}\right)\]
+\begin{equation}
+\hat{\beta}_j \sim N\left(\beta_j, \sigma^2[(\mathbf{X}^{T}\mathbf{X})^{-1}]_{jj}\right)
+\end{equation}
 
 El estadístico t estandarizado:
-\[t = \frac{\hat{\beta}_j - \beta_j}{\text{se}(\hat{\beta}_j)} \sim t_{n-k-1}\]
+\begin{equation}
+t = \frac{\hat{\beta}_j - \beta_j}{\text{se}(\hat{\beta}_j)} \sim t_{n-k-1}
+\end{equation}
 
 \subsection{Pruebas de hipótesis}\label{pruebas-de-hipuxf3tesis-1}
 
 \subsubsection{Prueba t para coeficientes individuales}\label{prueba-t-para-coeficientes-individuales}
 
-\[H_0: \beta_j = 0 \quad \text{vs.} \quad H_1: \beta_j \neq 0\]
+\begin{equation}
+H_0: \beta_j = 0 \quad \text{vs.} \quad H_1: \beta_j \neq 0
+\end{equation}
 
 \begin{table}
 \centering
@@ -536,9 +895,13 @@ educacionUniversidad & 14576.7678 & 918.7004 & 15.8667 & 0.0000 & ***\\
 
 \subsubsection{Prueba F para significancia conjunta}\label{prueba-f-para-significancia-conjunta}
 
-\[H_0: \beta_1 = \beta_2 = \cdots = \beta_k = 0\]
+\begin{equation}
+H_0: \beta_1 = \beta_2 = \cdots = \beta_k = 0
+\end{equation}
 
-\[F = \frac{(\text{SCT} - \text{SCR})/k}{\text{SCR}/(n-k-1)} \sim F_{k,n-k-1}\]
+\begin{equation}
+F = \frac{(\text{SCT} - \text{SCR})/k}{\text{SCR}/(n-k-1)} \sim F_{k,n-k-1}
+\end{equation}
 
 \begin{table}
 \centering
@@ -575,7 +938,9 @@ Residuals & 195 & 4757889304 & 24399432 & NA & NA\\
 
 \subsubsection{Intervalos de confianza para coeficientes}\label{intervalos-de-confianza-para-coeficientes}
 
-\[\hat{\beta}_j \pm t_{\alpha/2, n-k-1} \times \text{se}(\hat{\beta}_j)\]
+\begin{equation}
+\hat{\beta}_j \pm t_{\alpha/2, n-k-1} \times \text{se}(\hat{\beta}_j)
+\end{equation}
 
 \subsubsection{Intervalos de predicción}\label{intervalos-de-predicciuxf3n}
 
@@ -584,10 +949,14 @@ Para una nueva observación \(X_0\):
 \begin{itemize}
 \item
   \textbf{Intervalo de confianza para \(E(Y|X_0)\):}
-  \[\hat{Y}_0 \pm t_{\alpha/2, n-k-1} \times \text{se}(\hat{Y}_0)\]
+  \begin{equation}
+  \hat{Y}_0 \pm t_{\alpha/2, n-k-1} \times \text{se}(\hat{Y}_0)
+  \end{equation}
 \item
   \textbf{Intervalo de predicción para una nueva \(Y_0\):}
-  \[\hat{Y}_0 \pm t_{\alpha/2, n-k-1} \times \sqrt{\text{se}^2(\hat{Y}_0) + \hat{\sigma}^2}\]
+  \begin{equation}
+  \hat{Y}_0 \pm t_{\alpha/2, n-k-1} \times \sqrt{\text{se}^2(\hat{Y}_0) + \hat{\sigma}^2}
+  \end{equation}
 \end{itemize}
 
 \textbackslash begin\{table\}
@@ -636,7 +1005,9 @@ edad & experiencia & educacion & fit & lwr & upr & amplitud\_intervalo\\
 
 \subsection{Coeficiente de determinación R²}\label{coeficiente-de-determinaciuxf3n-ruxb2}
 
-\[R^2 = \frac{\text{SCE}}{\text{SCT}} = 1 - \frac{\text{SCR}}{\text{SCT}}\]
+\begin{equation}
+R^2 = \frac{\text{SCE}}{\text{SCT}} = 1 - \frac{\text{SCR}}{\text{SCT}}
+\end{equation}
 
 donde:
 - SCE = Suma de cuadrados explicada
@@ -646,8 +1017,12 @@ donde:
 \subsection{R² ajustado}\label{ruxb2-ajustado}
 
 Penaliza por el número de variables:
-\[\bar{R}^2 = 1 - \frac{\text{SCR}/(n-k-1)}{\text{SCT}/(n-1)}\]
-\#\#\# Limitaciones del R²
+\begin{equation}
+\bar{R}^2 = 1 - \frac{\text{SCR}/(n-k-1)}{\text{SCT}/(n-1)}
+\end{equation}
+
+\subsection{Limitaciones del R²}\label{limitaciones-del-ruxb2}
+
 Como advierte Harrell Jr (\citeproc{ref-harrell2015}{2015}):
 - No indica causalidad
 - Puede ser alto con modelo mal especificado
@@ -702,14 +1077,22 @@ Verificación: SCE + SCR & 40493971495 & NA\\
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  \textbf{Residuos ordinarios:} \(\hat{\varepsilon}_i = Y_i - \hat{Y}_i\)
+  \textbf{Residuos ordinarios:}
+  \begin{equation}
+  \hat{\varepsilon}_i = Y_i - \hat{Y}_i
+  \end{equation}
 \item
-  \textbf{Residuos estandarizados:} \(\frac{\hat{\varepsilon}_i}{\hat{\sigma}}\)
+  \textbf{Residuos estandarizados:}
+  \begin{equation}
+  \frac{\hat{\varepsilon}_i}{\hat{\sigma}}
+  \end{equation}
 \item
-  \textbf{Residuos estudentizados:} \(\frac{\hat{\varepsilon}_i}{\hat{\sigma}_i\sqrt{1-h_{ii}}}\)
+  \textbf{Residuos estudentizados:}
+  \begin{equation}
+  \frac{\hat{\varepsilon}_i}{\hat{\sigma}_i\sqrt{1-h_{ii}}}
+  \end{equation}
+  donde \(h_{ii}\) es el leverage de la observación \(i\).
 \end{enumerate}
-
-donde \(h_{ii}\) es el leverage de la observación \(i\).
 
 \subsection{Gráficos de diagnósticos esenciales}\label{gruxe1ficos-de-diagnuxf3sticos-esenciales}
 
@@ -938,9 +1321,15 @@ Los criterios AIC y BIC penalizan la complejidad del modelo:
 \begin{itemize}
 \tightlist
 \item
-  \textbf{AIC:} \(AIC = n \ln(\hat{\sigma}^2) + 2k\)
+  \textbf{AIC:}
+  \begin{equation}
+  AIC = n \ln(\hat{\sigma}^2) + 2k 
+  \end{equation}
 \item
-  \textbf{BIC:} \(BIC = n \ln(\hat{\sigma}^2) + k \ln(n)\)
+  \textbf{BIC:}
+  \begin{equation} 
+  BIC = n \ln(\hat{\sigma}^2) + k \ln(n) 
+  \end{equation}
 \end{itemize}
 
 Menor valor indica mejor ajuste penalizado.
@@ -1286,7 +1675,9 @@ Los GLM extienden la regresión lineal a variables respuesta no normales mediant
 
 Para variable respuesta binaria \(Y \in \{0,1\}\):
 
-\(\log\left(\frac{p}{1-p}\right) = \beta_0 + \beta_1 X_1 + \cdots + \beta_k X_k\)
+\begin{equation}
+\log\left(\frac{p}{1-p}\right) = \beta_0 + \beta_1 X_1 + \cdots + \beta_k X_k
+\end{equation}
 
 donde \(p = P(Y=1|X)\).
 
@@ -1347,9 +1738,15 @@ Cuando \(p \approx n\) o \(p > n\), o cuando hay multicolinealidad severa, MCO p
 \begin{itemize}
 \tightlist
 \item
-  \textbf{Ridge:} \(\min_{\beta} \|Y - X\beta\|_2^2 + \lambda \|\beta\|_2^2\)
+  \textbf{Ridge:}
+  \begin{equation}
+  \min_{\beta} \|Y - X\beta\|_2^2 + \lambda \|\beta\|_2^2
+  \end{equation}
 \item
-  \textbf{LASSO:} \(\min_{\beta} \|Y - X\beta\|_2^2 + \lambda \|\beta\|_1\)
+  \textbf{LASSO:}
+  \begin{equation}
+  \min_{\beta} \|Y - X\beta\|_2^2 + \lambda \|\beta\|_1
+  \end{equation}
 \item
   \textbf{Elastic Net:} Combinación de ambas
 \end{itemize}

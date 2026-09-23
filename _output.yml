@@ -18,3 +18,7 @@ bookdown::pdf_document2:
   toc: yes
   toc_depth: 3
   number_sections: yes
+  fig_caption: true 
+  geometry: margin=2.5cm 
+  fontsize: 12pt 
+  lang: es

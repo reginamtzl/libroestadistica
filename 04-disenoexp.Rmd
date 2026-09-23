@@ -1,0 +1,55 @@
+# Diseño y Análisis de Experimentos: Fundamentos, Modelación e Interpretación
+
+**Objetivo:**
+*Que el alumnado sea capaz de comprender, diseñar y analizar experimentos, interpretando la variabilidad de los datos y el efecto de uno o múltiples factores mediante modelos de análisis de varianza y diseños experimentales, apoyándose en herramientas visuales y de simulación para la toma de decisiones.*
+
+**Contenido**
+
+## Fundamentos del experimento y análisis de variación
+### El experimento y sus fines
+### Elementos del experimento:factores, niveles, tratamientos, variable respuesta
+### Diseño del experimento
+### Número de ensayos
+### Análisis de variaciones
+### Análisis de resultados
+
+## Análisis de varianza e interpretación de resultados
+### ANOVA de un factor
+#### Idea de comparación de tratamientos
+#### Descomposición de la variación
+#### Interpretación del estadístico F
+
+### ANOVA de dos factores
+#### Dos criterios de variación
+#### Interpretación básica
+
+### Comparaciones múltiples
+#### ¿Qué tratamientos son diferentes?
+#### Interpretación
+
+## Diseño experimental multifactorial y control de variabilidad
+### Bloques experimentales
+#### Control de fuentes de variación
+#### Concepto de bloques completos e incompletos
+
+### Cuadrados latinos
+#### Control de dos fuentes de variación
+#### Interpretación
+
+### Cuadrados grecolatinos
+#### Extensión para múltiples fuentes
+#### Idea de eficiencia experimental
+
+### Diseño factorial $2^k$
+#### Factores múltiples
+#### Efectos principales
+#### Interacciones
+
+
+### Interpretación de interacción
+#### Gráfica de interacción
+#### implicaciones en ingeniería
+
+**Notas adicionales:**
+*Esta propuesta prioriza: comprensión conceptual, interpretación de resultados y aplicación en ingeniería.*
+*Se omite el análisis de covarianza ya que consideramos que requiere base fuerte en regresión, aumenta carga matemática y no es esencial para el objetivo del curso.*

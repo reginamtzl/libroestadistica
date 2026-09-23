@@ -1,0 +1,3952 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Capítulo 6 Análisis de Regresión: De la Inferencia a la Predicción con R | Estadística Aplicada</title>
+  <meta name="description" content="Descripción de mi libro." />
+  <meta name="generator" content="bookdown 0.48 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Capítulo 6 Análisis de Regresión: De la Inferencia a la Predicción con R | Estadística Aplicada" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Descripción de mi libro." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Capítulo 6 Análisis de Regresión: De la Inferencia a la Predicción con R | Estadística Aplicada" />
+  
+  <meta name="twitter:description" content="Descripción de mi libro." />
+  
+
+<meta name="author" content="Equipo Editorial, Wulfrano Gómez Gallardo" />
+
+
+<meta name="date" content="2026-09-23" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="muestreo-1.html"/>
+<link rel="next" href="diseño-y-análisis-de-experimentos-fundamentos-modelación-e-interpretación.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Mi Libro</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="muestra-y-problación.html"><a href="muestra-y-problación.html"><i class="fa fa-check"></i><b>1</b> MUESTRA Y PROBLACIÓN</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="muestra-y-problación.html"><a href="muestra-y-problación.html#poblaci%C3%B3n"><i class="fa fa-check"></i><b>1.1</b> POBLACIÓN</a></li>
+<li class="chapter" data-level="1.2" data-path="muestra-y-problación.html"><a href="muestra-y-problación.html#muestreo"><i class="fa fa-check"></i><b>1.2</b> Muestreo</a></li>
+<li class="chapter" data-level="1.3" data-path="muestra-y-problación.html"><a href="muestra-y-problación.html#estimadores"><i class="fa fa-check"></i><b>1.3</b> ESTIMADORES</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="distribuciones-muestrales.html"><a href="distribuciones-muestrales.html"><i class="fa fa-check"></i><b>2</b> DISTRIBUCIONES MUESTRALES</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="distribuciones-muestrales.html"><a href="distribuciones-muestrales.html#teorema-del-l%C3%ADmite-central"><i class="fa fa-check"></i><b>2.1</b> Teorema del Límite Central</a></li>
+<li class="chapter" data-level="2.2" data-path="distribuciones-muestrales.html"><a href="distribuciones-muestrales.html#estimaci%C3%B3n-puntual"><i class="fa fa-check"></i><b>2.2</b> ESTIMACIÓN PUNTUAL</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html"><i class="fa fa-check"></i><b>3</b> INTERVALOS DE CONFIANZA</a></li>
+<li class="chapter" data-level="4" data-path="pruebas-de-hipótesis.html"><a href="pruebas-de-hipótesis.html"><i class="fa fa-check"></i><b>4</b> PRUEBAS DE HIPÓTESIS</a></li>
+<li class="chapter" data-level="5" data-path="muestreo-1.html"><a href="muestreo-1.html"><i class="fa fa-check"></i><b>5</b> Muestreo</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="muestreo-1.html"><a href="muestreo-1.html#muestreo-aleatorio-y-restricto"><i class="fa fa-check"></i><b>5.1</b> Muestreo aleatorio y restricto</a></li>
+<li class="chapter" data-level="5.2" data-path="muestreo-1.html"><a href="muestreo-1.html#muestreo-estractificado"><i class="fa fa-check"></i><b>5.2</b> Muestreo estractificado</a></li>
+<li class="chapter" data-level="5.3" data-path="muestreo-1.html"><a href="muestreo-1.html#muestreo-por-conglomerados"><i class="fa fa-check"></i><b>5.3</b> Muestreo por conglomerados</a></li>
+<li class="chapter" data-level="5.4" data-path="muestreo-1.html"><a href="muestreo-1.html#muestreo-secuencial"><i class="fa fa-check"></i><b>5.4</b> Muestreo secuencial</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html"><a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html"><i class="fa fa-check"></i><b>6</b> Análisis de Regresión: De la Inferencia a la Predicción con R</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html"><a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#fundamentos-del-an%C3%A1lisis-de-regresi%C3%B3n"><i class="fa fa-check"></i><b>6.1</b> Fundamentos del Análisis de Regresión</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html"><a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#introducci%C3%B3n-al-an%C3%A1lisis-de-regresi%C3%B3n"><i class="fa fa-check"></i><b>6.1.1</b> Introducción al Análisis de Regresión</a></li>
+<li class="chapter" data-level="6.1.2" data-path="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html"><a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#el-modelo-de-regresi%C3%B3n-lineal-simple"><i class="fa fa-check"></i><b>6.1.2</b> El Modelo de Regresión Lineal Simple</a></li>
+<li class="chapter" data-level="6.1.3" data-path="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html"><a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#el-modelo-de-regresi%C3%B3n-lineal-m%C3%BAltiple"><i class="fa fa-check"></i><b>6.1.3</b> El Modelo de Regresión Lineal Múltiple</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html"><a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#supuestos-del-mcrl-y-estimaci%C3%B3n-mco"><i class="fa fa-check"></i><b>6.2</b> Supuestos del MCRL y Estimación MCO</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html"><a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#supuestos-del-modelo-cl%C3%A1sico-de-regresi%C3%B3n-lineal-mcrl"><i class="fa fa-check"></i><b>6.2.1</b> Supuestos del Modelo Clásico de Regresión Lineal (MCRL)</a></li>
+<li class="chapter" data-level="6.2.2" data-path="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html"><a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#estimaci%C3%B3n-por-m%C3%ADnimos-cuadrados-ordinarios-mco"><i class="fa fa-check"></i><b>6.2.2</b> Estimación por Mínimos Cuadrados Ordinarios (MCO)</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html"><a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#inferencia-estad%C3%ADstica-en-regresi%C3%B3n"><i class="fa fa-check"></i><b>6.3</b> Inferencia Estadística en Regresión</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html"><a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#distribuci%C3%B3n-de-los-estimadores"><i class="fa fa-check"></i><b>6.3.1</b> Distribución de los estimadores</a></li>
+<li class="chapter" data-level="6.3.2" data-path="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html"><a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#pruebas-de-hip%C3%B3tesis-1"><i class="fa fa-check"></i><b>6.3.2</b> Pruebas de hipótesis</a></li>
+<li class="chapter" data-level="6.3.3" data-path="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html"><a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#intervalos-de-confianza-y-predicci%C3%B3n"><i class="fa fa-check"></i><b>6.3.3</b> Intervalos de confianza y predicción</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html"><a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#medidas-de-bondad-de-ajuste"><i class="fa fa-check"></i><b>6.4</b> Medidas de Bondad de Ajuste</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html"><a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#coeficiente-de-determinaci%C3%B3n-r%C2%B2"><i class="fa fa-check"></i><b>6.4.1</b> Coeficiente de determinación R²</a></li>
+<li class="chapter" data-level="6.4.2" data-path="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html"><a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#r%C2%B2-ajustado"><i class="fa fa-check"></i><b>6.4.2</b> R² ajustado</a></li>
+<li class="chapter" data-level="6.4.3" data-path="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html"><a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#limitaciones-del-r%C2%B2"><i class="fa fa-check"></i><b>6.4.3</b> Limitaciones del R²</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html"><a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#diagn%C3%B3stico-del-modelo-an%C3%A1lisis-de-r"><i class="fa fa-check"></i><b>6.5</b> Diagnóstico del Modelo: Análisis de R</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html"><a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#tipos-de-residuos"><i class="fa fa-check"></i><b>6.5.1</b> Tipos de Residuos</a></li>
+<li class="chapter" data-level="6.5.2" data-path="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html"><a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#gr%C3%A1ficos-de-diagn%C3%B3sticos-esenciales"><i class="fa fa-check"></i><b>6.5.2</b> Gráficos de diagnósticos esenciales</a></li>
+<li class="chapter" data-level="6.5.3" data-path="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html"><a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#detecci%C3%B3n-de-observaciones-influyentes"><i class="fa fa-check"></i><b>6.5.3</b> Detección de observaciones influyentes</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html"><a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#violaciones-de-los-supuestos-y-remedios"><i class="fa fa-check"></i><b>6.6</b> Violaciones de los Supuestos y Remedios</a>
+<ul>
+<li class="chapter" data-level="6.6.1" data-path="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html"><a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#heteroscedasticidad"><i class="fa fa-check"></i><b>6.6.1</b> Heteroscedasticidad</a></li>
+<li class="chapter" data-level="6.6.2" data-path="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html"><a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#multicolinealidad"><i class="fa fa-check"></i><b>6.6.2</b> Multicolinealidad</a></li>
+<li class="chapter" data-level="6.6.3" data-path="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html"><a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#autocorrelaci%C3%B3n-series-de-tiempo"><i class="fa fa-check"></i><b>6.6.3</b> Autocorrelación (Series de Tiempo)</a></li>
+</ul></li>
+<li class="chapter" data-level="6.7" data-path="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html"><a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#selecci%C3%B3n-de-variables-y-extensiones-del-modelo"><i class="fa fa-check"></i><b>6.7</b> Selección de Variables y Extensiones del Modelo</a>
+<ul>
+<li class="chapter" data-level="6.7.1" data-path="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html"><a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#selecci%C3%B3n-de-variables-y-modelos"><i class="fa fa-check"></i><b>6.7.1</b> Selección de Variables y Modelos</a></li>
+<li class="chapter" data-level="6.7.2" data-path="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html"><a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#extensiones-del-modelo-lineal"><i class="fa fa-check"></i><b>6.7.2</b> Extensiones del Modelo Lineal</a></li>
+</ul></li>
+<li class="chapter" data-level="6.8" data-path="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html"><a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#evaluaci%C3%B3n-predictiva-y-validaci%C3%B3n"><i class="fa fa-check"></i><b>6.8</b> Evaluación Predictiva y Validación</a>
+<ul>
+<li class="chapter" data-level="6.8.1" data-path="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html"><a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#divisi%C3%B3n-entrenamiento-prueba"><i class="fa fa-check"></i><b>6.8.1</b> División entrenamiento-prueba</a></li>
+<li class="chapter" data-level="6.8.2" data-path="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html"><a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#m%C3%A9tricas-de-evaluaci%C3%B3n-predictiva"><i class="fa fa-check"></i><b>6.8.2</b> Métricas de evaluación predictiva</a></li>
+<li class="chapter" data-level="6.8.3" data-path="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html"><a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#validaci%C3%B3n-cruzada-k-fold"><i class="fa fa-check"></i><b>6.8.3</b> Validación cruzada k-fold</a></li>
+</ul></li>
+<li class="chapter" data-level="6.9" data-path="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html"><a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#modelos-glm-y-t%C3%A9cnicas-de-regularizaci%C3%B3n"><i class="fa fa-check"></i><b>6.9</b> Modelos GLM y Técnicas de Regularización</a>
+<ul>
+<li class="chapter" data-level="6.9.1" data-path="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html"><a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#introducci%C3%B3n-a-modelos-lineales-generalizados-glm"><i class="fa fa-check"></i><b>6.9.1</b> Introducción a Modelos Lineales Generalizados (GLM)</a></li>
+<li class="chapter" data-level="6.9.2" data-path="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html"><a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#t%C3%A9cnicas-de-regularizaci%C3%B3n-ridge-y-lasso"><i class="fa fa-check"></i><b>6.9.2</b> Técnicas de Regularización: Ridge y LASSO</a></li>
+</ul></li>
+<li class="chapter" data-level="6.10" data-path="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html"><a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#pr%C3%A1ctica-y-material-complementario"><i class="fa fa-check"></i><b>6.10</b> Práctica y Material Complementario</a>
+<ul>
+<li class="chapter" data-level="6.10.1" data-path="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html"><a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#an%C3%A1lisis-de-regresi%C3%B3n-en-la-pr%C3%A1ctica-flujo-de-trabajo-completo"><i class="fa fa-check"></i><b>6.10.1</b> Análisis de Regresión en la Práctica: Flujo de Trabajo Completo</a></li>
+<li class="chapter" data-level="6.10.2" data-path="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html"><a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#buenas-pr%C3%A1cticas-y-lista-de-verificaci%C3%B3n"><i class="fa fa-check"></i><b>6.10.2</b> Buenas Prácticas y Lista de Verificación</a></li>
+<li class="chapter" data-level="6.10.3" data-path="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html"><a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#ejercicios-propuestos-y-actividades-pr%C3%A1cticas"><i class="fa fa-check"></i><b>6.10.3</b> Ejercicios Propuestos y Actividades Prácticas</a></li>
+<li class="chapter" data-level="6.10.4" data-path="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html"><a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#recursos-adicionales-y-referencias"><i class="fa fa-check"></i><b>6.10.4</b> Recursos Adicionales y Referencias</a></li>
+<li class="chapter" data-level="6.10.5" data-path="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html"><a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#resumen-y-conclusiones"><i class="fa fa-check"></i><b>6.10.5</b> Resumen y Conclusiones</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="diseño-y-análisis-de-experimentos-fundamentos-modelación-e-interpretación.html"><a href="diseño-y-análisis-de-experimentos-fundamentos-modelación-e-interpretación.html"><i class="fa fa-check"></i><b>7</b> Diseño y Análisis de Experimentos: Fundamentos, Modelación e Interpretación</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="diseño-y-análisis-de-experimentos-fundamentos-modelación-e-interpretación.html"><a href="diseño-y-análisis-de-experimentos-fundamentos-modelación-e-interpretación.html#fundamentos-del-experimento-y-an%C3%A1lisis-de-variaci%C3%B3n"><i class="fa fa-check"></i><b>7.1</b> Fundamentos del experimento y análisis de variación</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="diseño-y-análisis-de-experimentos-fundamentos-modelación-e-interpretación.html"><a href="diseño-y-análisis-de-experimentos-fundamentos-modelación-e-interpretación.html#el-experimento-y-sus-fines"><i class="fa fa-check"></i><b>7.1.1</b> El experimento y sus fines</a></li>
+<li class="chapter" data-level="7.1.2" data-path="diseño-y-análisis-de-experimentos-fundamentos-modelación-e-interpretación.html"><a href="diseño-y-análisis-de-experimentos-fundamentos-modelación-e-interpretación.html#elementos-del-experimentofactores-niveles-tratamientos-variable-respuesta"><i class="fa fa-check"></i><b>7.1.2</b> Elementos del experimento:factores, niveles, tratamientos, variable respuesta</a></li>
+<li class="chapter" data-level="7.1.3" data-path="diseño-y-análisis-de-experimentos-fundamentos-modelación-e-interpretación.html"><a href="diseño-y-análisis-de-experimentos-fundamentos-modelación-e-interpretación.html#dise%C3%B1o-del-experimento"><i class="fa fa-check"></i><b>7.1.3</b> Diseño del experimento</a></li>
+<li class="chapter" data-level="7.1.4" data-path="diseño-y-análisis-de-experimentos-fundamentos-modelación-e-interpretación.html"><a href="diseño-y-análisis-de-experimentos-fundamentos-modelación-e-interpretación.html#n%C3%BAmero-de-ensayos"><i class="fa fa-check"></i><b>7.1.4</b> Número de ensayos</a></li>
+<li class="chapter" data-level="7.1.5" data-path="diseño-y-análisis-de-experimentos-fundamentos-modelación-e-interpretación.html"><a href="diseño-y-análisis-de-experimentos-fundamentos-modelación-e-interpretación.html#an%C3%A1lisis-de-variaciones"><i class="fa fa-check"></i><b>7.1.5</b> Análisis de variaciones</a></li>
+<li class="chapter" data-level="7.1.6" data-path="diseño-y-análisis-de-experimentos-fundamentos-modelación-e-interpretación.html"><a href="diseño-y-análisis-de-experimentos-fundamentos-modelación-e-interpretación.html#an%C3%A1lisis-de-resultados"><i class="fa fa-check"></i><b>7.1.6</b> Análisis de resultados</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="diseño-y-análisis-de-experimentos-fundamentos-modelación-e-interpretación.html"><a href="diseño-y-análisis-de-experimentos-fundamentos-modelación-e-interpretación.html#an%C3%A1lisis-de-varianza-e-interpretaci%C3%B3n-de-resultados"><i class="fa fa-check"></i><b>7.2</b> Análisis de varianza e interpretación de resultados</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="diseño-y-análisis-de-experimentos-fundamentos-modelación-e-interpretación.html"><a href="diseño-y-análisis-de-experimentos-fundamentos-modelación-e-interpretación.html#anova-de-un-factor"><i class="fa fa-check"></i><b>7.2.1</b> ANOVA de un factor</a></li>
+<li class="chapter" data-level="7.2.2" data-path="diseño-y-análisis-de-experimentos-fundamentos-modelación-e-interpretación.html"><a href="diseño-y-análisis-de-experimentos-fundamentos-modelación-e-interpretación.html#anova-de-dos-factores"><i class="fa fa-check"></i><b>7.2.2</b> ANOVA de dos factores</a></li>
+<li class="chapter" data-level="7.2.3" data-path="diseño-y-análisis-de-experimentos-fundamentos-modelación-e-interpretación.html"><a href="diseño-y-análisis-de-experimentos-fundamentos-modelación-e-interpretación.html#comparaciones-m%C3%BAltiples"><i class="fa fa-check"></i><b>7.2.3</b> Comparaciones múltiples</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="diseño-y-análisis-de-experimentos-fundamentos-modelación-e-interpretación.html"><a href="diseño-y-análisis-de-experimentos-fundamentos-modelación-e-interpretación.html#dise%C3%B1o-experimental-multifactorial-y-control-de-variabilidad"><i class="fa fa-check"></i><b>7.3</b> Diseño experimental multifactorial y control de variabilidad</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="diseño-y-análisis-de-experimentos-fundamentos-modelación-e-interpretación.html"><a href="diseño-y-análisis-de-experimentos-fundamentos-modelación-e-interpretación.html#bloques-experimentales"><i class="fa fa-check"></i><b>7.3.1</b> Bloques experimentales</a></li>
+<li class="chapter" data-level="7.3.2" data-path="diseño-y-análisis-de-experimentos-fundamentos-modelación-e-interpretación.html"><a href="diseño-y-análisis-de-experimentos-fundamentos-modelación-e-interpretación.html#cuadrados-latinos"><i class="fa fa-check"></i><b>7.3.2</b> Cuadrados latinos</a></li>
+<li class="chapter" data-level="7.3.3" data-path="diseño-y-análisis-de-experimentos-fundamentos-modelación-e-interpretación.html"><a href="diseño-y-análisis-de-experimentos-fundamentos-modelación-e-interpretación.html#cuadrados-grecolatinos"><i class="fa fa-check"></i><b>7.3.3</b> Cuadrados grecolatinos</a></li>
+<li class="chapter" data-level="7.3.4" data-path="diseño-y-análisis-de-experimentos-fundamentos-modelación-e-interpretación.html"><a href="diseño-y-análisis-de-experimentos-fundamentos-modelación-e-interpretación.html#dise%C3%B1o-factorial-2k"><i class="fa fa-check"></i><b>7.3.4</b> Diseño factorial <span class="math inline">\(2^k\)</span></a></li>
+<li class="chapter" data-level="7.3.5" data-path="diseño-y-análisis-de-experimentos-fundamentos-modelación-e-interpretación.html"><a href="diseño-y-análisis-de-experimentos-fundamentos-modelación-e-interpretación.html#interpretaci%C3%B3n-de-interacci%C3%B3n"><i class="fa fa-check"></i><b>7.3.5</b> Interpretación de interacción</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html"><a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html"><i class="fa fa-check"></i><b>8</b> Inferencia Estadística No Paramétrica: Métodos y Aplicaciones</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html"><a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#introducci%C3%B3n-a-la-inferencia-no-param%C3%A9trica"><i class="fa fa-check"></i><b>8.1</b> Introducción a la inferencia no paramétrica</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html"><a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#diferencia-entre-m%C3%A9todos-param%C3%A9tricos-y-no-param%C3%A9tricos."><i class="fa fa-check"></i><b>8.1.1</b> Diferencia entre métodos paramétricos y no paramétricos.</a></li>
+<li class="chapter" data-level="8.1.2" data-path="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html"><a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#ventajas-y-limitaciones."><i class="fa fa-check"></i><b>8.1.2</b> Ventajas y limitaciones.</a></li>
+<li class="chapter" data-level="8.1.3" data-path="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html"><a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#situaciones-en-las-que-se-recomienda-su-uso."><i class="fa fa-check"></i><b>8.1.3</b> Situaciones en las que se recomienda su uso.</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html"><a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#pruebas-de-hip%C3%B3tesis-para-una-muestra"><i class="fa fa-check"></i><b>8.2</b> Pruebas de hipótesis para una muestra</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html"><a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#prueba-de-los-signos."><i class="fa fa-check"></i><b>8.2.1</b> Prueba de los signos.</a></li>
+<li class="chapter" data-level="8.2.2" data-path="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html"><a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#prueba-de-wilcoxon-para-una-muestra."><i class="fa fa-check"></i><b>8.2.2</b> Prueba de Wilcoxon para una muestra.</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html"><a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#pruebas-de-hip%C3%B3tesis-para-dos-muestras"><i class="fa fa-check"></i><b>8.3</b> Pruebas de hipótesis para dos muestras</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html"><a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#prueba-de-mann-whitney-u-wilcoxon-de-rangos-sumados."><i class="fa fa-check"></i><b>8.3.1</b> Prueba de Mann-Whitney U (Wilcoxon de rangos sumados).</a></li>
+<li class="chapter" data-level="8.3.2" data-path="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html"><a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#prueba-de-los-signos-para-pares-apareados."><i class="fa fa-check"></i><b>8.3.2</b> Prueba de los signos para pares apareados.</a></li>
+<li class="chapter" data-level="8.3.3" data-path="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html"><a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#prueba-de-wilcoxon-para-pares-apareados."><i class="fa fa-check"></i><b>8.3.3</b> Prueba de Wilcoxon para pares apareados.</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html"><a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#extensi%C3%B3n-a-m%C3%A1s-de-dos-muestras"><i class="fa fa-check"></i><b>8.4</b> Extensión a más de dos muestras</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html"><a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#prueba-de-kruskal-wallis."><i class="fa fa-check"></i><b>8.4.1</b> Prueba de Kruskal-Wallis.</a></li>
+<li class="chapter" data-level="8.4.2" data-path="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html"><a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#prueba-de-friedman-para-dise%C3%B1os-con-bloques."><i class="fa fa-check"></i><b>8.4.2</b> Prueba de Friedman para diseños con bloques.</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html"><a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#medidas-de-asociaci%C3%B3n-no-param%C3%A9tricas"><i class="fa fa-check"></i><b>8.5</b> Medidas de asociación no paramétricas</a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html"><a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#coeficiente-de-correlaci%C3%B3n-de-rangos-de-spearman."><i class="fa fa-check"></i><b>8.5.1</b> Coeficiente de correlación de rangos de Spearman.</a></li>
+<li class="chapter" data-level="8.5.2" data-path="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html"><a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#tau-de-kendall."><i class="fa fa-check"></i><b>8.5.2</b> Tau de Kendall.</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html"><a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#aplicaciones-pr%C3%A1cticas-en-ingenier%C3%ADa"><i class="fa fa-check"></i><b>8.6</b> Aplicaciones prácticas en ingeniería</a>
+<ul>
+<li class="chapter" data-level="8.6.1" data-path="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html"><a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#control-de-calidad-y-confiabilidad."><i class="fa fa-check"></i><b>8.6.1</b> Control de calidad y confiabilidad.</a></li>
+<li class="chapter" data-level="8.6.2" data-path="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html"><a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#comparaci%C3%B3n-de-procesos-o-materiales."><i class="fa fa-check"></i><b>8.6.2</b> Comparación de procesos o materiales.</a></li>
+<li class="chapter" data-level="8.6.3" data-path="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html"><a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#ejemplos-con-datos-reales-tiempos-de-respuesta-resistencia-de-materiales-rendimiento-de-equipos."><i class="fa fa-check"></i><b>8.6.3</b> Ejemplos con datos reales (tiempos de respuesta, resistencia de materiales, rendimiento de equipos).</a></li>
+</ul></li>
+<li class="chapter" data-level="8.7" data-path="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html"><a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#implementaci%C3%B3n-computacional"><i class="fa fa-check"></i><b>8.7</b> Implementación computacional</a>
+<ul>
+<li class="chapter" data-level="8.7.1" data-path="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html"><a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#ejemplos-de-aplicaci%C3%B3n-en-software-estad%C3%ADstico-r-python-spss-yo-excel."><i class="fa fa-check"></i><b>8.7.1</b> Ejemplos de aplicación en software estadístico (R, Python, SPSS y/o Excel).</a></li>
+</ul></li>
+<li class="chapter" data-level="8.8" data-path="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html"><a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#conclusiones-y-recomendaciones"><i class="fa fa-check"></i><b>8.8</b> Conclusiones y recomendaciones</a>
+<ul>
+<li class="chapter" data-level="8.8.1" data-path="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html"><a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#relevancia-en-la-pr%C3%A1ctica-profesional."><i class="fa fa-check"></i><b>8.8.1</b> Relevancia en la práctica profesional.</a></li>
+<li class="chapter" data-level="8.8.2" data-path="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html"><a href="inferencia-estadística-no-paramétrica-métodos-y-aplicaciones.html#comparaci%C3%B3n-con-m%C3%A9todos-param%C3%A9tricos."><i class="fa fa-check"></i><b>8.8.2</b> Comparación con métodos paramétricos.</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Estadística Aplicada</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">Capítulo 6</span> Análisis de Regresión: De la Inferencia a la Predicción con R<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#an%C3%A1lisis-de-regresi%C3%B3n-de-la-inferencia-a-la-predicci%C3%B3n-con-r" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<blockquote>
+<p><strong>Objetivo del capítulo:</strong> Proporcionar una guía integral y práctica para comprender, estimar, diagnosticar e interpretar modelos de regresión lineal, diferenciando entre objetivos de <strong>inferencia estadística</strong> y <strong>predicción</strong>, con implementaciones reproducibles en R que siguen las mejores prácticas de ciencia de datos moderna.</p>
+</blockquote>
+<p><strong>Al completar este capítulo podrás:</strong></p>
+<ul>
+<li>Diferenciar entre correlación y regresión, y explicar el rol fundamental del término de error</li>
+<li>Estimar e interpretar modelos de regresión lineal simple y múltiple usando <code>lm()</code> y el ecosistema <code>tidyverse</code></li>
+<li>Evaluar críticamente los supuestos del Modelo Clásico de Regresión Lineal (MCRL)</li>
+<li>Realizar inferencia estadística robusta (pruebas <em>t</em>, <em>F</em>, intervalos de confianza y predicción)</li>
+<li>Diagnosticar problemas comunes (heteroscedasticidad, autocorrelación, multicolinealidad, observaciones atípicas)</li>
+<li>Aplicar transformaciones, manejar variables categóricas y seleccionar modelos apropiados</li>
+<li>Implementar estrategias de validación y evaluación predictiva fuera de muestra</li>
+</ul>
+<blockquote>
+<p><strong>Prerrequisitos:</strong> Álgebra lineal básica, cálculo diferencial, probabilidad y estadística inferencial, manejo intermedio de R y RStudio.</p>
+</blockquote>
+<div id="fundamentos-del-análisis-de-regresión" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> Fundamentos del Análisis de Regresión<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#fundamentos-del-an%C3%A1lisis-de-regresi%C3%B3n" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="introducción-al-análisis-de-regresión" class="section level3 hasAnchor" number="6.1.1">
+<h3><span class="header-section-number">6.1.1</span> Introducción al Análisis de Regresión<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#introducci%C3%B3n-al-an%C3%A1lisis-de-regresi%C3%B3n" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="qué-es-el-análisis-de-regresión" class="section level4 hasAnchor" number="6.1.1.1">
+<h4><span class="header-section-number">6.1.1.1</span> ¿Qué es el análisis de regresión?<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#qu%C3%A9-es-el-an%C3%A1lisis-de-regresi%C3%B3n" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>El análisis de regresión es una técnica estadística que estudia la <strong>dependencia</strong> de una variable respuesta <span class="math inline">\(Y\)</span> (también llamada variable dependiente o endógena) respecto de una o más variables explicativas <span class="math inline">\(X_i\)</span> (variables independientes, predictoras o exógenas). Su objetivo principal es modelar y cuantificar la relación para:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Estimar</strong> el valor promedio condicional <span class="math inline">\(E(Y|X)\)</span></li>
+<li><strong>Predecir</strong> valores futuros de <span class="math inline">\(Y\)</span> dado <span class="math inline">\(X\)</span></li>
+<li><strong>Inferir</strong> sobre la naturaleza y magnitud de las relaciones</li>
+<li><strong>Controlar</strong> por el efecto de variables confusoras</li>
+</ol>
+<p>Como señalan <span class="citation">Harrell Jr (<a href="#ref-harrell2015">2015</a>)</span> y <span class="citation">Gelman et al. (<a href="#ref-gelman2020">2020</a>)</span>, la distinción entre estos objetivos es crucial para la especificación del modelo y la interpretación de resultados.</p>
+</div>
+<div id="regresión-versus-correlación" class="section level4 hasAnchor" number="6.1.1.2">
+<h4><span class="header-section-number">6.1.1.2</span> Regresión versus correlación<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#regresi%C3%B3n-versus-correlaci%C3%B3n" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Es fundamental distinguir estos conceptos:</p>
+<ul>
+<li><p><strong>Correlación:</strong> Mide la fuerza y dirección de una asociación <strong>lineal simétrica</strong> entre dos variables. El coeficiente de correlación de Pearson <span class="math inline">\(r_{XY}\)</span> trata ambas variables por igual.</p></li>
+<li><p><strong>Regresión:</strong> Modela una dependencia <strong>asimétrica</strong> de <span class="math inline">\(Y\)</span> respecto de <span class="math inline">\(X\)</span>, donde <span class="math inline">\(Y\)</span> es la variable “respuesta” y <span class="math inline">\(X\)</span> la variable “explicativa”. Busca estimar <span class="math inline">\(E(Y|X) = f(X)\)</span>.</p></li>
+</ul>
+</div>
+<div id="tipología-de-variables" class="section level4 hasAnchor" number="6.1.1.3">
+<h4><span class="header-section-number">6.1.1.3</span> Tipología de variables<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#tipolog%C3%ADa-de-variables" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Siguiendo la taxonomía de <span class="citation">Bruce et al. (<a href="#ref-bruce2020">2020</a>)</span>, clasificamos las variables según su naturaleza:</p>
+<p><strong>Variables respuesta (<span class="math inline">\(Y\)</span>):</strong>
+- <strong>Continuas:</strong> Pueden tomar cualquier valor en un intervalo (ej: peso, ingreso)
+- <strong>Discretas:</strong> Valores enteros contables (ej: número de hijos)
+- <strong>Categóricas:</strong> Nominales u ordinales (tratadas en modelos lineales generalizados)</p>
+<p><strong>Variables explicativas (<span class="math inline">\(X_i\)</span>):</strong>
+- <strong>Cuantitativas:</strong> Continuas o discretas con significado numérico
+- <strong>Cualitativas:</strong> Categóricas que requieren codificación (variables dummy)</p>
+<p><img src="bookdownproj_files/figure-html/variables-ejemplo-1.png" alt="" width="672" /></p>
+</div>
+<div id="el-término-de-perturbación-varepsilon" class="section level4 hasAnchor" number="6.1.1.4">
+<h4><span class="header-section-number">6.1.1.4</span> El término de perturbación <span class="math inline">\(\varepsilon\)</span><a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#el-t%C3%A9rmino-de-perturbaci%C3%B3n-varepsilon" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>El término de error <span class="math inline">\(\varepsilon\)</span> es central en el análisis de regresión y captura:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Variables omitidas:</strong> Factores relevantes no incluidos en el modelo</li>
+<li><strong>Error de medición:</strong> Imprecisiones en la medición de variables</li>
+<li><strong>Forma funcional incorrecta:</strong> Relaciones no lineales aproximadas linealmente</li>
+<li><strong>Variabilidad inherente:</strong> Componente aleatorio genuino del fenómeno</li>
+</ol>
+<p>La especificación correcta de <span class="math inline">\(\varepsilon\)</span> es crucial para la validez de la inferencia estadística <span class="citation">(<a href="#ref-gujarati2009">Gujarati and Porter 2009</a>)</span>.</p>
+</div>
+</div>
+<div id="el-modelo-de-regresión-lineal-simple" class="section level3 hasAnchor" number="6.1.2">
+<h3><span class="header-section-number">6.1.2</span> El Modelo de Regresión Lineal Simple<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#el-modelo-de-regresi%C3%B3n-lineal-simple" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="formulación-del-modelo" class="section level4 hasAnchor" number="6.1.2.1">
+<h4><span class="header-section-number">6.1.2.1</span> Formulación del modelo<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#formulaci%C3%B3n-del-modelo" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>El modelo de regresión lineal simple se expresa como:</p>
+<p><span class="math display">\[\begin{equation}
+Y_i = \beta_0 + \beta_1 X_i + \varepsilon_i, \quad i = 1, 2, \ldots, n
+\end{equation}\]</span></p>
+<p>donde:
+- <span class="math inline">\(Y_i\)</span>: valor observado de la variable respuesta para la observación <span class="math inline">\(i\)</span>
+- <span class="math inline">\(X_i\)</span>: valor de la variable explicativa para la observación <span class="math inline">\(i\)</span>
+- <span class="math inline">\(\beta_0\)</span>: intercepto (ordenada al origen)
+- <span class="math inline">\(\beta_1\)</span>: pendiente (efecto marginal de <span class="math inline">\(X\)</span> sobre <span class="math inline">\(Y\)</span>)
+- <span class="math inline">\(\varepsilon_i\)</span>: término de error para la observación <span class="math inline">\(i\)</span></p>
+</div>
+<div id="función-de-regresión-poblacional-frp-vs.-muestral-frm" class="section level4 hasAnchor" number="6.1.2.2">
+<h4><span class="header-section-number">6.1.2.2</span> Función de regresión poblacional (FRP) vs. muestral (FRM)<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#funci%C3%B3n-de-regresi%C3%B3n-poblacional-frp-vs.-muestral-frm" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ul>
+<li><strong>FRP:</strong> <span class="math inline">\(E(Y|X) = \beta_0 + \beta_1 X\)</span> (parámetros poblacionales desconocidos)</li>
+<li><strong>FRM:</strong> <span class="math inline">\(\hat{Y} = \hat{\beta}_0 + \hat{\beta}_1 X\)</span> (estimadores muestrales)</li>
+</ul>
+</div>
+<div id="interpretación-de-parámetros" class="section level4 hasAnchor" number="6.1.2.3">
+<h4><span class="header-section-number">6.1.2.3</span> Interpretación de parámetros<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#interpretaci%C3%B3n-de-par%C3%A1metros" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ul>
+<li><span class="math inline">\(\beta_0\)</span>: Valor esperado de <span class="math inline">\(Y\)</span> cuando <span class="math inline">\(X = 0\)</span> (si tiene sentido sustantivo)</li>
+<li><span class="math inline">\(\beta_1\)</span>: Cambio esperado en <span class="math inline">\(Y\)</span> por cada unidad adicional de <span class="math inline">\(X\)</span></li>
+</ul>
+<table class="table table-striped table-hover" style="color: black; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:regresion-simple">Table 6.1: </span><span id="tab:regresion-simple">Table 6.2: </span>Resultados del modelo de regresión simple
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+term
+</th>
+<th style="text-align:right;">
+estimate
+</th>
+<th style="text-align:right;">
+std.error
+</th>
+<th style="text-align:right;">
+statistic
+</th>
+<th style="text-align:right;">
+p.value
+</th>
+<th style="text-align:right;">
+conf.low
+</th>
+<th style="text-align:right;">
+conf.high
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+(Intercept)
+</td>
+<td style="text-align:right;">
+49055.079
+</td>
+<td style="text-align:right;">
+1002.826
+</td>
+<td style="text-align:right;">
+48.917
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+47077.488
+</td>
+<td style="text-align:right;">
+51032.669
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+experiencia
+</td>
+<td style="text-align:right;">
+1323.586
+</td>
+<td style="text-align:right;">
+62.713
+</td>
+<td style="text-align:right;">
+21.105
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1199.914
+</td>
+<td style="text-align:right;">
+1447.258
+</td>
+</tr>
+</tbody>
+</table>
+<pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
+<p><img src="bookdownproj_files/figure-html/regresion-simple-1.png" alt="" width="672" /></p>
+<p><strong>Interpretación práctica:</strong> Por cada año adicional de experiencia, el salario esperado aumenta en aproximadamente 1324 dólares, manteniendo todo lo demás constante.</p>
+</div>
+</div>
+<div id="el-modelo-de-regresión-lineal-múltiple" class="section level3 hasAnchor" number="6.1.3">
+<h3><span class="header-section-number">6.1.3</span> El Modelo de Regresión Lineal Múltiple<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#el-modelo-de-regresi%C3%B3n-lineal-m%C3%BAltiple" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="generalización-matemática" class="section level4 hasAnchor" number="6.1.3.1">
+<h4><span class="header-section-number">6.1.3.1</span> Generalización matemática<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#generalizaci%C3%B3n-matem%C3%A1tica" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>El modelo de regresión múltiple extiende el caso simple a <span class="math inline">\(k\)</span> variables explicativas:</p>
+<p><span class="math display">\[\begin{equation}
+Y_i = \beta_0 + \beta_1 X_{1i} + \beta_2 X_{2i} + \cdots + \beta_k X_{ki} + \varepsilon_i
+\end{equation}\]</span></p>
+<p>En notación matricial:
+<span class="math display">\[\begin{equation}
+\mathbf{Y} = \mathbf{X}\boldsymbol{\beta} + \boldsymbol{\varepsilon}
+\end{equation}\]</span></p>
+<p>donde:
+- <span class="math inline">\(\mathbf{Y}\)</span> es un vector <span class="math inline">\(n \times 1\)</span> de observaciones
+- <span class="math inline">\(\mathbf{X}\)</span> es una matriz <span class="math inline">\(n \times (k+1)\)</span> de diseño
+- <span class="math inline">\(\boldsymbol{\beta}\)</span> es un vector <span class="math inline">\((k+1) \times 1\)</span> de parámetros
+- <span class="math inline">\(\boldsymbol{\varepsilon}\)</span> es un vector <span class="math inline">\(n \times 1\)</span> de errores</p>
+</div>
+<div id="interpretación-de-coeficientes-parciales-ceteris-paribus" class="section level4 hasAnchor" number="6.1.3.2">
+<h4><span class="header-section-number">6.1.3.2</span> Interpretación de coeficientes parciales (ceteris paribus)<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#interpretaci%C3%B3n-de-coeficientes-parciales-ceteris-paribus" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>En regresión múltiple, <span class="math inline">\(\beta_j\)</span> representa el <strong>efecto marginal</strong> de <span class="math inline">\(X_j\)</span> sobre <span class="math inline">\(Y\)</span>, manteniendo <strong>constantes</strong> todas las demás variables explicativas. Esto es crucial para el control de variables confusoras <span class="citation">(<a href="#ref-wooldridge2015">Wooldridge 2015</a>)</span>.</p>
+</div>
+<div id="linealidad-en-parámetros" class="section level4 hasAnchor" number="6.1.3.3">
+<h4><span class="header-section-number">6.1.3.3</span> Linealidad en parámetros<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#linealidad-en-par%C3%A1metros" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>El modelo es lineal en los <strong>parámetros</strong> <span class="math inline">\(\beta_j\)</span>, no necesariamente en las <strong>variables</strong>. Podemos incluir:
+- Transformaciones: <span class="math inline">\(\log(X)\)</span>, <span class="math inline">\(\sqrt{X}\)</span>, <span class="math inline">\(X^2\)</span>
+- Interacciones: <span class="math inline">\(X_1 \times X_2\)</span>
+- Variables dummy para categorías</p>
+<table class="table table-striped table-hover" style="color: black; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:regresion-multiple">Table 6.3: </span><span id="tab:regresion-multiple">Table 6.4: </span>Modelo de regresión múltiple: Determinantes del salario
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+term
+</th>
+<th style="text-align:right;">
+estimate
+</th>
+<th style="text-align:right;">
+std.error
+</th>
+<th style="text-align:right;">
+statistic
+</th>
+<th style="text-align:right;">
+p.value
+</th>
+<th style="text-align:right;">
+conf.low
+</th>
+<th style="text-align:right;">
+conf.high
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+(Intercept)
+</td>
+<td style="text-align:right;">
+20692.466
+</td>
+<td style="text-align:right;">
+3405.062
+</td>
+<td style="text-align:right;">
+6.077
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+13976.989
+</td>
+<td style="text-align:right;">
+27407.943
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+edad
+</td>
+<td style="text-align:right;">
+997.822
+</td>
+<td style="text-align:right;">
+156.220
+</td>
+<td style="text-align:right;">
+6.387
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+689.725
+</td>
+<td style="text-align:right;">
+1305.920
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+experiencia
+</td>
+<td style="text-align:right;">
+297.930
+</td>
+<td style="text-align:right;">
+164.206
+</td>
+<td style="text-align:right;">
+1.814
+</td>
+<td style="text-align:right;">
+0.071
+</td>
+<td style="text-align:right;">
+-25.917
+</td>
+<td style="text-align:right;">
+621.778
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+educacionSecundaria
+</td>
+<td style="text-align:right;">
+7319.872
+</td>
+<td style="text-align:right;">
+833.352
+</td>
+<td style="text-align:right;">
+8.784
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+5676.331
+</td>
+<td style="text-align:right;">
+8963.412
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+educacionUniversidad
+</td>
+<td style="text-align:right;">
+14576.768
+</td>
+<td style="text-align:right;">
+918.700
+</td>
+<td style="text-align:right;">
+15.867
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+12764.903
+</td>
+<td style="text-align:right;">
+16388.632
+</td>
+</tr>
+</tbody>
+</table>
+<table class="table table-striped table-hover" style="color: black; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:regresion-multiple">Table 6.3: </span><span id="tab:regresion-multiple">Table 6.3: </span>Comparación de modelos: Simple vs. Múltiple
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+model
+</th>
+<th style="text-align:right;">
+r.squared
+</th>
+<th style="text-align:right;">
+adj.r.squared
+</th>
+<th style="text-align:right;">
+AIC
+</th>
+<th style="text-align:right;">
+BIC
+</th>
+<th style="text-align:right;">
+p.value
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+simple
+</td>
+<td style="text-align:right;">
+0.6923
+</td>
+<td style="text-align:right;">
+0.6907
+</td>
+<td style="text-align:right;">
+4163.086
+</td>
+<td style="text-align:right;">
+4172.980
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+multiple
+</td>
+<td style="text-align:right;">
+0.8825
+</td>
+<td style="text-align:right;">
+0.8801
+</td>
+<td style="text-align:right;">
+3976.526
+</td>
+<td style="text-align:right;">
+3996.316
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Interpretación de educación:</strong> Controlando por edad y experiencia, tener educación universitaria se asocia con un incremento promedio de 7320 dólares en el salario comparado con educación primaria.</p>
+</div>
+</div>
+</div>
+<div id="supuestos-del-mcrl-y-estimación-mco" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> Supuestos del MCRL y Estimación MCO<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#supuestos-del-mcrl-y-estimaci%C3%B3n-mco" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="supuestos-del-modelo-clásico-de-regresión-lineal-mcrl" class="section level3 hasAnchor" number="6.2.1">
+<h3><span class="header-section-number">6.2.1</span> Supuestos del Modelo Clásico de Regresión Lineal (MCRL)<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#supuestos-del-modelo-cl%C3%A1sico-de-regresi%C3%B3n-lineal-mcrl" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="supuestos-fundamentales" class="section level4 hasAnchor" number="6.2.1.1">
+<h4><span class="header-section-number">6.2.1.1</span> Supuestos fundamentales<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#supuestos-fundamentales" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li><strong>Linealidad en parámetros:</strong> El modelo está correctamente especificado</li>
+<li><strong>Exogeneidad estricta:</strong> <span class="math inline">\(E(\varepsilon_i|X_i) = 0\)</span> para todo <span class="math inline">\(i\)</span></li>
+<li><strong>Homoscedasticidad:</strong> <span class="math inline">\(\text{Var}(\varepsilon_i|X_i) = \sigma^2\)</span> (varianza constante)</li>
+<li><strong>No autocorrelación:</strong> <span class="math inline">\(\text{Cov}(\varepsilon_i, \varepsilon_j|X) = 0\)</span> para <span class="math inline">\(i \neq j\)</span></li>
+<li><strong>No multicolinealidad perfecta:</strong> <span class="math inline">\(\text{rank}(\mathbf{X}) = k+1\)</span></li>
+<li><strong>Normalidad</strong> (para muestras pequeñas): <span class="math inline">\(\varepsilon_i \sim N(0, \sigma^2)\)</span></li>
+</ol>
+</div>
+<div id="implicaciones-de-violaciones" class="section level4 hasAnchor" number="6.2.1.2">
+<h4><span class="header-section-number">6.2.1.2</span> Implicaciones de violaciones<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#implicaciones-de-violaciones" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<table>
+<thead>
+<tr class="header">
+<th>Supuesto violado</th>
+<th>Efecto en MCO</th>
+<th>Inferencia afectada</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Exogeneidad</td>
+<td>Sesgo e inconsistencia</td>
+<td>Sí</td>
+</tr>
+<tr class="even">
+<td>Homoscedasticidad</td>
+<td>Ineficiencia</td>
+<td>Errores estándar</td>
+</tr>
+<tr class="odd">
+<td>No autocorrelación</td>
+<td>Ineficiencia</td>
+<td>Errores estándar</td>
+</tr>
+<tr class="even">
+<td>Multicolinealidad</td>
+<td>Alta varianza</td>
+<td>Significancia</td>
+</tr>
+<tr class="odd">
+<td>Normalidad</td>
+<td>-</td>
+<td>Pruebas t/F (muestras pequeñas)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="verificación-práctica-de-supuestos" class="section level4 hasAnchor" number="6.2.1.3">
+<h4><span class="header-section-number">6.2.1.3</span> Verificación práctica de supuestos<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#verificaci%C3%B3n-pr%C3%A1ctica-de-supuestos" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><img src="bookdownproj_files/figure-html/verificacion-supuestos-1.png" alt="" width="672" /></p>
+<pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula = &#39;y ~ x&#39;</code></pre>
+<p><img src="bookdownproj_files/figure-html/verificacion-supuestos-2.png" alt="" width="672" /></p>
+<pre><code>## Prueba de Breusch-Pagan (Homoscedasticidad):</code></pre>
+<pre><code>## 
+##  studentized Breusch-Pagan test
+## 
+## data:  modelo_multiple
+## BP = 8.8749, df = 4, p-value = 0.0643</code></pre>
+<pre><code>## 
+## Prueba de Shapiro-Wilk (Normalidad):</code></pre>
+<pre><code>## 
+##  Shapiro-Wilk normality test
+## 
+## data:  residuals(modelo_multiple)
+## W = 0.99557, p-value = 0.8302</code></pre>
+</div>
+</div>
+<div id="estimación-por-mínimos-cuadrados-ordinarios-mco" class="section level3 hasAnchor" number="6.2.2">
+<h3><span class="header-section-number">6.2.2</span> Estimación por Mínimos Cuadrados Ordinarios (MCO)<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#estimaci%C3%B3n-por-m%C3%ADnimos-cuadrados-ordinarios-mco" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="derivación-del-estimador" class="section level4 hasAnchor" number="6.2.2.1">
+<h4><span class="header-section-number">6.2.2.1</span> Derivación del estimador<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#derivaci%C3%B3n-del-estimador" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>El estimador MCO minimiza la suma de cuadrados de residuos:
+<span class="math display">\[\begin{equation}
+\min_{\boldsymbol{\beta}} \sum_{i=1}^n (Y_i - \mathbf{x}_i^{T}\boldsymbol{\beta})^2
+\end{equation}\]</span></p>
+<p>La solución analítica es:
+<span class="math display">\[\begin{equation}
+\hat{\boldsymbol{\beta}} = (\mathbf{X}^{T}\mathbf{X})^{-1}\mathbf{X}^{T}\mathbf{Y}
+\end{equation}\]</span></p>
+</div>
+<div id="propiedades-estadísticas" class="section level4 hasAnchor" number="6.2.2.2">
+<h4><span class="header-section-number">6.2.2.2</span> Propiedades estadísticas<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#propiedades-estad%C3%ADsticas" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Bajo los supuestos del MCRL:
+- <strong>Insesgadez:</strong>
+<span class="math display">\[\begin{equation}
+E[\hat{\boldsymbol{\beta}}|\mathbf{X}] = \boldsymbol{\beta}
+\end{equation}\]</span>
+- <strong>Eficiencia:</strong> BLUE (Best Linear Unbiased Estimator) por el teorema de Gauss-Markov
+- <strong>Consistencia:</strong>
+<span class="math display">\[\begin{equation}
+\text{plim}_{n \to \infty} \hat{\boldsymbol{\beta}} = \boldsymbol{\beta}
+\end{equation}\]</span>
+- <strong>Normalidad asintótica:</strong>
+<span class="math display">\[\begin{equation}
+\hat{\boldsymbol{\beta}} \xrightarrow{d} N(\boldsymbol{\beta}, \sigma^2(\mathbf{X}^{T}\mathbf{X})^{-1})
+\end{equation}\]</span></p>
+<table class="table table-striped table-hover" style="color: black; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:mco-manual">Table 6.5: </span><span id="tab:mco-manual">Table 6.6: </span>Verificación: MCO manual vs. función lm()
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:left;">
+Coeficiente
+</th>
+<th style="text-align:right;">
+MCO_manual
+</th>
+<th style="text-align:right;">
+lm_function
+</th>
+<th style="text-align:right;">
+Diferencia
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+(Intercept)
+</td>
+<td style="text-align:left;">
+(Intercept)
+</td>
+<td style="text-align:right;">
+20692.4663
+</td>
+<td style="text-align:right;">
+20692.4663
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+edad
+</td>
+<td style="text-align:left;">
+edad
+</td>
+<td style="text-align:right;">
+997.8225
+</td>
+<td style="text-align:right;">
+997.8225
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+experiencia
+</td>
+<td style="text-align:left;">
+experiencia
+</td>
+<td style="text-align:right;">
+297.9304
+</td>
+<td style="text-align:right;">
+297.9304
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+educacionSecundaria
+</td>
+<td style="text-align:left;">
+educacionSecundaria
+</td>
+<td style="text-align:right;">
+7319.8716
+</td>
+<td style="text-align:right;">
+7319.8716
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+educacionUniversidad
+</td>
+<td style="text-align:left;">
+educacionUniversidad
+</td>
+<td style="text-align:right;">
+14576.7678
+</td>
+<td style="text-align:right;">
+14576.7678
+</td>
+<td style="text-align:right;">
+0
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="estimación-de-sigma2" class="section level4 hasAnchor" number="6.2.2.3">
+<h4><span class="header-section-number">6.2.2.3</span> Estimación de <span class="math inline">\(\sigma^2\)</span><a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#estimaci%C3%B3n-de-sigma2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>El estimador insesgado de la varianza del error es:
+<span class="math display">\[\begin{equation}
+\hat{\sigma}^2 = \frac{\sum_{i=1}^n \hat{\varepsilon}_i^2}{n-k-1} = \frac{\text{SCR}}{n-k-1}
+\end{equation}\]</span></p>
+<p>donde SCR es la suma de cuadrados de los residuos y <span class="math inline">\(n-k-1\)</span> son los grados de libertad.</p>
+</div>
+</div>
+</div>
+<div id="inferencia-estadística-en-regresión" class="section level2 hasAnchor" number="6.3">
+<h2><span class="header-section-number">6.3</span> Inferencia Estadística en Regresión<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#inferencia-estad%C3%ADstica-en-regresi%C3%B3n" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="distribución-de-los-estimadores" class="section level3 hasAnchor" number="6.3.1">
+<h3><span class="header-section-number">6.3.1</span> Distribución de los estimadores<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#distribuci%C3%B3n-de-los-estimadores" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Bajo normalidad de los errores:
+<span class="math display">\[\begin{equation}
+\hat{\beta}_j \sim N\left(\beta_j, \sigma^2[(\mathbf{X}^{T}\mathbf{X})^{-1}]_{jj}\right)
+\end{equation}\]</span></p>
+<p>El estadístico t estandarizado:
+<span class="math display">\[\begin{equation}
+t = \frac{\hat{\beta}_j - \beta_j}{\text{se}(\hat{\beta}_j)} \sim t_{n-k-1}
+\end{equation}\]</span></p>
+</div>
+<div id="pruebas-de-hipótesis-1" class="section level3 hasAnchor" number="6.3.2">
+<h3><span class="header-section-number">6.3.2</span> Pruebas de hipótesis<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#pruebas-de-hip%C3%B3tesis-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="prueba-t-para-coeficientes-individuales" class="section level4 hasAnchor" number="6.3.2.1">
+<h4><span class="header-section-number">6.3.2.1</span> Prueba t para coeficientes individuales<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#prueba-t-para-coeficientes-individuales" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><span class="math display">\[\begin{equation}
+H_0: \beta_j = 0 \quad \text{vs.} \quad H_1: \beta_j \neq 0
+\end{equation}\]</span></p>
+<table class="table table-striped table-hover" style="color: black; margin-left: auto; margin-right: auto;border-bottom: 0;">
+<caption>
+<span id="tab:prueba-t">Table 6.7: </span><span id="tab:prueba-t">Table 6.8: </span>Pruebas t individuales para coeficientes
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+term
+</th>
+<th style="text-align:right;">
+estimate
+</th>
+<th style="text-align:right;">
+std.error
+</th>
+<th style="text-align:right;">
+statistic
+</th>
+<th style="text-align:right;">
+p.value
+</th>
+<th style="text-align:left;">
+significancia
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+(Intercept)
+</td>
+<td style="text-align:right;">
+20692.4663
+</td>
+<td style="text-align:right;">
+3405.0619
+</td>
+<td style="text-align:right;">
+6.0770
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+<td style="text-align:left;">
+***
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+edad
+</td>
+<td style="text-align:right;">
+997.8225
+</td>
+<td style="text-align:right;">
+156.2199
+</td>
+<td style="text-align:right;">
+6.3873
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+<td style="text-align:left;">
+***
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+experiencia
+</td>
+<td style="text-align:right;">
+297.9304
+</td>
+<td style="text-align:right;">
+164.2059
+</td>
+<td style="text-align:right;">
+1.8144
+</td>
+<td style="text-align:right;">
+0.0712
+</td>
+<td style="text-align:left;">
+.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+educacionSecundaria
+</td>
+<td style="text-align:right;">
+7319.8716
+</td>
+<td style="text-align:right;">
+833.3520
+</td>
+<td style="text-align:right;">
+8.7836
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+<td style="text-align:left;">
+***
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+educacionUniversidad
+</td>
+<td style="text-align:right;">
+14576.7678
+</td>
+<td style="text-align:right;">
+918.7004
+</td>
+<td style="text-align:right;">
+15.8667
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+<td style="text-align:left;">
+***
+</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td style="padding: 0; " colspan="100%">
+<span style="font-style: italic;">Note: </span>
+</td>
+</tr>
+<tr>
+<td style="padding: 0; " colspan="100%">
+<sup></sup> Códigos de significancia: 0 ‘<em><strong>’ 0.001 ’</strong>’ 0.01 ’</em>’ 0.05 ‘.’ 0.1 ’ ’ 1
+</td>
+</tr>
+</tfoot>
+</table>
+</div>
+<div id="prueba-f-para-significancia-conjunta" class="section level4 hasAnchor" number="6.3.2.2">
+<h4><span class="header-section-number">6.3.2.2</span> Prueba F para significancia conjunta<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#prueba-f-para-significancia-conjunta" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><span class="math display">\[\begin{equation}
+H_0: \beta_1 = \beta_2 = \cdots = \beta_k = 0
+\end{equation}\]</span></p>
+<p><span class="math display">\[\begin{equation}
+F = \frac{(\text{SCT} - \text{SCR})/k}{\text{SCR}/(n-k-1)} \sim F_{k,n-k-1}
+\end{equation}\]</span></p>
+<table class="table table-striped table-hover" style="color: black; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:prueba-f">Table 6.9: </span><span id="tab:prueba-f">Table 6.10: </span>Análisis de Varianza (ANOVA)
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+Df
+</th>
+<th style="text-align:right;">
+Sum Sq
+</th>
+<th style="text-align:right;">
+Mean Sq
+</th>
+<th style="text-align:right;">
+F value
+</th>
+<th style="text-align:right;">
+Pr(&gt;F)
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+edad
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+29583539075
+</td>
+<td style="text-align:right;">
+29583539075
+</td>
+<td style="text-align:right;">
+1212.4683
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+experiencia
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+2991060
+</td>
+<td style="text-align:right;">
+2991060
+</td>
+<td style="text-align:right;">
+0.1226
+</td>
+<td style="text-align:right;">
+0.7266
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+educacion
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+6149552056
+</td>
+<td style="text-align:right;">
+3074776028
+</td>
+<td style="text-align:right;">
+126.0183
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Residuals
+</td>
+<td style="text-align:right;">
+195
+</td>
+<td style="text-align:right;">
+4757889304
+</td>
+<td style="text-align:right;">
+24399432
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+</tbody>
+</table>
+<pre><code>## Estadístico F: 366.157</code></pre>
+<pre><code>## p-valor: 1.85e-89</code></pre>
+<pre><code>## Conclusión: Rechazamos H0: al menos un coeficiente es significativo</code></pre>
+</div>
+</div>
+<div id="intervalos-de-confianza-y-predicción" class="section level3 hasAnchor" number="6.3.3">
+<h3><span class="header-section-number">6.3.3</span> Intervalos de confianza y predicción<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#intervalos-de-confianza-y-predicci%C3%B3n" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="intervalos-de-confianza-para-coeficientes" class="section level4 hasAnchor" number="6.3.3.1">
+<h4><span class="header-section-number">6.3.3.1</span> Intervalos de confianza para coeficientes<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#intervalos-de-confianza-para-coeficientes" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><span class="math display">\[\begin{equation}
+\hat{\beta}_j \pm t_{\alpha/2, n-k-1} \times \text{se}(\hat{\beta}_j)
+\end{equation}\]</span></p>
+</div>
+<div id="intervalos-de-predicción" class="section level4 hasAnchor" number="6.3.3.2">
+<h4><span class="header-section-number">6.3.3.2</span> Intervalos de predicción<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#intervalos-de-predicci%C3%B3n" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Para una nueva observación <span class="math inline">\(X_0\)</span>:</p>
+<ul>
+<li><p><strong>Intervalo de confianza para <span class="math inline">\(E(Y|X_0)\)</span>:</strong>
+<span class="math display">\[\begin{equation}
+\hat{Y}_0 \pm t_{\alpha/2, n-k-1} \times \text{se}(\hat{Y}_0)
+\end{equation}\]</span></p></li>
+<li><p><strong>Intervalo de predicción para una nueva <span class="math inline">\(Y_0\)</span>:</strong>
+<span class="math display">\[\begin{equation}
+\hat{Y}_0 \pm t_{\alpha/2, n-k-1} \times \sqrt{\text{se}^2(\hat{Y}_0) + \hat{\sigma}^2}
+\end{equation}\]</span></p></li>
+</ul>
+<table class="table table-striped table-hover" style="color: black; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:intervalos">Table 6.11: </span><span id="tab:intervalos">Table 6.12: </span>Intervalos de confianza al 95% para coeficientes
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+2.5 %
+</th>
+<th style="text-align:right;">
+97.5 %
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+(Intercept)
+</td>
+<td style="text-align:right;">
+13976.99
+</td>
+<td style="text-align:right;">
+27407.94
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+edad
+</td>
+<td style="text-align:right;">
+689.72
+</td>
+<td style="text-align:right;">
+1305.92
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+experiencia
+</td>
+<td style="text-align:right;">
+-25.92
+</td>
+<td style="text-align:right;">
+621.78
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+educacionSecundaria
+</td>
+<td style="text-align:right;">
+5676.33
+</td>
+<td style="text-align:right;">
+8963.41
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+educacionUniversidad
+</td>
+<td style="text-align:right;">
+12764.90
+</td>
+<td style="text-align:right;">
+16388.63
+</td>
+</tr>
+</tbody>
+</table>
+<table class="table table-striped table-hover" style="color: black; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:intervalos">Table 6.11: </span><span id="tab:intervalos">Table 6.11: </span>Predicciones con intervalos de predicción al 95%
+</caption>
+<thead>
+<tr>
+<th style="text-align:right;">
+edad
+</th>
+<th style="text-align:right;">
+experiencia
+</th>
+<th style="text-align:left;">
+educacion
+</th>
+<th style="text-align:right;">
+fit
+</th>
+<th style="text-align:right;">
+lwr
+</th>
+<th style="text-align:right;">
+upr
+</th>
+<th style="text-align:right;">
+amplitud_intervalo
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+30
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:left;">
+Universidad
+</td>
+<td style="text-align:right;">
+66694
+</td>
+<td style="text-align:right;">
+56796
+</td>
+<td style="text-align:right;">
+76592
+</td>
+<td style="text-align:right;">
+19796
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+40
+</td>
+<td style="text-align:right;">
+15
+</td>
+<td style="text-align:left;">
+Universidad
+</td>
+<td style="text-align:right;">
+79651
+</td>
+<td style="text-align:right;">
+69780
+</td>
+<td style="text-align:right;">
+89522
+</td>
+<td style="text-align:right;">
+19742
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+50
+</td>
+<td style="text-align:right;">
+25
+</td>
+<td style="text-align:left;">
+Secundaria
+</td>
+<td style="text-align:right;">
+85352
+</td>
+<td style="text-align:right;">
+75460
+</td>
+<td style="text-align:right;">
+95243
+</td>
+<td style="text-align:right;">
+19783
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="medidas-de-bondad-de-ajuste" class="section level2 hasAnchor" number="6.4">
+<h2><span class="header-section-number">6.4</span> Medidas de Bondad de Ajuste<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#medidas-de-bondad-de-ajuste" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="coeficiente-de-determinación-r²" class="section level3 hasAnchor" number="6.4.1">
+<h3><span class="header-section-number">6.4.1</span> Coeficiente de determinación R²<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#coeficiente-de-determinaci%C3%B3n-r%C2%B2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><span class="math display">\[\begin{equation}
+R^2 = \frac{\text{SCE}}{\text{SCT}} = 1 - \frac{\text{SCR}}{\text{SCT}}
+\end{equation}\]</span></p>
+<p>donde:
+- SCE = Suma de cuadrados explicada
+- SCR = Suma de cuadrados de residuos
+- SCT = Suma de cuadrados total</p>
+</div>
+<div id="r²-ajustado" class="section level3 hasAnchor" number="6.4.2">
+<h3><span class="header-section-number">6.4.2</span> R² ajustado<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#r%C2%B2-ajustado" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Penaliza por el número de variables:
+<span class="math display">\[\begin{equation}
+\bar{R}^2 = 1 - \frac{\text{SCR}/(n-k-1)}{\text{SCT}/(n-1)}
+\end{equation}\]</span></p>
+</div>
+<div id="limitaciones-del-r²" class="section level3 hasAnchor" number="6.4.3">
+<h3><span class="header-section-number">6.4.3</span> Limitaciones del R²<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#limitaciones-del-r%C2%B2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Como advierte <span class="citation">Harrell Jr (<a href="#ref-harrell2015">2015</a>)</span>:
+- No indica causalidad
+- Puede ser alto con modelo mal especificado
+- No es apropiado para comparar modelos no anidados
+- En predicción, preferir validación cruzada</p>
+<table class="table table-striped table-hover" style="color: black; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:bondad-ajuste">Table 6.13: </span><span id="tab:bondad-ajuste">Table 6.14: </span>Métricas de bondad de ajuste
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Métrica
+</th>
+<th style="text-align:right;">
+Valor
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+R²
+</td>
+<td style="text-align:right;">
+0.8825
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+R² ajustado
+</td>
+<td style="text-align:right;">
+0.8801
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Error estándar residual
+</td>
+<td style="text-align:right;">
+4939.5782
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+AIC
+</td>
+<td style="text-align:right;">
+3976.5259
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+BIC
+</td>
+<td style="text-align:right;">
+3996.3158
+</td>
+</tr>
+</tbody>
+</table>
+<table class="table table-striped table-hover" style="color: black; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:bondad-ajuste">Table 6.13: </span><span id="tab:bondad-ajuste">Table 6.13: </span>Descomposición de la varianza
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Componente
+</th>
+<th style="text-align:right;">
+Valor
+</th>
+<th style="text-align:right;">
+Porcentaje
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Suma Total de Cuadrados (SCT)
+</td>
+<td style="text-align:right;">
+40493971495
+</td>
+<td style="text-align:right;">
+100.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Suma Explicada (SCE)
+</td>
+<td style="text-align:right;">
+35736082191
+</td>
+<td style="text-align:right;">
+88.25
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Suma de Residuos (SCR)
+</td>
+<td style="text-align:right;">
+4757889304
+</td>
+<td style="text-align:right;">
+11.75
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Verificación: SCE + SCR
+</td>
+<td style="text-align:right;">
+40493971495
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="diagnóstico-del-modelo-análisis-de-r" class="section level2 hasAnchor" number="6.5">
+<h2><span class="header-section-number">6.5</span> Diagnóstico del Modelo: Análisis de R<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#diagn%C3%B3stico-del-modelo-an%C3%A1lisis-de-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="tipos-de-residuos" class="section level3 hasAnchor" number="6.5.1">
+<h3><span class="header-section-number">6.5.1</span> Tipos de Residuos<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#tipos-de-residuos" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li><strong>Residuos ordinarios:</strong>
+<span class="math display">\[\begin{equation}
+\hat{\varepsilon}_i = Y_i - \hat{Y}_i
+\end{equation}\]</span></li>
+<li><strong>Residuos estandarizados:</strong>
+<span class="math display">\[\begin{equation}
+\frac{\hat{\varepsilon}_i}{\hat{\sigma}}
+\end{equation}\]</span></li>
+<li><strong>Residuos estudentizados:</strong>
+<span class="math display">\[\begin{equation}
+\frac{\hat{\varepsilon}_i}{\hat{\sigma}_i\sqrt{1-h_{ii}}}
+\end{equation}\]</span>
+donde <span class="math inline">\(h_{ii}\)</span> es el leverage de la observación <span class="math inline">\(i\)</span>.</li>
+</ol>
+</div>
+<div id="gráficos-de-diagnósticos-esenciales" class="section level3 hasAnchor" number="6.5.2">
+<h3><span class="header-section-number">6.5.2</span> Gráficos de diagnósticos esenciales<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#gr%C3%A1ficos-de-diagn%C3%B3sticos-esenciales" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><img src="bookdownproj_files/figure-html/diagnosticos-avanzados-1.png" alt="" width="672" /></p>
+<pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;
+## `geom_smooth()` using formula = &#39;y ~ x&#39;
+## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
+<p><img src="bookdownproj_files/figure-html/residuos-detallado-1.png" alt="" width="672" /></p>
+</div>
+<div id="detección-de-observaciones-influyentes" class="section level3 hasAnchor" number="6.5.3">
+<h3><span class="header-section-number">6.5.3</span> Detección de observaciones influyentes<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#detecci%C3%B3n-de-observaciones-influyentes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<table class="table table-striped table-hover" style="color: black; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:observaciones-influyentes">Table 6.15: </span><span id="tab:observaciones-influyentes">Table 6.16: </span>Observaciones potencialmente influyentes
+</caption>
+<thead>
+<tr>
+<th style="text-align:right;">
+obs_number
+</th>
+<th style="text-align:right;">
+leverage
+</th>
+<th style="text-align:right;">
+cooks_d
+</th>
+<th style="text-align:right;">
+.std.resid
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+116
+</td>
+<td style="text-align:right;">
+0.0456
+</td>
+<td style="text-align:right;">
+0.0734
+</td>
+<td style="text-align:right;">
+-2.7712
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+196
+</td>
+<td style="text-align:right;">
+0.0430
+</td>
+<td style="text-align:right;">
+0.0540
+</td>
+<td style="text-align:right;">
+2.4496
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+91
+</td>
+<td style="text-align:right;">
+0.0236
+</td>
+<td style="text-align:right;">
+0.0413
+</td>
+<td style="text-align:right;">
+-2.9211
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+72
+</td>
+<td style="text-align:right;">
+0.1130
+</td>
+<td style="text-align:right;">
+0.0334
+</td>
+<td style="text-align:right;">
+-1.1458
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+165
+</td>
+<td style="text-align:right;">
+0.0261
+</td>
+<td style="text-align:right;">
+0.0287
+</td>
+<td style="text-align:right;">
+-2.3121
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+49
+</td>
+<td style="text-align:right;">
+0.0192
+</td>
+<td style="text-align:right;">
+0.0255
+</td>
+<td style="text-align:right;">
+2.5514
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+136
+</td>
+<td style="text-align:right;">
+0.0278
+</td>
+<td style="text-align:right;">
+0.0245
+</td>
+<td style="text-align:right;">
+-2.0720
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+113
+</td>
+<td style="text-align:right;">
+0.0328
+</td>
+<td style="text-align:right;">
+0.0234
+</td>
+<td style="text-align:right;">
+1.8572
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+130
+</td>
+<td style="text-align:right;">
+0.0243
+</td>
+<td style="text-align:right;">
+0.0233
+</td>
+<td style="text-align:right;">
+2.1602
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+163
+</td>
+<td style="text-align:right;">
+0.0251
+</td>
+<td style="text-align:right;">
+0.0217
+</td>
+<td style="text-align:right;">
+2.0500
+</td>
+</tr>
+</tbody>
+</table>
+<p><img src="bookdownproj_files/figure-html/observaciones-influyentes-1.png" alt="" width="672" /></p>
+</div>
+</div>
+<div id="violaciones-de-los-supuestos-y-remedios" class="section level2 hasAnchor" number="6.6">
+<h2><span class="header-section-number">6.6</span> Violaciones de los Supuestos y Remedios<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#violaciones-de-los-supuestos-y-remedios" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="heteroscedasticidad" class="section level3 hasAnchor" number="6.6.1">
+<h3><span class="header-section-number">6.6.1</span> Heteroscedasticidad<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#heteroscedasticidad" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>La heteroscedasticidad ocurre cuando <span class="math inline">\(\text{Var}(\varepsilon_i|X_i) \neq \sigma^2\)</span>.</p>
+<div id="detección" class="section level4 hasAnchor" number="6.6.1.1">
+<h4><span class="header-section-number">6.6.1.1</span> Detección<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#detecci%C3%B3n" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<pre><code>## 
+##  studentized Breusch-Pagan test
+## 
+## data:  modelo_multiple
+## BP = 8.8749, df = 4, p-value = 0.0643</code></pre>
+<pre><code>## 
+##  studentized Breusch-Pagan test
+## 
+## data:  modelo_multiple
+## BP = 0.37302, df = 2, p-value = 0.8299</code></pre>
+<pre><code>## Non-constant Variance Score Test 
+## Variance formula: ~ fitted.values 
+## Chisquare = 0.3056539, Df = 1, p = 0.58036</code></pre>
+</div>
+<div id="remedios" class="section level4 hasAnchor" number="6.6.1.2">
+<h4><span class="header-section-number">6.6.1.2</span> Remedios<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#remedios" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li><strong>Errores estándar robustos (HC):</strong></li>
+</ol>
+<table class="table table-striped table-hover" style="color: black; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:errores-robustos">Table 6.17: </span><span id="tab:errores-robustos">Table 6.18: </span>Comparación de errores estándar: Clásicos vs. Robustos
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Coeficiente
+</th>
+<th style="text-align:right;">
+Clásicos
+</th>
+<th style="text-align:right;">
+HC0 (White)
+</th>
+<th style="text-align:right;">
+HC1
+</th>
+<th style="text-align:right;">
+HC2
+</th>
+<th style="text-align:right;">
+HC3
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+(Intercept)
+</td>
+<td style="text-align:right;">
+3405.0619
+</td>
+<td style="text-align:right;">
+3535.9458
+</td>
+<td style="text-align:right;">
+3580.9915
+</td>
+<td style="text-align:right;">
+3618.3737
+</td>
+<td style="text-align:right;">
+3704.4184
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+edad
+</td>
+<td style="text-align:right;">
+156.2199
+</td>
+<td style="text-align:right;">
+164.5280
+</td>
+<td style="text-align:right;">
+166.6239
+</td>
+<td style="text-align:right;">
+168.1914
+</td>
+<td style="text-align:right;">
+172.0031
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+experiencia
+</td>
+<td style="text-align:right;">
+164.2059
+</td>
+<td style="text-align:right;">
+170.0246
+</td>
+<td style="text-align:right;">
+172.1906
+</td>
+<td style="text-align:right;">
+173.5876
+</td>
+<td style="text-align:right;">
+177.2852
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+educacionSecundaria
+</td>
+<td style="text-align:right;">
+833.3520
+</td>
+<td style="text-align:right;">
+869.4293
+</td>
+<td style="text-align:right;">
+880.5053
+</td>
+<td style="text-align:right;">
+881.1232
+</td>
+<td style="text-align:right;">
+893.0479
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+educacionUniversidad
+</td>
+<td style="text-align:right;">
+918.7004
+</td>
+<td style="text-align:right;">
+889.1385
+</td>
+<td style="text-align:right;">
+900.4656
+</td>
+<td style="text-align:right;">
+901.4941
+</td>
+<td style="text-align:right;">
+914.0654
+</td>
+</tr>
+</tbody>
+</table>
+<pre><code>## 
+## t test of coefficients:
+## 
+##                      Estimate Std. Error t value  Pr(&gt;|t|)    
+## (Intercept)          20692.47    3580.99  5.7784 2.946e-08 ***
+## edad                   997.82     166.62  5.9885 1.002e-08 ***
+## experiencia            297.93     172.19  1.7302   0.08517 .  
+## educacionSecundaria   7319.87     880.51  8.3133 1.570e-14 ***
+## educacionUniversidad 14576.77     900.47 16.1880 &lt; 2.2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li><strong>Transformaciones de variables:</strong></li>
+</ol>
+<table class="table table-striped table-hover" style="color: black; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:transformaciones">Table 6.19: </span><span id="tab:transformaciones">Table 6.20: </span>Comparación de tests de heteroscedasticidad
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Modelo
+</th>
+<th style="text-align:right;">
+BP_estadistico
+</th>
+<th style="text-align:right;">
+p_valor
+</th>
+<th style="text-align:left;">
+Conclusion
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Original
+</td>
+<td style="text-align:right;">
+8.8749
+</td>
+<td style="text-align:right;">
+0.0643
+</td>
+<td style="text-align:left;">
+Homoscedasticidad
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Log-log
+</td>
+<td style="text-align:right;">
+20.2938
+</td>
+<td style="text-align:right;">
+0.0004
+</td>
+<td style="text-align:left;">
+Heteroscedasticidad presente
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="multicolinealidad" class="section level3 hasAnchor" number="6.6.2">
+<h3><span class="header-section-number">6.6.2</span> Multicolinealidad<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#multicolinealidad" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Problema cuando las variables explicativas están altamente correlacionadas.</p>
+<div id="detección-mediante-vif" class="section level4 hasAnchor" number="6.6.2.1">
+<h4><span class="header-section-number">6.6.2.1</span> Detección mediante VIF<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#detecci%C3%B3n-mediante-vif" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<table class="table table-striped table-hover" style="color: black; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:multicolinealidad">Table 6.21: </span><span id="tab:multicolinealidad">Table 6.22: </span>Diagnóstico de Multicolinealidad (VIF)
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:left;">
+Variable
+</th>
+<th style="text-align:right;">
+VIF
+</th>
+<th style="text-align:right;">
+Tolerancia
+</th>
+<th style="text-align:left;">
+Interpretacion
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+edad
+</td>
+<td style="text-align:left;">
+edad
+</td>
+<td style="text-align:right;">
+17.706
+</td>
+<td style="text-align:right;">
+0.056
+</td>
+<td style="text-align:left;">
+Multicolinealidad severa
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+experiencia
+</td>
+<td style="text-align:left;">
+experiencia
+</td>
+<td style="text-align:right;">
+17.683
+</td>
+<td style="text-align:right;">
+0.057
+</td>
+<td style="text-align:left;">
+Multicolinealidad severa
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+educacion
+</td>
+<td style="text-align:left;">
+educacion
+</td>
+<td style="text-align:right;">
+1.011
+</td>
+<td style="text-align:right;">
+0.989
+</td>
+<td style="text-align:left;">
+Sin problema
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="remedios-para-multicolinealidad" class="section level4 hasAnchor" number="6.6.2.2">
+<h4><span class="header-section-number">6.6.2.2</span> Remedios para multicolinealidad<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#remedios-para-multicolinealidad" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<pre><code>## Cargando paquete requerido: princomp</code></pre>
+<pre><code>## Warning in library(package, lib.loc = lib.loc, character.only = TRUE, logical.return = TRUE, : no hay
+## paquete llamado &#39;princomp&#39;</code></pre>
+<table class="table table-striped table-hover" style="color: black; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:remedios-multicolinealidad">Table 6.23: </span><span id="tab:remedios-multicolinealidad">Table 6.24: </span>Efecto del centrado en VIF
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Modelo
+</th>
+<th style="text-align:right;">
+VIF_edad
+</th>
+<th style="text-align:right;">
+VIF_experiencia
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Original
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Centrado
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="autocorrelación-series-de-tiempo" class="section level3 hasAnchor" number="6.6.3">
+<h3><span class="header-section-number">6.6.3</span> Autocorrelación (Series de Tiempo)<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#autocorrelaci%C3%B3n-series-de-tiempo" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Relevante cuando las observaciones tienen orden temporal.</p>
+<pre><code>## 
+##  Durbin-Watson test
+## 
+## data:  modelo_tiempo
+## DW = 1.7104, p-value = 0.05872
+## alternative hypothesis: true autocorrelation is greater than 0</code></pre>
+<pre><code>## 
+##  Breusch-Godfrey test for serial correlation of order up to 2
+## 
+## data:  modelo_tiempo
+## LM test = 2.6754, df = 2, p-value = 0.2624</code></pre>
+<p><img src="bookdownproj_files/figure-html/autocorrelacion-1.png" alt="" width="672" /></p>
+</div>
+</div>
+<div id="selección-de-variables-y-extensiones-del-modelo" class="section level2 hasAnchor" number="6.7">
+<h2><span class="header-section-number">6.7</span> Selección de Variables y Extensiones del Modelo<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#selecci%C3%B3n-de-variables-y-extensiones-del-modelo" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="selección-de-variables-y-modelos" class="section level3 hasAnchor" number="6.7.1">
+<h3><span class="header-section-number">6.7.1</span> Selección de Variables y Modelos<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#selecci%C3%B3n-de-variables-y-modelos" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="criterios-de-información" class="section level4 hasAnchor" number="6.7.1.1">
+<h4><span class="header-section-number">6.7.1.1</span> Criterios de información<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#criterios-de-informaci%C3%B3n" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Los criterios AIC y BIC penalizan la complejidad del modelo:</p>
+<ul>
+<li><strong>AIC:</strong>
+<span class="math display">\[\begin{equation}
+AIC = n \ln(\hat{\sigma}^2) + 2k
+\end{equation}\]</span></li>
+<li><strong>BIC:</strong>
+<span class="math display">\[\begin{equation}
+BIC = n \ln(\hat{\sigma}^2) + k \ln(n)
+\end{equation}\]</span></li>
+</ul>
+<p>Menor valor indica mejor ajuste penalizado.</p>
+<table class="table table-striped table-hover" style="color: black; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:criterios-informacion">Table 6.25: </span><span id="tab:criterios-informacion">Table 6.26: </span>Comparación de modelos candidatos
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Modelo
+</th>
+<th style="text-align:right;">
+r.squared
+</th>
+<th style="text-align:right;">
+adj.r.squared
+</th>
+<th style="text-align:right;">
+AIC
+</th>
+<th style="text-align:right;">
+BIC
+</th>
+<th style="text-align:right;">
+df
+</th>
+<th style="text-align:right;">
+logLik
+</th>
+<th style="text-align:right;">
+delta_AIC
+</th>
+<th style="text-align:right;">
+delta_BIC
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Completo
+</td>
+<td style="text-align:right;">
+0.883
+</td>
+<td style="text-align:right;">
+0.880
+</td>
+<td style="text-align:right;">
+3976.526
+</td>
+<td style="text-align:right;">
+3996.316
+</td>
+<td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+-1982.263
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Con interacción
+</td>
+<td style="text-align:right;">
+0.883
+</td>
+<td style="text-align:right;">
+0.879
+</td>
+<td style="text-align:right;">
+3978.519
+</td>
+<td style="text-align:right;">
+4001.607
+</td>
+<td style="text-align:right;">
+5
+</td>
+<td style="text-align:right;">
+-1982.259
+</td>
+<td style="text-align:right;">
+1.993
+</td>
+<td style="text-align:right;">
+5.291
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Solo edad
+</td>
+<td style="text-align:right;">
+0.731
+</td>
+<td style="text-align:right;">
+0.729
+</td>
+<td style="text-align:right;">
+4136.509
+</td>
+<td style="text-align:right;">
+4146.404
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+-2065.254
+</td>
+<td style="text-align:right;">
+159.983
+</td>
+<td style="text-align:right;">
+150.088
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Edad + Experiencia
+</td>
+<td style="text-align:right;">
+0.731
+</td>
+<td style="text-align:right;">
+0.728
+</td>
+<td style="text-align:right;">
+4138.454
+</td>
+<td style="text-align:right;">
+4151.647
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+-2065.227
+</td>
+<td style="text-align:right;">
+161.928
+</td>
+<td style="text-align:right;">
+155.332
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Solo experiencia
+</td>
+<td style="text-align:right;">
+0.692
+</td>
+<td style="text-align:right;">
+0.691
+</td>
+<td style="text-align:right;">
+4163.086
+</td>
+<td style="text-align:right;">
+4172.981
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+-2078.543
+</td>
+<td style="text-align:right;">
+186.560
+</td>
+<td style="text-align:right;">
+176.665
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Solo educacion
+</td>
+<td style="text-align:right;">
+0.173
+</td>
+<td style="text-align:right;">
+0.165
+</td>
+<td style="text-align:right;">
+4362.788
+</td>
+<td style="text-align:right;">
+4375.981
+</td>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+-2177.394
+</td>
+<td style="text-align:right;">
+386.262
+</td>
+<td style="text-align:right;">
+379.665
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="selección-automática-de-variables" class="section level4 hasAnchor" number="6.7.1.2">
+<h4><span class="header-section-number">6.7.1.2</span> Selección automática de variables<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#selecci%C3%B3n-autom%C3%A1tica-de-variables" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<table class="table table-striped table-hover" style="color: black; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:seleccion-automatica">Table 6.27: </span><span id="tab:seleccion-automatica">Table 6.28: </span>Comparación de métodos de selección automática
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Método
+</th>
+<th style="text-align:left;">
+Fórmula
+</th>
+<th style="text-align:right;">
+AIC
+</th>
+<th style="text-align:right;">
+R_squared
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Forward
+</td>
+<td style="text-align:left;">
+salario ~ edad + educacion + experiencia
+</td>
+<td style="text-align:right;">
+3976.526
+</td>
+<td style="text-align:right;">
+0.8825
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Backward
+</td>
+<td style="text-align:left;">
+salario ~ edad + I(edad^2) + experiencia + I(experiencia^2) + educacion + edad:experiencia
+</td>
+<td style="text-align:right;">
+3979.861
+</td>
+<td style="text-align:right;">
+0.8841
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Both
+</td>
+<td style="text-align:left;">
+salario ~ edad + I(edad^2) + experiencia + I(experiencia^2) + educacion + edad:experiencia
+</td>
+<td style="text-align:right;">
+3979.861
+</td>
+<td style="text-align:right;">
+0.8841
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="validación-cruzada-para-selección" class="section level4 hasAnchor" number="6.7.1.3">
+<h4><span class="header-section-number">6.7.1.3</span> Validación cruzada para selección<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#validaci%C3%B3n-cruzada-para-selecci%C3%B3n" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<table class="table table-striped table-hover" style="color: black; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:validacion-cruzada">Table 6.29: </span><span id="tab:validacion-cruzada">Table 6.30: </span>Comparación final: Criterios de información vs. Validación cruzada
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Modelo
+</th>
+<th style="text-align:right;">
+r.squared
+</th>
+<th style="text-align:right;">
+AIC
+</th>
+<th style="text-align:right;">
+BIC
+</th>
+<th style="text-align:right;">
+RMSE_CV
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Con interacción
+</td>
+<td style="text-align:right;">
+0.8825
+</td>
+<td style="text-align:right;">
+3978.519
+</td>
+<td style="text-align:right;">
+4001.607
+</td>
+<td style="text-align:right;">
+4974.539
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Completo
+</td>
+<td style="text-align:right;">
+0.8825
+</td>
+<td style="text-align:right;">
+3976.526
+</td>
+<td style="text-align:right;">
+3996.316
+</td>
+<td style="text-align:right;">
+4987.617
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Solo edad
+</td>
+<td style="text-align:right;">
+0.7306
+</td>
+<td style="text-align:right;">
+4136.509
+</td>
+<td style="text-align:right;">
+4146.404
+</td>
+<td style="text-align:right;">
+7350.871
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Edad + Experiencia
+</td>
+<td style="text-align:right;">
+0.7306
+</td>
+<td style="text-align:right;">
+4138.454
+</td>
+<td style="text-align:right;">
+4151.647
+</td>
+<td style="text-align:right;">
+7496.063
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Solo experiencia
+</td>
+<td style="text-align:right;">
+0.6923
+</td>
+<td style="text-align:right;">
+4163.086
+</td>
+<td style="text-align:right;">
+4172.980
+</td>
+<td style="text-align:right;">
+7906.562
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Solo educacion
+</td>
+<td style="text-align:right;">
+0.1731
+</td>
+<td style="text-align:right;">
+4362.788
+</td>
+<td style="text-align:right;">
+4375.981
+</td>
+<td style="text-align:right;">
+12967.654
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="extensiones-del-modelo-lineal" class="section level3 hasAnchor" number="6.7.2">
+<h3><span class="header-section-number">6.7.2</span> Extensiones del Modelo Lineal<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#extensiones-del-modelo-lineal" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="variables-categóricas-y-contrastes" class="section level4 hasAnchor" number="6.7.2.1">
+<h4><span class="header-section-number">6.7.2.1</span> Variables categóricas y contrastes<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#variables-categ%C3%B3ricas-y-contrastes" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<pre><code>## [1] &quot;Primaria&quot;    &quot;Secundaria&quot;  &quot;Universidad&quot;</code></pre>
+<pre><code>##             Secundaria Universidad
+## Primaria             0           0
+## Secundaria           1           0
+## Universidad          0           1</code></pre>
+<table class="table table-striped table-hover" style="color: black; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:variables-categoricas">Table 6.31: </span><span id="tab:variables-categoricas">Table 6.32: </span>Comparación de sistemas de contrastes
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Contraste
+</th>
+<th style="text-align:left;">
+term
+</th>
+<th style="text-align:right;">
+estimate
+</th>
+<th style="text-align:right;">
+std.error
+</th>
+<th style="text-align:right;">
+p.value
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Treatment
+</td>
+<td style="text-align:left;">
+educacionSecundaria
+</td>
+<td style="text-align:right;">
+7319.8716
+</td>
+<td style="text-align:right;">
+833.3520
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Treatment
+</td>
+<td style="text-align:left;">
+educacionUniversidad
+</td>
+<td style="text-align:right;">
+14576.7678
+</td>
+<td style="text-align:right;">
+918.7004
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Sum
+</td>
+<td style="text-align:left;">
+educacion1
+</td>
+<td style="text-align:right;">
+-7298.8798
+</td>
+<td style="text-align:right;">
+510.1630
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Sum
+</td>
+<td style="text-align:left;">
+educacion2
+</td>
+<td style="text-align:right;">
+20.9918
+</td>
+<td style="text-align:right;">
+473.0623
+</td>
+<td style="text-align:right;">
+0.9647
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="términos-de-interacción" class="section level4 hasAnchor" number="6.7.2.2">
+<h4><span class="header-section-number">6.7.2.2</span> Términos de interacción<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#t%C3%A9rminos-de-interacci%C3%B3n" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<table class="table table-striped table-hover" style="color: black; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:interacciones">Table 6.33: </span><span id="tab:interacciones">Table 6.34: </span>Modelo con término de interacción: edad × educación
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+term
+</th>
+<th style="text-align:right;">
+estimate
+</th>
+<th style="text-align:right;">
+std.error
+</th>
+<th style="text-align:right;">
+statistic
+</th>
+<th style="text-align:right;">
+p.value
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+(Intercept)
+</td>
+<td style="text-align:right;">
+21708.081
+</td>
+<td style="text-align:right;">
+3729.121
+</td>
+<td style="text-align:right;">
+5.821
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+edad
+</td>
+<td style="text-align:right;">
+971.042
+</td>
+<td style="text-align:right;">
+161.416
+</td>
+<td style="text-align:right;">
+6.016
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+educacion2
+</td>
+<td style="text-align:right;">
+6179.504
+</td>
+<td style="text-align:right;">
+3013.293
+</td>
+<td style="text-align:right;">
+2.051
+</td>
+<td style="text-align:right;">
+0.042
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+educacion3
+</td>
+<td style="text-align:right;">
+11194.238
+</td>
+<td style="text-align:right;">
+3842.483
+</td>
+<td style="text-align:right;">
+2.913
+</td>
+<td style="text-align:right;">
+0.004
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+experiencia
+</td>
+<td style="text-align:right;">
+291.350
+</td>
+<td style="text-align:right;">
+165.127
+</td>
+<td style="text-align:right;">
+1.764
+</td>
+<td style="text-align:right;">
+0.079
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+edad:educacion2
+</td>
+<td style="text-align:right;">
+32.864
+</td>
+<td style="text-align:right;">
+83.434
+</td>
+<td style="text-align:right;">
+0.394
+</td>
+<td style="text-align:right;">
+0.694
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+edad:educacion3
+</td>
+<td style="text-align:right;">
+95.930
+</td>
+<td style="text-align:right;">
+105.793
+</td>
+<td style="text-align:right;">
+0.907
+</td>
+<td style="text-align:right;">
+0.366
+</td>
+</tr>
+</tbody>
+</table>
+<pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
+<p><img src="bookdownproj_files/figure-html/interacciones-1.png" alt="" width="672" /></p>
+<pre><code>## Analysis of Variance Table
+## 
+## Model 1: salario ~ edad + experiencia + educacion
+## Model 2: salario ~ edad * educacion + experiencia
+##   Res.Df        RSS Df Sum of Sq      F Pr(&gt;F)
+## 1    195 4757889304                           
+## 2    193 4737705612  2  20183692 0.4111 0.6635</code></pre>
+</div>
+<div id="transformaciones-no-lineales" class="section level4 hasAnchor" number="6.7.2.3">
+<h4><span class="header-section-number">6.7.2.3</span> Transformaciones no lineales<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#transformaciones-no-lineales" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<table class="table table-striped table-hover" style="color: black; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:transformaciones-no-lineales">Table 6.35: </span><span id="tab:transformaciones-no-lineales">Table 6.36: </span>Comparación: Modelo lineal vs. polinomial
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Modelo
+</th>
+<th style="text-align:right;">
+R_squared
+</th>
+<th style="text-align:right;">
+AIC
+</th>
+<th style="text-align:right;">
+BIC
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Lineal
+</td>
+<td style="text-align:right;">
+0.8825
+</td>
+<td style="text-align:right;">
+3976.526
+</td>
+<td style="text-align:right;">
+3996.316
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Polinomial orden 2
+</td>
+<td style="text-align:right;">
+0.8826
+</td>
+<td style="text-align:right;">
+3980.393
+</td>
+<td style="text-align:right;">
+4006.780
+</td>
+</tr>
+</tbody>
+</table>
+<p><img src="bookdownproj_files/figure-html/transformaciones-no-lineales-1.png" alt="" width="672" /></p>
+</div>
+<div id="transformaciones-logarítmicas" class="section level4 hasAnchor" number="6.7.2.4">
+<h4><span class="header-section-number">6.7.2.4</span> Transformaciones logarítmicas<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#transformaciones-logar%C3%ADtmicas" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<pre><code>##     salario            edad        experiencia    
+##  Min.   : 27244   Min.   :11.91   Min.   : 0.000  
+##  1st Qu.: 56271   1st Qu.:28.74   1st Qu.: 6.965  
+##  Median : 65958   Median :34.41   Median :12.380  
+##  Mean   : 66599   Mean   :34.91   Mean   :13.255  
+##  3rd Qu.: 76128   3rd Qu.:40.68   3rd Qu.:18.973  
+##  Max.   :109101   Max.   :67.41   Max.   :44.629</code></pre>
+<table class="table table-striped table-hover" style="color: black; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:transformaciones-log">Table 6.37: </span><span id="tab:transformaciones-log">Table 6.38: </span>Interpretación de coeficientes en modelos logarítmicos
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Modelo
+</th>
+<th style="text-align:left;">
+Especificación
+</th>
+<th style="text-align:left;">
+Interpretación_β
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Lineal
+</td>
+<td style="text-align:left;">
+Y = β₀ + β₁X
+</td>
+<td style="text-align:left;width: 12em; ">
+Cambio absoluto en Y por unidad de X
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Log-lin
+</td>
+<td style="text-align:left;">
+ln(Y) = β₀ + β₁X
+</td>
+<td style="text-align:left;width: 12em; ">
+Cambio porcentual en Y por unidad de X (≈ 100×β₁%)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Lin-log
+</td>
+<td style="text-align:left;">
+Y = β₀ + β₁ln(X)
+</td>
+<td style="text-align:left;width: 12em; ">
+Cambio absoluto en Y por 1% de cambio en X (≈ β₁/100)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Log-log
+</td>
+<td style="text-align:left;">
+ln(Y) = β₀ + β₁ln(X)
+</td>
+<td style="text-align:left;width: 12em; ">
+Elasticidad: cambio porcentual en Y por 1% de cambio en X
+</td>
+</tr>
+</tbody>
+</table>
+<table class="table table-striped table-hover" style="color: black; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:transformaciones-log">Table 6.37: </span><span id="tab:transformaciones-log">Table 6.37: </span>R² en escala original para modelos logarítmicos
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Modelo
+</th>
+<th style="text-align:right;">
+R_squared_original_scale
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Lineal
+</td>
+<td style="text-align:right;">
+0.6791
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Log-lin
+</td>
+<td style="text-align:right;">
+0.6585
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Lin-log
+</td>
+<td style="text-align:right;">
+0.6793
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Log-log
+</td>
+<td style="text-align:right;">
+0.6809
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="evaluación-predictiva-y-validación" class="section level2 hasAnchor" number="6.8">
+<h2><span class="header-section-number">6.8</span> Evaluación Predictiva y Validación<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#evaluaci%C3%B3n-predictiva-y-validaci%C3%B3n" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="división-entrenamiento-prueba" class="section level3 hasAnchor" number="6.8.1">
+<h3><span class="header-section-number">6.8.1</span> División entrenamiento-prueba<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#divisi%C3%B3n-entrenamiento-prueba" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<pre><code>## 
+##    Primaria  Secundaria Universidad 
+##   0.2977099   0.4122137   0.2900763</code></pre>
+<pre><code>## 
+##    Primaria  Secundaria Universidad 
+##   0.2962963   0.4074074   0.2962963</code></pre>
+</div>
+<div id="métricas-de-evaluación-predictiva" class="section level3 hasAnchor" number="6.8.2">
+<h3><span class="header-section-number">6.8.2</span> Métricas de evaluación predictiva<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#m%C3%A9tricas-de-evaluaci%C3%B3n-predictiva" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<pre><code>## Warning: contrasts dropped from factor educacion
+## Warning: contrasts dropped from factor educacion
+## Warning: contrasts dropped from factor educacion</code></pre>
+<table class="table table-striped table-hover" style="color: black; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:metricas-predictivas">Table 6.39: </span><span id="tab:metricas-predictivas">Table 6.40: </span>Métricas predictivas en conjunto de prueba
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Modelo
+</th>
+<th style="text-align:right;">
+RMSE
+</th>
+<th style="text-align:right;">
+MAE
+</th>
+<th style="text-align:right;">
+MAPE
+</th>
+<th style="text-align:right;">
+R2_test
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Lineal simple
+</td>
+<td style="text-align:right;">
+8050.289
+</td>
+<td style="text-align:right;">
+6298.384
+</td>
+<td style="text-align:right;">
+10.007
+</td>
+<td style="text-align:right;">
+0.600
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Múltiple
+</td>
+<td style="text-align:right;">
+4903.629
+</td>
+<td style="text-align:right;">
+3639.305
+</td>
+<td style="text-align:right;">
+5.906
+</td>
+<td style="text-align:right;">
+0.854
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Polinomial
+</td>
+<td style="text-align:right;">
+4842.077
+</td>
+<td style="text-align:right;">
+3572.242
+</td>
+<td style="text-align:right;">
+5.820
+</td>
+<td style="text-align:right;">
+0.857
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Con interacciones
+</td>
+<td style="text-align:right;">
+4888.792
+</td>
+<td style="text-align:right;">
+3636.790
+</td>
+<td style="text-align:right;">
+5.897
+</td>
+<td style="text-align:right;">
+0.855
+</td>
+</tr>
+</tbody>
+</table>
+<pre><code>## Warning: contrasts dropped from factor educacion</code></pre>
+<pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
+<p><img src="bookdownproj_files/figure-html/metricas-predictivas-1.png" alt="" width="672" /></p>
+</div>
+<div id="validación-cruzada-k-fold" class="section level3 hasAnchor" number="6.8.3">
+<h3><span class="header-section-number">6.8.3</span> Validación cruzada k-fold<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#validaci%C3%B3n-cruzada-k-fold" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<pre><code>## Warning: contrasts dropped from factor educacion
+## Warning: contrasts dropped from factor educacion
+## Warning: contrasts dropped from factor educacion
+## Warning: contrasts dropped from factor educacion
+## Warning: contrasts dropped from factor educacion
+## Warning: contrasts dropped from factor educacion
+## Warning: contrasts dropped from factor educacion
+## Warning: contrasts dropped from factor educacion
+## Warning: contrasts dropped from factor educacion
+## Warning: contrasts dropped from factor educacion
+## Warning: contrasts dropped from factor educacion
+## Warning: contrasts dropped from factor educacion
+## Warning: contrasts dropped from factor educacion
+## Warning: contrasts dropped from factor educacion
+## Warning: contrasts dropped from factor educacion
+## Warning: contrasts dropped from factor educacion
+## Warning: contrasts dropped from factor educacion
+## Warning: contrasts dropped from factor educacion
+## Warning: contrasts dropped from factor educacion
+## Warning: contrasts dropped from factor educacion
+## Warning: contrasts dropped from factor educacion
+## Warning: contrasts dropped from factor educacion
+## Warning: contrasts dropped from factor educacion
+## Warning: contrasts dropped from factor educacion
+## Warning: contrasts dropped from factor educacion
+## Warning: contrasts dropped from factor educacion
+## Warning: contrasts dropped from factor educacion
+## Warning: contrasts dropped from factor educacion
+## Warning: contrasts dropped from factor educacion
+## Warning: contrasts dropped from factor educacion</code></pre>
+<table class="table table-striped table-hover" style="color: black; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:k-fold-cv">Table 6.41: </span><span id="tab:k-fold-cv">Table 6.42: </span>Resultados de validación cruzada 10-fold
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Modelo
+</th>
+<th style="text-align:right;">
+RMSE_mean
+</th>
+<th style="text-align:right;">
+RMSE_sd
+</th>
+<th style="text-align:right;">
+MAE_mean
+</th>
+<th style="text-align:right;">
+MAE_sd
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Simple
+</td>
+<td style="text-align:right;">
+7931.286
+</td>
+<td style="text-align:right;">
+802.867
+</td>
+<td style="text-align:right;">
+6521.248
+</td>
+<td style="text-align:right;">
+589.677
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Multiple
+</td>
+<td style="text-align:right;">
+4966.527
+</td>
+<td style="text-align:right;">
+989.093
+</td>
+<td style="text-align:right;">
+4040.838
+</td>
+<td style="text-align:right;">
+851.957
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Polinomial
+</td>
+<td style="text-align:right;">
+4988.095
+</td>
+<td style="text-align:right;">
+947.505
+</td>
+<td style="text-align:right;">
+4026.032
+</td>
+<td style="text-align:right;">
+823.031
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Interacciones
+</td>
+<td style="text-align:right;">
+5011.097
+</td>
+<td style="text-align:right;">
+1021.473
+</td>
+<td style="text-align:right;">
+4079.546
+</td>
+<td style="text-align:right;">
+874.988
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="modelos-glm-y-técnicas-de-regularización" class="section level2 hasAnchor" number="6.9">
+<h2><span class="header-section-number">6.9</span> Modelos GLM y Técnicas de Regularización<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#modelos-glm-y-t%C3%A9cnicas-de-regularizaci%C3%B3n" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="introducción-a-modelos-lineales-generalizados-glm" class="section level3 hasAnchor" number="6.9.1">
+<h3><span class="header-section-number">6.9.1</span> Introducción a Modelos Lineales Generalizados (GLM)<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#introducci%C3%B3n-a-modelos-lineales-generalizados-glm" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="extensión-más-allá-de-la-normalidad" class="section level4 hasAnchor" number="6.9.1.1">
+<h4><span class="header-section-number">6.9.1.1</span> Extensión más allá de la normalidad<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#extensi%C3%B3n-m%C3%A1s-all%C3%A1-de-la-normalidad" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Los GLM extienden la regresión lineal a variables respuesta no normales mediante:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Función de enlace</strong> <span class="math inline">\(g(\mu)\)</span>: conecta la media <span class="math inline">\(\mu = E(Y|X)\)</span> con el predictor lineal</li>
+<li><strong>Familia exponencial</strong>: especifica la distribución de <span class="math inline">\(Y\)</span></li>
+</ol>
+</div>
+<div id="regresión-logística-binaria" class="section level4 hasAnchor" number="6.9.1.2">
+<h4><span class="header-section-number">6.9.1.2</span> Regresión logística binaria<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#regresi%C3%B3n-log%C3%ADstica-binaria" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Para variable respuesta binaria <span class="math inline">\(Y \in \{0,1\}\)</span>:</p>
+<p><span class="math display">\[\begin{equation}
+\log\left(\frac{p}{1-p}\right) = \beta_0 + \beta_1 X_1 + \cdots + \beta_k X_k
+\end{equation}\]</span></p>
+<p>donde <span class="math inline">\(p = P(Y=1|X)\)</span>.</p>
+<table class="table table-striped table-hover" style="color: black; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:regresion-logistica">Table 6.43: </span><span id="tab:regresion-logistica">Table 6.44: </span>Regresión logística: Odds ratios y intervalos de confianza
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+term
+</th>
+<th style="text-align:right;">
+estimate
+</th>
+<th style="text-align:right;">
+std.error
+</th>
+<th style="text-align:right;">
+statistic
+</th>
+<th style="text-align:right;">
+p.value
+</th>
+<th style="text-align:right;">
+conf.low
+</th>
+<th style="text-align:right;">
+conf.high
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+(Intercept)
+</td>
+<td style="text-align:right;">
+0.022
+</td>
+<td style="text-align:right;">
+2.317
+</td>
+<td style="text-align:right;">
+-1.649
+</td>
+<td style="text-align:right;">
+0.099
+</td>
+<td style="text-align:right;">
+0.000
+</td>
+<td style="text-align:right;">
+1.867
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+edad
+</td>
+<td style="text-align:right;">
+1.149
+</td>
+<td style="text-align:right;">
+0.103
+</td>
+<td style="text-align:right;">
+1.353
+</td>
+<td style="text-align:right;">
+0.176
+</td>
+<td style="text-align:right;">
+0.943
+</td>
+<td style="text-align:right;">
+1.414
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+experiencia
+</td>
+<td style="text-align:right;">
+1.022
+</td>
+<td style="text-align:right;">
+0.102
+</td>
+<td style="text-align:right;">
+0.210
+</td>
+<td style="text-align:right;">
+0.834
+</td>
+<td style="text-align:right;">
+0.835
+</td>
+<td style="text-align:right;">
+1.248
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+educacion2
+</td>
+<td style="text-align:right;">
+0.858
+</td>
+<td style="text-align:right;">
+0.456
+</td>
+<td style="text-align:right;">
+-0.336
+</td>
+<td style="text-align:right;">
+0.737
+</td>
+<td style="text-align:right;">
+0.345
+</td>
+<td style="text-align:right;">
+2.086
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+educacion3
+</td>
+<td style="text-align:right;">
+2.651
+</td>
+<td style="text-align:right;">
+0.575
+</td>
+<td style="text-align:right;">
+1.695
+</td>
+<td style="text-align:right;">
+0.090
+</td>
+<td style="text-align:right;">
+0.886
+</td>
+<td style="text-align:right;">
+8.692
+</td>
+</tr>
+</tbody>
+</table>
+<pre><code>## Interpretación de Odds Ratios:</code></pre>
+<pre><code>## - Edad: Por cada año adicional, las odds de alta paga se multiplican por 1.149</code></pre>
+<pre><code>## - Universidad vs Primaria: Las odds se multiplican por 2.651</code></pre>
+<pre><code>## Setting levels: control = No, case = Si</code></pre>
+<pre><code>## Setting direction: controls &lt; cases</code></pre>
+<pre><code>## 
+## Área bajo la curva ROC: 0.806</code></pre>
+<p><img src="bookdownproj_files/figure-html/regresion-logistica-1.png" alt="" width="672" /></p>
+</div>
+</div>
+<div id="técnicas-de-regularización-ridge-y-lasso" class="section level3 hasAnchor" number="6.9.2">
+<h3><span class="header-section-number">6.9.2</span> Técnicas de Regularización: Ridge y LASSO<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#t%C3%A9cnicas-de-regularizaci%C3%B3n-ridge-y-lasso" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="introducción-a-la-regularización" class="section level4 hasAnchor" number="6.9.2.1">
+<h4><span class="header-section-number">6.9.2.1</span> Introducción a la regularización<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#introducci%C3%B3n-a-la-regularizaci%C3%B3n" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Cuando <span class="math inline">\(p \approx n\)</span> o <span class="math inline">\(p &gt; n\)</span>, o cuando hay multicolinealidad severa, MCO puede ser inestable. Las técnicas de regularización añaden penalizaciones:</p>
+<ul>
+<li><strong>Ridge:</strong>
+<span class="math display">\[\begin{equation}
+\min_{\beta} \|Y - X\beta\|_2^2 + \lambda \|\beta\|_2^2
+\end{equation}\]</span></li>
+<li><strong>LASSO:</strong>
+<span class="math display">\[\begin{equation}
+\min_{\beta} \|Y - X\beta\|_2^2 + \lambda \|\beta\|_1
+\end{equation}\]</span></li>
+<li><strong>Elastic Net:</strong> Combinación de ambas</li>
+</ul>
+<table class="table table-striped table-hover" style="color: black; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:regularizacion">Table 6.45: </span><span id="tab:regularizacion">Table 6.46: </span>Comparación de coeficientes: MCO vs. Métodos regularizados
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Variable
+</th>
+<th style="text-align:right;">
+MCO
+</th>
+<th style="text-align:right;">
+Ridge
+</th>
+<th style="text-align:right;">
+LASSO
+</th>
+<th style="text-align:right;">
+ElasticNet
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+edad
+</td>
+<td style="text-align:right;">
+932.8464
+</td>
+<td style="text-align:right;">
+696.4409
+</td>
+<td style="text-align:right;">
+937.1110
+</td>
+<td style="text-align:right;">
+861.1700
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+experiencia
+</td>
+<td style="text-align:right;">
+366.6502
+</td>
+<td style="text-align:right;">
+551.9123
+</td>
+<td style="text-align:right;">
+355.8014
+</td>
+<td style="text-align:right;">
+420.7625
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+educacionPrimaria
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+-7041.3959
+</td>
+<td style="text-align:right;">
+-7395.3385
+</td>
+<td style="text-align:right;">
+-7277.9026
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+educacionSecundaria
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+28.7848
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+<td style="text-align:right;">
+0.0000
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+educacionUniversidad
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+6996.8680
+</td>
+<td style="text-align:right;">
+7215.5683
+</td>
+<td style="text-align:right;">
+7124.1962
+</td>
+</tr>
+</tbody>
+</table>
+<p><img src="bookdownproj_files/figure-html/regularizacion-1.png" alt="" width="672" /><img src="bookdownproj_files/figure-html/regularizacion-2.png" alt="" width="672" /></p>
+</div>
+</div>
+</div>
+<div id="práctica-y-material-complementario" class="section level2 hasAnchor" number="6.10">
+<h2><span class="header-section-number">6.10</span> Práctica y Material Complementario<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#pr%C3%A1ctica-y-material-complementario" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="análisis-de-regresión-en-la-práctica-flujo-de-trabajo-completo" class="section level3 hasAnchor" number="6.10.1">
+<h3><span class="header-section-number">6.10.1</span> Análisis de Regresión en la Práctica: Flujo de Trabajo Completo<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#an%C3%A1lisis-de-regresi%C3%B3n-en-la-pr%C3%A1ctica-flujo-de-trabajo-completo" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="metodología-reproducible-paso-a-paso" class="section level4 hasAnchor" number="6.10.1.1">
+<h4><span class="header-section-number">6.10.1.1</span> Metodología reproducible paso a paso<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#metodolog%C3%ADa-reproducible-paso-a-paso" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<pre><code>## === RESUMEN EXPLORATORIO ===
+## Dimensiones: 185 5 
+## Variable objetivo: salario 
+## 
+## Variables numéricas:
+##     salario            edad        experiencia      
+##  Min.   : 35595   Min.   :20.56   Min.   : 0.06241  
+##  1st Qu.: 57727   1st Qu.:30.16   1st Qu.: 8.03052  
+##  Median : 68198   Median :35.41   Median :12.98361  
+##  Mean   : 68336   Mean   :36.21   Mean   :14.32956  
+##  3rd Qu.: 76370   3rd Qu.:41.37   3rd Qu.:19.61531  
+##  Max.   :109101   Max.   :67.41   Max.   :44.62903  
+## 
+## Variables categóricas:
+## educacion : 55 76 54 
+## alta_paga : 41 144 
+## 
+## No hay valores faltantes.</code></pre>
+<pre><code>## Correlaciones altas (|r| &gt; 0.8):
+## edad - salario: 0.824
+## experiencia - salario: 0.805
+## salario - edad: 0.824
+## experiencia - edad: 0.971
+## salario - experiencia: 0.805
+## edad - experiencia: 0.971</code></pre>
+<pre><code>## 
+## === DIAGNÓSTICOS DEL MODELO ===
+## R² = 0.8825, R² ajustado = 0.8801
+## AIC = 3976.53, BIC = 3996.32
+## 
+## Pruebas de supuestos:
+## Normalidad (Shapiro-Wilk): p = 0.8302 (Aceptar normalidad)
+## Homoscedasticidad (BP): p = 0.0643 (Aceptar homoscedasticidad)
+## Multicolinealidad (VIF máximo): 17.71 (Problemática)
+## Observaciones influyentes (Cook &gt; 4/n): 10 de 185</code></pre>
+<pre><code>## Warning: contrasts dropped from factor educacion
+## Warning: contrasts dropped from factor educacion
+## Warning: contrasts dropped from factor educacion
+## Warning: contrasts dropped from factor educacion</code></pre>
+<table class="table table-striped table-hover" style="color: black; margin-left: auto; margin-right: auto;">
+<caption>
+<span id="tab:flujo-completo">Table 6.47: </span><span id="tab:flujo-completo">Table 6.48: </span>Selección final de modelo basada en desempeño predictivo
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+Modelo
+</th>
+<th style="text-align:right;">
+RMSE_test
+</th>
+<th style="text-align:right;">
+MAE_test
+</th>
+<th style="text-align:right;">
+R2_train
+</th>
+<th style="text-align:right;">
+AIC_train
+</th>
+<th style="text-align:right;">
+n_params
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Básico
+</td>
+<td style="text-align:right;">
+5050.008
+</td>
+<td style="text-align:right;">
+3807.203
+</td>
+<td style="text-align:right;">
+0.8658
+</td>
+<td style="text-align:right;">
+2568.525
+</td>
+<td style="text-align:right;">
+5
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Completo
+</td>
+<td style="text-align:right;">
+5074.355
+</td>
+<td style="text-align:right;">
+3822.790
+</td>
+<td style="text-align:right;">
+0.8672
+</td>
+<td style="text-align:right;">
+2575.205
+</td>
+<td style="text-align:right;">
+9
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Con interacción
+</td>
+<td style="text-align:right;">
+5083.885
+</td>
+<td style="text-align:right;">
+3829.504
+</td>
+<td style="text-align:right;">
+0.8662
+</td>
+<td style="text-align:right;">
+2572.153
+</td>
+<td style="text-align:right;">
+7
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Con cuadrático
+</td>
+<td style="text-align:right;">
+5125.627
+</td>
+<td style="text-align:right;">
+3912.181
+</td>
+<td style="text-align:right;">
+0.8664
+</td>
+<td style="text-align:right;">
+2569.990
+</td>
+<td style="text-align:right;">
+6
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="reporte-automatizado-de-resultados" class="section level4 hasAnchor" number="6.10.1.2">
+<h4><span class="header-section-number">6.10.1.2</span> Reporte automatizado de resultados<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#reporte-automatizado-de-resultados" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<pre><code>## === REPORTE EJECUTIVO DEL MODELO ===
+## 
+## MODELO SELECCIONADO:
+##  salario ~ edad + experiencia + educacion 
+## 
+## MÉTRICAS DE AJUSTE:
+## • R² = 86.3% (86.3% de la varianza explicada)
+## • Error estándar residual = $4961
+## • Significancia global: p &lt; 0.000
+## 
+## VARIABLES SIGNIFICATIVAS:
+## • educacion3: $14785 [IC 95%: $12902, $16667]
+## • educacion2: $7481 [IC 95%: $5748, $9215]
+## • edad: $933 [IC 95%: $575, $1290]
+## • experiencia: $367 [IC 95%: $6, $727]
+## 
+## EVALUACIÓN DE SUPUESTOS:
+## ⚠️  Posible heteroscedasticidad detectada
+##    Recomendación: Usar errores estándar robustos
+## ⚠️  Multicolinealidad detectada (VIF máximo = 17.87 )
+##    Recomendación: Considerar eliminar variables redundantes
+## ⚠️  12 observaciones potencialmente influyentes detectadas
+##    Recomendación: Revisar observaciones con Cook&#39;s D &gt; 0.0216 
+## 
+## RECOMENDACI ONES PARA USO:
+## • Este modelo es apropiado para inferencia y predicción dentro del rango observado
+## • Para predicciones fuera de muestra, validar supuestos en nuevos datos
+## • Considerar intervalos de predicción para cuantificar incertidumbre</code></pre>
+</div>
+</div>
+<div id="buenas-prácticas-y-lista-de-verificación" class="section level3 hasAnchor" number="6.10.2">
+<h3><span class="header-section-number">6.10.2</span> Buenas Prácticas y Lista de Verificación<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#buenas-pr%C3%A1cticas-y-lista-de-verificaci%C3%B3n" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="checklist-para-análisis-de-regresión" class="section level4 hasAnchor" number="6.10.2.1">
+<h4><span class="header-section-number">6.10.2.1</span> Checklist para análisis de regresión<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#checklist-para-an%C3%A1lisis-de-regresi%C3%B3n" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><strong>Antes del modelado:</strong>
+- [ ] Exploración exhaustiva de datos (EDA)
+- [ ] Identificación de valores atípicos y faltantes
+- [ ] Análisis de correlaciones entre predictores
+- [ ] Definición clara del objetivo (inferencia vs. predicción)</p>
+<p><strong>Durante el modelado:</strong>
+- [ ] Especificación teórica justificada
+- [ ] Verificación de supuestos del MCRL
+- [ ] Evaluación de multicolinealidad (VIF &lt; 5)
+- [ ] Detección de observaciones influyentes
+- [ ] Comparación de modelos alternativos</p>
+<p><strong>Después del modelado:</strong>
+- [ ] Validación en datos independientes
+- [ ] Interpretación sustantiva de coeficientes
+- [ ] Cuantificación de incertidumbre (intervalos)
+- [ ] Documentación del proceso analítico
+- [ ] Código reproducible disponible</p>
+</div>
+<div id="errores-comunes-a-evitar" class="section level4 hasAnchor" number="6.10.2.2">
+<h4><span class="header-section-number">6.10.2.2</span> Errores comunes a evitar<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#errores-comunes-a-evitar" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+</div>
+</div>
+<div id="ejercicios-propuestos-y-actividades-prácticas" class="section level3 hasAnchor" number="6.10.3">
+<h3><span class="header-section-number">6.10.3</span> Ejercicios Propuestos y Actividades Prácticas<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#ejercicios-propuestos-y-actividades-pr%C3%A1cticas" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="ejercicio-1-análisis-completo-con-mtcars" class="section level4 hasAnchor" number="6.10.3.1">
+<h4><span class="header-section-number">6.10.3.1</span> Ejercicio 1: Análisis completo con mtcars<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#ejercicio-1-an%C3%A1lisis-completo-con-mtcars" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+</div>
+<div id="ejercicio-2-variables-categóricas-con-diamonds" class="section level4 hasAnchor" number="6.10.3.2">
+<h4><span class="header-section-number">6.10.3.2</span> Ejercicio 2: Variables categóricas con diamonds<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#ejercicio-2-variables-categ%C3%B3ricas-con-diamonds" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+</div>
+<div id="ejercicio-3-series-de-tiempo-y-autocorrelación" class="section level4 hasAnchor" number="6.10.3.3">
+<h4><span class="header-section-number">6.10.3.3</span> Ejercicio 3: Series de tiempo y autocorrelación<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#ejercicio-3-series-de-tiempo-y-autocorrelaci%C3%B3n" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+</div>
+<div id="ejercicio-4-proyecto-integrador-predictivo" class="section level4 hasAnchor" number="6.10.3.4">
+<h4><span class="header-section-number">6.10.3.4</span> Ejercicio 4: Proyecto integrador predictivo<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#ejercicio-4-proyecto-integrador-predictivo" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+</div>
+</div>
+<div id="recursos-adicionales-y-referencias" class="section level3 hasAnchor" number="6.10.4">
+<h3><span class="header-section-number">6.10.4</span> Recursos Adicionales y Referencias<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#recursos-adicionales-y-referencias" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="lecturas-recomendadas-por-nivel" class="section level4 hasAnchor" number="6.10.4.1">
+<h4><span class="header-section-number">6.10.4.1</span> Lecturas recomendadas por nivel<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#lecturas-recomendadas-por-nivel" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><strong>Nivel Introductorio:</strong>
+- <span class="citation">James et al. (<a href="#ref-james2013">2013</a>)</span>: Excelente balance teoría-práctica, muchos ejemplos en R
+- <span class="citation">Bruce et al. (<a href="#ref-bruce2020">2020</a>)</span>: Enfoque moderno para científicos de datos
+- <span class="citation">Gelman et al. (<a href="#ref-gelman2020">2020</a>)</span>: Pedagogía ejemplar, integra inferencia y predicción</p>
+<p><strong>Nivel Intermedio:</strong>
+- <span class="citation">Harrell Jr (<a href="#ref-harrell2015">2015</a>)</span>: Estrategias avanzadas de modelado, énfasis en validación
+- <span class="citation">Kuhn and Johnson (<a href="#ref-kuhn2019">2019</a>)</span>: Ingeniería de características y selección de predictores
+- <span class="citation">Fox (<a href="#ref-fox2015">2015</a>)</span>: Análisis aplicado con extensiones a GLM</p>
+<p><strong>Nivel Avanzado:</strong>
+- <span class="citation">Hastie et al. (<a href="#ref-hastie2009">2009</a>)</span>: Fundamentos matemáticos del aprendizaje estadístico
+- <span class="citation">Gujarati and Porter (<a href="#ref-gujarati2009">2009</a>)</span>: Econometría con énfasis en interpretación causal
+- <span class="citation">Wooldridge (<a href="#ref-wooldridge2015">2015</a>)</span>: Métodos econométricos modernos</p>
+</div>
+<div id="recursos-en-línea-especializados" class="section level4 hasAnchor" number="6.10.4.2">
+<h4><span class="header-section-number">6.10.4.2</span> Recursos en línea especializados<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#recursos-en-l%C3%ADnea-especializados" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li><p><strong><span class="citation">Hernández (<a href="#ref-hernanb2023">2023</a>)</span></strong> - “Modelos de Regresión con R”: Tutorial interactivo en español con casos reales colombianos. Disponible en: <a href="https://fhernanb.github.io/libro_regresion/" class="uri">https://fhernanb.github.io/libro_regresion/</a></p></li>
+<li><p><strong><span class="citation">Fortou (<a href="#ref-fortou2023">2023</a>)</span></strong> - “Laboratorio de Análisis de Datos”: Implementaciones prácticas con tidyverse y énfasis en reproducibilidad. Disponible en: <a href="https://bookdown.org/josefortou/lab-book/" class="uri">https://bookdown.org/josefortou/lab-book/</a></p></li>
+<li><p><strong><span class="citation">Team (<a href="#ref-cdr2023">2023</a>)</span></strong> - “Computational Data Analysis for the Life Sciences”: Métodos estadísticos modernos con R y Python. Disponible en: <a href="https://cdr-book.github.io/index.html" class="uri">https://cdr-book.github.io/index.html</a></p></li>
+</ol>
+</div>
+<div id="paquetes-de-r-recomendados" class="section level4 hasAnchor" number="6.10.4.3">
+<h4><span class="header-section-number">6.10.4.3</span> Paquetes de R recomendados<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#paquetes-de-r-recomendados" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+</div>
+<div id="conjuntos-de-datos-para-práctica" class="section level4 hasAnchor" number="6.10.4.4">
+<h4><span class="header-section-number">6.10.4.4</span> Conjuntos de datos para práctica<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#conjuntos-de-datos-para-pr%C3%A1ctica" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+</div>
+</div>
+<div id="resumen-y-conclusiones" class="section level3 hasAnchor" number="6.10.5">
+<h3><span class="header-section-number">6.10.5</span> Resumen y Conclusiones<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#resumen-y-conclusiones" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="puntos-clave-del-capítulo" class="section level4 hasAnchor" number="6.10.5.1">
+<h4><span class="header-section-number">6.10.5.1</span> Puntos clave del capítulo<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#puntos-clave-del-cap%C3%ADtulo" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<ol style="list-style-type: decimal">
+<li><p><strong>Fundamentos conceptuales</strong>: La regresión modela dependencia asimétrica, diferente de correlación. El término de error es crucial para validez estadística.</p></li>
+<li><p><strong>Metodología MCO</strong>: Mejor estimador lineal insesgado (BLUE) bajo supuestos del MCRL. Propiedades óptimas requieren verificación cuidadosa de supuestos.</p></li>
+<li><p><strong>Inferencia estadística</strong>: Pruebas t individuales, pruebas F conjuntas, intervalos de confianza y predicción. Distinguir significancia estadística de relevancia práctica.</p></li>
+<li><p><strong>Diagnósticos esenciales</strong>: Análisis de residuos, detección de observaciones influyentes, evaluación de multicolinealidad. Los gráficos son tan importantes como las pruebas formales.</p></li>
+<li><p><strong>Violaciones y remedios</strong>: Heteroscedasticidad (errores robustos), autocorrelación (MCG), multicolinealidad (selección/regularización). Cada problema requiere enfoque específico.</p></li>
+<li><p><strong>Extensiones prácticas</strong>: Variables categóricas, transformaciones, interacciones, introducción a GLM. El modelo lineal es punto de partida, no límite.</p></li>
+<li><p><strong>Validación predictiva</strong>: División train/test, validación cruzada, métricas fuera de muestra. Esencial para uso predictivo del modelo.</p></li>
+<li><p><strong>Reproducibilidad</strong>: Código documentado, decisiones justificadas, flujo de trabajo sistemático. La ciencia de datos es colaborativa y acumulativa.</p></li>
+</ol>
+</div>
+<div id="perspectivas-futuras" class="section level4 hasAnchor" number="6.10.5.2">
+<h4><span class="header-section-number">6.10.5.2</span> Perspectivas futuras<a href="análisis-de-regresión-de-la-inferencia-a-la-predicción-con-r.html#perspectivas-futuras" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>El análisis de regresión tradicional se extiende naturalmente hacia:</p>
+<ul>
+<li><strong>Machine Learning</strong>: Random forests, gradient boosting, redes neuronales</li>
+<li><strong>Inferencia causal</strong>: Variables instrumentales, discontinuidades, experimentos naturales</li>
+<li><strong>Big Data</strong>: Métodos escalables, computación distribuida, streaming</li>
+<li><strong>Bayesiano</strong>: Incorporación de información previa, cuantificación de incertidumbre</li>
+</ul>
+<p>Sin embargo, los principios fundamentales del modelado estadístico—especificación cuidadosa, verificación de supuestos, validación rigurosa—permanecen constantes sin importar la complejidad del método.</p>
+<blockquote>
+<p>“Far better an approximate answer to the right question than an exact answer to the wrong question.” — John Tukey</p>
+</blockquote>
+<p>La regresión lineal, por su interpretabilidad y solidez teórica, seguirá siendo herramienta fundamental en el arsenal del analista de datos moderno.</p>
+
+</div>
+</div>
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-bruce2020" class="csl-entry">
+Bruce, Peter, Andrew Bruce, and Peter Gedeck. 2020. <em>Practical Statistics for Data Scientists: 50+ Essential Concepts Using r and Python</em>. 2nd ed. O’Reilly Media.
+</div>
+<div id="ref-fortou2023" class="csl-entry">
+Fortou, José. 2023. <span>“Laboratorio de Análisis de Datos.”</span> <a href="https://bookdown.org/josefortou/lab-book/">https://bookdown.org/josefortou/lab-book/</a>.
+</div>
+<div id="ref-fox2015" class="csl-entry">
+Fox, John. 2015. <em>Applied Regression Analysis and Generalized Linear Models</em>. 3rd ed. SAGE Publications.
+</div>
+<div id="ref-gelman2020" class="csl-entry">
+Gelman, Andrew, Jennifer Hill, and Aki Vehtari. 2020. <em>Regression and Other Stories</em>. Cambridge University Press.
+</div>
+<div id="ref-gujarati2009" class="csl-entry">
+Gujarati, Damodar N, and Dawn C Porter. 2009. <em>Basic Econometrics</em>. 5th ed. McGraw-Hill/Irwin.
+</div>
+<div id="ref-harrell2015" class="csl-entry">
+Harrell Jr, Frank E. 2015. <em>Regression Modeling Strategies: With Applications to Linear Models, Logistic and Ordinal Regression, and Survival Analysis</em>. 2nd ed. Springer.
+</div>
+<div id="ref-hastie2009" class="csl-entry">
+Hastie, Trevor, Robert Tibshirani, and Jerome Friedman. 2009. <em>The Elements of Statistical Learning: Data Mining, Inference, and Prediction</em>. 2nd ed. Springer.
+</div>
+<div id="ref-hernanb2023" class="csl-entry">
+Hernández, Freddy. 2023. <span>“Modelos de Regresión Con r.”</span> <a href="https://fhernanb.github.io/libro_regresion/">https://fhernanb.github.io/libro_regresion/</a>.
+</div>
+<div id="ref-james2013" class="csl-entry">
+James, Gareth, Daniela Witten, Trevor Hastie, and Robert Tibshirani. 2013. <em>An Introduction to Statistical Learning: With Applications in r</em>. Springer.
+</div>
+<div id="ref-kuhn2019" class="csl-entry">
+Kuhn, Max, and Kjell Johnson. 2019. <em>Feature Engineering and Selection: A Practical Approach for Predictive Models</em>. CRC Press.
+</div>
+<div id="ref-cdr2023" class="csl-entry">
+Team, CDR Book. 2023. <span>“Computational Data Analysis for the Life Sciences.”</span> <a href="https://cdr-book.github.io/index.html">https://cdr-book.github.io/index.html</a>.
+</div>
+<div id="ref-wooldridge2015" class="csl-entry">
+Wooldridge, Jeffrey M. 2015. <em>Introductory Econometrics: A Modern Approach</em>. 6th ed. Cengage Learning.
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="muestreo-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="diseño-y-análisis-de-experimentos-fundamentos-modelación-e-interpretación.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": false,
+    "twitter": false,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": "https://github.com/reginamtzl/Estad-stica-Aplicada/edit/main/03-analisisreg.Rmd",
+    "text": "Edit"
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": "https://github.com/reginamtzl/Estad-stica-Aplicada/blob/main/03-analisisreg.Rmd",
+    "text": null
+  },
+  "download": ["bookdownproj.pdf"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection",
+    "scroll_highlight": true
+  }
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

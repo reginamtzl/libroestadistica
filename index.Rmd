@@ -55,14 +55,3 @@ library(performance)
 #print(citation("knitr"), bibtex=TRUE)
 #rstudio/bookdown-demo
 ```
-
-# ANTECEDENTES
-**Objetivos**
-**
-
-## Muestra y población
-## Distribuciones muestrales
-## Intervalos de confianza
-## Pruebas de hipótesis
-
-

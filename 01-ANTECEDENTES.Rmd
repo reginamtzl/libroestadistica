@@ -1,23 +1,3 @@
----
-title: "Antecedentes"
-author: "Wulfrano Gómez"
-date: "`r Sys.Date()`"
-output:
-  pdf_document:
-    toc: true
-    number_sections: true
-    fig_caption: true
-    keep_tex: true
-geometry: margin=2.5cm
-fontsize: 12pt
-lang: es
----
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
-
 # MUESTRA Y PROBLACIÓN
 
 ## POBLACIÓN
@@ -30,7 +10,7 @@ Las poblaciones pueden ser finitas o infinitas, de ellas se pueden medir caracte
 
 Las características cualitativas siempre deben ser cuantificadas de forma cuantitativa para fines estadísticos, a estas variables se les conoce como factores. Por ejemplo el nivel de satisfacción de por u servicio recibido, los cuales son representados por figuras para hacer que el usuario pueda responde de la forma más objetiva y de manera sencilla, como se muestra en la figura 1^[*Fuente: Extraido de <https://www.magnific.com/es/vector-gratis/medidor-satisfaccion-emoji-pequeno_44156211.htm#fromView=keyword&page=1&position=0&uuid=484b5e55-bf2d-4120-b59f-55c1c2d67403&track=ais_hybrid&query=Caritas+satisfaccion>*]
 
-![Encuesta de satisfacción](emoji_satisfaction_meter.jpg){#fig:satisfaccion width=40%}
+![Encuesta de satisfacción](images/emoji_satisfaction_meter.jpg){#fig:satisfaccion width=40%}
 
 
 
