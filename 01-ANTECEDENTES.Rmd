@@ -8,12 +8,9 @@ Como ejemplos podemos mencionar el interés de un investigador sobre el uso de c
 
 Las poblaciones pueden ser finitas o infinitas, de ellas se pueden medir características cuantitativas o cualitativas. Como ejemplo de poblaciones infinitas podemos mencionar el lanzamiento de una moneda un número infinito de veces, los números que se encuentran entre cero y uno, que poden ser seleccionados al azar, entre otros. Mientras que las poblaciones finitas pueden estar representadas por ciudadanos en un país, número de especies en una región, entre otros. Las características cuantitativas que se pueden medir de estas poblaciones pueden ser edad, estaturas, pesos, entre otros. Mientras que las características cuantitativas como color de ojos, color de la piel, entre otros. 
 
-Las características cualitativas siempre deben ser cuantificadas de forma cuantitativa para fines estadísticos, a estas variables se les conoce como factores. Por ejemplo el nivel de satisfacción de por u servicio recibido, los cuales son representados por figuras para hacer que el usuario pueda responde de la forma más objetiva y de manera sencilla, como se muestra en la figura 1^[*Fuente: Extraido de <https://www.magnific.com/es/vector-gratis/medidor-satisfaccion-emoji-pequeno_44156211.htm#fromView=keyword&page=1&position=0&uuid=484b5e55-bf2d-4120-b59f-55c1c2d67403&track=ais_hybrid&query=Caritas+satisfaccion>*]
+Las características cualitativas siempre deben ser cuantificadas de forma cuantitativa para fines estadísticos, a estas variables se les conoce como factores. Por ejemplo el nivel de satisfacción de por u servicio recibido, los cuales son representados por figuras para hacer que el usuario pueda responde de la forma más objetiva y de manera sencilla, como se muestra en la figura \@ref(fig:satisfaccion)^[*Fuente: Extraido de <https://www.magnific.com/es/vector-gratis/medidor-satisfaccion-emoji-pequeno_44156211.htm#fromView=keyword&page=1&position=0&uuid=484b5e55-bf2d-4120-b59f-55c1c2d67403&track=ais_hybrid&query=Caritas+satisfaccion>*]
 
 ![Encuesta de satisfacción](images/emoji_satisfaction_meter.jpg){#fig:satisfaccion width=40%}
-
-
-
 
 Debido a que las poblaciones pueden ser demasiado grandes para censarlas o el tiempo es limitado para realizar el censo, o no se cuentan con los recursos económicos necesarios, es que se deben realizar muestreos. 
 

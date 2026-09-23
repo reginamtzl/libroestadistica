@@ -14,7 +14,7 @@
 
 > **Prerrequisitos:** Álgebra lineal básica, cálculo diferencial, probabilidad y estadística inferencial, manejo intermedio de R y RStudio.
 
-## FUNAMENTOS DEL ANÁLISIS DE REGRESIÓN
+## FUNDAMENTOS DEL ANÁLISIS DE REGRESIÓN
 ### Introducción al Análisis de Regresión
 #### ¿Qué es el análisis de regresión?
 
