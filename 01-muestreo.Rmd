@@ -1,8 +1,0 @@
-# Muestreo
-**Objetivo**
-* *
-
-## Muestreo aleatorio y restricto
-## Muestreo estractificado
-## Muestreo por conglomerados
-## Muestreo secuencial

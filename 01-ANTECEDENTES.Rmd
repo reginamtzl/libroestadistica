@@ -1,0 +1,571 @@
+---
+title: "Antecedentes"
+author: "Wulfrano Gómez"
+date: "`r Sys.Date()`"
+output:
+  pdf_document:
+    toc: true
+    number_sections: true
+    fig_caption: true
+    keep_tex: true
+geometry: margin=2.5cm
+fontsize: 12pt
+lang: es
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+# MUESTRA Y PROBLACIÓN
+
+## POBLACIÓN
+
+Una población, en estadística, es un conjunto de elementos que comparten una característica en común de interés para un investigador.
+
+Como ejemplos podemos mencionar el interés de un investigador sobre el uso de celulares entre estudiantes de secundaria en México. En este caso la población está integrada por todos los mexicanos que se encuentren actualmente inscritos en una institución educativa, pública o privada a nivel secundaria. También podría ser del interés de un investigador ciertas especies y su capacidad de reproducción. Por ejemplo, las plagas que afectan las grandes ciudades como son las ratas. En este caso se podría establecer la cantidad de roedores que se concentran en una ciudad, para establecer como se reproducen o migran a estas grandes ciudades como Nueva York.
+
+Las poblaciones pueden ser finitas o infinitas, de ellas se pueden medir características cuantitativas o cualitativas. Como ejemplo de poblaciones infinitas podemos mencionar el lanzamiento de una moneda un número infinito de veces, los números que se encuentran entre cero y uno, que poden ser seleccionados al azar, entre otros. Mientras que las poblaciones finitas pueden estar representadas por ciudadanos en un país, número de especies en una región, entre otros. Las características cuantitativas que se pueden medir de estas poblaciones pueden ser edad, estaturas, pesos, entre otros. Mientras que las características cuantitativas como color de ojos, color de la piel, entre otros. 
+
+Las características cualitativas siempre deben ser cuantificadas de forma cuantitativa para fines estadísticos, a estas variables se les conoce como factores. Por ejemplo el nivel de satisfacción de por u servicio recibido, los cuales son representados por figuras para hacer que el usuario pueda responde de la forma más objetiva y de manera sencilla, como se muestra en la figura 1^[*Fuente: Extraido de <https://www.magnific.com/es/vector-gratis/medidor-satisfaccion-emoji-pequeno_44156211.htm#fromView=keyword&page=1&position=0&uuid=484b5e55-bf2d-4120-b59f-55c1c2d67403&track=ais_hybrid&query=Caritas+satisfaccion>*]
+
+![Encuesta de satisfacción](emoji_satisfaction_meter.jpg){#fig:satisfaccion width=40%}
+
+
+
+
+Debido a que las poblaciones pueden ser demasiado grandes para censarlas o el tiempo es limitado para realizar el censo, o no se cuentan con los recursos económicos necesarios, es que se deben realizar muestreos. 
+
+## Muestreo
+
+Una muestra es un subconjunto de la población que se selecciona de forma aleatoria, representativa e insesgada. 
+
+¿Qué significa esto?
+
+  - Aleatorio: Los elementos se seleccionan sin un orden específico. Esto es, no se sabe qué elemento será seleccionado. Generalmente se generan números aleatorios o se seleccionan los elementos de una tómbola. 
+  - Representativo: En este caso se espera que los elementos de la población queden representados en la muestra. suponga que una población de 1,000 personas, con un 20% de mujeres y un 80% de hombres, la muestra debería tener al menos un número suficientes de representates de hombres y mujeres. Por ejemplo, si una muestra de 100 elementos de esta población que se toma de manera aleatoria, podría conducir a que todos los elementos seleccionados fueran hombres y ninguna mujer, esta muestra no sería representativa.
+  - Insesgado: Se espera que la muestra sea aleatoria, lo que evitaría algún criterio de selección e los elementos de la muestra por parte del investigador. Por ejemplo: Suponga que una acreditadora desea seleccionar a diez estudiantes de manera aleatoria de un grupo de matemáticas, para aplicarles una prueba y evaluar el desempeño del profesor. Suponga también que el profesor será recompensado si los estudiantes seleccionados aleatoriamente obtiene buenos resultados, en caso contrario, su contrato será rescindido. El profesor podría verse tentado a seleccionar solo a los alumnos con mejor promedio para este fin, lo que provocaría un sesgo al seleccionar dicha muestra.
+  
+##  ESTIMADORES
+
+Debido a que las poblaciones son demasiado grandes para censarlas o el tiempo para realizar el censo es limitado, así como los recursos financieros y humanos, es que nos vemos en la necesidad de realizar muestreo. Es necesario realizar estimaciones de los parámetros poblacionales que deseamos conocer. Esto es, si el objetivo fuera calcular la estatura promedio de los estudiantes de la facultad de ingeniería  y sólo tuviéramos un par de días para hacerlo, a través de una muestra se estiman los parámetros poblacionales, en este caso la media. Entonces se dice que la media muestral $\bar{x}$ estima al parámetro poblacional $\mu$.
+
+La diferencia en el cálculo de la media de una muestra y de una poblacional es la siguiente
+
+__Media muestral__ 
+
+\begin{equation}
+\bar{x}=\frac{1}{n}\sum_{i=1}^{n}x_i
+\end{equation}
+
+en donde 
+
+$\boldsymbol{\bar{x}}$ : Es la media muestral.
+
+$\boldsymbol{n}$: es el tamaño de la muestra y representa la probabilidad de seleccionar un elemento. En este caso todos los elementos de la muestra son equiprobables. Esto es, tiene la misma probabilidad de ser seleccionados.
+
+$\boldsymbol{x_i}$: es el elemento i-ésimo, seleccionado de la población de forma aleatoria.
+
+__Media poblacional__
+
+En el caso de una variable aleatoria^[Una variable aleatoria para este fin se considera un evento asociado a una probabilidad] discreta
+
+\begin{equation}
+\mu=\sum_{i=1}^Nx_ip(x_i)
+\end{equation}
+
+en donde:
+
+$\boldsymbol{\mu}$: es la media poblacional.
+
+$\boldsymbol{N}$: es el tamaño de la población.
+
+$\boldsymbol{p(x_i)}$: es la medida de la probabilidad del evento $\boldsymbol{x_i}$.
+
+$\boldsymbol{x_i}$: es el i-esimo  elemento de la población.
+
+En este caso se dice que el estadístico $\bar{x}$ estima al parámetro $\mu$. Esto es
+
+$\bar{X}$ estima a $\mu$
+
+<span style="color:red">*__La siguiente aplicación ejemplifica esto__*</span>
+
+Es claro que el valor del estadístico no corresponderá exactamente al valor del parámetro, debido a que el primero se calcula con un subconjunto de de los elementos de la población.
+
+¿Por qué entonces podemos confiar en un estadístico de una muestra para estimar un parámetro poblacional?
+
+
+# DISTRIBUCIONES MUESTRALES
+
+Una distribución de muestras, es el resultado de tomar la combinación de un tamaño __*n*__ de elementos de una población de tamaño __*N*__ generando __*K*__ combinaciones y calculando $\boldsymbol{\bar{x}_k}$ medias muestrales, las cuales resultan ser variables aleatorias (v.a.). Esto es, si se seleccionan diferentes muestras, del mismo tamaño n de forma aleatoria, de una población, cada una de ellas tendría un valor diferente y la probabilidad de que alguna de ellas acierte al valor del parámetro poblacional $\boldsymbol{\mu}$ es casi seguramente cero. 
+
+En forma matemática se tiene
+
+\begin{equation}
+C(N,n)=\binom{N}{n}=\frac{N!}{n!(N-n)!}=K
+\label{eq:combinaciones}
+\end{equation}
+
+en donde 
+
+$K$: es el número de combinaciones de tamaño $n$ tomadas de $N$.
+
+En este caso la varianza de las medias de las muestras se calcula como 
+
+\begin{equation}
+\sigma^2_{\bar{x}}=\frac{\sum_{i=1}^K(\bar{X}_i-\bar{\bar{X}})^2}{k}
+\label{eq:varianza_muestral}
+\end{equation}
+
+donde
+
+\begin{equation}
+\bar{\bar{X}}=\frac{\sum_{i=1}^k\bar{X}_i}{K}
+\label{eq:media_medias}
+\end{equation}
+
+$\bar{\bar{X}}$: media de las medias.
+
+y la i-ésima media de las muestras, con un tamaño demuestra __n__ es
+
+\begin{equation}
+\bar{X}_i=\frac{\sum_{j=1}^nX_j}{n}
+\label{eq:media_mues}
+\end{equation}
+
+
+En este caso el error estándar se obtiene al sacar la raíz cuadrada de la ecuación \eqref{eq:varianza_muestral}  
+
+\begin{equation}
+\sigma_{\bar{x}}=\sqrt{\sigma^2_{\bar{x}}}
+\label{eq:err_est}
+\end{equation}
+
+Como se puede observar, el cálculo del error estándar por este procedimiento no es recomendable ya que existen más combinaciones __*K*__ que el número de elementos de la población __*N*__. lo que lo hace poco práctico o inservible si se desea calcular. Esto es, es más fácil censar a la población, que tomar todas las combinaciones de las muestras de tamaño __*n*__ para calcular el error estándar.
+
+En este caso, considere las variables aleatorias
+
+\begin{equation}
+X_1,X_2,...,X_n
+\label{eq:va}
+\end{equation}
+
+En donde 
+
+\begin{equation}
+E[X_i]=\mu
+\label{eq:esp}
+\end{equation}
+
+y su varianza es 
+
+\begin{equation}
+Var[X_i]=\sigma^2
+\label{eq:var}
+\end{equation}
+
+De la ecuación \eqref{eq:media_mues}, la media muestral es 
+
+\begin{equation}
+\bar{X}=\frac{X_1+X_2+\dots+X_n}{n}
+\label{eq:media_va}
+\end{equation}
+
+y su varianza
+
+\begin{equation}
+Var[\bar{X}]=Var\left[\frac{X_1+X_2+\dots+X_n}{n}\right]
+\label{eq:var_mues}
+\end{equation}
+
+en donde 
+
+\begin{equation}
+Var[\bar{X}]=\frac{Var[X_1]+Var[X_2]+\dots+Var[X_n]}{n^2}
+\label{eq:var_mues2}
+\end{equation}
+
+de la ecuación \eqref{eq:var_mues} se tiene 
+
+\begin{equation}
+Var[\bar{X}]=\frac{n\sigma^2}{n^2}
+\end{equation}
+
+donde
+
+\begin{equation}
+Var[\bar{X}]=\frac{\sigma^2}{n}
+\end{equation}
+
+y finalmente el error estándar es 
+
+\begin{equation}
+\sigma_{\bar{x}}=\sqrt{\frac{\sigma^2}{n}}=\frac{\sigma}{\sqrt{n}}
+\end{equation}
+
+## Teorema del Límite Central
+
+Sean $X_1,X_2,...,X_n$ una muestra de tamaño __n__ de una población de tamaño __N__ con media $\mu$ y varianza finita $\sigma^2$, de esta población se obtienen __k__ combinaciones de tamaño __n__, que generan $\bar{X}_k$ medias muestrales, estas últimas tienden a distribuirse de forma asintótica a la normal con media $\bar{\bar{X}}=\mu$ y error estándar $\sigma_{\bar{x}}$, el cual disminuye conforme el tamaño de la muestra aumenta, no importando la distribución de probabilidad de la que provengan las variables aleatorias de las muestras tomadas.
+
+La figura 2 ejemplifica esto.
+
+```{r, TLC, echo=FALSE, fig.cap="Teorema del Límite Central"}
+# Parámetros poblacionales
+mu <- 50
+sigma <- 10
+n <- 25
+
+# Error estándar (Desviación estándar de las medias muestrales)
+SE <- sigma / sqrt(n)
+
+# Valores para la distribución
+x <- seq(mu - 4 * SE, mu + 4 * SE, length.out = 500)
+densidad <- dnorm(x, mean = mu, sd = SE)
+
+# --- MEDIAS MUESTRALES ALEATORIAS ---
+set.seed(444) # Semilla para mantener la misma aleatoriedad cada vez que ejecutes
+k_muestras <- 6
+medias_muestrales <- rnorm(k_muestras, mean = mu, sd = SE)
+# ------------------------------------
+
+# Configuración de márgenes
+par(mar = c(5, 4, 4, 2) + 0.1)
+
+# 1. Gráfica base de la curva de densidad
+plot(
+  x, densidad,
+  type = "l",
+  lwd = 2.5,
+  col = "steelblue",
+  xlab = expression(Medias~muestrales~(bar(x))),
+  ylab = "",
+  main = "Distribución de las Medias Muestrales",
+  ylim = c(-max(densidad) * 0.12, max(densidad) * 1.15), # Ampliado ligeramente abajo para etiquetas
+  frame.plot = FALSE,
+  axes = FALSE
+)
+
+# Línea del eje X en y = 0
+abline(h = 0, col = "gray60")
+
+# 2. Línea vertical para la media poblacional (mu)
+abline(v = mu, lty = 2, lwd = 1.5, col = "gray30")
+
+# Etiqueta de la media poblacional
+text(
+  x = mu, 
+  y = max(densidad) * -0.145, 
+  labels = expression(mu == bar(bar(x))), 
+  cex = 0.9
+)
+
+# 3. Segmento horizontal marcando la amplitud de sigma_equis_testada
+h_segmento <- max(densidad) * 0.6  # Altura a la mitad de la curva
+
+arrows(
+  x0 = mu, y0 = h_segmento, 
+  x1 = mu + SE, y1 = h_segmento, 
+  code = 3, angle = 90, length = 0.05, 
+  col = "black", lwd = 2
+)
+
+# Etiqueta del segmento horizontal (sigma_equis testada)
+text(
+  x = mu + (SE / 2), 
+  y = h_segmento + (max(densidad) * 0.07), 
+  labels = expression(sigma[bar(x)]), 
+  col = "black", 
+  cex = 0.95
+)
+
+# 4. Puntos para las medias muestrales sobre el eje y = 0
+points(
+  x = medias_muestrales, 
+  y = rep(0, length(medias_muestrales)), 
+  pch = 19, 
+  col = "firebrick", 
+  cex = 1.3
+)
+
+# 5. Etiquetas x_1, x_2, ..., x_k testadas debajo de cada punto
+etiquetas_equis <- parse(text = paste0("bar(x)[", seq_along(medias_muestrales), "]"))
+
+# Alternancia de altura vertical para evitar solapamiento si dos puntos caen muy próximos
+pos_y_etiquetas <- rep(c(-max(densidad) * 0.04, -max(densidad) * 0.09), length.out = length(medias_muestrales))
+
+text(
+  x = medias_muestrales, 
+  y = pos_y_etiquetas, 
+  labels = etiquetas_equis, 
+  col = "firebrick", 
+  cex = 0.9
+)
+
+
+```
+
+## ESTIMACIÓN PUNTUAL
+
+Como se puede observar los valores de $\bar{X}_i$ se distribuyen de forma gaussiana alrededor de $\bar{\bar{X}}=\mu$ y a medida que el tamaño de la muestra aumenta, el error estándar disminuye y los valores se encuentran más cerca del parámetro poblacional $\mu$. Sin embargo, la probabilidad de que alguna $\bar{X}_i$ sea igual al parámetro desconocido $\mu$ es casi seguramente de cero, aún si el valor fuera igual o casi igual al parámetro no lo sabría, por eso la estimación puntual del parámetro no  es recomendable, por lo que es necesario utilizar un intervalo donde se pueda establecer, con un error específico y una probailidad, que se encontrará el parámetro real pero desconocido.
+
+# INTERVALOS DE CONFIANZA
+
+Un intervalo de confianza se establece como la probabilidad de que el parámetro desconocido $\mu$ se encuentre en un rango de valores, a dicha probabilidad asociada se le conoce como __coeficiente de confianza__ $cc=1-\alpha$ y se calcula al restar a uno el nivel de significancia $\alpha$. Tanto el coeficiente de confianza como el nivel de significancia tienen un rango de valores aceptados. Por ejemplo, el *cc* se acepta se encuentre $90\%\leq cc<100\%$, mientras que $0\%<\alpha\leq10\%$.  
+
+En este caso, si a la media poblacional se le colocan un par de brazos, uno a la izquierda y el otro a la derecha, con tamaño $2\sigma_{\bar{x}}$ se tendrían el 95.5% de las $\bar{x}_i$ y solo el 4.5% no los contendría.  Sin embargo, como no se conoce el valor de $\mu$ se deben colocar estos brazos en lo que sí se conoce $\bar{X}_i$ y suponer que existe un 95.5% de probabilidad de que este contenga a la media poblacional.
+
+La razón por la que se usa la variable aleatoria $z_i$, que corresponde a una variable aleatoria con distribución gaussina, específicamente la normal estándar con media $\mu_z=0$ y desviación estándar $\sigma_z=1$, es por que las distribuciones muestrales, como se ha establecido en el Teorema del Límite Central, se distribuyen de forma normal.
+
+El tamaño del brazo que se le coloca a la media muestral se le conoce como error y se calcula con
+
+\begin{equation}
+E=z_{\frac{\alpha}{2}}\frac{\sigma}{\sqrt{n}}
+\end{equation}
+
+En donde 
+
+$E$: Error de muestreo
+
+$z_{\frac{\alpha}{2}}$: Es el valor de la distribución __*z*__ que nos indica el número de desviaciones estándar a la izquierda y a la derecha en el que se concentran el 95.5% de los elementos en una distribución normal estándar.
+
+$\sigma$: Es la desviación estándar poblacional.
+
+$n$: Es el tamaño de la muestra.
+
+En este caso se suma y se resta este error __*E*__  a la $\bar{X}_i$ para obtener los límites de confianza inferior y superiro.
+
+\begin{equation}
+IC=\bar{X}_i\pm E.
+\end{equation}
+
+En done 
+
+$IC$: Intervalo de confianza
+
+$E$: Error de mustreo
+
+Esto es
+
+\begin{equation}
+LI=\bar{X}_i-z_{\frac{\alpha}{2}}\frac{\sigma}{\sqrt{n}}
+\end{equation}
+
+y
+
+\begin{equation}
+LS=\bar{X}_i+z_{\frac{\alpha}{2}}\frac{\sigma}{\sqrt{n}}
+\end{equation}
+
+En donde
+
+$LS$: Límite superiro.
+
+$LI$: Límite inferior.
+
+La siguiente aplicación ejemplifica el uso de dichos intervalos
+
+__*COLOCAR LIGA DE APP*__
+
+Un ejemplo del uso de los intervalos de confianza se presenta a continuación.
+
+__Ejemplo 1:__
+
+Suponga que se desea estimar la estatura promedio de los estudiantes de la Facultad de Ingeniería, se sabe que la desviación estándar poblacional es de 9 cm. Una muestra de 31 alumnos reporta la siguiente media muestral $\bar{x}$ = 167 cm. Suponga que se desea estimar a la media poblacional con una probabilidad del 95.5%.
+
+__Solución__
+
+```{r}
+
+sigma=9
+n=31
+x_bar=67
+z=abs(qnorm(4.5/200))
+
+E=z*sigma/(n^.5)
+
+LI=x_bar-E
+LS=x_bar+E
+
+```
+
+En este caso, el error de muestreo es de $E$= $\pm$ `r round(E,2)` cm. El límite inferior $LI$=  `r round(LI,2)` y el límite superior $LS$=  `r round(LS,2)`. Lo que significa que existe un 95.5% de probabilidad de que la media poblacional de la estatura se encuentre entre estos valores. Es obvio que si se aumenta el tamaño de la muestra se incrementa el Error disminuye. Esto se verá en el ejemplo 2.
+
+__Ejemplo 2:__
+
+Suponga que en el ejemplo 1, el tamaño de la muestra es de 60 elementos. ¿Cuál sería el error de muestreo __*E*__?
+
+__Solución__
+
+```{r}
+
+n_2=62
+
+E_2=z*sigma/(n_2^.5)
+
+```
+
+El nuevo error de muestreo con una muestra de 62 es de $E$= $\pm$ `r round(E_2,2)` cm, el cual es menor al error $E$= $\pm$ `r round(E,2)` cm con una muestra de 31 estudiantes. Como puede observarse, a pesar de que el tamaño de la muestra se duplicó, el error de muestreo no se redujo a la mitad.
+
+Este tema será profundizado con mayor detalle en el siguiente capítulo, en donde se abordarán temas relacionados con el muestreo aleatorio irrestricto. También se analizará la situación cuando $\sigma$ no sea conocida y qué pasa cuando la población que se analiza, el interés del investigador se centre en las proporciones. 
+
+En otras ocasiones el interés del investigador es el de encontrar el valor del parámetro que describe a una población, o la probabilidad de que este sea mayor o menor que un valor predeterminado, para esto se emplea una prueba de hipótesis.
+
+# PRUEBAS DE HIPÓTESIS
+
+Una hipótesis, desde el punto de vista de la estadística, es una aseveración que se hace sobre un parámetro poblacional. Por ejemplo:
+
+* Establecer que la estatura promedio los estudiantes de la facultad de ingeniería es de 170 cm.
+
+* El gasto promedio de las familias que pertenecen a la clase media en México es de \$10,000 MXN.
+
+* La cantidad de tiepo que un adolecente invierte en redes sociales al día es de 8 h.
+
+Así como estos, existen una enorme cantidad de aseveraciones que puede hacer un investigador acerca de una población. Adicionalmente, como cualquier hipótesis en una investigación, esta tiene que ser comprobada. En este caso, la forma en que un investigador puede comprobar su aseveración es a través de una muestra y la extracción de un estadístico de prueba, que deber ser probada para demostrar que la diferencia no es estadísticamente significativa  y que su aseveración es correcta.
+
+Por ejemplo, regresando a nuestra población (estudiantes de la Facultdad de Ingeniería),  si se desea verificar que el gasto promedio semanal de los estudiantes es de \$500.00 MXN. En este caso $\mu_0=$ \$500.00 MXN, donde $\mu_0$ es la aseveración que se hace sobre el parámetro $\mu$ la media poblacional, real pero desconocida, y la forma de establecer si la diferencia es estadísticamente significativa es a través de una muestra de tamaña __*n*__ lo suficientemente grande para calcular un $\bar{X}_i$  y a través de la siguiente expresión (con $\sigma$ conocida)
+
+\begin{equation}
+z_i=\frac{\mu_0-\bar{X}_i}{\sigma/\sqrt{n}}
+\end{equation}
+
+El valor de __*z*__ se compara con una $z_{\alpha/2}$, debido a que es una prueba de dos colas, ya que cualquier valor que se aleje de \$500.00 MXN por debajo o de \$500.00 por arriba, lo suficiente, rechazará nuestra aseveración. Esto significa que si $-z_{\alpha/2} \leq z_i\leq z_{\alpha/2}$ no habrá evidencia para rechazar la hipótesis de que la media de los gastos promedios de los estudiantes en una semana sea diferente de  \$500.00 MXN.
+
+Normalmente, cuando se establecen pruebas de hipótesis estadísticas se pueden establecer las siguientes hipótesis nulas e hipótesis alternativas:
+
+\[
+\begin{matrix}
+H_0:~\mu=\mu_0 & H_0:~\mu\leq\mu_0 & H_0:~\mu\geq\mu_0 \\
+H_0:~\mu\neq\mu_0 & H_0:~\mu>\mu_0 & H_0:~\mu<\mu_0
+\end{matrix}
+\]
+
+```{r echo=FALSE}
+# 1. Configurar la ventana gráfica
+# oma = c(3, 0, 2, 0) deja espacio adicional en la parte inferior para la leyenda
+par(mfrow = c(1, 3), mar = c(4, 2, 4, 2), oma = c(3, 0, 2, 0))
+
+# Crear los datos de la distribución normal estándar
+x <- seq(-4, 4, length = 1000)
+y <- dnorm(x)
+
+# ---------------------------------------------------------
+# 1. Prueba de Dos Colas
+# ---------------------------------------------------------
+plot(x, y, type = "n", axes = FALSE, xlab = "", ylab = "", main = "Dos Colas")
+
+# Zona de aceptación (steelblue)
+x_acc1 <- seq(-1.96, 1.96, length = 500)
+polygon(c(-1.96, x_acc1, 1.96), c(0, dnorm(x_acc1), 0), col = "steelblue", border = NA)
+
+# Zonas de rechazo (darkred)
+x_rej1_left <- seq(-4, -1.96, length = 100)
+polygon(c(-4, x_rej1_left, -1.96), c(0, dnorm(x_rej1_left), 0), col = "darkred", border = NA)
+x_rej1_right <- seq(1.96, 4, length = 100)
+polygon(c(1.96, x_rej1_right, 4), c(0, dnorm(x_rej1_right), 0), col = "darkred", border = NA)
+
+lines(x, y, lwd = 2)
+abline(h = 0)
+axis(1, at = c(-1.96, 1.96), labels = expression(-Z[alpha/2], Z[alpha/2]), tick = TRUE)
+
+# ---------------------------------------------------------
+# 2. Prueba de Cola Izquierda
+# ---------------------------------------------------------
+plot(x, y, type = "n", axes = FALSE, xlab = "", ylab = "", main = "Cola Izquierda")
+
+# Zona de aceptación (steelblue)
+x_acc2 <- seq(-1.64, 4, length = 500)
+polygon(c(-1.64, x_acc2, 4), c(0, dnorm(x_acc2), 0), col = "steelblue", border = NA)
+
+# Zona de rechazo (darkred)
+x_rej2 <- seq(-4, -1.64, length = 100)
+polygon(c(-4, x_rej2, -1.64), c(0, dnorm(x_rej2), 0), col = "darkred", border = NA)
+
+lines(x, y, lwd = 2)
+abline(h = 0)
+axis(1, at = -1.64, labels = expression(-Z[alpha]), tick = TRUE)
+
+# ---------------------------------------------------------
+# 3. Prueba de Cola Derecha
+# ---------------------------------------------------------
+plot(x, y, type = "n", axes = FALSE, xlab = "", ylab = "", main = "Cola Derecha")
+
+# Zona de aceptación (steelblue)
+x_acc3 <- seq(-4, 1.64, length = 500)
+polygon(c(-4, x_acc3, 1.64), c(0, dnorm(x_acc3), 0), col = "steelblue", border = NA)
+
+# Zona de rechazo (darkred)
+x_rej3 <- seq(1.64, 4, length = 100)
+polygon(c(1.64, x_rej3, 4), c(0, dnorm(x_rej3), 0), col = "darkred", border = NA)
+
+lines(x, y, lwd = 2)
+abline(h = 0)
+axis(1, at = 1.64, labels = expression(Z[alpha]), tick = TRUE)
+
+# ---------------------------------------------------------
+# Título General y Leyenda Compartida
+# ---------------------------------------------------------
+# Título en la parte superior
+mtext("Zonas de Aceptación y Rechazo en Pruebas de Hipótesis", outer = TRUE, side = 3, cex = 1.2, font = 2)
+
+# Crear un gráfico invisible superpuesto a toda la ventana para poner la leyenda
+par(fig = c(0, 1, 0, 1), oma = c(0, 0, 0, 0), mar = c(0, 0, 0, 0), new = TRUE)
+plot(0, 0, type = "n", bty = "n", xaxt = "n", yaxt = "n")
+
+# Agregar la leyenda en la parte inferior centrada
+legend("bottom", 
+       legend = c("Zona de Aceptación", "Zona de Rechazo"), 
+       fill = c("steelblue", "darkred"), 
+       horiz = TRUE,      # Pone la leyenda en formato horizontal
+       bty = "n",         # Quita el borde de la caja de la leyenda
+       cex = 1.1)         # Tamaño del texto
+
+# Restaurar los parámetros gráficos a su estado original por si quieres seguir graficando otras cosas
+par(mfrow = c(1, 1), mar = c(5, 4, 4, 2) + 0.1, oma = c(0,0,0,0))
+```
+
+Como se puede observar en las figuras, al área sombreada en los extremos, a esta probabilidad se le conoce como $\alpha$ o _nivel de significancia_ y el resto del área se le conoce como _coeficiente de confianza_ $cc=1-\alpha$. Estas áreas presentan las zonas de aceptación __*cc*__ y rechazo $\boldsymbol{\alpha}$.
+
+Ejemplo 3:
+
+Suponga que se toma una muestra de 30 estudiantes de la Facultad de Ingeniería y se desea probar que la estatura promedio es de 172 cm, la muestra arrojó un valor promedio de 168 cm. Con un nivel de significancia $\alpha$ del 5% y una varianza conocida y finita $\sigma~=~5$ cm ¿Existe suficiente evidencia para rechazar la hipótesis nula?
+
+$H_0:~\mu=172~cm$
+
+$H_A:~\mu\neq 172~cm$
+
+El estadístico de prueba es
+
+\begin{equation}
+z_i=\frac{\mu_0-\bar{x}}{\sigma/\sqrt{n}}
+\end{equation}
+
+```{r}
+
+z_i<-(172-168)/(5/30^.5)
+
+z_ns<-abs(qnorm(.05/2))
+
+```
+
+Al comparar la $z_{\alpha/2}=\pm$ `r z_ns` con el valor de $z_i=$ `r z_i` del estadístico de prueba, se observa que se encuentra en la zona de rechazo, por lo que existe suficiente evidencia para rechazar $H_0$ y se pude decir que no existe evidencia para afirmar que los estudiantes midan 172 cm.
+
+Una forma alternativa de resolver el problema es con el valor __*p*__, o el __*"p-value"*__. En este caso se calcula la probabilidad  del valor de $z_i$ con la distribución normal estándar y se compara con el valor $\alpha/2$, sí el valor de $\alpha/2=.05/2=.025\geq p-value$ existe suficiente evidencia para rechazar $H_0$, en caso contrario, cuando $\alpha/2=.05/2=.025<p-value$, no existe suficiente evidencia para rechazar $H_0$. Esto se puede comprobar con el siguiente análisis.
+
+```{r}
+
+p=(1-pnorm(z_i))*100
+
+```
+
+Como el valor de $\alpha/2=2.5\%\geq$ `r format(p, nsmall = 10)` % existe suficiente evidencia para decir que los estudiantes no miden 172 cm.
+
+Para concluir con este breve repaso se resolverán los siguientes ejemplos:
+
+Ejemplo 3.
+
+Su ponga que se desea estimar si la población mide más de 172 cm con la misma muestra.
+
+$H_0:$
+
+
