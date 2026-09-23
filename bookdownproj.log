@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2026.9.4)  23 SEP 2026 10:17
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2026.9.23)  23 SEP 2026 13:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -407,6 +407,7 @@ Package graphics Info: Driver file: xetex.def on input line 106.
 \pandoc@box=\box63
 \cslhangindent=\skip63
 \csllabelwidth=\skip64
+File: preamble.tex 
 (c:/Users/behem/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/babel/babel.sty
 Package: babel 2026/02/14 v26.3 The multilingual framework for LuaLaTeX, pdfLaTeX and XeLaTeX
 \babel@savecnt=\count323
@@ -430,13 +431,58 @@ Language: spanish.ldf 2021/05/27 v5.0q Spanish support from the babel system
 \es@quottoks=\toks25
 \es@quotdepth=\count325
 Package babel Info: Making " an active character on input line 570.
-Package babel Info: Making . an active character on input line 675.
 Package babel Info: Making < an active character on input line 722.
 Package babel Info: Making > an active character on input line 722.
 ))
-LaTeX Encoding Info:    Redeclaring text command \guillemotleft (encoding OT1) on input line 102.
-LaTeX Encoding Info:    Redeclaring text command \guillemotright (encoding OT1) on input line 102.
-(c:/Users/behem/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/bookmark/bookmark.sty
+LaTeX Encoding Info:    Redeclaring text command \guillemotleft (encoding OT1) on input line 107.
+LaTeX Encoding Info:    Redeclaring text command \guillemotright (encoding OT1) on input line 107.
+(c:/Users/behem/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/inputenc.sty
+Package: inputenc 2024/02/08 v1.3d Input encoding file
+\inpenc@prehook=\toks26
+\inpenc@posthook=\toks27
+
+Package inputenc Warning: inputenc package ignored with utf8 based engines.
+
+) (c:/Users/behem/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2025/07/18 v2.1d Standard LaTeX package
+LaTeX Font Info:    Trying to load font information for T1+lmr on input line 116.
+(c:/Users/behem/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/t1lmr.fd
+File: t1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)) (c:/Users/behem/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/geometry/geometry.sty
+Package: geometry 2020/01/02 v5.9 Page Geometry
+(c:/Users/behem/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/iftex/ifvtex.sty
+Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
+)
+\Gm@cnth=\count326
+\Gm@cntv=\count327
+\c@Gm@tempcnt=\count328
+\Gm@bindingoffset=\dimen183
+\Gm@wd@mp=\dimen184
+\Gm@odd@mp=\dimen185
+\Gm@even@mp=\dimen186
+\Gm@layoutwidth=\dimen187
+\Gm@layoutheight=\dimen188
+\Gm@layouthoffset=\dimen189
+\Gm@layoutvoffset=\dimen190
+\Gm@dimlist=\toks28
+) (c:/Users/behem/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
+Package: fancyhdr 2025/02/07 v5.2 Extensive control of page headers and footers
+\f@nch@headwidth=\skip65
+\f@nch@offset@elh=\skip66
+\f@nch@offset@erh=\skip67
+\f@nch@offset@olh=\skip68
+\f@nch@offset@orh=\skip69
+\f@nch@offset@elf=\skip70
+\f@nch@offset@erf=\skip71
+\f@nch@offset@olf=\skip72
+\f@nch@offset@orf=\skip73
+\f@nch@height=\skip74
+\f@nch@footalignment=\skip75
+\f@nch@widthL=\skip76
+\f@nch@widthC=\skip77
+\f@nch@widthR=\skip78
+\@temptokenb=\toks29
+) (c:/Users/behem/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/bookmark/bookmark.sty
 Package: bookmark 2023-12-10 v1.31 PDF bookmarks (HO)
 (c:/Users/behem/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/hyperref.sty
 Package: hyperref 2026-01-29 v7.01p Hypertext links for LaTeX
@@ -467,19 +513,19 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 (c:/Users/behem/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/kvoptions/kvoptions.sty
 Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
 ))
-\c@section@level=\count326
+\c@section@level=\count329
 ) (c:/Users/behem/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/stringenc/stringenc.sty
 Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO)
 )
-\@linkdim=\dimen183
-\Hy@linkcounter=\count327
-\Hy@pagecounter=\count328
+\@linkdim=\dimen191
+\Hy@linkcounter=\count330
+\Hy@pagecounter=\count331
 (c:/Users/behem/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/pd1enc.def
 File: pd1enc.def 2026-01-29 v7.01p Hyperref: PDFDocEncoding definition (HO)
 ) (c:/Users/behem/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/intcalc/intcalc.sty
 Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 )
-\Hy@SavedSpaceFactor=\count329
+\Hy@SavedSpaceFactor=\count332
 (c:/Users/behem/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/puenc.def
 File: puenc.def 2026-01-29 v7.01p Hyperref: PDF Unicode definition (HO)
 )
@@ -491,21 +537,21 @@ Package hyperref Info: Plain pages OFF on input line 4216.
 Package hyperref Info: Backreferencing OFF on input line 4221.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4468.
-\c@Hy@tempcnt=\count330
+\c@Hy@tempcnt=\count333
 (c:/Users/behem/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip19
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
 LaTeX Info: Redefining \url on input line 4807.
-\XeTeXLinkMargin=\dimen184
+\XeTeXLinkMargin=\dimen192
 (c:/Users/behem/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/bitset/bitset.sty
 Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
 (c:/Users/behem/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO)
 ))
-\Fld@menulength=\count331
-\Field@Width=\dimen185
-\Fld@charsize=\dimen186
+\Fld@menulength=\count334
+\Field@Width=\dimen193
+\Fld@charsize=\dimen194
 Package hyperref Info: Hyper figures OFF on input line 6084.
 Package hyperref Info: Link nesting OFF on input line 6089.
 Package hyperref Info: Hyper index ON on input line 6092.
@@ -513,18 +559,18 @@ Package hyperref Info: backreferencing OFF on input line 6099.
 Package hyperref Info: Link coloring OFF on input line 6104.
 Package hyperref Info: Link coloring with OCG OFF on input line 6109.
 Package hyperref Info: PDF/A mode OFF on input line 6114.
-\Hy@abspage=\count332
-\c@Item=\count333
-\c@Hfootnote=\count334
+\Hy@abspage=\count335
+\c@Item=\count336
+\c@Hfootnote=\count337
 )
 Package hyperref Info: Driver (autodetected): hxetex.
 (c:/Users/behem/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/hyperref/hxetex.def
 File: hxetex.def 2026-01-29 v7.01p Hyperref driver for XeTeX
 \pdfm@box=\box64
-\c@Hy@AnnotLevel=\count335
-\HyField@AnnotCount=\count336
-\Fld@listcount=\count337
-\c@bookmark@seq@number=\count338
+\c@Hy@AnnotLevel=\count338
+\HyField@AnnotCount=\count339
+\Fld@listcount=\count340
+\c@bookmark@seq@number=\count341
 (c:/Users/behem/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
 Package: rerunfilecheck 2025-06-21 v1.11 Rerun checks for auxiliary files (HO)
 (c:/Users/behem/AppData/Roaming/TinyTeX/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty
@@ -532,10 +578,10 @@ Package: uniquecounter 2019/12/15 v1.4 Provide unlimited unique counter (HO)
 )
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 284.
 )
-\Hy@SectionHShift=\skip65
+\Hy@SectionHShift=\skip79
 ) (c:/Users/behem/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/bookmark/bkm-dvipdfm.def
 File: bkm-dvipdfm.def 2023-12-10 v1.31 bookmark driver for dvipdfm (HO)
-\BKM@id=\count339
+\BKM@id=\count342
 )) (./bookdownproj.aux
 LaTeX Info: Redefining \. on input line 11.
 LaTeX Info: Redefining \% on input line 11.
@@ -556,51 +602,51 @@ LaTeX Warning: Label `tab:transformaciones-log' multiply defined.
 )
 \openout1 = `bookdownproj.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 115.
-LaTeX Font Info:    ... okay on input line 115.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 115.
-LaTeX Font Info:    ... okay on input line 115.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 115.
-LaTeX Font Info:    ... okay on input line 115.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 115.
-LaTeX Font Info:    ... okay on input line 115.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 115.
-LaTeX Font Info:    ... okay on input line 115.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 115.
-LaTeX Font Info:    ... okay on input line 115.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 115.
-LaTeX Font Info:    ... okay on input line 115.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 115.
-LaTeX Font Info:    ... okay on input line 115.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 115.
-LaTeX Font Info:    ... okay on input line 115.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 115.
-LaTeX Font Info:    ... okay on input line 115.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 168.
+LaTeX Font Info:    ... okay on input line 168.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 168.
+LaTeX Font Info:    ... okay on input line 168.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 168.
+LaTeX Font Info:    ... okay on input line 168.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 168.
+LaTeX Font Info:    ... okay on input line 168.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 168.
+LaTeX Font Info:    ... okay on input line 168.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 168.
+LaTeX Font Info:    ... okay on input line 168.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 168.
+LaTeX Font Info:    ... okay on input line 168.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 168.
+LaTeX Font Info:    ... okay on input line 168.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 168.
+LaTeX Font Info:    ... okay on input line 168.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 168.
+LaTeX Font Info:    ... okay on input line 168.
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
-(Font)                  OT1/lmr/m/n --> TU/lmr/m/n on input line 115.
+(Font)                  OT1/lmr/m/n --> TU/lmr/m/n on input line 168.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/lmr/m/it --> TU/lmr/m/it on input line 115.
+(Font)                  OT1/lmr/m/it --> TU/lmr/m/it on input line 168.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/lmr/bx/n --> TU/lmr/bx/n on input line 115.
+(Font)                  OT1/lmr/bx/n --> TU/lmr/bx/n on input line 168.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/lmss/m/n --> TU/lmss/m/n on input line 115.
+(Font)                  OT1/lmss/m/n --> TU/lmss/m/n on input line 168.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/lmss/bx/n --> TU/lmss/bx/n on input line 115.
+(Font)                  OT1/lmss/bx/n --> TU/lmss/bx/n on input line 168.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/lmtt/m/n --> TU/lmtt/m/n on input line 115.
+(Font)                  OT1/lmtt/m/n --> TU/lmtt/m/n on input line 168.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/lmtt/m/n --> TU/lmtt/bx/n on input line 115.
+(Font)                  OT1/lmtt/m/n --> TU/lmtt/bx/n on input line 168.
 
 Package fontspec Info: 
-(fontspec)             latinmodern-math scale = 0.9999964596882403.
-
-
-Package fontspec Info: 
-(fontspec)             latinmodern-math scale = 0.9999964596882403.
+(fontspec)             latinmodern-math scale = 0.9989520677190833.
 
 
 Package fontspec Info: 
-(fontspec)             latinmodern-math scale = 0.9999964596882403.
+(fontspec)             latinmodern-math scale = 0.9989520677190833.
+
+
+Package fontspec Info: 
+(fontspec)             latinmodern-math scale = 0.9989520677190833.
 
 
 Package fontspec Info: 
@@ -612,788 +658,736 @@ Package fontspec Info:
 (fontspec)             series/shapes:
 (fontspec)              
 (fontspec)             - 'normal' (m/n) with NFSS spec.:
-(fontspec)             <->s*[0.9999964596882403]"[latinmodern-math.otf]/OT:script=math;language=dflt;"
+(fontspec)             <->s*[0.9989520677190833]"[latinmodern-math.otf]/OT:script=math;language=dflt;"
 (fontspec)             - 'bold' (b/n) with NFSS spec.:
-(fontspec)             <->s*[0.9999964596882403]"[latinmodern-math.otf]/OT:script=math;language=dflt;"
+(fontspec)             <->s*[0.9989520677190833]"[latinmodern-math.otf]/OT:script=math;language=dflt;"
 
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(0)/m/n' will be
-(Font)              scaled to size 10.0pt on input line 115.
+LaTeX Font Info:    Trying to load font information for T1+latinmodern-math.otf(0) on input line 168.
+LaTeX Font Info:    No file T1latinmodern-math.otf(0).fd. on input line 168.
 
-Package fontspec Info: 
-(fontspec)             latinmodern-math scale = 0.9999964596882403.
-
-
-Package fontspec Info: 
-(fontspec)             latinmodern-math scale = 0.9999964596882403.
+LaTeX Font Warning: Font shape `T1/latinmodern-math.otf(0)/m/n' undefined
+(Font)              using `T1/cmr/m/n' instead on input line 168.
 
 
-Package fontspec Info: 
-(fontspec)             latinmodern-math scale = 0.9999964596882403.
-
-
-Package fontspec Info: 
-(fontspec)             latinmodern-math scale = 0.9999964596882403.
+Package unicode-math Warning: The first font loaded by unicode-math must be an
+(unicode-math)                OpenType Math font (with script=math). If you
+(unicode-math)                simply want ‘the default’ before loading
+(unicode-math)                supplementary fonts over the top for certain
+(unicode-math)                ranges, use: 
+(unicode-math)                  \setmathfont{latinmodern-math.otf}
 
 
 Package fontspec Info: 
-(fontspec)             latinmodern-math scale = 0.9999964596882403.
+(fontspec)             latinmodern-math scale = 0.9989520677190833.
+
+
+Package fontspec Info: 
+(fontspec)             latinmodern-math scale = 0.9989520677190833.
+
+
+Package fontspec Info: 
+(fontspec)             latinmodern-math scale = 0.9989520677190833.
+
+
+Package fontspec Info: 
+(fontspec)             latinmodern-math scale = 0.9989520677190833.
+
+
+Package fontspec Info: 
+(fontspec)             latinmodern-math scale = 0.9989520677190833.
 
 
 Package fontspec Info: 
 (fontspec)             Font family 'latinmodern-math.otf(1)' created for font
 (fontspec)             'latinmodern-math.otf' with options
-(fontspec)             [Scale=MatchLowercase,BoldItalicFont={},ItalicFont={},SmallCapsFont={},Script=Math,SizeFeatures={{Size=8.5-},{Size=6-8.5,Font=latinmodern-math.otf,Style=MathScript},{Size=-6,Font=latinmodern-math.otf,Style=MathScriptScript}},BoldFont={latinmodern-math.otf}].
+(fontspec)             [Scale=MatchLowercase,BoldItalicFont={},ItalicFont={},SmallCapsFont={},Script=Math,SizeFeatures={{Size=0-},{Size=0-0,Font=latinmodern-math.otf,Style=MathScript},{Size=-0,Font=latinmodern-math.otf,Style=MathScriptScript}},BoldFont={latinmodern-math.otf}].
 (fontspec)              
 (fontspec)              This font family consists of the following NFSS
 (fontspec)             series/shapes:
 (fontspec)              
 (fontspec)             - 'normal' (m/n) with NFSS spec.:
-(fontspec)             <8.5->s*[0.9999964596882403]"[latinmodern-math.otf]/OT:script=math;language=dflt;"<6-8.5>s*[0.9999964596882403]"[latinmodern-math.otf]/OT:script=math;language=dflt;+ssty=0;"<-6>s*[0.9999964596882403]"[latinmodern-math.otf]/OT:script=math;language=dflt;+ssty=1;"
+(fontspec)             <0->s*[0.9989520677190833]"[latinmodern-math.otf]/OT:script=math;language=dflt;"<0-0>s*[0.9989520677190833]"[latinmodern-math.otf]/OT:script=math;language=dflt;+ssty=0;"<-0>s*[0.9989520677190833]"[latinmodern-math.otf]/OT:script=math;language=dflt;+ssty=1;"
 (fontspec)             - 'bold' (b/n) with NFSS spec.:
-(fontspec)             <->s*[0.9999964596882403]"[latinmodern-math.otf]/OT:script=math;language=dflt;"
+(fontspec)             <->s*[0.9989520677190833]"[latinmodern-math.otf]/OT:script=math;language=dflt;"
 
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 10.0pt on input line 115.
-LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `normal' on input line 115.
+LaTeX Font Info:    Trying to load font information for T1+latinmodern-math.otf(1) on input line 168.
+LaTeX Font Info:    No file T1latinmodern-math.otf(1).fd. on input line 168.
+
+LaTeX Font Warning: Font shape `T1/latinmodern-math.otf(1)/m/n' undefined
+(Font)              using `T1/cmr/m/n' instead on input line 168.
+
+LaTeX Font Info:    Encoding `OT1' has changed to `T1' for symbol font
+(Font)              `operators' in the math version `normal' on input line 168.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/lmr/m/n --> TU/latinmodern-math.otf(1)/m/n on input line 115.
-LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `bold' on input line 115.
+(Font)                  OT1/lmr/m/n --> T1/latinmodern-math.otf(1)/m/n on input line 168.
+LaTeX Font Info:    Encoding `OT1' has changed to `T1' for symbol font
+(Font)              `operators' in the math version `bold' on input line 168.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/lmr/bx/n --> TU/latinmodern-math.otf(1)/b/n on input line 115.
+(Font)                  OT1/lmr/bx/n --> T1/latinmodern-math.otf(1)/b/n on input line 168.
+LaTeX Info: Redefining \. on input line 168.
+LaTeX Info: Redefining \% on input line 168.
+*geometry* driver: auto-detecting
+*geometry* detected driver: xetex
+*geometry* verbose mode - [ preamble ] result:
+* driver: xetex
+* paper: a4paper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: includehead includefoot 
+* h-part:(L,W,R)=(71.13188pt, 455.24411pt, 71.13188pt)
+* v-part:(T,H,B)=(71.13188pt, 702.78308pt, 71.13188pt)
+* \paperwidth=597.50787pt
+* \paperheight=845.04684pt
+* \textwidth=455.24411pt
+* \textheight=647.42065pt
+* \oddsidemargin=-1.1381pt
+* \evensidemargin=-1.1381pt
+* \topmargin=-1.1381pt
+* \headheight=12.0pt
+* \headsep=18.06749pt
+* \topskip=10.0pt
+* \footskip=25.29494pt
+* \marginparwidth=69.0pt
+* \marginparsep=7.0pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Package fontspec Info: 
-(fontspec)             latinmodern-math scale = 0.9999964596882403.
-
-
-Package fontspec Info: 
-(fontspec)             latinmodern-math scale = 1.000096459334209.
-
-
-Package fontspec Info: 
-(fontspec)             latinmodern-math scale = 0.9999964596882403.
-
-
-Package fontspec Info: 
-(fontspec)             latinmodern-math scale = 1.000096459334209.
-
-
-Package fontspec Info: 
-(fontspec)             latinmodern-math scale = 0.9999964596882403.
-
-
-Package fontspec Info: 
-(fontspec)             latinmodern-math scale = 1.000096459334209.
-
-
-Package fontspec Info: 
-(fontspec)             latinmodern-math scale = 0.9999964596882403.
-
-
-Package fontspec Info: 
-(fontspec)             latinmodern-math scale = 1.000096459334209.
-
-
-Package fontspec Info: 
-(fontspec)             latinmodern-math scale = 0.9999964596882403.
-
-
-Package fontspec Info: 
-(fontspec)             latinmodern-math scale = 1.000096459334209.
-
-
-Package fontspec Info: 
-(fontspec)             Font family 'latinmodern-math.otf(2)' created for font
-(fontspec)             'latinmodern-math.otf' with options
-(fontspec)             [Scale=MatchLowercase,BoldItalicFont={},ItalicFont={},SmallCapsFont={},Script=Math,SizeFeatures={{Size=8.5-},{Size=6-8.5,Font=latinmodern-math.otf,Style=MathScript},{Size=-6,Font=latinmodern-math.otf,Style=MathScriptScript}},BoldFont={latinmodern-math.otf},ScaleAgain=1.0001,FontAdjustment={\fontdimen
-(fontspec)             8\font =6.77pt\relax \fontdimen 9\font =3.94pt\relax
-(fontspec)             \fontdimen 10\font =4.44pt\relax \fontdimen 11\font
-(fontspec)             =6.86pt\relax \fontdimen 12\font =3.45pt\relax
-(fontspec)             \fontdimen 13\font =3.63pt\relax \fontdimen 14\font
-(fontspec)             =3.63pt\relax \fontdimen 15\font =2.89pt\relax
-(fontspec)             \fontdimen 16\font =2.47pt\relax \fontdimen 17\font
-(fontspec)             =2.47pt\relax \fontdimen 18\font =2.5pt\relax
-(fontspec)             \fontdimen 19\font =2.0pt\relax \fontdimen 22\font
-(fontspec)             =2.5pt\relax \fontdimen 20\font =0pt\relax \fontdimen
-(fontspec)             21\font =0pt\relax }].
-(fontspec)              
-(fontspec)              This font family consists of the following NFSS
-(fontspec)             series/shapes:
-(fontspec)              
-(fontspec)             - 'normal' (m/n) with NFSS spec.:
-(fontspec)             <8.5->s*[1.000096459334209]"[latinmodern-math.otf]/OT:script=math;language=dflt;"<6-8.5>s*[1.000096459334209]"[latinmodern-math.otf]/OT:script=math;language=dflt;+ssty=0;"<-6>s*[1.000096459334209]"[latinmodern-math.otf]/OT:script=math;language=dflt;+ssty=1;"
-(fontspec)             - 'bold' (b/n) with NFSS spec.:
-(fontspec)             <->s*[1.000096459334209]"[latinmodern-math.otf]/OT:script=math;language=dflt;"
-
-LaTeX Font Info:    Encoding `OMS' has changed to `TU' for symbol font
-(Font)              `symbols' in the math version `normal' on input line 115.
-LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
-(Font)                  OMS/lmsy/m/n --> TU/latinmodern-math.otf(2)/m/n on input line 115.
-LaTeX Font Info:    Encoding `OMS' has changed to `TU' for symbol font
-(Font)              `symbols' in the math version `bold' on input line 115.
-LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
-(Font)                  OMS/lmsy/b/n --> TU/latinmodern-math.otf(2)/b/n on input line 115.
-
-Package fontspec Info: 
-(fontspec)             latinmodern-math scale = 0.9999964596882403.
-
-
-Package fontspec Info: 
-(fontspec)             latinmodern-math scale = 0.9998964600422715.
-
-
-Package fontspec Info: 
-(fontspec)             latinmodern-math scale = 0.9999964596882403.
-
-
-Package fontspec Info: 
-(fontspec)             latinmodern-math scale = 0.9998964600422715.
-
-
-Package fontspec Info: 
-(fontspec)             latinmodern-math scale = 0.9999964596882403.
-
-
-Package fontspec Info: 
-(fontspec)             latinmodern-math scale = 0.9998964600422715.
-
-
-Package fontspec Info: 
-(fontspec)             latinmodern-math scale = 0.9999964596882403.
-
-
-Package fontspec Info: 
-(fontspec)             latinmodern-math scale = 0.9998964600422715.
-
-
-Package fontspec Info: 
-(fontspec)             latinmodern-math scale = 0.9999964596882403.
-
-
-Package fontspec Info: 
-(fontspec)             latinmodern-math scale = 0.9998964600422715.
-
-
-Package fontspec Info: 
-(fontspec)             Font family 'latinmodern-math.otf(3)' created for font
-(fontspec)             'latinmodern-math.otf' with options
-(fontspec)             [Scale=MatchLowercase,BoldItalicFont={},ItalicFont={},SmallCapsFont={},Script=Math,SizeFeatures={{Size=8.5-},{Size=6-8.5,Font=latinmodern-math.otf,Style=MathScript},{Size=-6,Font=latinmodern-math.otf,Style=MathScriptScript}},BoldFont={latinmodern-math.otf},ScaleAgain=0.9999,FontAdjustment={\fontdimen
-(fontspec)             8\font =0.4pt\relax \fontdimen 9\font =2.0pt\relax
-(fontspec)             \fontdimen 10\font =1.67pt\relax \fontdimen 11\font
-(fontspec)             =1.11pt\relax \fontdimen 12\font =6.0pt\relax
-(fontspec)             \fontdimen 13\font =0pt\relax }].
-(fontspec)              
-(fontspec)              This font family consists of the following NFSS
-(fontspec)             series/shapes:
-(fontspec)              
-(fontspec)             - 'normal' (m/n) with NFSS spec.:
-(fontspec)             <8.5->s*[0.9998964600422715]"[latinmodern-math.otf]/OT:script=math;language=dflt;"<6-8.5>s*[0.9998964600422715]"[latinmodern-math.otf]/OT:script=math;language=dflt;+ssty=0;"<-6>s*[0.9998964600422715]"[latinmodern-math.otf]/OT:script=math;language=dflt;+ssty=1;"
-(fontspec)             - 'bold' (b/n) with NFSS spec.:
-(fontspec)             <->s*[0.9998964600422715]"[latinmodern-math.otf]/OT:script=math;language=dflt;"
-
-LaTeX Font Info:    Encoding `OMX' has changed to `TU' for symbol font
-(Font)              `largesymbols' in the math version `normal' on input line 115.
-LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
-(Font)                  OMX/lmex/m/n --> TU/latinmodern-math.otf(3)/m/n on input line 115.
-LaTeX Font Info:    Encoding `OMX' has changed to `TU' for symbol font
-(Font)              `largesymbols' in the math version `bold' on input line 115.
-LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
-(Font)                  OMX/lmex/m/n --> TU/latinmodern-math.otf(3)/b/n on input line 115.
-LaTeX Info: Redefining \. on input line 115.
-LaTeX Info: Redefining \% on input line 115.
-Package hyperref Info: Link coloring OFF on input line 115.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 12.0pt on input line 117.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 8.0pt on input line 117.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 6.0pt on input line 117.
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 117.
+Package hyperref Info: Link coloring OFF on input line 168.
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 170.
 (c:/Users/behem/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 12.0011pt on input line 117.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 8.00073pt on input line 117.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 6.00055pt on input line 117.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 11.99872pt on input line 117.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 7.99915pt on input line 117.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 5.99936pt on input line 117.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 117.
+LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 170.
+(c:/Users/behem/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/omslmsy.fd
+File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 170.
+(c:/Users/behem/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/omxlmex.fd
+File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <12> on input line 170.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <8> on input line 170.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <6> on input line 170.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 170.
 (c:/Users/behem/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 117.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 170.
 (c:/Users/behem/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
 
-] [2
-
 ] (./bookdownproj.toc
 LaTeX Info: Redefining \. on input line 1.
 LaTeX Info: Redefining \% on input line 1.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 7.0pt on input line 3.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 5.0pt on input line 3.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 10.00092pt on input line 3.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 7.00064pt on input line 3.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 5.00046pt on input line 3.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 9.99893pt on input line 3.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 6.99925pt on input line 3.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 4.99947pt on input line 3.
-[3]
-LaTeX Info: Redefining \. on input line 96.
-LaTeX Info: Redefining \% on input line 96.
-Package babel Info: 'spanish' activates 'spanish' shorthands.
-(babel)             Reported on input line 96.
-[4]
-LaTeX Info: Redefining \. on input line 147.
-LaTeX Info: Redefining \% on input line 147.
-[5])
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10> on input line 3.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <7> on input line 3.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5> on input line 3.
+[1
+
+] [2] [3])
 \tf@toc=\write3
 \openout3 = `bookdownproj.toc'.
 
-LaTeX Info: Redefining \. on input line 122.
-LaTeX Info: Redefining \% on input line 122.
-[6]
+[4]
 Capítulo 1.
 
-Underfull \hbox (badness 10000) in paragraph at lines 132--132
-[][][][][] [][] [][][][][][][] [] [][][][][][][][] [] [][][] [] [][][][][][][][] [] [][][][][][][][][][][][] [] [][][][][][][][][][] [] [][][][][][] [] [][][][][][][][] [][]
+Underfull \hbox (badness 10000) in paragraph at lines 187--187
+[][][]\T1/lmr/m/it/8 Fuente: Ex-tra-ido de []$https : / / www . magni^^\c . com / es / vector -[] gratis / medidor -[] satisfaccion -[] emoji -[] pequeno _
  []
 
-[7
 
-]
+Underfull \hbox (badness 10000) in paragraph at lines 187--187
+\T1/lmr/m/it/8 44156211 . htm # fromView = keyword&page = 1&position = 0&uuid = 484b5e55 -[] bf2d -[] 4120 -[] b59f -[] 55c1c2d67403&track = ais _
+ []
+
 File: images/emoji_satisfaction_meter.jpg Graphic file (type bmp)
 <images/emoji_satisfaction_meter.jpg>
-LaTeX Info: Redefining \. on input line 156.
-LaTeX Info: Redefining \% on input line 156.
-[8]
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/b/n' will be
-(Font)              scaled to size 10.0pt on input line 172.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/b/n' will be
-(Font)              scaled to size 7.0pt on input line 172.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/b/n' will be
-(Font)              scaled to size 5.0pt on input line 172.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/b/n' will be
-(Font)              scaled to size 10.00092pt on input line 172.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/b/n' will be
-(Font)              scaled to size 7.00064pt on input line 172.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/b/n' will be
-(Font)              scaled to size 5.00046pt on input line 172.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/b/n' will be
-(Font)              scaled to size 9.99893pt on input line 172.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/b/n' will be
-(Font)              scaled to size 6.99925pt on input line 172.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/b/n' will be
-(Font)              scaled to size 4.99947pt on input line 172.
-LaTeX Info: Redefining \. on input line 194.
-LaTeX Info: Redefining \% on input line 194.
-[9]
-LaTeX Info: Redefining \. on input line 206.
-LaTeX Info: Redefining \% on input line 206.
-[10]
-Capítulo 2.
-[11
+[5
 
 ]
-LaTeX Info: Redefining \. on input line 303.
-LaTeX Info: Redefining \% on input line 303.
-[12]
+Missing character: There is no ̄ ("304) in font ecrm1000!
+Missing character: There is no 𝜇 ("1D707) in font ecrm1000!
+Missing character: There is no ̄ ("304) in font ecrm1000!
+Missing character: There is no ∑ ("2211) in font ecrm1000!
+
+LaTeX Font Warning: Font shape `T1/latinmodern-math.otf(1)/b/n' undefined
+(Font)              using `T1/latinmodern-math.otf(1)/m/n' instead on input line 227.
+
+Missing character: There is no ̄ ("304) in font ecrm1000!
+Missing character: There is no ̄ ("304) in font ecrm1000!
+Missing character: There is no ̄ ("304) in font ecrm1000!
+Missing character: There is no ̄ ("304) in font ecrm1000!
+Missing character: There is no ̄ ("304) in font ecrm0700!
+Missing character: There is no ̄ ("304) in font ecrm0500!
+Missing character: There is no 𝜇 ("1D707) in font ecrm1000!
+Missing character: There is no ∑ ("2211) in font ecrm1000!
+[6]
+Missing character: There is no 𝜇 ("1D707) in font ecrm1000!
+Missing character: There is no 𝜇 ("1D707) in font ecrm1000!
+Missing character: There is no 𝜇 ("1D707) in font ecrm1000!
+Missing character: There is no 𝜇 ("1D707) in font ecrm1000!
+Missing character: There is no 𝜇 ("1D707) in font ecrm0700!
+Missing character: There is no 𝜇 ("1D707) in font ecrm0500!
+Missing character: There is no ̄ ("304) in font ecrm1000!
+Missing character: There is no 𝜇 ("1D707) in font ecrm1000!
+Missing character: There is no ̄ ("304) in font ecrm1000!
+Missing character: There is no 𝜇 ("1D707) in font ecrm1000!
+Missing character: There is no ̄ ("304) in font ecrm1000!
+Missing character: There is no ̄ ("304) in font ecrm1000!
+Missing character: There is no ̄ ("304) in font ecrm1000!
+Missing character: There is no ̄ ("304) in font ecrm1000!
+Missing character: There is no ̄ ("304) in font ecrm0700!
+Missing character: There is no ̄ ("304) in font ecrm0500!
+Missing character: There is no 𝜇 ("1D707) in font ecrm1000!
+Missing character: There is no 𝜇 ("1D707) in font ecrm1000!
+Missing character: There is no 𝜇 ("1D707) in font ecrm1000!
+Missing character: There is no 𝜇 ("1D707) in font ecrm1000!
+Missing character: There is no 𝜇 ("1D707) in font ecrm0700!
+Missing character: There is no 𝜇 ("1D707) in font ecrm0500!
+Missing character: There is no − ("2212) in font ecrm1000!
+Missing character: There is no 𝜎 ("1D70E) in font ecrm1000!
+Missing character: There is no ̄ ("304) in font ecrm0700!
+Missing character: There is no ∑ ("2211) in font ecrm1000!
+Missing character: There is no ̄ ("304) in font ecrm1000!
+Missing character: There is no − ("2212) in font ecrm1000!
+Missing character: There is no ̄ ("304) in font ecrm1000!
+Missing character: There is no ̄ ("304) in font ecrm1000!
+Missing character: There is no ̄ ("304) in font ecrm1000!
+Missing character: There is no ̄ ("304) in font ecrm1000!
+Missing character: There is no ∑ ("2211) in font ecrm1000!
+Missing character: There is no ̄ ("304) in font ecrm1000!
+Missing character: There is no ̄ ("304) in font ecrm1000!
+Missing character: There is no ̄ ("304) in font ecrm1000!
+Missing character: There is no ̄ ("304) in font ecrm1000!
+Missing character: There is no ∑ ("2211) in font ecrm1000!
+Missing character: There is no 𝜎 ("1D70E) in font ecrm1000!
+Missing character: There is no ̄ ("304) in font ecrm0700!
+Missing character: There is no 𝜎 ("1D70E) in font ecrm1000!
+Missing character: There is no ̄ ("304) in font ecrm0700!
+[7]
+Missing character: There is no 𝜇 ("1D707) in font ecrm1000!
+Missing character: There is no 𝜎 ("1D70E) in font ecrm1000!
+Missing character: There is no ̄ ("304) in font ecrm1000!
+Missing character: There is no ⋯ ("22EF) in font ecrm1000!
+Missing character: There is no ̄ ("304) in font ecrm1000!
+Missing character: There is no ⋯ ("22EF) in font ecrm1000!
+Missing character: There is no ̄ ("304) in font ecrm1000!
+Missing character: There is no ⋯ ("22EF) in font ecrm1000!
+Missing character: There is no ̄ ("304) in font ecrm1000!
+Missing character: There is no 𝜎 ("1D70E) in font ecrm1000!
+Missing character: There is no ̄ ("304) in font ecrm1000!
+Missing character: There is no 𝜎 ("1D70E) in font ecrm1000!
+Missing character: There is no 𝜎 ("1D70E) in font ecrm1000!
+Missing character: There is no ̄ ("304) in font ecrm0700!
+Missing character: There is no 𝜎 ("1D70E) in font ecrm1000!
+Missing character: There is no 𝜎 ("1D70E) in font ecrm1000!
+Missing character: There is no 𝜇 ("1D707) in font ecrm1000!
+Missing character: There is no 𝜎 ("1D70E) in font ecrm1000!
+Missing character: There is no ̄ ("304) in font ecrm1000!
+Missing character: There is no ̄ ("304) in font ecrm1000!
+Missing character: There is no ̄ ("304) in font ecrm1000!
+Missing character: There is no 𝜇 ("1D707) in font ecrm1000!
+Missing character: There is no 𝜎 ("1D70E) in font ecrm1000!
+Missing character: There is no ̄ ("304) in font ecrm0700!
+[8]
 File: bookdownproj_files/figure-latex/TLC-1.pdf Graphic file (type pdf)
 <use bookdownproj_files/figure-latex/TLC-1.pdf>
-LaTeX Info: Redefining \. on input line 329.
-LaTeX Info: Redefining \% on input line 329.
-[13]
-LaTeX Info: Redefining \. on input line 329.
-LaTeX Info: Redefining \% on input line 329.
-[14]
-Capítulo 3.
-[15
-
-]
-LaTeX Info: Redefining \. on input line 397.
-LaTeX Info: Redefining \% on input line 397.
-[16] [17]
-LaTeX Info: Redefining \. on input line 409.
-LaTeX Info: Redefining \% on input line 409.
-[18
-
-]
-Capítulo 4.
-[19]
+Missing character: There is no ̄ ("304) in font ecrm1000!
+Missing character: There is no ̄ ("304) in font ecrm1000!
+Missing character: There is no ̄ ("304) in font ecrm1000!
+Missing character: There is no 𝜇 ("1D707) in font ecrm1000!
+Missing character: There is no 𝜇 ("1D707) in font ecrm1000!
+Missing character: There is no ̄ ("304) in font ecrm1000!
+Missing character: There is no 𝜇 ("1D707) in font ecrm1000!
+Missing character: There is no 𝜇 ("1D707) in font ecrm1000!
+Missing character: There is no − ("2212) in font ecrm1000!
+Missing character: There is no 𝛼 ("1D6FC) in font ecrm1000!
+Missing character: There is no 𝛼 ("1D6FC) in font ecrm1000!
+Missing character: There is no ≤ ("2264) in font ecrm1000!
+Missing character: There is no 𝛼 ("1D6FC) in font ecrm1000!
+Missing character: There is no ≤ ("2264) in font ecrm1000!
+[9]
+Missing character: There is no 𝜎 ("1D70E) in font ecrm1000!
+Missing character: There is no ̄ ("304) in font ecrm0700!
+Missing character: There is no ̄ ("304) in font ecrm1000!
+Missing character: There is no 𝜇 ("1D707) in font ecrm1000!
+Missing character: There is no ̄ ("304) in font ecrm1000!
+Missing character: There is no 𝜇 ("1D707) in font ecrm1000!
+Missing character: There is no 𝜎 ("1D70E) in font ecrm1000!
+Missing character: There is no 𝛼 ("1D6FC) in font ecrm0500!
+Missing character: There is no 𝜎 ("1D70E) in font ecrm1000!
+Missing character: There is no 𝛼 ("1D6FC) in font ecrm0500!
+Missing character: There is no 𝜎 ("1D70E) in font ecrm1000!
+Missing character: There is no ̄ ("304) in font ecrm1000!
+Missing character: There is no ̄ ("304) in font ecrm1000!
+Missing character: There is no ̄ ("304) in font ecrm1000!
+Missing character: There is no − ("2212) in font ecrm1000!
+Missing character: There is no 𝛼 ("1D6FC) in font ecrm0500!
+Missing character: There is no 𝜎 ("1D70E) in font ecrm1000!
+Missing character: There is no ̄ ("304) in font ecrm1000!
+Missing character: There is no 𝛼 ("1D6FC) in font ecrm0500!
+Missing character: There is no 𝜎 ("1D70E) in font ecrm1000!
+[10]
+Missing character: There is no ̄ ("304) in font ecrm1000!
+Missing character: There is no 𝜎 ("1D70E) in font ecrm1000!
+Missing character: There is no 𝜇 ("1D707) in font ecrm1000!
+Missing character: There is no 𝜇 ("1D707) in font ecrm1000!
+Missing character: There is no 𝜇 ("1D707) in font ecrm1000!
+Missing character: There is no ̄ ("304) in font ecrm1000!
+Missing character: There is no 𝜎 ("1D70E) in font ecrm1000!
+[11]
+Missing character: There is no 𝜇 ("1D707) in font ecrm1000!
+Missing character: There is no − ("2212) in font ecrm1000!
+Missing character: There is no ̄ ("304) in font ecrm1000!
+Missing character: There is no 𝜎 ("1D70E) in font ecrm1000!
+Missing character: There is no 𝛼 ("1D6FC) in font ecrm0700!
+Missing character: There is no − ("2212) in font ecrm1000!
+Missing character: There is no 𝛼 ("1D6FC) in font ecrm0700!
+Missing character: There is no ≤ ("2264) in font ecrm1000!
+Missing character: There is no ≤ ("2264) in font ecrm1000!
+Missing character: There is no 𝛼 ("1D6FC) in font ecrm0700!
+Missing character: There is no ∶ ("2236) in font ecrm1000!
+Missing character: There is no 𝜇 ("1D707) in font ecrm1000!
+Missing character: There is no 𝜇 ("1D707) in font ecrm1000!
+Missing character: There is no ∶ ("2236) in font ecrm1000!
+Missing character: There is no 𝜇 ("1D707) in font ecrm1000!
+Missing character: There is no ≤ ("2264) in font ecrm1000!
+Missing character: There is no 𝜇 ("1D707) in font ecrm1000!
+Missing character: There is no ∶ ("2236) in font ecrm1000!
+Missing character: There is no 𝜇 ("1D707) in font ecrm1000!
+Missing character: There is no ≥ ("2265) in font ecrm1000!
+Missing character: There is no 𝜇 ("1D707) in font ecrm1000!
+Missing character: There is no ∶ ("2236) in font ecrm1000!
+Missing character: There is no 𝜇 ("1D707) in font ecrm1000!
+Missing character: There is no ≠ ("2260) in font ecrm1000!
+Missing character: There is no 𝜇 ("1D707) in font ecrm1000!
+Missing character: There is no ∶ ("2236) in font ecrm1000!
+Missing character: There is no 𝜇 ("1D707) in font ecrm1000!
+Missing character: There is no 𝜇 ("1D707) in font ecrm1000!
+Missing character: There is no ∶ ("2236) in font ecrm1000!
+Missing character: There is no 𝜇 ("1D707) in font ecrm1000!
+Missing character: There is no 𝜇 ("1D707) in font ecrm1000!
 File: bookdownproj_files/figure-latex/unnamed-chunk-4-1.pdf Graphic file (type pdf)
 <use bookdownproj_files/figure-latex/unnamed-chunk-4-1.pdf>
-LaTeX Info: Redefining \. on input line 453.
-LaTeX Info: Redefining \% on input line 453.
-[20] [21]
-LaTeX Info: Redefining \. on input line 473.
-LaTeX Info: Redefining \% on input line 473.
-[22
+Missing character: There is no 𝛼 ("1D6FC) in font ecrm1000!
+Missing character: There is no − ("2212) in font ecrm1000!
+Missing character: There is no 𝛼 ("1D6FC) in font ecrm1000!
+Missing character: There is no 𝛼 ("1D6FC) in font ecrm1000!
+Missing character: There is no 𝛼 ("1D6FC) in font ecrm1000!
+Missing character: There is no 𝛼 ("1D6FC) in font ecrm1000!
+Missing character: There is no 𝛼 ("1D6FC) in font ecrm1000!
+Missing character: There is no 𝛼 ("1D6FC) in font ecrm0700!
+Missing character: There is no 𝛼 ("1D6FC) in font ecrm0500!
+Missing character: There is no 𝛼 ("1D6FC) in font ecrm1000!
+Missing character: There is no 𝜎 ("1D70E) in font ecrm1000!
+Missing character: There is no ∶ ("2236) in font ecrm1000!
+Missing character: There is no 𝜇 ("1D707) in font ecrm1000!
+[12]
+Missing character: There is no ∶ ("2236) in font ecrm1000!
+Missing character: There is no 𝜇 ("1D707) in font ecrm1000!
+Missing character: There is no ≠ ("2260) in font ecrm1000!
+Missing character: There is no 𝜇 ("1D707) in font ecrm1000!
+Missing character: There is no − ("2212) in font ecrm1000!
+Missing character: There is no ̄ ("304) in font ecrm1000!
+Missing character: There is no 𝜎 ("1D70E) in font ecrm1000!
+Missing character: There is no 𝛼 ("1D6FC) in font ecrm0700!
+Missing character: There is no 𝛼 ("1D6FC) in font ecrm1000!
+Missing character: There is no 𝛼 ("1D6FC) in font ecrm1000!
+Missing character: There is no ≥ ("2265) in font ecrm1000!
+Missing character: There is no − ("2212) in font ecrm1000!
+Missing character: There is no 𝛼 ("1D6FC) in font ecrm1000!
+Missing character: There is no − ("2212) in font ecrm1000!
+Missing character: There is no 𝛼 ("1D6FC) in font ecrm1000!
+Missing character: There is no ≥ ("2265) in font ecrm1000!
+Missing character: There is no ∶ ("2236) in font ecrm1000!
+[13]
+Capítulo 2.
+[14
 
 ]
-Capítulo 5.
-[23]
-LaTeX Info: Redefining \. on input line 486.
-LaTeX Info: Redefining \% on input line 486.
-[24
+Capítulo 3.
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 555.
+(c:/Users/behem/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/t1lmtt.fd
+File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+) [15
 
 ]
-Capítulo 6.
-[25]
 File: bookdownproj_files/figure-latex/variables-ejemplo-1.pdf Graphic file (type pdf)
 <use bookdownproj_files/figure-latex/variables-ejemplo-1.pdf>
-LaTeX Info: Redefining \. on input line 565.
-LaTeX Info: Redefining \% on input line 565.
-
-Overfull \hbox (89.80673pt too wide) has occurred while \output is active
-\TU/lmr/m/n/10 26 \TU/lmr/m/sl/10 CAPÍTULO 6.  ANÁLISIS DE REGRESIÓN: DE LA INFERENCIA A LA PREDICCIÓN CON R
- []
-
-[26]
-LaTeX Info: Redefining \. on input line 600.
-LaTeX Info: Redefining \% on input line 600.
-[27]
-Overfull \hbox (21.83006pt too wide) in paragraph at lines 625--634
- [][] 
- []
-
+Missing character: There is no 𝜀 ("1D700) in font ecrm1000!
+Missing character: There is no 𝜀 ("1D700) in font ecrm1000!
+[16]
+Missing character: There is no 𝜀 ("1D700) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no 𝜀 ("1D700) in font ecrm1000!
+Missing character: There is no … ("2026) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no 𝜀 ("1D700) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no ̂ ("302) in font ecrm1000!
+Missing character: There is no ̂ ("302) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no ̂ ("302) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
 File: bookdownproj_files/figure-latex/regresion-simple-1.pdf Graphic file (type pdf)
 <use bookdownproj_files/figure-latex/regresion-simple-1.pdf>
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-LaTeX Info: Redefining \. on input line 642.
-LaTeX Info: Redefining \% on input line 642.
-
-Overfull \hbox (89.80673pt too wide) has occurred while \output is active
-\TU/lmr/m/n/10 28 \TU/lmr/m/sl/10 CAPÍTULO 6.  ANÁLISIS DE REGRESIÓN: DE LA INFERENCIA A LA PREDICCIÓN CON R
- []
-
-[28]
-LaTeX Info: Redefining \. on input line 675.
-LaTeX Info: Redefining \% on input line 675.
-[29]
-Overfull \hbox (67.73007pt too wide) in paragraph at lines 680--695
- [][] 
- []
-
-
-Overfull \hbox (4.53006pt too wide) in alignment at lines 740--744
- [] [] [] 
- []
-
-
-Overfull \hbox (4.53006pt too wide) in alignment at lines 744--746
- [] [] [] 
- []
-
-
-Overfull \hbox (4.53006pt too wide) in alignment at lines 746--752
- [] [] [] 
- []
-
-LaTeX Info: Redefining \. on input line 752.
-LaTeX Info: Redefining \% on input line 752.
-
-Overfull \hbox (89.80673pt too wide) has occurred while \output is active
-\TU/lmr/m/n/10 30 \TU/lmr/m/sl/10 CAPÍTULO 6.  ANÁLISIS DE REGRESIÓN: DE LA INFERENCIA A LA PREDICCIÓN CON R
- []
-
-[30]
+[17]
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no ⋯ ("22EF) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no 𝜀 ("1D700) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm0700!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm0500!
+Missing character: There is no 𝜀 ("1D700) in font ecrm1000!
+Missing character: There is no 𝜀 ("1D700) in font ecrm1000!
+Missing character: There is no 𝜀 ("1D700) in font ecrm1000!
+Missing character: There is no 𝜀 ("1D700) in font ecrm1000!
+Missing character: There is no 𝜀 ("1D700) in font ecrm0700!
+Missing character: There is no 𝜀 ("1D700) in font ecrm0500!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm0700!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm0500!
+Missing character: There is no 𝜀 ("1D700) in font ecrm1000!
+Missing character: There is no 𝜀 ("1D700) in font ecrm1000!
+Missing character: There is no 𝜀 ("1D700) in font ecrm1000!
+Missing character: There is no 𝜀 ("1D700) in font ecrm1000!
+Missing character: There is no 𝜀 ("1D700) in font ecrm0700!
+Missing character: There is no 𝜀 ("1D700) in font ecrm0500!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+[18]
+Missing character: There is no 𝜀 ("1D700) in font ecrm1000!
+Missing character: There is no 𝜀 ("1D700) in font ecrm1000!
+Missing character: There is no 𝜎 ("1D70E) in font ecrm1000!
+Missing character: There is no 𝜀 ("1D700) in font ecrm1000!
+Missing character: There is no 𝜀 ("1D700) in font ecrm1000!
+Missing character: There is no ≠ ("2260) in font ecrm1000!
+Missing character: There is no 𝜀 ("1D700) in font ecrm1000!
+Missing character: There is no ∼ ("223C) in font ecrm1000!
+Missing character: There is no 𝜎 ("1D70E) in font ecrm1000!
 File: bookdownproj_files/figure-latex/verificacion-supuestos-1.pdf Graphic file (type pdf)
 <use bookdownproj_files/figure-latex/verificacion-supuestos-1.pdf>
+[19]
 File: bookdownproj_files/figure-latex/verificacion-supuestos-2.pdf Graphic file (type pdf)
 <use bookdownproj_files/figure-latex/verificacion-supuestos-2.pdf>
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-LaTeX Info: Redefining \. on input line 765.
-LaTeX Info: Redefining \% on input line 765.
-[31]
-Underfull \hbox (badness 1418) in paragraph at lines 790--790
-[]\TU/lmr/bx/n/12 Estimación por Mínimos Cuadrados Ordinarios
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-LaTeX Info: Redefining \. on input line 797.
-LaTeX Info: Redefining \% on input line 797.
-
-Overfull \hbox (89.80673pt too wide) has occurred while \output is active
-\TU/lmr/m/n/10 32 \TU/lmr/m/sl/10 CAPÍTULO 6.  ANÁLISIS DE REGRESIÓN: DE LA INFERENCIA A LA PREDICCIÓN CON R
- []
-
-[32]
-Overfull \hbox (68.38007pt too wide) in paragraph at lines 825--840
- [][] 
- []
-
-LaTeX Info: Redefining \. on input line 858.
-LaTeX Info: Redefining \% on input line 858.
-[33]
-Overfull \hbox (32.61006pt too wide) in paragraph at lines 877--894
- [][] 
- []
-
-
-Overfull \hbox (22.5pt too wide) in paragraph at lines 935--935
-[]\TU/lmtt/m/n/10 ## Conclusión: Rechazamos H0: al menos un coeficiente es significativo[] 
- []
-
-LaTeX Info: Redefining \. on input line 935.
-LaTeX Info: Redefining \% on input line 935.
-
-Overfull \hbox (89.80673pt too wide) has occurred while \output is active
-\TU/lmr/m/n/10 34 \TU/lmr/m/sl/10 CAPÍTULO 6.  ANÁLISIS DE REGRESIÓN: DE LA INFERENCIA A LA PREDICCIÓN CON R
- []
-
-[34]
-Overfull \hbox (22.69008pt too wide) in paragraph at lines 990--1001
- [][] 
- []
-
-LaTeX Info: Redefining \. on input line 1002.
-LaTeX Info: Redefining \% on input line 1002.
-[35]
-LaTeX Info: Redefining \. on input line 1093.
-LaTeX Info: Redefining \% on input line 1093.
-
-Overfull \hbox (89.80673pt too wide) has occurred while \output is active
-\TU/lmr/m/n/10 36 \TU/lmr/m/sl/10 CAPÍTULO 6.  ANÁLISIS DE REGRESIÓN: DE LA INFERENCIA A LA PREDICCIÓN CON R
- []
-
-[36]
+[20]
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm0700!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm0500!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm0700!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm0500!
+Missing character: There is no ∑ ("2211) in font ecrm1000!
+Missing character: There is no − ("2212) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm0700!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm0500!
+Missing character: There is no ̂ ("302) in font ecrm1000!
+Missing character: There is no − ("2212) in font ecrm0700!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm0700!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm0500!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm0700!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm0500!
+Missing character: There is no ̂ ("302) in font ecrm1000!
+[21]
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm0700!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm0500!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm0700!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm0500!
+Missing character: There is no → ("2192) in font ecrm0700!
+Missing character: There is no ∞ ("221E) in font ecrm0700!
+Missing character: There is no ̂ ("302) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm0700!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm0500!
+Missing character: There is no − ("2212) in font ecrm1000!
+Missing character: There is no − ("2212) in font ecrm1000!
+Missing character: There is no − ("2212) in font ecrm0700!
+Missing character: There is no − ("2212) in font ecrm0500!
+Missing character: There is no − ("2212) in font ecrm1000!
+Missing character: There is no − ("2212) in font ecrm1000!
+Missing character: There is no − ("2212) in font ecrm0700!
+Missing character: There is no − ("2212) in font ecrm0500!
+Missing character: There is no → ("2192) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm0700!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm0500!
+Missing character: There is no ̂ ("302) in font ecrm1000!
+Missing character: There is no 𝜎 ("1D70E) in font ecrm1000!
+Missing character: There is no − ("2212) in font ecrm0700!
+Missing character: There is no 𝜎 ("1D70E) in font ecrm1000!
+Missing character: There is no ̂ ("302) in font ecrm1000!
+Missing character: There is no 𝜎 ("1D70E) in font ecrm1000!
+Missing character: There is no ∑ ("2211) in font ecrm1000!
+Missing character: There is no ̂ ("302) in font ecrm1000!
+Missing character: There is no 𝜀 ("1D700) in font ecrm1000!
+Missing character: There is no − ("2212) in font ecrm1000!
+Missing character: There is no − ("2212) in font ecrm1000!
+Missing character: There is no − ("2212) in font ecrm1000!
+Missing character: There is no − ("2212) in font ecrm1000!
+Missing character: There is no − ("2212) in font ecrm1000!
+Missing character: There is no − ("2212) in font ecrm1000!
+Missing character: There is no ̂ ("302) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no ∼ ("223C) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no 𝜎 ("1D70E) in font ecrm1000!
+Missing character: There is no − ("2212) in font ecrm0700!
+Missing character: There is no ̂ ("302) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no − ("2212) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no ̂ ("302) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no ∼ ("223C) in font ecrm1000!
+Missing character: There is no − ("2212) in font ecrm0700!
+Missing character: There is no − ("2212) in font ecrm0700!
+Missing character: There is no ∶ ("2236) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no ∶ ("2236) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no ≠ ("2260) in font ecrm1000!
+Missing character: There is no ∶ ("2236) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no ⋯ ("22EF) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no − ("2212) in font ecrm1000!
+Missing character: There is no − ("2212) in font ecrm1000!
+Missing character: There is no − ("2212) in font ecrm1000!
+Missing character: There is no ∼ ("223C) in font ecrm1000!
+Missing character: There is no − ("2212) in font ecrm0700!
+Missing character: There is no − ("2212) in font ecrm0700!
+[22]
+Missing character: There is no ̂ ("302) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no 𝛼 ("1D6FC) in font ecrm0700!
+Missing character: There is no − ("2212) in font ecrm0700!
+Missing character: There is no − ("2212) in font ecrm0700!
+Missing character: There is no ̂ ("302) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no ̂ ("302) in font ecrm1000!
+Missing character: There is no 𝛼 ("1D6FC) in font ecrm0700!
+Missing character: There is no − ("2212) in font ecrm0700!
+Missing character: There is no − ("2212) in font ecrm0700!
+Missing character: There is no ̂ ("302) in font ecrm1000!
+Missing character: There is no ̂ ("302) in font ecrm1000!
+Missing character: There is no 𝛼 ("1D6FC) in font ecrm0700!
+Missing character: There is no − ("2212) in font ecrm0700!
+Missing character: There is no − ("2212) in font ecrm0700!
+Missing character: There is no ̂ ("302) in font ecrm1000!
+Missing character: There is no ̂ ("302) in font ecrm1000!
+Missing character: There is no 𝜎 ("1D70E) in font ecrm1000!
+[23]
+Missing character: There is no − ("2212) in font ecrm1000!
+Missing character: There is no ̄ ("304) in font ecrm1000!
+Missing character: There is no − ("2212) in font ecrm1000!
+Missing character: There is no − ("2212) in font ecrm1000!
+Missing character: There is no − ("2212) in font ecrm1000!
+Missing character: There is no − ("2212) in font ecrm1000!
+Missing character: There is no ̂ ("302) in font ecrm1000!
+Missing character: There is no 𝜀 ("1D700) in font ecrm1000!
+Missing character: There is no − ("2212) in font ecrm1000!
+Missing character: There is no ̂ ("302) in font ecrm1000!
+[24]
+Missing character: There is no ̂ ("302) in font ecrm1000!
+Missing character: There is no 𝜀 ("1D700) in font ecrm1000!
+Missing character: There is no ̂ ("302) in font ecrm1000!
+Missing character: There is no 𝜎 ("1D70E) in font ecrm1000!
+Missing character: There is no ̂ ("302) in font ecrm1000!
+Missing character: There is no 𝜀 ("1D700) in font ecrm1000!
+Missing character: There is no ̂ ("302) in font ecrm1000!
+Missing character: There is no 𝜎 ("1D70E) in font ecrm1000!
+Missing character: There is no − ("2212) in font ecrm1000!
 File: bookdownproj_files/figure-latex/diagnosticos-avanzados-1.pdf Graphic file (type pdf)
 <use bookdownproj_files/figure-latex/diagnosticos-avanzados-1.pdf>
+[25] [26]
+Overfull \vbox (24.79541pt too high) has occurred while \output is active []
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-LaTeX Info: Redefining \. on input line 1101.
-LaTeX Info: Redefining \% on input line 1101.
-[37]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-LaTeX Info: Redefining \. on input line 1101.
-LaTeX Info: Redefining \% on input line 1101.
-
-Overfull \hbox (89.80673pt too wide) has occurred while \output is active
-\TU/lmr/m/n/10 38 \TU/lmr/m/sl/10 CAPÍTULO 6.  ANÁLISIS DE REGRESIÓN: DE LA INFERENCIA A LA PREDICCIÓN CON R
- []
-
-[38]
-Overfull \vbox (5.64159pt too high) has occurred while \output is active []
-
-LaTeX Info: Redefining \. on input line 1101.
-LaTeX Info: Redefining \% on input line 1101.
-[39]
+[27]
 File: bookdownproj_files/figure-latex/residuos-detallado-1.pdf Graphic file (type pdf)
 <use bookdownproj_files/figure-latex/residuos-detallado-1.pdf>
 File: bookdownproj_files/figure-latex/observaciones-influyentes-1.pdf Graphic file (type pdf)
 <use bookdownproj_files/figure-latex/observaciones-influyentes-1.pdf>
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-LaTeX Info: Redefining \. on input line 1144.
-LaTeX Info: Redefining \% on input line 1144.
-
-Overfull \hbox (89.80673pt too wide) has occurred while \output is active
-\TU/lmr/m/n/10 40 \TU/lmr/m/sl/10 CAPÍTULO 6.  ANÁLISIS DE REGRESIÓN: DE LA INFERENCIA A LA PREDICCIÓN CON R
+[28]
+Missing character: There is no 𝜀 ("1D700) in font ecrm1000!
+Missing character: There is no ≠ ("2260) in font ecrm1000!
+Missing character: There is no 𝜎 ("1D70E) in font ecrm1000!
+[29]
+Overfull \hbox (43.50444pt too wide) in paragraph at lines 1329--1329
+[]\T1/lmtt/m/n/10 ## Warning in library(package, lib.loc = lib.loc, character.only = TRUE, logical.return = TRUE,[] 
  []
 
-[40]
-LaTeX Info: Redefining \. on input line 1172.
-LaTeX Info: Redefining \% on input line 1172.
-[41]
-Overfull \hbox (52.72006pt too wide) in paragraph at lines 1187--1202
- [][] 
- []
-
-LaTeX Info: Redefining \. on input line 1262.
-LaTeX Info: Redefining \% on input line 1262.
-
-Overfull \hbox (89.80673pt too wide) has occurred while \output is active
-\TU/lmr/m/n/10 42 \TU/lmr/m/sl/10 CAPÍTULO 6.  ANÁLISIS DE REGRESIÓN: DE LA INFERENCIA A LA PREDICCIÓN CON R
- []
-
-[42]
-Overfull \hbox (201.0pt too wide) in paragraph at lines 1273--1273
-[]\TU/lmtt/m/n/10 ## Warning in library(package, lib.loc = lib.loc, character.only = TRUE, logical.return = TRUE, : no hay[] 
- []
-
+[30]
 File: bookdownproj_files/figure-latex/autocorrelacion-1.pdf Graphic file (type pdf)
 <use bookdownproj_files/figure-latex/autocorrelacion-1.pdf>
-LaTeX Info: Redefining \. on input line 1313.
-LaTeX Info: Redefining \% on input line 1313.
-[43]
-Overfull \hbox (171.93011pt too wide) in paragraph at lines 1341--1358
+[31]
+Missing character: There is no ̂ ("302) in font ecrm1000!
+Missing character: There is no 𝜎 ("1D70E) in font ecrm1000!
+Missing character: There is no ̂ ("302) in font ecrm1000!
+Missing character: There is no 𝜎 ("1D70E) in font ecrm1000!
+
+Overfull \hbox (61.62204pt too wide) in paragraph at lines 1397--1414
  [][] 
  []
 
 
-Overfull \hbox (244.22006pt too wide) in paragraph at lines 1366--1377
+Overfull \hbox (133.95732pt too wide) in paragraph at lines 1422--1433
  [][] 
  []
 
-
-Underfull \vbox (badness 1082) has occurred while \output is active []
-
-LaTeX Info: Redefining \. on input line 1410.
-LaTeX Info: Redefining \% on input line 1410.
-
-Overfull \hbox (89.80673pt too wide) has occurred while \output is active
-\TU/lmr/m/n/10 44 \TU/lmr/m/sl/10 CAPÍTULO 6.  ANÁLISIS DE REGRESIÓN: DE LA INFERENCIA A LA PREDICCIÓN CON R
- []
-
-[44]
-LaTeX Info: Redefining \. on input line 1410.
-LaTeX Info: Redefining \% on input line 1410.
-[45]
+[32] [33]
 File: bookdownproj_files/figure-latex/interacciones-1.pdf Graphic file (type pdf)
 <use bookdownproj_files/figure-latex/interacciones-1.pdf>
-LaTeX Info: Redefining \. on input line 1471.
-LaTeX Info: Redefining \% on input line 1471.
-
-Overfull \hbox (89.80673pt too wide) has occurred while \output is active
-\TU/lmr/m/n/10 46 \TU/lmr/m/sl/10 CAPÍTULO 6.  ANÁLISIS DE REGRESIÓN: DE LA INFERENCIA A LA PREDICCIÓN CON R
- []
-
-[46]
+[34]
 File: bookdownproj_files/figure-latex/transformaciones-no-lineales-1.pdf Graphic file (type pdf)
 <use bookdownproj_files/figure-latex/transformaciones-no-lineales-1.pdf>
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-LaTeX Info: Redefining \. on input line 1500.
-LaTeX Info: Redefining \% on input line 1500.
-[47]
-Missing character: There is no β (U+03B2) in font [lmroman10-regular]:mapping=tex-text;!
-Missing character: There is no β (U+03B2) in font [lmroman10-regular]:mapping=tex-text;!
-Missing character: There is no ₀ (U+2080) in font [lmroman10-regular]:mapping=tex-text;!
-Missing character: There is no β (U+03B2) in font [lmroman10-regular]:mapping=tex-text;!
-Missing character: There is no ₁ (U+2081) in font [lmroman10-regular]:mapping=tex-text;!
-Missing character: There is no β (U+03B2) in font [lmroman10-regular]:mapping=tex-text;!
-Missing character: There is no ₀ (U+2080) in font [lmroman10-regular]:mapping=tex-text;!
-Missing character: There is no β (U+03B2) in font [lmroman10-regular]:mapping=tex-text;!
-Missing character: There is no ₁ (U+2081) in font [lmroman10-regular]:mapping=tex-text;!
-Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:mapping=tex-text;!
-Missing character: There is no β (U+03B2) in font [lmroman10-regular]:mapping=tex-text;!
-Missing character: There is no ₁ (U+2081) in font [lmroman10-regular]:mapping=tex-text;!
-Missing character: There is no β (U+03B2) in font [lmroman10-regular]:mapping=tex-text;!
-Missing character: There is no ₀ (U+2080) in font [lmroman10-regular]:mapping=tex-text;!
-Missing character: There is no β (U+03B2) in font [lmroman10-regular]:mapping=tex-text;!
-Missing character: There is no ₁ (U+2081) in font [lmroman10-regular]:mapping=tex-text;!
-Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:mapping=tex-text;!
-Missing character: There is no β (U+03B2) in font [lmroman10-regular]:mapping=tex-text;!
-Missing character: There is no ₁ (U+2081) in font [lmroman10-regular]:mapping=tex-text;!
-Missing character: There is no β (U+03B2) in font [lmroman10-regular]:mapping=tex-text;!
-Missing character: There is no ₀ (U+2080) in font [lmroman10-regular]:mapping=tex-text;!
-Missing character: There is no β (U+03B2) in font [lmroman10-regular]:mapping=tex-text;!
-Missing character: There is no ₁ (U+2081) in font [lmroman10-regular]:mapping=tex-text;!
-LaTeX Info: Redefining \. on input line 1564.
-LaTeX Info: Redefining \% on input line 1564.
-
-Overfull \hbox (89.80673pt too wide) has occurred while \output is active
-\TU/lmr/m/n/10 48 \TU/lmr/m/sl/10 CAPÍTULO 6.  ANÁLISIS DE REGRESIÓN: DE LA INFERENCIA A LA PREDICCIÓN CON R
- []
-
-[48]
-LaTeX Info: Redefining \. on input line 1599.
-LaTeX Info: Redefining \% on input line 1599.
-[49]
+[35]
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no ≈ ("2248) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no ≈ ("2248) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+[36]
 File: bookdownproj_files/figure-latex/metricas-predictivas-1.pdf Graphic file (type pdf)
 <use bookdownproj_files/figure-latex/metricas-predictivas-1.pdf>
-LaTeX Info: Redefining \. on input line 1636.
-LaTeX Info: Redefining \% on input line 1636.
-
-Overfull \hbox (89.80673pt too wide) has occurred while \output is active
-\TU/lmr/m/n/10 50 \TU/lmr/m/sl/10 CAPÍTULO 6.  ANÁLISIS DE REGRESIÓN: DE LA INFERENCIA A LA PREDICCIÓN CON R
- []
-
-[50]
-Overfull \hbox (5.09007pt too wide) in paragraph at lines 1688--1703
- [][] 
- []
-
-LaTeX Info: Redefining \. on input line 1703.
-LaTeX Info: Redefining \% on input line 1703.
-[51]
-Overfull \hbox (80.25pt too wide) in paragraph at lines 1711--1711
-[]\TU/lmtt/m/n/10 ## - Edad: Por cada año adicional, las odds de alta paga se multiplican por 1.149[] 
- []
-
+[37] [38]
+Missing character: There is no 𝜇 ("1D707) in font ecrm1000!
+Missing character: There is no 𝜇 ("1D707) in font ecrm1000!
+Missing character: There is no ∈ ("2208) in font ecrm1000!
+Missing character: There is no − ("2212) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no ⋯ ("22EF) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+[39]
 File: bookdownproj_files/figure-latex/regresion-logistica-1.pdf Graphic file (type pdf)
 <use bookdownproj_files/figure-latex/regresion-logistica-1.pdf>
-LaTeX Info: Redefining \. on input line 1741.
-LaTeX Info: Redefining \% on input line 1741.
-
-Overfull \hbox (89.80673pt too wide) has occurred while \output is active
-\TU/lmr/m/n/10 52 \TU/lmr/m/sl/10 CAPÍTULO 6.  ANÁLISIS DE REGRESIÓN: DE LA INFERENCIA A LA PREDICCIÓN CON R
- []
-
-[52]
+Missing character: There is no ≈ ("2248) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm0700!
+Missing character: There is no ‖ ("2016) in font ecrm1000!
+Missing character: There is no − ("2212) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no ‖ ("2016) in font ecrm1000!
+Missing character: There is no 𝜆 ("1D706) in font ecrm1000!
+Missing character: There is no ‖ ("2016) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no ‖ ("2016) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm0700!
+Missing character: There is no ‖ ("2016) in font ecrm1000!
+Missing character: There is no − ("2212) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no ‖ ("2016) in font ecrm1000!
+Missing character: There is no 𝜆 ("1D706) in font ecrm1000!
+Missing character: There is no ‖ ("2016) in font ecrm1000!
+Missing character: There is no 𝛽 ("1D6FD) in font ecrm1000!
+Missing character: There is no ‖ ("2016) in font ecrm1000!
 File: bookdownproj_files/figure-latex/regularizacion-1.pdf Graphic file (type pdf)
 <use bookdownproj_files/figure-latex/regularizacion-1.pdf>
 File: bookdownproj_files/figure-latex/regularizacion-2.pdf Graphic file (type pdf)
 <use bookdownproj_files/figure-latex/regularizacion-2.pdf>
-LaTeX Info: Redefining \. on input line 1777.
-LaTeX Info: Redefining \% on input line 1777.
-[53]
-LaTeX Info: Redefining \. on input line 1802.
-LaTeX Info: Redefining \% on input line 1802.
+[40] [41] [42]
+Missing character: There is no • ("2022) in font ec-lmtt10!
+Missing character: There is no • ("2022) in font ec-lmtt10!
+Missing character: There is no • ("2022) in font ec-lmtt10!
+Missing character: There is no • ("2022) in font ec-lmtt10!
+Missing character: There is no • ("2022) in font ec-lmtt10!
+Missing character: There is no • ("2022) in font ec-lmtt10!
+Missing character: There is no • ("2022) in font ec-lmtt10!
+Missing character: There is no ⚠ ("26A0) in font ec-lmtt10!
+Missing character: There is no ️ ("FE0F) in font ec-lmtt10!
+[43]
+Missing character: There is no ⚠ ("26A0) in font ec-lmtt10!
+Missing character: There is no ️ ("FE0F) in font ec-lmtt10!
+Missing character: There is no ⚠ ("26A0) in font ec-lmtt10!
+Missing character: There is no ️ ("FE0F) in font ec-lmtt10!
+Missing character: There is no • ("2022) in font ec-lmtt10!
+Missing character: There is no • ("2022) in font ec-lmtt10!
+Missing character: There is no • ("2022) in font ec-lmtt10!
+[44] [45] [46]
+Capítulo 4.
+[47
 
-Overfull \hbox (89.80673pt too wide) has occurred while \output is active
-\TU/lmr/m/n/10 54 \TU/lmr/m/sl/10 CAPÍTULO 6.  ANÁLISIS DE REGRESIÓN: DE LA INFERENCIA A LA PREDICCIÓN CON R
- []
+] [48]
+Overfull \vbox (316.92525pt too high) has occurred while \output is active []
 
-[54]
-Overfull \hbox (30.14005pt too wide) in paragraph at lines 1838--1851
- [][] 
- []
+[49] [50]
+Capítulo 5.
+[51
 
-LaTeX Info: Redefining \. on input line 1884.
-LaTeX Info: Redefining \% on input line 1884.
-[55]
-Missing character: There is no ⚠ (U+26A0) in font [lmmono10-regular]:!
-Missing character: There is no ️ (U+FE0F) in font [lmmono10-regular]:!
-Missing character: There is no ⚠ (U+26A0) in font [lmmono10-regular]:!
-Missing character: There is no ️ (U+FE0F) in font [lmmono10-regular]:!
-Missing character: There is no ⚠ (U+26A0) in font [lmmono10-regular]:!
-Missing character: There is no ️ (U+FE0F) in font [lmmono10-regular]:!
+] [52]
+Overfull \vbox (139.02318pt too high) has occurred while \output is active []
 
-Overfull \hbox (101.25pt too wide) in paragraph at lines 1884--1884
-[]\TU/lmtt/m/n/10 ## • Este modelo es apropiado para inferencia y predicción dentro del rango observado[] 
- []
-
-
-Overfull \hbox (43.5pt too wide) in paragraph at lines 1884--1884
-[]\TU/lmtt/m/n/10 ## • Para predicciones fuera de muestra, validar supuestos en nuevos datos[] 
- []
-
-
-Overfull \hbox (27.75pt too wide) in paragraph at lines 1884--1884
-[]\TU/lmtt/m/n/10 ## • Considerar intervalos de predicción para cuantificar incertidumbre[] 
- []
-
-
-Underfull \vbox (badness 5519) has occurred while \output is active []
-
-LaTeX Info: Redefining \. on input line 1930.
-LaTeX Info: Redefining \% on input line 1930.
-
-Overfull \hbox (89.80673pt too wide) has occurred while \output is active
-\TU/lmr/m/n/10 56 \TU/lmr/m/sl/10 CAPÍTULO 6.  ANÁLISIS DE REGRESIÓN: DE LA INFERENCIA A LA PREDICCIÓN CON R
- []
-
-[56]
-LaTeX Info: Redefining \. on input line 1966.
-LaTeX Info: Redefining \% on input line 1966.
-[57]
-Overfull \hbox (0.20114pt too wide) in paragraph at lines 1972--1974
-[]\TU/lmr/bx/n/10 Violaciones y remedios\TU/lmr/m/n/10 : Heteroscedasticidad (errores robustos), autoco-
- []
-
-LaTeX Info: Redefining \. on input line 1998.
-LaTeX Info: Redefining \% on input line 1998.
-
-Overfull \hbox (89.80673pt too wide) has occurred while \output is active
-\TU/lmr/m/n/10 58 \TU/lmr/m/sl/10 CAPÍTULO 6.  ANÁLISIS DE REGRESIÓN: DE LA INFERENCIA A LA PREDICCIÓN CON R
- []
-
-[58]
-LaTeX Info: Redefining \. on input line 2005.
-LaTeX Info: Redefining \% on input line 2005.
-[59]
-LaTeX Info: Redefining \. on input line 2005.
-LaTeX Info: Redefining \% on input line 2005.
-
-Overfull \hbox (89.80673pt too wide) has occurred while \output is active
-\TU/lmr/m/n/10 60 \TU/lmr/m/sl/10 CAPÍTULO 6.  ANÁLISIS DE REGRESIÓN: DE LA INFERENCIA A LA PREDICCIÓN CON R
- []
-
-[60
-
-]
-Capítulo 7.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[61]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-LaTeX Info: Redefining \. on input line 2085.
-LaTeX Info: Redefining \% on input line 2085.
-
-Overfull \hbox (198.95006pt too wide) has occurred while \output is active
-\TU/lmr/m/n/10 62 \TU/lmr/m/sl/10 CAPÍTULO 7.  DISEÑO Y ANÁLISIS DE EXPERIMENTOS: FUNDAMENTOS, MODELACIÓN E INTERPRETACIÓN
- []
-
-[62]
-Overfull \vbox (411.75647pt too high) has occurred while \output is active []
-
-LaTeX Info: Redefining \. on input line 2085.
-LaTeX Info: Redefining \% on input line 2085.
-
-Overfull \hbox (4.06004pt too wide) has occurred while \output is active
-\TU/lmr/m/sl/10 7.1.  FUNDAMENTOS DEL EXPERIMENTO Y ANÁLISIS DE VARIACIÓN \TU/lmr/m/n/10 63
- []
-
-[63]
-LaTeX Info: Redefining \. on input line 2086.
-LaTeX Info: Redefining \% on input line 2086.
-
-Overfull \hbox (198.95006pt too wide) has occurred while \output is active
-\TU/lmr/m/n/10 64 \TU/lmr/m/sl/10 CAPÍTULO 7.  DISEÑO Y ANÁLISIS DE EXPERIMENTOS: FUNDAMENTOS, MODELACIÓN E INTERPRETACIÓN
- []
-
-[64]
-Capítulo 8.
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-[65
-
-]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-LaTeX Info: Redefining \. on input line 2149.
-LaTeX Info: Redefining \% on input line 2149.
-
-Overfull \hbox (111.56116pt too wide) has occurred while \output is active
-\TU/lmr/m/n/10 66 \TU/lmr/m/sl/10 CAPÍTULO 8.  INFERENCIA ESTADÍSTICA NO PARAMÉTRICA: MÉTODOS Y APLICACIONES
- []
-
-[66]
-Overfull \vbox (243.8115pt too high) has occurred while \output is active []
-
-LaTeX Info: Redefining \. on input line 2149.
-LaTeX Info: Redefining \% on input line 2149.
-[67]
-LaTeX Info: Redefining \. on input line 2185.
-LaTeX Info: Redefining \% on input line 2185.
-
-Overfull \hbox (111.56116pt too wide) has occurred while \output is active
-\TU/lmr/m/n/10 68 \TU/lmr/m/sl/10 CAPÍTULO 8.  INFERENCIA ESTADÍSTICA NO PARAMÉTRICA: MÉTODOS Y APLICACIONES
- []
-
-[68] (./bookdownproj.aux
+[53] [54] (./bookdownproj.aux
 LaTeX Info: Redefining \. on input line 11.
 LaTeX Info: Redefining \% on input line 11.
 )
@@ -1402,16 +1396,19 @@ LaTeX2e <2025-11-01>
 L3 programming layer <2026-01-19>
  ***********
 
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
+
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 18588 strings out of 470176
- 349447 string characters out of 5476491
- 913411 words of memory out of 5000000
- 46917 multiletter control sequences out of 15000+600000
- 635713 words of font info for 113 fonts, out of 8000000 for 9000
+ 19434 strings out of 470176
+ 361210 string characters out of 5476490
+ 855998 words of memory out of 5000000
+ 47752 multiletter control sequences out of 15000+600000
+ 699678 words of font info for 112 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 90i,11n,114p,738b,748s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 90i,12n,113p,738b,757s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on bookdownproj.pdf (68 pages).
+Output written on bookdownproj.pdf (55 pages).

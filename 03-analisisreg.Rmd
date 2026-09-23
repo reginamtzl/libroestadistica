@@ -1,4 +1,5 @@
-# Análisis de Regresión: De la Inferencia a la Predicción con R
+# ANÁLISIS DE REGRESIÓN: DE LA INFERENCIA A LA PREDICCIÓN CON R
+
 > **Objetivo del capítulo:** Proporcionar una guía integral y práctica para comprender, estimar, diagnosticar e interpretar modelos de regresión lineal, diferenciando entre objetivos de **inferencia estadística** y **predicción**, con implementaciones reproducibles en R que siguen las mejores prácticas de ciencia de datos moderna.
 
 **Al completar este capítulo podrás:**
@@ -13,7 +14,7 @@
 
 > **Prerrequisitos:** Álgebra lineal básica, cálculo diferencial, probabilidad y estadística inferencial, manejo intermedio de R y RStudio.
 
-## Fundamentos del Análisis de Regresión
+## FUNAMENTOS DEL ANÁLISIS DE REGRESIÓN
 ### Introducción al Análisis de Regresión
 #### ¿Qué es el análisis de regresión?
 
@@ -208,7 +209,7 @@ kable(comparison,
 
 **Interpretación de educación:** Controlando por edad y experiencia, tener educación universitaria se asocia con un incremento promedio de `r round(tidy_multiple$estimate[4], 0)` dólares en el salario comparado con educación primaria.
 
-##	Supuestos del MCRL y Estimación MCO
+##	SUPUESTOS DEL MRL Y ESTIMACIÓN MCO
 
 ### Supuestos del Modelo Clásico de Regresión Lineal (MCRL)
 #### Supuestos fundamentales
@@ -327,7 +328,7 @@ El estimador insesgado de la varianza del error es:
 
 donde SCR es la suma de cuadrados de los residuos y $n-k-1$ son los grados de libertad.
 
-## Inferencia Estadística en Regresión
+## INFERENCIA ESTADÍSTICA EN REGRESIÓN
 
 ### Distribución de los estimadores
 Bajo normalidad de los errores:
@@ -427,7 +428,7 @@ conf_intervals <- confint(modelo_multiple, level = 0.95)
 kable(conf_intervals,
       caption = "Intervalos de confianza al 95% para coeficientes",
       digits = 2) %>%
-  kable_styling(bootstrap_options = c("striped", "hover"))
+  kable_styling()
 
 # Predicción para nuevos individuos
 nuevos_casos <- data.frame(
@@ -450,10 +451,10 @@ resultados_pred <- bind_cols(nuevos_casos,
 kable(resultados_pred,
       caption = "Predicciones con intervalos de predicción al 95%",
       digits = 0) %>%
-  kable_styling(bootstrap_options = c("striped", "hover"))
+  kable_styling()
 ```
 
-##	Medidas de Bondad de Ajuste
+##	MEDIDAS DE BONDAD DE AJUSTE
 
 ### Coeficiente de determinación R²
 \begin{equation}
@@ -625,7 +626,7 @@ ggplot(influence_metrics, aes(x = obs_number, y = cooks_d)) +
   theme_minimal()
 ```
 
-## Violaciones de los Supuestos y Remedios
+## VIOLACIONES DE LOS SUPUESTOS Y REMEDIOS
 
 ### Heteroscedasticidad
 La heteroscedasticidad ocurre cuando $\text{Var}(\varepsilon_i|X_i) \neq \sigma^2$.
@@ -842,7 +843,7 @@ residuos_tiempo <- residuals(modelo_tiempo)
 acf(residuos_tiempo, main = "Autocorrelación de Residuos")
 ```
 
-## Selección de Variables y Extensiones del Modelo
+## SELECCIÓN DE VARIABLES Y EXTENSIÓN DEL MODELO
 
 ### Selección de Variables y Modelos
 #### Criterios de información
@@ -1082,19 +1083,23 @@ modelos_log <- list(
 # Interpretación de coeficientes
 log_interpretations <- tibble(
   Modelo = names(modelos_log),
-  Especificación = c("Y = β₀ + β₁X", "ln(Y) = β₀ + β₁X",
-                    "Y = β₀ + β₁ln(X)", "ln(Y) = β₀ + β₁ln(X)"),
-  Interpretación_β = c("Cambio absoluto en Y por unidad de X",
-                       "Cambio porcentual en Y por unidad de X (≈ 100×β₁%)",
-                       "Cambio absoluto en Y por 1% de cambio en X (≈ β₁/100)",
-                       "Elasticidad: cambio porcentual en Y por 1% de cambio en X")
+  Especificación = c("$Y = \\beta_0 + \\beta_1 X$", "$\\ln(Y) = \\beta_0 + \\beta_1 X$",
+                    "$Y = \\beta_0 + \\beta_1 \\ln(X)$", "$\\ln(Y) = \\beta_0 + \\beta_1 \\ln(X)$"),
+  Interpretación_beta = c("Cambio absoluto en Y por unidad de X",
+                       "Cambio porcentual en Y por unidad de X ($\\approx 100 \\times \\beta_1\\%$)",
+                       "Cambio absoluto en Y por 1\\% de cambio en X ($\\approx \\beta_1/100$)",
+                       "Elasticidad: cambio porcentual en Y por 1\\% de cambio en X")
 )
 
 kable(log_interpretations,
       caption = "Interpretación de coeficientes en modelos logarítmicos",
-      align = c("l", "l", "l")) %>%
-  kable_styling(bootstrap_options = c("striped", "hover")) %>%
-  column_spec(3, width = "12em")
+      col.names = c( "Modelo",  "Especificación",  "Interpretación de $\\beta$"),
+      align = c("l", "l", "l"),
+      escape = FALSE
+) %>%
+  kable_styling(
+    latex_options = c("hold_position")
+      ) 
 
 # Comparar ajustes (necesitamos métricas comparables)
 # Para modelos log-lin, calculamos R² en escala original
@@ -1119,7 +1124,7 @@ kable(r2_comparison,
 ```
 
 
-## Evaluación Predictiva y Validación
+## EVALUACIÓN PREDICTIVA Y VALIDACIÓN
 
 ### División entrenamiento-prueba
 
@@ -1241,7 +1246,7 @@ kable(cv_results,
 ```
 
 
-## Modelos GLM y Técnicas de Regularización
+## MODELOS DE GLM Y TÉCNICAS DE REGULARIZACIÓN
 
 ### Introducción a Modelos Lineales Generalizados (GLM)
 #### Extensión más allá de la normalidad
@@ -1374,7 +1379,7 @@ plot(lasso_model, main = "LASSO - CV Error")
 par(mfrow = c(1, 1))
 ```
 
-## Práctica y Material Complementario
+## PRÁCTICA Y MATERIAL COMPLEMENTARIO
 
 ### Análisis de Regresión en la Práctica: Flujo de Trabajo Completo
 #### Metodología reproducible paso a paso
@@ -1729,7 +1734,7 @@ time_trend <- 1:n_periods
 # e) Proponer soluciones (primeras diferencias, etc.)
 
 # Plantilla:
-# y_t <- α + β*t + ε_t, donde ε_t = ρ*ε_{t-1} + u_t
+# y_t <- $\alpha$ + $\beta$*t + ε_t, donde ε_t = ρ*ε_{t-1} + u_t
 ```
 
 #### Ejercicio 4: Proyecto integrador predictivo

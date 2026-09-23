@@ -1,7 +1,7 @@
-# MUESTRA Y PROBLACIÓN
+# ANTECEDENTES
+## MUESTRA Y PROBLACIÓN
 
-## POBLACIÓN
-
+### Población
 Una población, en estadística, es un conjunto de elementos que comparten una característica en común de interés para un investigador.
 
 Como ejemplos podemos mencionar el interés de un investigador sobre el uso de celulares entre estudiantes de secundaria en México. En este caso la población está integrada por todos los mexicanos que se encuentren actualmente inscritos en una institución educativa, pública o privada a nivel secundaria. También podría ser del interés de un investigador ciertas especies y su capacidad de reproducción. Por ejemplo, las plagas que afectan las grandes ciudades como son las ratas. En este caso se podría establecer la cantidad de roedores que se concentran en una ciudad, para establecer como se reproducen o migran a estas grandes ciudades como Nueva York.
@@ -17,7 +17,7 @@ Las características cualitativas siempre deben ser cuantificadas de forma cuant
 
 Debido a que las poblaciones pueden ser demasiado grandes para censarlas o el tiempo es limitado para realizar el censo, o no se cuentan con los recursos económicos necesarios, es que se deben realizar muestreos. 
 
-## Muestreo
+### Muestreo
 
 Una muestra es un subconjunto de la población que se selecciona de forma aleatoria, representativa e insesgada. 
 
@@ -27,7 +27,7 @@ Una muestra es un subconjunto de la población que se selecciona de forma aleato
   - Representativo: En este caso se espera que los elementos de la población queden representados en la muestra. suponga que una población de 1,000 personas, con un 20% de mujeres y un 80% de hombres, la muestra debería tener al menos un número suficientes de representates de hombres y mujeres. Por ejemplo, si una muestra de 100 elementos de esta población que se toma de manera aleatoria, podría conducir a que todos los elementos seleccionados fueran hombres y ninguna mujer, esta muestra no sería representativa.
   - Insesgado: Se espera que la muestra sea aleatoria, lo que evitaría algún criterio de selección e los elementos de la muestra por parte del investigador. Por ejemplo: Suponga que una acreditadora desea seleccionar a diez estudiantes de manera aleatoria de un grupo de matemáticas, para aplicarles una prueba y evaluar el desempeño del profesor. Suponga también que el profesor será recompensado si los estudiantes seleccionados aleatoriamente obtiene buenos resultados, en caso contrario, su contrato será rescindido. El profesor podría verse tentado a seleccionar solo a los alumnos con mejor promedio para este fin, lo que provocaría un sesgo al seleccionar dicha muestra.
   
-##  ESTIMADORES
+###  Estimadores
 
 Debido a que las poblaciones son demasiado grandes para censarlas o el tiempo para realizar el censo es limitado, así como los recursos financieros y humanos, es que nos vemos en la necesidad de realizar muestreo. Es necesario realizar estimaciones de los parámetros poblacionales que deseamos conocer. Esto es, si el objetivo fuera calcular la estatura promedio de los estudiantes de la facultad de ingeniería  y sólo tuviéramos un par de días para hacerlo, a través de una muestra se estiman los parámetros poblacionales, en este caso la media. Entonces se dice que la media muestral $\bar{x}$ estima al parámetro poblacional $\mu$.
 
@@ -76,7 +76,7 @@ Es claro que el valor del estadístico no corresponderá exactamente al valor de
 ¿Por qué entonces podemos confiar en un estadístico de una muestra para estimar un parámetro poblacional?
 
 
-# DISTRIBUCIONES MUESTRALES
+## DISTRIBUCIONES MUESTRALES
 
 Una distribución de muestras, es el resultado de tomar la combinación de un tamaño __*n*__ de elementos de una población de tamaño __*N*__ generando __*K*__ combinaciones y calculando $\boldsymbol{\bar{x}_k}$ medias muestrales, las cuales resultan ser variables aleatorias (v.a.). Esto es, si se seleccionan diferentes muestras, del mismo tamaño n de forma aleatoria, de una población, cada una de ellas tendría un valor diferente y la probabilidad de que alguna de ellas acierte al valor del parámetro poblacional $\boldsymbol{\mu}$ es casi seguramente cero. 
 
@@ -184,7 +184,7 @@ y finalmente el error estándar es
 \sigma_{\bar{x}}=\sqrt{\frac{\sigma^2}{n}}=\frac{\sigma}{\sqrt{n}}
 \end{equation}
 
-## Teorema del Límite Central
+### Teorema del Límite Central
 
 Sean $X_1,X_2,...,X_n$ una muestra de tamaño __n__ de una población de tamaño __N__ con media $\mu$ y varianza finita $\sigma^2$, de esta población se obtienen __k__ combinaciones de tamaño __n__, que generan $\bar{X}_k$ medias muestrales, estas últimas tienden a distribuirse de forma asintótica a la normal con media $\bar{\bar{X}}=\mu$ y error estándar $\sigma_{\bar{x}}$, el cual disminuye conforme el tamaño de la muestra aumenta, no importando la distribución de probabilidad de la que provengan las variables aleatorias de las muestras tomadas.
 
@@ -285,11 +285,11 @@ text(
 
 ```
 
-## ESTIMACIÓN PUNTUAL
+### ESTIMACIÓN PUNTUAL
 
 Como se puede observar los valores de $\bar{X}_i$ se distribuyen de forma gaussiana alrededor de $\bar{\bar{X}}=\mu$ y a medida que el tamaño de la muestra aumenta, el error estándar disminuye y los valores se encuentran más cerca del parámetro poblacional $\mu$. Sin embargo, la probabilidad de que alguna $\bar{X}_i$ sea igual al parámetro desconocido $\mu$ es casi seguramente de cero, aún si el valor fuera igual o casi igual al parámetro no lo sabría, por eso la estimación puntual del parámetro no  es recomendable, por lo que es necesario utilizar un intervalo donde se pueda establecer, con un error específico y una probailidad, que se encontrará el parámetro real pero desconocido.
 
-# INTERVALOS DE CONFIANZA
+## INTERVALOS DE CONFIANZA
 
 Un intervalo de confianza se establece como la probabilidad de que el parámetro desconocido $\mu$ se encuentre en un rango de valores, a dicha probabilidad asociada se le conoce como __coeficiente de confianza__ $cc=1-\alpha$ y se calcula al restar a uno el nivel de significancia $\alpha$. Tanto el coeficiente de confianza como el nivel de significancia tienen un rango de valores aceptados. Por ejemplo, el *cc* se acepta se encuentre $90\%\leq cc<100\%$, mientras que $0\%<\alpha\leq10\%$.  
 
@@ -391,7 +391,7 @@ Este tema será profundizado con mayor detalle en el siguiente capítulo, en don
 
 En otras ocasiones el interés del investigador es el de encontrar el valor del parámetro que describe a una población, o la probabilidad de que este sea mayor o menor que un valor predeterminado, para esto se emplea una prueba de hipótesis.
 
-# PRUEBAS DE HIPÓTESIS
+## PRUEBAS DE HIPÓTESIS
 
 Una hipótesis, desde el punto de vista de la estadística, es una aseveración que se hace sobre un parámetro poblacional. Por ejemplo:
 

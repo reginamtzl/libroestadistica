@@ -4,6 +4,7 @@ author: "Equipo Editorial, Wulfrano Gómez Gallardo"
 date: "`r Sys.Date()`"
 output: pdf_document
 documentclass: book
+classoption: oneside
 header-includes:
   - \usepackage[spanish,es-tabla]{babel}
 bibliography: book.bib

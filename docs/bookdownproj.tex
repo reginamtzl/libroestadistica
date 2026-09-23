@@ -2,7 +2,7 @@
 \PassOptionsToPackage{unicode}{hyperref}
 \PassOptionsToPackage{hyphens}{url}
 \documentclass[
-]{book}
+  oneside]{book}
 \usepackage{xcolor}
 \usepackage{amsmath,amssymb}
 \setcounter{secnumdepth}{5}
@@ -98,6 +98,59 @@
 \setlength{\emergencystretch}{3em} % prevent overfull lines
 \providecommand{\tightlist}{%
   \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+% preamble.tex
+\ProvidesFile{preamble.tex}
+
+% ====== CONFIGURACIÓN OBLIGATORIA PARA ESPAÑOL ======
+% Opción A: Con babel (más compatible)
+\usepackage[spanish,es-tabla,es-nodecimaldot]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% ====== MÁRGENES ======
+\usepackage[
+  a4paper,
+  top=2.5cm,
+  bottom=2.5cm,
+  left=2.5cm,
+  right=2.5cm,
+  includehead,
+  includefoot
+]{geometry}
+
+% ====== NUMERACIÓN DE PÁGINAS ======
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[C]{\thepage}
+
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+  \fancyhf{}
+  \fancyfoot[C]{\thepage}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
+}
+
+% ====== AJUSTE DE TÍTULOS DE CAPÍTULO ======
+\makeatletter
+\renewcommand{\@makechapterhead}[1]{%
+  \vspace*{-20pt}%
+  {\parindent \z@ \raggedright
+    \normalfont
+    \ifnum \c@secnumdepth >\m@ne
+      \huge\bfseries \@chapapp\space \thechapter
+      \par\nobreak
+      \vskip 10pt
+    \fi
+    \interlinepenalty\@M
+    \Huge\bfseries #1\par\nobreak
+    \vskip 30pt
+  }}
+\makeatother
 \usepackage[spanish,es-tabla]{babel}
 \usepackage{bookmark}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
@@ -119,9 +172,11 @@
 \setcounter{tocdepth}{2}
 \tableofcontents
 }
-\chapter{MUESTRA Y PROBLACIÓN}\label{muestra-y-problaciuxf3n}
+\chapter{ANTECEDENTES}\label{antecedentes}
 
-\section{POBLACIÓN}\label{poblaciuxf3n}
+\section{MUESTRA Y PROBLACIÓN}\label{muestra-y-problaciuxf3n}
+
+\subsection{Población}\label{poblaciuxf3n}
 
 Una población, en estadística, es un conjunto de elementos que comparten una característica en común de interés para un investigador.
 
@@ -139,7 +194,7 @@ Las características cualitativas siempre deben ser cuantificadas de forma cuant
 
 Debido a que las poblaciones pueden ser demasiado grandes para censarlas o el tiempo es limitado para realizar el censo, o no se cuentan con los recursos económicos necesarios, es que se deben realizar muestreos.
 
-\section{Muestreo}\label{muestreo}
+\subsection{Muestreo}\label{muestreo}
 
 Una muestra es un subconjunto de la población que se selecciona de forma aleatoria, representativa e insesgada.
 
@@ -155,7 +210,7 @@ Una muestra es un subconjunto de la población que se selecciona de forma aleato
   Insesgado: Se espera que la muestra sea aleatoria, lo que evitaría algún criterio de selección e los elementos de la muestra por parte del investigador. Por ejemplo: Suponga que una acreditadora desea seleccionar a diez estudiantes de manera aleatoria de un grupo de matemáticas, para aplicarles una prueba y evaluar el desempeño del profesor. Suponga también que el profesor será recompensado si los estudiantes seleccionados aleatoriamente obtiene buenos resultados, en caso contrario, su contrato será rescindido. El profesor podría verse tentado a seleccionar solo a los alumnos con mejor promedio para este fin, lo que provocaría un sesgo al seleccionar dicha muestra.
 \end{itemize}
 
-\section{ESTIMADORES}\label{estimadores}
+\subsection{Estimadores}\label{estimadores}
 
 Debido a que las poblaciones son demasiado grandes para censarlas o el tiempo para realizar el censo es limitado, así como los recursos financieros y humanos, es que nos vemos en la necesidad de realizar muestreo. Es necesario realizar estimaciones de los parámetros poblacionales que deseamos conocer. Esto es, si el objetivo fuera calcular la estatura promedio de los estudiantes de la facultad de ingeniería y sólo tuviéramos un par de días para hacerlo, a través de una muestra se estiman los parámetros poblacionales, en este caso la media. Entonces se dice que la media muestral \(\bar{x}\) estima al parámetro poblacional \(\mu\).
 
@@ -203,7 +258,7 @@ Es claro que el valor del estadístico no corresponderá exactamente al valor de
 
 ¿Por qué entonces podemos confiar en un estadístico de una muestra para estimar un parámetro poblacional?
 
-\chapter{DISTRIBUCIONES MUESTRALES}\label{distribuciones-muestrales}
+\section{DISTRIBUCIONES MUESTRALES}\label{distribuciones-muestrales}
 
 Una distribución de muestras, es el resultado de tomar la combinación de un tamaño \textbf{\emph{n}} de elementos de una población de tamaño \textbf{\emph{N}} generando \textbf{\emph{K}} combinaciones y calculando \(\boldsymbol{\bar{x}_k}\) medias muestrales, las cuales resultan ser variables aleatorias (v.a.). Esto es, si se seleccionan diferentes muestras, del mismo tamaño n de forma aleatoria, de una población, cada una de ellas tendría un valor diferente y la probabilidad de que alguna de ellas acierte al valor del parámetro poblacional \(\boldsymbol{\mu}\) es casi seguramente cero.
 
@@ -310,7 +365,7 @@ y finalmente el error estándar es
 \sigma_{\bar{x}}=\sqrt{\frac{\sigma^2}{n}}=\frac{\sigma}{\sqrt{n}}
 \end{equation}
 
-\section{Teorema del Límite Central}\label{teorema-del-luxedmite-central}
+\subsection{Teorema del Límite Central}\label{teorema-del-luxedmite-central}
 
 Sean \(X_1,X_2,...,X_n\) una muestra de tamaño \textbf{n} de una población de tamaño \textbf{N} con media \(\mu\) y varianza finita \(\sigma^2\), de esta población se obtienen \textbf{k} combinaciones de tamaño \textbf{n}, que generan \(\bar{X}_k\) medias muestrales, estas últimas tienden a distribuirse de forma asintótica a la normal con media \(\bar{\bar{X}}=\mu\) y error estándar \(\sigma_{\bar{x}}\), el cual disminuye conforme el tamaño de la muestra aumenta, no importando la distribución de probabilidad de la que provengan las variables aleatorias de las muestras tomadas.
 
@@ -322,11 +377,11 @@ La figura 2 ejemplifica esto.
 \caption{\label{fig:TLC}Teorema del Límite Central}
 \end{figure}
 
-\section{ESTIMACIÓN PUNTUAL}\label{estimaciuxf3n-puntual}
+\subsection{ESTIMACIÓN PUNTUAL}\label{estimaciuxf3n-puntual}
 
 Como se puede observar los valores de \(\bar{X}_i\) se distribuyen de forma gaussiana alrededor de \(\bar{\bar{X}}=\mu\) y a medida que el tamaño de la muestra aumenta, el error estándar disminuye y los valores se encuentran más cerca del parámetro poblacional \(\mu\). Sin embargo, la probabilidad de que alguna \(\bar{X}_i\) sea igual al parámetro desconocido \(\mu\) es casi seguramente de cero, aún si el valor fuera igual o casi igual al parámetro no lo sabría, por eso la estimación puntual del parámetro no es recomendable, por lo que es necesario utilizar un intervalo donde se pueda establecer, con un error específico y una probailidad, que se encontrará el parámetro real pero desconocido.
 
-\chapter{INTERVALOS DE CONFIANZA}\label{intervalos-de-confianza}
+\section{INTERVALOS DE CONFIANZA}\label{intervalos-de-confianza}
 
 Un intervalo de confianza se establece como la probabilidad de que el parámetro desconocido \(\mu\) se encuentre en un rango de valores, a dicha probabilidad asociada se le conoce como \textbf{coeficiente de confianza} \(cc=1-\alpha\) y se calcula al restar a uno el nivel de significancia \(\alpha\). Tanto el coeficiente de confianza como el nivel de significancia tienen un rango de valores aceptados. Por ejemplo, el \emph{cc} se acepta se encuentre \(90\%\leq cc<100\%\), mientras que \(0\%<\alpha\leq10\%\).
 
@@ -406,7 +461,7 @@ Este tema será profundizado con mayor detalle en el siguiente capítulo, en don
 
 En otras ocasiones el interés del investigador es el de encontrar el valor del parámetro que describe a una población, o la probabilidad de que este sea mayor o menor que un valor predeterminado, para esto se emplea una prueba de hipótesis.
 
-\chapter{PRUEBAS DE HIPÓTESIS}\label{pruebas-de-hipuxf3tesis}
+\section{PRUEBAS DE HIPÓTESIS}\label{pruebas-de-hipuxf3tesis}
 
 Una hipótesis, desde el punto de vista de la estadística, es una aseveración que se hace sobre un parámetro poblacional. Por ejemplo:
 
@@ -470,20 +525,21 @@ Su ponga que se desea estimar si la población mide más de 172 cm con la misma 
 
 \(H_0:\)
 
-\chapter{Muestreo}\label{muestreo-1}
+\chapter{MUESTRE0}\label{muestre0}
 
+\begin{quote}
 \textbf{Objetivo}
-* *
+\end{quote}
 
-\section{Muestreo aleatorio y restricto}\label{muestreo-aleatorio-y-restricto}
+\section{MUESTREO ALEATORIO Y RESTRICTO}\label{muestreo-aleatorio-y-restricto}
 
-\section{Muestreo estractificado}\label{muestreo-estractificado}
+\section{MUESTREO ESTRACTIFICADO}\label{muestreo-estractificado}
 
-\section{Muestreo por conglomerados}\label{muestreo-por-conglomerados}
+\section{MUESTREO POR CONGLOMERADOS}\label{muestreo-por-conglomerados}
 
-\section{Muestreo secuencial}\label{muestreo-secuencial}
+\section{MUESTREO SECUENCIAL}\label{muestreo-secuencial}
 
-\chapter{Análisis de Regresión: De la Inferencia a la Predicción con R}\label{anuxe1lisis-de-regresiuxf3n-de-la-inferencia-a-la-predicciuxf3n-con-r}
+\chapter{ANÁLISIS DE REGRESIÓN: DE LA INFERENCIA A LA PREDICCIÓN CON R}\label{anuxe1lisis-de-regresiuxf3n-de-la-inferencia-a-la-predicciuxf3n-con-r}
 
 \begin{quote}
 \textbf{Objetivo del capítulo:} Proporcionar una guía integral y práctica para comprender, estimar, diagnosticar e interpretar modelos de regresión lineal, diferenciando entre objetivos de \textbf{inferencia estadística} y \textbf{predicción}, con implementaciones reproducibles en R que siguen las mejores prácticas de ciencia de datos moderna.
@@ -513,7 +569,7 @@ Su ponga que se desea estimar si la población mide más de 172 cm con la misma 
 \textbf{Prerrequisitos:} Álgebra lineal básica, cálculo diferencial, probabilidad y estadística inferencial, manejo intermedio de R y RStudio.
 \end{quote}
 
-\section{Fundamentos del Análisis de Regresión}\label{fundamentos-del-anuxe1lisis-de-regresiuxf3n}
+\section{FUNAMENTOS DEL ANÁLISIS DE REGRESIÓN}\label{funamentos-del-anuxe1lisis-de-regresiuxf3n}
 
 \subsection{Introducción al Análisis de Regresión}\label{introducciuxf3n-al-anuxe1lisis-de-regresiuxf3n}
 
@@ -711,7 +767,7 @@ multiple & 0.8825 & 0.8801 & 3976.526 & 3996.316 & 0\\
 
 \textbf{Interpretación de educación:} Controlando por edad y experiencia, tener educación universitaria se asocia con un incremento promedio de 7320 dólares en el salario comparado con educación primaria.
 
-\section{Supuestos del MCRL y Estimación MCO}\label{supuestos-del-mcrl-y-estimaciuxf3n-mco}
+\section{SUPUESTOS DEL MRL Y ESTIMACIÓN MCO}\label{supuestos-del-mrl-y-estimaciuxf3n-mco}
 
 \subsection{Supuestos del Modelo Clásico de Regresión Lineal (MCRL)}\label{supuestos-del-modelo-cluxe1sico-de-regresiuxf3n-lineal-mcrl}
 
@@ -848,7 +904,7 @@ El estimador insesgado de la varianza del error es:
 
 donde SCR es la suma de cuadrados de los residuos y \(n-k-1\) son los grados de libertad.
 
-\section{Inferencia Estadística en Regresión}\label{inferencia-estaduxedstica-en-regresiuxf3n}
+\section{INFERENCIA ESTADÍSTICA EN REGRESIÓN}\label{inferencia-estaduxedstica-en-regresiuxf3n}
 
 \subsection{Distribución de los estimadores}\label{distribuciuxf3n-de-los-estimadores}
 
@@ -1001,7 +1057,7 @@ edad & experiencia & educacion & fit & lwr & upr & amplitud\_intervalo\\
 
 \textbackslash end\{table\}
 
-\section{Medidas de Bondad de Ajuste}\label{medidas-de-bondad-de-ajuste}
+\section{MEDIDAS DE BONDAD DE AJUSTE}\label{medidas-de-bondad-de-ajuste}
 
 \subsection{Coeficiente de determinación R²}\label{coeficiente-de-determinaciuxf3n-ruxb2}
 
@@ -1141,7 +1197,7 @@ obs\_number & leverage & cooks\_d & .std.resid\\
 
 \pandocbounded{\includegraphics[keepaspectratio]{bookdownproj_files/figure-latex/observaciones-influyentes-1.pdf}}
 
-\section{Violaciones de los Supuestos y Remedios}\label{violaciones-de-los-supuestos-y-remedios}
+\section{VIOLACIONES DE LOS SUPUESTOS Y REMEDIOS}\label{violaciones-de-los-supuestos-y-remedios}
 
 \subsection{Heteroscedasticidad}\label{heteroscedasticidad}
 
@@ -1268,8 +1324,8 @@ educacion & educacion & 1.011 & 0.989 & Sin problema\\
 \end{verbatim}
 
 \begin{verbatim}
-## Warning in library(package, lib.loc = lib.loc, character.only = TRUE, logical.return = TRUE, : no hay
-## paquete llamado 'princomp'
+## Warning in library(package, lib.loc = lib.loc, character.only = TRUE, logical.return = TRUE,
+## : no hay paquete llamado 'princomp'
 \end{verbatim}
 
 \begin{table}
@@ -1310,7 +1366,7 @@ Relevante cuando las observaciones tienen orden temporal.
 
 \pandocbounded{\includegraphics[keepaspectratio]{bookdownproj_files/figure-latex/autocorrelacion-1.pdf}}
 
-\section{Selección de Variables y Extensiones del Modelo}\label{selecciuxf3n-de-variables-y-extensiones-del-modelo}
+\section{SELECCIÓN DE VARIABLES Y EXTENSIÓN DEL MODELO}\label{selecciuxf3n-de-variables-y-extensiuxf3n-del-modelo}
 
 \subsection{Selección de Variables y Modelos}\label{selecciuxf3n-de-variables-y-modelos}
 
@@ -1509,21 +1565,21 @@ Polinomial orden 2 & 0.8826 & 3980.393 & 4006.780\\
 ##  Max.   :109101   Max.   :67.41   Max.   :44.629
 \end{verbatim}
 
-\begin{table}
+\begin{table}[!h]
 \centering
 \caption{\label{tab:transformaciones-log}Interpretación de coeficientes en modelos logarítmicos}
 \centering
-\begin{tabular}[t]{l|l|>{\raggedright\arraybackslash}p{12em}}
+\begin{tabular}[t]{l|l|l}
 \hline
-Modelo & Especificación & Interpretación\_β\\
+Modelo & Especificación & Interpretación de $\beta$\\
 \hline
-Lineal & Y = β₀ + β₁X & Cambio absoluto en Y por unidad de X\\
+Lineal & $Y = \beta_0 + \beta_1 X$ & Cambio absoluto en Y por unidad de X\\
 \hline
-Log-lin & ln(Y) = β₀ + β₁X & Cambio porcentual en Y por unidad de X (≈ 100×β₁\%)\\
+Log-lin & $\ln(Y) = \beta_0 + \beta_1 X$ & Cambio porcentual en Y por unidad de X ($\approx 100 \times \beta_1\%$)\\
 \hline
-Lin-log & Y = β₀ + β₁ln(X) & Cambio absoluto en Y por 1\% de cambio en X (≈ β₁/100)\\
+Lin-log & $Y = \beta_0 + \beta_1 \ln(X)$ & Cambio absoluto en Y por 1\% de cambio en X ($\approx \beta_1/100$)\\
 \hline
-Log-log & ln(Y) = β₀ + β₁ln(X) & Elasticidad: cambio porcentual en Y por 1\% de cambio en X\\
+Log-log & $\ln(Y) = \beta_0 + \beta_1 \ln(X)$ & Elasticidad: cambio porcentual en Y por 1\% de cambio en X\\
 \hline
 \end{tabular}
 \end{table}
@@ -1547,7 +1603,7 @@ Log-log & 0.6809\\
 \end{tabular}
 \end{table}
 
-\section{Evaluación Predictiva y Validación}\label{evaluaciuxf3n-predictiva-y-validaciuxf3n}
+\section{EVALUACIÓN PREDICTIVA Y VALIDACIÓN}\label{evaluaciuxf3n-predictiva-y-validaciuxf3n}
 
 \subsection{División entrenamiento-prueba}\label{divisiuxf3n-entrenamiento-prueba}
 
@@ -1654,7 +1710,7 @@ Interacciones & 5011.097 & 1021.473 & 4079.546 & 874.988\\
 \end{tabular}
 \end{table}
 
-\section{Modelos GLM y Técnicas de Regularización}\label{modelos-glm-y-tuxe9cnicas-de-regularizaciuxf3n}
+\section{MODELOS DE GLM Y TÉCNICAS DE REGULARIZACIÓN}\label{modelos-de-glm-y-tuxe9cnicas-de-regularizaciuxf3n}
 
 \subsection{Introducción a Modelos Lineales Generalizados (GLM)}\label{introducciuxf3n-a-modelos-lineales-generalizados-glm}
 
@@ -1774,7 +1830,7 @@ educacionUniversidad & NA & 6996.8680 & 7215.5683 & 7124.1962\\
 
 \pandocbounded{\includegraphics[keepaspectratio]{bookdownproj_files/figure-latex/regularizacion-1.pdf}} \pandocbounded{\includegraphics[keepaspectratio]{bookdownproj_files/figure-latex/regularizacion-2.pdf}}
 
-\section{Práctica y Material Complementario}\label{pruxe1ctica-y-material-complementario}
+\section{PRÁCTICA Y MATERIAL COMPLEMENTARIO}\label{pruxe1ctica-y-material-complementario}
 
 \subsection{Análisis de Regresión en la Práctica: Flujo de Trabajo Completo}\label{anuxe1lisis-de-regresiuxf3n-en-la-pruxe1ctica-flujo-de-trabajo-completo}
 
@@ -2002,14 +2058,17 @@ Sin embargo, los principios fundamentales del modelado estadístico---especifica
 
 La regresión lineal, por su interpretabilidad y solidez teórica, seguirá siendo herramienta fundamental en el arsenal del analista de datos moderno.
 
-\chapter{Diseño y Análisis de Experimentos: Fundamentos, Modelación e Interpretación}\label{diseuxf1o-y-anuxe1lisis-de-experimentos-fundamentos-modelaciuxf3n-e-interpretaciuxf3n}
+\chapter{DISEÑO Y ANÁLISIS DE EXPERIMENTOS: FUNDAMENTOS, MODELACIÓN E INTERPRETACIÓN}\label{diseuxf1o-y-anuxe1lisis-de-experimentos-fundamentos-modelaciuxf3n-e-interpretaciuxf3n}
 
-\textbf{Objetivo:}
-\emph{Que el alumnado sea capaz de comprender, diseñar y analizar experimentos, interpretando la variabilidad de los datos y el efecto de uno o múltiples factores mediante modelos de análisis de varianza y diseños experimentales, apoyándose en herramientas visuales y de simulación para la toma de decisiones.}
+\begin{quote}
+\textbf{Objetivo del capítulo:} Que el alumnado sea capaz de comprender, diseñar y analizar experimentos, interpretando la variabilidad de los datos y el efecto de uno o múltiples factores mediante modelos de análisis de varianza y diseños experimentales, apoyándose en herramientas visuales y de simulación para la toma de decisiones.*
+\end{quote}
 
-\textbf{Contenido}
+\begin{quote}
+\textbf{Contenido:}
+\end{quote}
 
-\section{Fundamentos del experimento y análisis de variación}\label{fundamentos-del-experimento-y-anuxe1lisis-de-variaciuxf3n}
+\section{FUNDAMENTOS DEL EXPERIMENTO Y ANÁLISIS DE VARIACIÓN}\label{fundamentos-del-experimento-y-anuxe1lisis-de-variaciuxf3n}
 
 \subsection{El experimento y sus fines}\label{el-experimento-y-sus-fines}
 
@@ -2023,7 +2082,7 @@ La regresión lineal, por su interpretabilidad y solidez teórica, seguirá sien
 
 \subsection{Análisis de resultados}\label{anuxe1lisis-de-resultados}
 
-\section{Análisis de varianza e interpretación de resultados}\label{anuxe1lisis-de-varianza-e-interpretaciuxf3n-de-resultados}
+\section{ANÁLISIS DE VARIANZA E INTREPRETACIÓN DE RESULTADOS}\label{anuxe1lisis-de-varianza-e-intrepretaciuxf3n-de-resultados}
 
 \subsection{ANOVA de un factor}\label{anova-de-un-factor}
 
@@ -2045,7 +2104,7 @@ La regresión lineal, por su interpretabilidad y solidez teórica, seguirá sien
 
 \subsubsection{Interpretación}\label{interpretaciuxf3n}
 
-\section{Diseño experimental multifactorial y control de variabilidad}\label{diseuxf1o-experimental-multifactorial-y-control-de-variabilidad}
+\section{DISEÑO EXPERIMENTAL MULTIFACTORIAL Y CONTROL DE VARIABILIDAD}\label{diseuxf1o-experimental-multifactorial-y-control-de-variabilidad}
 
 \subsection{Bloques experimentales}\label{bloques-experimentales}
 
@@ -2083,14 +2142,15 @@ La regresión lineal, por su interpretabilidad y solidez teórica, seguirá sien
 \emph{Esta propuesta prioriza: comprensión conceptual, interpretación de resultados y aplicación en ingeniería.}
 \emph{Se omite el análisis de covarianza ya que consideramos que requiere base fuerte en regresión, aumenta carga matemática y no es esencial para el objetivo del curso.}
 
-\chapter{Inferencia Estadística No Paramétrica: Métodos y Aplicaciones}\label{inferencia-estaduxedstica-no-paramuxe9trica-muxe9todos-y-aplicaciones}
+\chapter{INFERENCIA ESTADÍSTICA NO PARAMÉTRICA: MÉTODOS Y APLICACIONES}\label{inferencia-estaduxedstica-no-paramuxe9trica-muxe9todos-y-aplicaciones}
 
-\textbf{Objetivo:}
-\emph{El objetivo de este capítulo es familiarizar a los estudiantes de ingeniería con la inferencia no paramétrica. Este enfoque consta de una colección de procedimientos que les permitirá realizar análisis estadístico sin la necesidad de suponer distribuciones de probabilidad específicas para los datos. En particular, se busca que los alumnos aprendan a realizar pruebas no paramétricas en situaciones reales donde las técnicas paramétricas no sean factibles. Asimismo, se espera que adquieran la capacidad de interpretar los resultados de manera crítica y los relacionen con su campo profesional.}
+\begin{quote}
+\textbf{Objetivo del capítulo:} El objetivo de este capítulo es familiarizar a los estudiantes de ingeniería con la inferencia no paramétrica. Este enfoque consta de una colección de procedimientos que les permitirá realizar análisis estadístico sin la necesidad de suponer distribuciones de probabilidad específicas para los datos. En particular, se busca que los alumnos aprendan a realizar pruebas no paramétricas en situaciones reales donde las técnicas paramétricas no sean factibles. Asimismo, se espera que adquieran la capacidad de interpretar los resultados de manera crítica y los relacionen con su campo profesional.*
+\end{quote}
 
 \textbf{Contenido}
 
-\section{Introducción a la inferencia no paramétrica}\label{introducciuxf3n-a-la-inferencia-no-paramuxe9trica}
+\section{INTRODUCCIÓN A LA INFERENCIA NO PARAMÉTRICA}\label{introducciuxf3n-a-la-inferencia-no-paramuxe9trica}
 
 \subsection{Diferencia entre métodos paramétricos y no paramétricos.}\label{diferencia-entre-muxe9todos-paramuxe9tricos-y-no-paramuxe9tricos.}
 
@@ -2098,13 +2158,13 @@ La regresión lineal, por su interpretabilidad y solidez teórica, seguirá sien
 
 \subsection{Situaciones en las que se recomienda su uso.}\label{situaciones-en-las-que-se-recomienda-su-uso.}
 
-\section{Pruebas de hipótesis para una muestra}\label{pruebas-de-hipuxf3tesis-para-una-muestra}
+\section{PRUEBAS DE HIPÓTESIS PARA UNA MUESTRA}\label{pruebas-de-hipuxf3tesis-para-una-muestra}
 
 \subsection{Prueba de los signos.}\label{prueba-de-los-signos.}
 
 \subsection{Prueba de Wilcoxon para una muestra.}\label{prueba-de-wilcoxon-para-una-muestra.}
 
-\section{Pruebas de hipótesis para dos muestras}\label{pruebas-de-hipuxf3tesis-para-dos-muestras}
+\section{PRUEBAS DE HIPÓTESISI PARA DOS MUESTRAS}\label{pruebas-de-hipuxf3tesisi-para-dos-muestras}
 
 \subsection{Prueba de Mann-Whitney U (Wilcoxon de rangos sumados).}\label{prueba-de-mann-whitney-u-wilcoxon-de-rangos-sumados.}
 
@@ -2112,19 +2172,19 @@ La regresión lineal, por su interpretabilidad y solidez teórica, seguirá sien
 
 \subsection{Prueba de Wilcoxon para pares apareados.}\label{prueba-de-wilcoxon-para-pares-apareados.}
 
-\section{Extensión a más de dos muestras}\label{extensiuxf3n-a-muxe1s-de-dos-muestras}
+\section{EXTENSIÓN A MÁS DE DOS MUESTRAS}\label{extensiuxf3n-a-muxe1s-de-dos-muestras}
 
 \subsection{Prueba de Kruskal-Wallis.}\label{prueba-de-kruskal-wallis.}
 
 \subsection{Prueba de Friedman para diseños con bloques.}\label{prueba-de-friedman-para-diseuxf1os-con-bloques.}
 
-\section{Medidas de asociación no paramétricas}\label{medidas-de-asociaciuxf3n-no-paramuxe9tricas}
+\section{MEDIDAS DE ASOCIACIÓN NO PARAMÉTRICAS}\label{medidas-de-asociaciuxf3n-no-paramuxe9tricas}
 
 \subsection{Coeficiente de correlación de rangos de Spearman.}\label{coeficiente-de-correlaciuxf3n-de-rangos-de-spearman.}
 
 \subsection{Tau de Kendall.}\label{tau-de-kendall.}
 
-\section{Aplicaciones prácticas en ingeniería}\label{aplicaciones-pruxe1cticas-en-ingenieruxeda}
+\section{APLICACIONES PRÁCTICAS EN INGENIERÍA}\label{aplicaciones-pruxe1cticas-en-ingenieruxeda}
 
 \subsection{Control de calidad y confiabilidad.}\label{control-de-calidad-y-confiabilidad.}
 
@@ -2132,11 +2192,11 @@ La regresión lineal, por su interpretabilidad y solidez teórica, seguirá sien
 
 \subsection{Ejemplos con datos reales (tiempos de respuesta, resistencia de materiales, rendimiento de equipos).}\label{ejemplos-con-datos-reales-tiempos-de-respuesta-resistencia-de-materiales-rendimiento-de-equipos.}
 
-\section{Implementación computacional}\label{implementaciuxf3n-computacional}
+\section{IMPLEMENTACIÓN COMPUTACIONAL}\label{implementaciuxf3n-computacional}
 
 \subsection{Ejemplos de aplicación en software estadístico (R, Python, SPSS y/o Excel).}\label{ejemplos-de-aplicaciuxf3n-en-software-estaduxedstico-r-python-spss-yo-excel.}
 
-\section{Conclusiones y recomendaciones}\label{conclusiones-y-recomendaciones}
+\section{CONCLUSIONES Y RECOMENDACIONES}\label{conclusiones-y-recomendaciones}
 
 \subsection{Relevancia en la práctica profesional.}\label{relevancia-en-la-pruxe1ctica-profesional.}
 

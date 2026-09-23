@@ -6,3 +6,48 @@
 \usepackage[spanish,es-tabla,es-nodecimaldot]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
+
+% ====== MÁRGENES ======
+\usepackage[
+  a4paper,
+  top=2.5cm,
+  bottom=2.5cm,
+  left=2.5cm,
+  right=2.5cm,
+  includehead,
+  includefoot
+]{geometry}
+
+% ====== NUMERACIÓN DE PÁGINAS ======
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[C]{\thepage}
+
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\fancypagestyle{plain}{
+  \fancyhf{}
+  \fancyfoot[C]{\thepage}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
+}
+
+% ====== AJUSTE DE TÍTULOS DE CAPÍTULO ======
+\makeatletter
+\renewcommand{\@makechapterhead}[1]{%
+  \vspace*{-20pt}%
+  {\parindent \z@ \raggedright
+    \normalfont
+    \ifnum \c@secnumdepth >\m@ne
+      \huge\bfseries \@chapapp\space \thechapter
+      \par\nobreak
+      \vskip 10pt
+    \fi
+    \interlinepenalty\@M
+    \Huge\bfseries #1\par\nobreak
+    \vskip 30pt
+  }}
+\makeatother
