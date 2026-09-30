@@ -151,10 +151,15 @@
     \vskip 30pt
   }}
 \makeatother
+
 \usepackage[spanish,es-tabla]{babel}
 \usepackage{bookmark}
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same}
+% fallback for those not using the hyperref driver hyperxmp:
+\makeatletter
+\@ifundefined{xmpquote}{\newcommand{\xmpquote}[1]{#1}}{}
+\makeatother
 \hypersetup{
   pdftitle={Estadística Aplicada},
   pdfauthor={Equipo Editorial, Wulfrano Gómez Gallardo},
@@ -163,7 +168,7 @@
 
 \title{Estadística Aplicada}
 \author{Equipo Editorial, Wulfrano Gómez Gallardo}
-\date{2026-09-23}
+\date{2026-09-30}
 
 \begin{document}
 \maketitle
@@ -184,7 +189,7 @@ Como ejemplos podemos mencionar el interés de un investigador sobre el uso de c
 
 Las poblaciones pueden ser finitas o infinitas, de ellas se pueden medir características cuantitativas o cualitativas. Como ejemplo de poblaciones infinitas podemos mencionar el lanzamiento de una moneda un número infinito de veces, los números que se encuentran entre cero y uno, que poden ser seleccionados al azar, entre otros. Mientras que las poblaciones finitas pueden estar representadas por ciudadanos en un país, número de especies en una región, entre otros. Las características cuantitativas que se pueden medir de estas poblaciones pueden ser edad, estaturas, pesos, entre otros. Mientras que las características cuantitativas como color de ojos, color de la piel, entre otros.
 
-Las características cualitativas siempre deben ser cuantificadas de forma cuantitativa para fines estadísticos, a estas variables se les conoce como factores. Por ejemplo el nivel de satisfacción de por u servicio recibido, los cuales son representados por figuras para hacer que el usuario pueda responde de la forma más objetiva y de manera sencilla, como se muestra en la figura 1\footnote{\emph{Fuente: Extraido de \url{https://www.magnific.com/es/vector-gratis/medidor-satisfaccion-emoji-pequeno_44156211.htm\#fromView=keyword&page=1&position=0&uuid=484b5e55-bf2d-4120-b59f-55c1c2d67403&track=ais_hybrid&query=Caritas+satisfaccion}}}
+Las características cualitativas siempre deben ser cuantificadas de forma cuantitativa para fines estadísticos, a estas variables se les conoce como factores. Por ejemplo el nivel de satisfacción por un servicio recibido, los cuales son representados por figuras para hacer que el usuario pueda responder de la forma más objetiva y de manera sencilla, como se muestra en la figura \ref{fig:satisfaccion}\footnote{\emph{Fuente: Extraído de \url{https://www.magnific.com/es/vector-gratis/medidor-satisfaccion-emoji-pequeno_44156211.htm\#fromView=keyword&page=1&position=0&uuid=484b5e55-bf2d-4120-b59f-55c1c2d67403&track=ais_hybrid&query=Caritas+satisfaccion}}}
 
 \begin{figure}
 \centering
@@ -205,9 +210,9 @@ Una muestra es un subconjunto de la población que se selecciona de forma aleato
 \item
   Aleatorio: Los elementos se seleccionan sin un orden específico. Esto es, no se sabe qué elemento será seleccionado. Generalmente se generan números aleatorios o se seleccionan los elementos de una tómbola.
 \item
-  Representativo: En este caso se espera que los elementos de la población queden representados en la muestra. suponga que una población de 1,000 personas, con un 20\% de mujeres y un 80\% de hombres, la muestra debería tener al menos un número suficientes de representates de hombres y mujeres. Por ejemplo, si una muestra de 100 elementos de esta población que se toma de manera aleatoria, podría conducir a que todos los elementos seleccionados fueran hombres y ninguna mujer, esta muestra no sería representativa.
+  Representativo: En este caso se espera que los elementos de la población queden representados en la muestra. Suponga que una población de 1,000 personas, con un 20\% de mujeres y un 80\% de hombres, la muestra debería tener al menos un número suficiente de representantes de hombres y mujeres. Por ejemplo, si una muestra de 100 elementos de esta población que se toma de manera aleatoria podría conducir a que todos los elementos seleccionados fueran hombres y ninguna mujer, esta muestra no sería representativa.
 \item
-  Insesgado: Se espera que la muestra sea aleatoria, lo que evitaría algún criterio de selección e los elementos de la muestra por parte del investigador. Por ejemplo: Suponga que una acreditadora desea seleccionar a diez estudiantes de manera aleatoria de un grupo de matemáticas, para aplicarles una prueba y evaluar el desempeño del profesor. Suponga también que el profesor será recompensado si los estudiantes seleccionados aleatoriamente obtiene buenos resultados, en caso contrario, su contrato será rescindido. El profesor podría verse tentado a seleccionar solo a los alumnos con mejor promedio para este fin, lo que provocaría un sesgo al seleccionar dicha muestra.
+  Insesgado: Se espera que la muestra sea aleatoria, lo que evitaría algún criterio de selección de los elementos de la muestra por parte del investigador. Por ejemplo: Suponga que una acreditadora desea seleccionar a diez estudiantes de manera aleatoria de un grupo de matemáticas, para aplicarles una prueba y evaluar el desempeño del profesor. Suponga también que el profesor será recompensado si los estudiantes seleccionados aleatoriamente obtiene buenos resultados, en caso contrario, su contrato será rescindido. El profesor podría verse tentado a seleccionar solo a los alumnos con mejor promedio para este fin, lo que provocaría un sesgo al seleccionar dicha muestra.
 \end{itemize}
 
 \subsection{Estimadores}\label{estimadores}
@@ -569,7 +574,7 @@ Su ponga que se desea estimar si la población mide más de 172 cm con la misma 
 \textbf{Prerrequisitos:} Álgebra lineal básica, cálculo diferencial, probabilidad y estadística inferencial, manejo intermedio de R y RStudio.
 \end{quote}
 
-\section{FUNAMENTOS DEL ANÁLISIS DE REGRESIÓN}\label{funamentos-del-anuxe1lisis-de-regresiuxf3n}
+\section{FUNDAMENTOS DEL ANÁLISIS DE REGRESIÓN}\label{fundamentos-del-anuxe1lisis-de-regresiuxf3n}
 
 \subsection{Introducción al Análisis de Regresión}\label{introducciuxf3n-al-anuxe1lisis-de-regresiuxf3n}
 
@@ -1320,12 +1325,12 @@ educacion & educacion & 1.011 & 0.989 & Sin problema\\
 \subsubsection{Remedios para multicolinealidad}\label{remedios-para-multicolinealidad}
 
 \begin{verbatim}
-## Cargando paquete requerido: princomp
+## Loading required package: princomp
 \end{verbatim}
 
 \begin{verbatim}
-## Warning in library(package, lib.loc = lib.loc, character.only = TRUE, logical.return = TRUE,
-## : no hay paquete llamado 'princomp'
+## Warning in library(package, lib.loc = lib.loc, character.only = TRUE, logical.return
+## = TRUE, : there is no package called 'princomp'
 \end{verbatim}
 
 \begin{table}
@@ -1806,6 +1811,14 @@ Cuando \(p \approx n\) o \(p > n\), o cuando hay multicolinealidad severa, MCO p
 \item
   \textbf{Elastic Net:} Combinación de ambas
 \end{itemize}
+
+\begin{verbatim}
+## Warning: package 'glmnet' was built under R version 4.3.3
+\end{verbatim}
+
+\begin{verbatim}
+## Loaded glmnet 4.1-8
+\end{verbatim}
 
 \begin{table}
 \centering
