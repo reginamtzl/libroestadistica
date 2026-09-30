@@ -29,7 +29,7 @@ language:
     solution: 'Solución. '
   ui:
     chapter_name: 'Capítulo '
-site: bookdown::bookdown_site
+
 ---
 
 ```{r setup, include=FALSE}

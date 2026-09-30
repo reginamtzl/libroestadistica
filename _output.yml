@@ -1,18 +1,4 @@
-bookdown::gitbook:
-  css: style.css
-  config:
-    toc:
-      collapse: subsection
-      scroll_highlight: yes
-      before: |
-        <li><a href="./">Mi Libro</a></li>
-      after: |
-        <li><a href="https://github.com/rstudio/bookdown" target="blank">Publicado con bookdown</a></li>
-    sharing:
-      github: no
-      facebook: no
-      twitter: no
-bookdown::pdf_document2:
+bookdown::pdf_book:
   latex_engine: xelatex
   keep_tex: yes
   toc: yes
