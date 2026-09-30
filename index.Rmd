@@ -2,7 +2,11 @@
 title: "Estadística Aplicada"
 author: "Equipo Editorial, Wulfrano Gómez Gallardo"
 date: "`r Sys.Date()`"
-output: pdf_document
+output: 
+  bookdown::pdf_book:
+    latex_engine: xelatex
+    toc: true
+number_sections: true
 documentclass: book
 classoption: oneside
 header-includes:
@@ -31,7 +35,6 @@ language:
     chapter_name: 'Capítulo '
 
 ---
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 options(knitr.graphics.auto_pdf = TRUE)

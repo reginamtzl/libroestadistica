@@ -31,7 +31,7 @@ Una muestra es un subconjunto de la población que se selecciona de forma aleato
   
 ###  Estimadores
 
-Debido a que las poblaciones son demasiado grandes para censarlas o el tiempo para realizar el censo es limitado, así como los recursos financieros y humanos, es que nos vemos en la necesidad de realizar muestreo. Es necesario realizar estimaciones de los parámetros poblacionales que deseamos conocer. Esto es, si el objetivo fuera calcular la estatura promedio de los estudiantes de la facultad de ingeniería  y sólo tuviéramos un par de días para hacerlo, a través de una muestra se estiman los parámetros poblacionales, en este caso la media. Entonces se dice que la media muestral $\bar{x}$ estima al parámetro poblacional $\mu$.
+Debido a que las poblaciones son demasiado grandes para censarlas o el tiempo para realizar el censo es limitado, así como los recursos financieros y humanos, es que nos vemos en la necesidad de realizar muestreo. Es necesario realizar estimaciones de los parámetros poblacionales que deseamos conocer. Esto es, si el objetivo fuera calcular la estatura promedio de los estudiantes de la Facultad de Ingeniería  y sólo tuviéramos un par de días para hacerlo, a través de una muestra se estiman los parámetros poblacionales, en este caso la media. Entonces se dice que la media muestral $\bar{x}$ estima al parámetro poblacional $\mu$.
 
 La diferencia en el cálculo de la media de una muestra y de una poblacional es la siguiente
 
@@ -65,7 +65,7 @@ $\boldsymbol{N}$: es el tamaño de la población.
 
 $\boldsymbol{p(x_i)}$: es la medida de la probabilidad del evento $\boldsymbol{x_i}$.
 
-$\boldsymbol{x_i}$: es el i-esimo  elemento de la población.
+$\boldsymbol{x_i}$: es el i-ésimo  elemento de la población.
 
 En este caso se dice que el estadístico $\bar{x}$ estima al parámetro $\mu$. Esto es
 
@@ -73,14 +73,14 @@ $\bar{X}$ estima a $\mu$
 
 <span style="color:red">*__La siguiente aplicación ejemplifica esto__*</span>
 
-Es claro que el valor del estadístico no corresponderá exactamente al valor del parámetro, debido a que el primero se calcula con un subconjunto de de los elementos de la población.
+Es claro que el valor del estadístico no corresponderá exactamente al valor del parámetro, debido a que el primero se calcula con un subconjunto de los elementos de la población.
 
 ¿Por qué entonces podemos confiar en un estadístico de una muestra para estimar un parámetro poblacional?
 
 
 ## DISTRIBUCIONES MUESTRALES
 
-Una distribución de muestras, es el resultado de tomar la combinación de un tamaño __*n*__ de elementos de una población de tamaño __*N*__ generando __*K*__ combinaciones y calculando $\boldsymbol{\bar{x}_k}$ medias muestrales, las cuales resultan ser variables aleatorias (v.a.). Esto es, si se seleccionan diferentes muestras, del mismo tamaño n de forma aleatoria, de una población, cada una de ellas tendría un valor diferente y la probabilidad de que alguna de ellas acierte al valor del parámetro poblacional $\boldsymbol{\mu}$ es casi seguramente cero. 
+Una distribución de muestras, es el resultado de tomar la combinación de un tamaño __*n*__ de elementos de una población de tamaño __*N*__ generando __*K*__ combinaciones y calculando $\boldsymbol{\bar{x}_k}$ medias muestrales, las cuales resultan ser variables aleatorias (v.a.). Esto es, si se seleccionan diferentes muestras, del mismo tamaño $n$ de forma aleatoria, de una población, cada una de ellas tendría un valor diferente y la probabilidad de que alguna de ellas acierte al valor del parámetro poblacional $\boldsymbol{\mu}$ es casi seguramente cero. 
 
 En forma matemática se tiene
 
@@ -429,8 +429,7 @@ par(mfrow = c(1, 3), mar = c(4, 2, 4, 2), oma = c(3, 0, 2, 0))
 
 # Crear los datos de la distribución normal estándar
 x <- seq(-4, 4, length = 1000)
-y <- dnorm(x)
-
+y <- dnorm(x) 
 # ---------------------------------------------------------
 # 1. Prueba de Dos Colas
 # ---------------------------------------------------------
